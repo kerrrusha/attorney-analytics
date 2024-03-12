@@ -11,15 +11,14 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,14 +36,31 @@ public class AuthController {
 
     @PostMapping("/register")
     @Operation(summary = "Register a new user")
-    public UserResponseDto register(@Valid @RequestBody UserRegistrationRequestDto request) {
-        return userService.register(request);
+    public UserResponseDto register(
+            @RequestParam("first-name") String firstName,
+            @RequestParam("last-name") String lastName,
+            @RequestParam("email") String email,
+            @RequestParam("password") String password
+    ) {
+        UserRegistrationRequestDto dto = UserRegistrationRequestDto.builder()
+                .firstName(firstName)
+                .lastName(lastName)
+                .login(email)
+                .password(password)
+                .build();
+        return userService.register(dto);
     }
 
     @PostMapping("/login")
     @Operation(summary = "Authenticate a user")
-    public JwtAuthenticationResponse login(@Valid @RequestBody UserLoginRequestDto request) {
-        return authenticationService.authenticate(request);
+    public JwtAuthenticationResponse login(
+            @RequestParam("email") String email,
+            @RequestParam("password") String password) {
+        UserLoginRequestDto dto = UserLoginRequestDto.builder()
+                .login(email)
+                .password(password)
+                .build();
+        return authenticationService.authenticate(dto);
     }
 
     @PostMapping("/logout")

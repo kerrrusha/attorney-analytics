@@ -20,13 +20,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto register(UserRegistrationRequestDto request) {
-        if (userRepository.findByLogin(request.getEmail()).isPresent()) {
-            throw new RuntimeException("User already exists with such email: " + request.getEmail());
+        if (userRepository.findByLogin(request.getLogin()).isPresent()) {
+            throw new RuntimeException("User already exists with such email: " + request.getLogin());
         }
 
         User user = new User();
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setLogin(request.getEmail());
+        user.setLogin(request.getLogin());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setProfilePhotoUrl(request.getProfilePhotoUrl());

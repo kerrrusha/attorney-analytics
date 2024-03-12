@@ -11,7 +11,7 @@ import lombok.Data;
 @Builder
 public class UserRegistrationRequestDto {
     @Email
-    private String email;
+    private String login;
 
     @NotBlank
     @Size(min = 3, max = 255, message = "Password should be at least 3 symbols length")

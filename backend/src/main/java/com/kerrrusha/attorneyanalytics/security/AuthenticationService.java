@@ -20,7 +20,7 @@ public class AuthenticationService {
 
     public JwtAuthenticationResponse authenticate(UserLoginRequestDto request) {
         final Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                request.getEmail(),
+                request.getLogin(),
                 request.getPassword()
         ));
 
