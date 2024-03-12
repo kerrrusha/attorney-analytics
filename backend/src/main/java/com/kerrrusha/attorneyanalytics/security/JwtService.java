@@ -1,6 +1,6 @@
 package com.kerrrusha.attorneyanalytics.security;
 
-import com.kerrrusha.attorneyanalytics.model.User;
+import com.kerrrusha.attorneyanalytics.model.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -43,7 +43,7 @@ public class JwtService {
         Map<String, Object> extraClaims = new HashMap<>();
         if (userDetails instanceof User customUserDetails) {
             extraClaims.put("id", customUserDetails.getId());
-            extraClaims.put("email", customUserDetails.getEmail());
+            extraClaims.put("email", customUserDetails.getLogin());
             extraClaims.put(ROLES_KEY, customUserDetails.getRoles());
         }
         return Jwts.builder()

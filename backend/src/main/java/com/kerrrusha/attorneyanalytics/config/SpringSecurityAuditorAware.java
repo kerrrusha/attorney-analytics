@@ -1,6 +1,6 @@
 package com.kerrrusha.attorneyanalytics.config;
 
-import com.kerrrusha.attorneyanalytics.model.User;
+import com.kerrrusha.attorneyanalytics.model.user.User;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.AuditorAware;

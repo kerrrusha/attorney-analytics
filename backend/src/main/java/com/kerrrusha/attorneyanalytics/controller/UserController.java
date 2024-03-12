@@ -1,7 +1,7 @@
 package com.kerrrusha.attorneyanalytics.controller;
 
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
-import com.kerrrusha.attorneyanalytics.model.User;
+import com.kerrrusha.attorneyanalytics.model.user.User;
 import com.kerrrusha.attorneyanalytics.repository.UserRepository;
 import com.kerrrusha.attorneyanalytics.service.UserService;
 import lombok.RequiredArgsConstructor;

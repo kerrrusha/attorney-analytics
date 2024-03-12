@@ -1,12 +1,16 @@
-package com.kerrrusha.attorneyanalytics.model;
+package com.kerrrusha.attorneyanalytics.model.user;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +34,7 @@ import java.util.Set;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@SQLRestriction(value = "deleted=false")
+@SQLRestriction("deleted=false")
 @SQLDelete(sql = "UPDATE user SET deleted = true WHERE id=?")
 public class User implements UserDetails {
     @Id
@@ -40,34 +44,50 @@ public class User implements UserDetails {
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @NotBlank
+    @Column(nullable = false)
     private String firstName;
 
-    @NotBlank
+    @Column(nullable = false)
     private String lastName;
 
     private String profilePhotoUrl;
 
     @Email
-    @NotBlank
-    @Column(unique = true)
-    private String email;
+    @Column(unique = true, nullable = false)
+    private String login;
 
-    @NotBlank
+    @Column(nullable = false)
     private String password;
 
+    private String bio;
+
+    private String linkedinUrl;
+
+    @OneToOne
+    private Title title;
+
+    @ToString.Exclude
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private Set<Role> roles = new HashSet<>();
+
+    @Column(nullable = false)
+    private boolean deleted = false;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.name()))
+                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .toList();
     }
 
     @Override
     public String getUsername() {
-        return email;
+        return login;
     }
 
     @Override

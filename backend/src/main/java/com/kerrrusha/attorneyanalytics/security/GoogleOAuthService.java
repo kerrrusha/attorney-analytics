@@ -5,9 +5,10 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.kerrrusha.attorneyanalytics.model.Role;
-import com.kerrrusha.attorneyanalytics.model.User;
+import com.kerrrusha.attorneyanalytics.model.user.Role;
+import com.kerrrusha.attorneyanalytics.model.user.User;
 import com.kerrrusha.attorneyanalytics.dto.oauth.GoogleOAuthLoginRequestDto;
+import com.kerrrusha.attorneyanalytics.repository.RoleRepository;
 import com.kerrrusha.attorneyanalytics.repository.UserRepository;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -17,22 +18,27 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 
+import static java.util.Collections.singleton;
+
 @Slf4j
 @Service
 public class GoogleOAuthService {
 
     private static final int RANDOM_PASSWORD_LENGTH = 20;
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final JwtService jwtService;
     private final GoogleIdTokenVerifier verifier;
     private final RandomPasswordGenerator randomPasswordGenerator;
 
     public GoogleOAuthService(
             @Value("${google.oauth.client-id}") String clientId,
+            RoleRepository roleRepository,
             UserRepository userRepository,
             JwtService jwtService,
             RandomPasswordGenerator randomPasswordGenerator) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
         this.jwtService = jwtService;
         this.randomPasswordGenerator = randomPasswordGenerator;
 
@@ -51,11 +57,12 @@ public class GoogleOAuthService {
 
     @Transactional
     protected User createOrGetUser(User user) {
-        User existingUser = userRepository.findByEmail(user.getEmail()).orElse(null);
+        User existingUser = userRepository.findByLogin(user.getLogin()).orElse(null);
         if (existingUser != null) {
             return existingUser;
         }
-        user.setRoles(Collections.singleton(Role.WORKER));
+        Role workerRole = roleRepository.findByName(Role.RoleName.WORKER).orElseThrow();
+        user.setRoles(singleton(workerRole));
         userRepository.save(user);
         return user;
     }
@@ -75,7 +82,7 @@ public class GoogleOAuthService {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setProfilePhotoUrl(profilePhotoUrl);
-        user.setEmail(email);
+        user.setLogin(email);
         user.setPassword(tempPassword);
 
         return user;

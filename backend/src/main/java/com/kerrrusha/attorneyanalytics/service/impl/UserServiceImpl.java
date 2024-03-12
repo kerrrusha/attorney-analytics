@@ -1,7 +1,7 @@
 package com.kerrrusha.attorneyanalytics.service.impl;
 
 import com.kerrrusha.attorneyanalytics.service.UserService;
-import com.kerrrusha.attorneyanalytics.model.User;
+import com.kerrrusha.attorneyanalytics.model.user.User;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserRegistrationRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
 import com.kerrrusha.attorneyanalytics.mapper.UserMapper;
@@ -20,13 +20,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto register(UserRegistrationRequestDto request) {
-        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+        if (userRepository.findByLogin(request.getEmail()).isPresent()) {
             throw new RuntimeException("User already exists with such email: " + request.getEmail());
         }
 
         User user = new User();
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setEmail(request.getEmail());
+        user.setLogin(request.getEmail());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setProfilePhotoUrl(request.getProfilePhotoUrl());
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto findByEmail(String email) {
-        User user = userRepository.findByEmail(email)
+        User user = userRepository.findByLogin(email)
                 .orElseThrow(() -> new RuntimeException("User not found by email: " + email));
         return userMapper.toDto(user);
     }
