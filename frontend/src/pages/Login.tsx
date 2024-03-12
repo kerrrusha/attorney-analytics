@@ -5,6 +5,7 @@ import GoogleLogin from "../components/GoogleLogin";
 import {PAGES} from "../common/constants";
 import {LoggedInProps} from "../common/commonTypes";
 import {onGoogleSignIn} from "../services/onGoogleSignIn";
+import goodman from '../resources/img/goodman.png';
 
 export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
     const navigate = useNavigate();
@@ -20,11 +21,11 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
-                        className="mx-auto h-10 w-auto"
-                        src="https://cdn-icons-png.flaticon.com/512/5065/5065589.png"
+                        className="mx-auto h-20 w-auto"
+                        src={goodman}
                         alt=""
                     />
-                    <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
+                    <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight">
                         Sign in to your account
                     </h2>
                 </div>

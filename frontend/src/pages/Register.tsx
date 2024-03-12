@@ -5,6 +5,7 @@ import GoogleLogin from "../components/GoogleLogin";
 import {onGoogleSignIn} from "../services/onGoogleSignIn";
 import {useNavigate} from "react-router-dom";
 import {PAGES} from "../common/constants";
+import goodman from '../resources/img/goodman.png';
 
 export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
     const navigate = useNavigate();
@@ -20,11 +21,11 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
-                        className="mx-auto h-10 w-auto"
-                        src="https://cdn-icons-png.flaticon.com/512/5065/5065589.png"
+                        className="mx-auto h-20 w-auto"
+                        src={goodman}
                         alt=""
                     />
-                    <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
+                    <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight">
                         Create account
                     </h2>
                 </div>
@@ -89,20 +90,6 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
                                     name="password"
                                     type="password"
                                     autoComplete="current-password"
-                                    className="text-black block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                />
-                            </div>
-                            <label htmlFor="password" className="mt-2 block text-sm font-medium leading-6">
-                                Repeat password
-                            </label>
-                            <div className="mt-2">
-                                <input
-                                    required
-                                    minLength={3}
-                                    id="password-repeat"
-                                    name="password-repeat"
-                                    type="password"
-                                    autoComplete="password-repeat"
                                     className="text-black block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
