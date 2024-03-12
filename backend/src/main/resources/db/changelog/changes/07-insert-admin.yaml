@@ -15,10 +15,10 @@ databaseChangeLog:
                   value: $2a$10$WDuqr6sjxN5sVYE35/2.sO4ikfDpvKK5FDggA7V/kpxH8XSYS/0s2
               - column:
                   name: first_name
-                  value: Admin
+                  value: Kirill
               - column:
                   name: last_name
-                  value: Admin
+                  value: Koval
   - changeSet:
       id: insert-admin
       author: kerrrusha
@@ -35,7 +35,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_id
-                  valueComputed: (SELECT id FROM users WHERE login='admin@kerrrusha.com')
+                  valueComputed: (SELECT id FROM user WHERE login='admin@kerrrusha.com')
               - column:
                   name: role_id
-                  valueComputed: (SELECT id FROM roles WHERE name='ADMIN')
+                  valueComputed: (SELECT id FROM role WHERE name='ADMIN')

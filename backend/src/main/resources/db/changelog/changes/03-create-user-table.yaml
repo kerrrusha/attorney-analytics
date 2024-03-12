@@ -36,24 +36,16 @@ databaseChangeLog:
               - column:
                   name: profile_photo_url
                   type: VARCHAR(255)
-                  constraints:
-                    nullable: false
               - column:
                   name: bio
-                  type: VARCHAR(32767)
-                  constraints:
-                    nullable: false
+                  type: TEXT
               - column:
                   name: linkedin_url
                   type: VARCHAR(255)
-                  constraints:
-                    nullable: false
               - column:
                   name: title_id
                   type: BIGINT
                   constraints:
-                    nullable: false
-                    unique: true
                     references: title(id)
                     foreignKeyName: fk_user_title_id
                     deleteCascade: true

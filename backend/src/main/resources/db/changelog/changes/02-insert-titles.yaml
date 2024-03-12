@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-titles
+      author: kerrrusha
+      changes:
+        - insert:
+            tableName: title
+            columns:
+              - column:
+                  name: name
+                  value: Chief Executive Officer (CEO)
+        - insert:
+            tableName: title
+            columns:
+              - column:
+                  name: name
+                  value: Staff Attorney
+        - insert:
+            tableName: title
+            columns:
+              - column:
+                  name: name
+                  value: Associate
+        - insert:
+            tableName: title
+            columns:
+              - column:
+                  name: name
+                  value: Of Counsel
+        - insert:
+            tableName: title
+            columns:
+              - column:
+                  name: name
+                  value: Senior Counsel
+        - insert:
+            tableName: title
+            columns:
+              - column:
+                  name: name
+                  value: Principal Attorney
+        - insert:
+            tableName: title
+            columns:
+              - column:
+                  name: name
+                  value: Partner
+        - insert:
+            tableName: title
+            columns:
+              - column:
+                  name: name
+                  value: Senior Partner
