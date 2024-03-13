@@ -10,7 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.Email;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +26,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -52,7 +53,7 @@ public class User implements UserDetails {
 
     private String profilePhotoUrl;
 
-    @Email
+    @jakarta.validation.constraints.Email
     @Column(unique = true, nullable = false)
     private String login;
 
@@ -66,6 +67,26 @@ public class User implements UserDetails {
     @ManyToOne
     @JoinColumn(name = "title_id")
     private Title title;
+
+    @ToString.Exclude
+    @OneToMany(orphanRemoval = true)
+    private List<Email> emails;
+
+    @ToString.Exclude
+    @OneToMany(orphanRemoval = true)
+    private List<Phone> phones;
+
+    @ToString.Exclude
+    @OneToMany(orphanRemoval = true)
+    private List<Location> locations;
+
+    @ToString.Exclude
+    @OneToMany(orphanRemoval = true)
+    private List<Admission> admissions;
+
+    @ToString.Exclude
+    @OneToMany(orphanRemoval = true)
+    private List<PracticeArea> practiceAreas;
 
     @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)

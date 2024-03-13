@@ -1,5 +1,6 @@
 package com.kerrrusha.attorneyanalytics.controller;
 
+import com.kerrrusha.attorneyanalytics.dto.user.response.UserFullResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import com.kerrrusha.attorneyanalytics.repository.UserRepository;
@@ -33,6 +34,12 @@ public class UserController {
     public UserResponseDto getUserInfo(Principal principal) {
         String email = principal.getName();
         return userService.findByEmail(email);
+    }
+
+    @GetMapping("/full-info")
+    public UserFullResponseDto getUserFullInfo(Principal principal) {
+        String email = principal.getName();
+        return userService.findFullByEmail(email);
     }
 
     @ResponseStatus(HttpStatus.OK)
