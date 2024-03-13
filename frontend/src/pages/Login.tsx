@@ -1,20 +1,41 @@
 import DarkModeSwitch from "../components/DarkModeSwitch";
 import {useNavigate} from "react-router-dom";
-import {useEffect} from "react";
+import {FormEvent, useEffect, useState} from "react";
 import GoogleLogin from "../components/GoogleLogin";
 import {PAGES} from "../common/constants";
-import {LoggedInProps} from "../common/commonTypes";
+import {InputTarget, LoggedInProps, LoginRequest} from "../common/commonTypes";
 import {onGoogleSignIn} from "../services/onGoogleSignIn";
 import goodman from '../resources/img/goodman.png';
+import {login} from "../services/login";
 
 export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
     const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     useEffect(() => {
         if (loggedIn) {
             navigate(PAGES.home);
         }
     }, [loggedIn]);
+
+    const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const requestBody : LoginRequest = {
+            login: email,
+            password: password,
+        }
+
+        login(requestBody).then(status => {
+            console.log("Login status:");
+            console.log(status);
+
+            if (status === 200) {
+                setLoggedIn(true);
+            }
+        });
+    }
 
     return (
         <div className="background-primary">
@@ -31,7 +52,7 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" action={`${process.env.REACT_APP_BACKEND_ORIGIN}/auth/login`} method="POST">
+                    <form className="space-y-6" onSubmit={handleFormSubmit}>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium leading-6">
                                 Email address
@@ -43,6 +64,8 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
                                     name="email"
                                     type="email"
                                     autoComplete="email"
+                                    value={email}
+                                    onChange={({target} : InputTarget) => setEmail(target.value)}
                                     className="text-black block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
@@ -67,6 +90,8 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
                                     name="password"
                                     type="password"
                                     autoComplete="current-password"
+                                    value={password}
+                                    onChange={({target} : InputTarget) => setPassword(target.value)}
                                     className="text-black block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>

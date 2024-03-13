@@ -19,4 +19,6 @@ export const API_ENDPOINTS = {
     postNewTask: '/kanban/tasks/new',
     postDragTask: '/kanban/tasks/drag',
     postUpdateUser: '/user/update',
+    login: '/auth/login',
+    register: '/auth/register',
 }

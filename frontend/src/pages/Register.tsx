@@ -1,20 +1,45 @@
-import React, {useEffect} from 'react';
+import React, {FormEvent, useEffect, useState} from 'react';
 import DarkModeSwitch from "../components/DarkModeSwitch";
-import {LoggedInProps} from "../common/commonTypes";
+import {InputTarget, LoggedInProps, RegisterRequest} from "../common/commonTypes";
 import GoogleLogin from "../components/GoogleLogin";
 import {onGoogleSignIn} from "../services/onGoogleSignIn";
 import {useNavigate} from "react-router-dom";
 import {PAGES} from "../common/constants";
 import goodman from '../resources/img/goodman.png';
+import {register} from "../services/register";
 
 export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
     const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
 
     useEffect(() => {
         if (loggedIn) {
             navigate(PAGES.home);
         }
     }, [loggedIn]);
+
+    const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const requestBody : RegisterRequest = {
+            login: email,
+            password: password,
+            firstName: firstName,
+            lastName: lastName,
+        }
+
+        register(requestBody).then(status => {
+            console.log("Register status:");
+            console.log(status);
+
+            if (status === 200) {
+                setLoggedIn(true);
+            }
+        });
+    }
 
     return (
         <div className="background-primary">
@@ -31,7 +56,7 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" action={`${process.env.REACT_APP_BACKEND_ORIGIN}/auth/register`} method="POST">
+                    <form className="space-y-6" onSubmit={handleFormSubmit}>
                         <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6">
@@ -43,6 +68,8 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
                                     type="text"
                                     name="first-name"
                                     id="first-name"
+                                    value={firstName}
+                                    onChange={({target} : InputTarget) => setFirstName(target.value)}
                                     className="mt-2 text-black block mr-2 w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
@@ -57,6 +84,8 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
                                     type="text"
                                     name="last-name"
                                     id="last-name"
+                                    value={lastName}
+                                    onChange={({target} : InputTarget) => setLastName(target.value)}
                                     className="mt-2 text-black block mr-2 w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
@@ -73,6 +102,8 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
                                     type="email"
                                     autoComplete="email"
                                     required
+                                    value={email}
+                                    onChange={({target} : InputTarget) => setEmail(target.value)}
                                     className="text-black block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
@@ -90,6 +121,8 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
                                     name="password"
                                     type="password"
                                     autoComplete="current-password"
+                                    value={password}
+                                    onChange={({target} : InputTarget) => setPassword(target.value)}
                                     className="text-black block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>

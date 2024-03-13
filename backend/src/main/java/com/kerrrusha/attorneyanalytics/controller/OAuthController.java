@@ -13,25 +13,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.kerrrusha.attorneyanalytics.helper.AuthHelper.createAuthCookie;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/oauth")
 public class OAuthController {
-
-    public static final String AUTH_TOKEN = "AUTH-TOKEN";
 
     private final GoogleOAuthService googleOAuthService;
 
     @PostMapping("/google/login")
     public ResponseEntity<Void> loginGoogle(@Valid @RequestBody GoogleOAuthLoginRequestDto requestBody, HttpServletResponse response) {
         String authToken = googleOAuthService.authenticate(requestBody);
-        final ResponseCookie cookie = ResponseCookie.from(AUTH_TOKEN, authToken)
-                .httpOnly(true)
-                .maxAge(7 * 24 * 3600)
-                .path("/")
-                .secure(false)
-                .build();
+        final ResponseCookie cookie = createAuthCookie(authToken);
+
         response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+
         return ResponseEntity.ok().build();
     }
 }

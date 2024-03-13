@@ -121,3 +121,15 @@ export type User = {
 export type AuthState = {
     user: User | null,
 }
+
+export type LoginRequest = {
+    login: string,
+    password: string,
+}
+
+export type RegisterRequest = {
+    firstName: string,
+    lastName: string,
+    login: string,
+    password: string,
+}
