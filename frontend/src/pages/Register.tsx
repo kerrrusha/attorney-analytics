@@ -4,7 +4,7 @@ import {InputTarget, LoggedInProps, RegisterRequest} from "../common/commonTypes
 import GoogleLogin from "../components/GoogleLogin";
 import {onGoogleSignIn} from "../services/onGoogleSignIn";
 import {useNavigate} from "react-router-dom";
-import {PAGES} from "../common/constants";
+import {APPLICATION_NAME, PAGES} from "../common/constants";
 import goodman from '../resources/img/goodman.png';
 import {register} from "../services/register";
 
@@ -54,7 +54,7 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
                         alt=""
                     />
                     <h4 className="mt-2 text-center display-4 tracking-tight">
-                        Attorney Analytics
+                        {APPLICATION_NAME}
                     </h4>
                     <h2 className="mt-16 text-center text-2xl font-bold leading-9 tracking-tight">
                         Create account

@@ -1,5 +1,7 @@
 export const MIN_VALUE_LENGTH = 3;
 
+export const APPLICATION_NAME = "Attorney Analytics";
+
 export const PAGES = {
 	home: '/home',
     login: '/login',

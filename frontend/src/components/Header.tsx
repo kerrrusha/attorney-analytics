@@ -3,12 +3,13 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import DarkModeSwitch from "./DarkModeSwitch";
 import {useNavigate} from "react-router-dom";
 import {logout} from "../services/logout";
-import {PAGES} from "../common/constants";
+import {APPLICATION_NAME, PAGES} from "../common/constants";
 import {LoggedInProps} from "../common/commonTypes";
 import {useAppSelector} from "../hooks/useAppSelector";
 import {selectUser} from "../redux/slices/authSlice";
 import useFetchUser from "../hooks/useFetchUser";
 import LoadingGif from "./LoadingGif";
+import goodman from '../resources/img/goodman.png';
 
 function classNames(...classes: string[]): string {
     return classes.filter(Boolean).join(' ');
@@ -41,10 +42,10 @@ export default function Header({loggedIn, setLoggedIn} : LoggedInProps) {
                                 <div className="flex items-center">
                                     <img
                                         className="h-8 w-auto"
-                                        src="https://cdn-icons-png.flaticon.com/512/5065/5065589.png"
-                                        alt="Task Manager"
+                                        src={goodman}
+                                        alt={APPLICATION_NAME}
                                     />
-                                    <h3 className="font-bold font-sans site-name mb-0">Task Manager</h3>
+                                    <h3 className="font-bold font-sans site-name mb-0">{APPLICATION_NAME}</h3>
                                 </div>
                             </a>
                             <div className="flex flex-1 absolute inset-y-0 right-0 justify-end items-center sm:static sm:inset-auto sm:ml-6">

@@ -2,7 +2,7 @@ import DarkModeSwitch from "../components/DarkModeSwitch";
 import {useNavigate} from "react-router-dom";
 import {FormEvent, useEffect, useState} from "react";
 import GoogleLogin from "../components/GoogleLogin";
-import {PAGES} from "../common/constants";
+import {APPLICATION_NAME, PAGES} from "../common/constants";
 import {InputTarget, LoggedInProps, LoginRequest} from "../common/commonTypes";
 import {onGoogleSignIn} from "../services/onGoogleSignIn";
 import goodman from '../resources/img/goodman.png';
@@ -50,7 +50,7 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
                         alt=""
                     />
                     <h4 className="mt-2 text-center display-4 tracking-tight">
-                        Attorney Analytics
+                        {APPLICATION_NAME}
                     </h4>
                     <h2 className="mt-16 text-center text-2xl font-bold leading-9 tracking-tight">
                         Sign in to your account
