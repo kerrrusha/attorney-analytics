@@ -1,5 +1,6 @@
 package com.kerrrusha.attorneyanalytics.service.impl;
 
+import com.kerrrusha.attorneyanalytics.exception.UserAlreadyExistsException;
 import com.kerrrusha.attorneyanalytics.service.UserService;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserRegistrationRequestDto;
@@ -21,7 +22,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDto register(UserRegistrationRequestDto request) {
         if (userRepository.findByLogin(request.getLogin()).isPresent()) {
-            throw new RuntimeException("User already exists with such email: " + request.getLogin());
+            throw new UserAlreadyExistsException("User already exists with such login: " + request.getLogin());
         }
 
         User user = new User();
@@ -38,7 +39,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDto findByEmail(String email) {
         User user = userRepository.findByLogin(email)
-                .orElseThrow(() -> new RuntimeException("User not found by email: " + email));
+                .orElseThrow(() -> new RuntimeException("User not found by login: " + email));
         return userMapper.toDto(user);
     }
 }

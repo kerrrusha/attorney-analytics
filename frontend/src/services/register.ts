@@ -15,5 +15,10 @@ export async function register(requestBody: RegisterRequest) {
         body: JSON.stringify(requestBody),
     });
 
-    return response.status;
+    const json = await response.json();
+
+    return {
+        status: response.status,
+        body: json,
+    };
 }

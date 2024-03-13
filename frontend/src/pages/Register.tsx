@@ -14,6 +14,7 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [error, setError] = useState('');
 
     useEffect(() => {
         if (loggedIn) {
@@ -31,12 +32,14 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
             lastName: lastName,
         }
 
-        register(requestBody).then(status => {
-            console.log("Register status:");
-            console.log(status);
+        register(requestBody).then(response => {
+            console.log(`Register status: ${response.status}`);
 
-            if (status === 200) {
+            if (response.status === 200) {
+                setError('');
                 setLoggedIn(true);
+            } else {
+                setError(response.body.message);
             }
         });
     }
@@ -130,6 +133,13 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
                                 />
                             </div>
                         </div>
+
+                        {
+                            error && error.length > 0 &&
+                            <div className="alert alert-danger" role="alert">
+                                {error}
+                            </div>
+                        }
 
                         <div>
                             <button

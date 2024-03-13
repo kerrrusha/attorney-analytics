@@ -1,6 +1,7 @@
 package com.kerrrusha.attorneyanalytics.config.handler;
 
 import com.kerrrusha.attorneyanalytics.dto.ErrorResponse;
+import com.kerrrusha.attorneyanalytics.exception.UserAlreadyExistsException;
 import io.jsonwebtoken.JwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -16,7 +17,11 @@ public class GlobalExceptionHandler {
 
     @ResponseBody
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    @ExceptionHandler({JwtException.class, AccessDeniedException.class, BadCredentialsException.class})
+    @ExceptionHandler({
+            JwtException.class,
+            AccessDeniedException.class,
+            BadCredentialsException.class,
+            UserAlreadyExistsException.class})
     public ErrorResponse handleForbidden(Throwable e) {
         return new ErrorResponse("Access denied: " + e.getMessage());
     }
