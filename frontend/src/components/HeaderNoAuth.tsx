@@ -1,7 +1,8 @@
 import React from 'react'
 import { Disclosure } from '@headlessui/react'
 import DarkModeSwitch from "./DarkModeSwitch";
-import {PAGES} from "../common/constants";
+import {APPLICATION_NAME, PAGES} from "../common/constants";
+import goodman from "../resources/img/goodman.png";
 
 export default function HeaderNoAuth() {
     return (
@@ -13,11 +14,11 @@ export default function HeaderNoAuth() {
                             <a className="flex justify-start no-underline px-3" href={PAGES.home}>
                                 <div className="flex items-center">
                                     <img
-                                        className="h-8 w-auto"
-                                        src="https://cdn-icons-png.flaticon.com/512/5065/5065589.png"
-                                        alt="Task Manager"
+                                        className="h-10 w-auto"
+                                        src={goodman}
+                                        alt={APPLICATION_NAME}
                                     />
-                                    <h3 className="font-bold font-sans site-name mb-0">Task Manager</h3>
+                                    <h3 className="font-bold font-sans site-name mb-0">{APPLICATION_NAME}</h3>
                                 </div>
                             </a>
                             <div className="flex flex-1 absolute inset-y-0 right-0 justify-end items-center sm:static sm:inset-auto sm:ml-6">

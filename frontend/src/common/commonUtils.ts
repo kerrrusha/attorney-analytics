@@ -1,16 +1,4 @@
-import {AddNewTaskResponse, Task} from "./commonTypes";
 import {RgbColor} from "react-colorful";
-
-export function mapAddNewTaskResponseToTask(dto : AddNewTaskResponse) : Task {
-    return {
-        id: dto.id,
-        title: dto.title,
-        description: dto.description,
-        assignedTo: dto.assignedTo,
-        priority: dto.priority,
-        dueDate: dto.dueDate,
-    };
-}
 
 export function generateRandomMongoId(): string {
     const timestamp = Math.floor(Date.now() / 1000).toString(16);
@@ -20,4 +8,8 @@ export function generateRandomMongoId(): string {
 
 export function rgbToString(color: RgbColor): string {
     return `rgb(${color.r}, ${color.g}, ${color.b}`;
+}
+
+export function fixNull(value: string | null): string {
+    return value === null ? "" : value;
 }

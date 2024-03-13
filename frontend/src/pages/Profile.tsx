@@ -1,22 +1,26 @@
 import Header from '../components/Header';
 import SaveableInput from "../components/SaveableInput";
-import {LoggedInProps, User, UserUpdateRequest} from "../common/commonTypes";
-import useFetchUser from "../hooks/useFetchUser";
+import {LoggedInProps, UserFull, UserUpdateRequest} from "../common/commonTypes";
 import {useAppSelector} from "../hooks/useAppSelector";
-import {selectUser, setUser} from "../redux/slices/authSlice";
+import {selectUserFull, setUser} from "../redux/slices/authSlice";
 import LoadingGif from "../components/LoadingGif";
 import {postUpdateUser} from "../services/postUpdateUser";
 import {useAppDispatch} from "../hooks/useAppDispatch";
+import Loading from "../components/Loading";
+import useFetchUserFull from "../hooks/useFetchUserFull";
+import {fixNull} from "../common/commonUtils";
 
 export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
-    const [userFetched] = useFetchUser();
-    const user : User = useAppSelector(selectUser)!;
+    const [userFetched] = useFetchUserFull();
+    const user : UserFull | null = useAppSelector(selectUserFull)!;
     const dispatch = useAppDispatch();
 
     const updateUser = (requestBody : UserUpdateRequest) => {
         return postUpdateUser(requestBody).then(updatedUser => {
             console.log("Updated user:");
             console.log(updatedUser);
+
+
 
             dispatch(setUser(updatedUser));
         });
@@ -35,15 +39,25 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
             lastName: newValue
         });
     };
-    
-    return (
+
+    const updateBio = (newValue : string) => {
+        return updateUser({
+            userId: user.id,
+            bio: newValue
+        });
+    };
+
+    return user === null ? <Loading /> : (
         <>
             <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
             <div className="background-primary mx-auto max-w-7xl px-4 py-5 sm:px-6 sm:py-32 lg:px-8">
                 <div className="mx-auto max-w-2xl">
                     {!userFetched ? <LoadingGif /> : <form>
                         <div className="space-y-12">
-                            <h4 className="text-header font-semibold leading-7 border-b p-2">Profile</h4>
+                            <div className="border-b p-2 flex flex-row justify-between align-items-center">
+                                <h4 className="text-header font-semibold">Profile</h4>
+                                <span className="font-semibold leading-7" id="id">#{user.id}</span>
+                            </div>
                             <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="col-span-full">
                                     <label htmlFor="photo" className="block text-sm font-medium leading-6">
@@ -52,7 +66,7 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                                     <div className="mt-2 flex items-center gap-x-3">
                                         <img className="rounded-full"
                                              width={128}
-                                             src={user.profilePhotoUrl}
+                                             src={fixNull(user.profilePhotoUrl)}
                                              alt=""
                                         />
                                         <button
@@ -86,13 +100,13 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
 
                                     <div className="sm:col-span-4">
                                         <label htmlFor="email" className="block text-sm font-medium leading-6">
-                                            Email address
+                                            Login
                                         </label>
                                         <div className="mt-2 flex flex-row items-center">
                                             <input
                                                 disabled
                                                 readOnly
-                                                value={user.email}
+                                                value={user.login}
                                                 id="email"
                                                 name="email"
                                                 type="email"
@@ -103,6 +117,16 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
                                             </svg>
                                         </div>
+                                    </div>
+
+                                    <div className="col-span-6">
+                                        <SaveableInput label="Biography" postValue={updateBio}
+                                                       initialValue_={fixNull(user.bio)} disabled={true} />
+                                    </div>
+
+                                    <div className="col-span-4">
+                                        <SaveableInput label="Linkedin Url" postValue={updateBio}
+                                                       initialValue_={fixNull(user.linkedinUrl)} disabled={true} />
                                     </div>
 
                                     <div className="sm:col-span-4">

@@ -10,16 +10,12 @@ export const PAGES = {
 }
 
 export const API_ENDPOINTS = {
-    getOAuthUser: '/user/info',
+    getUserInfo: '/user/info',
+    getUserFullInfo: '/user/full-info',
     googleOAuthLogin: '/oauth/google/login',
     logout: '/auth/logout',
     isAuthorized: '/user/authorized',
     fetchKanban: '/kanban/boards',
-    deleteBoard: '/kanban/boards/delete',
-    postNewBoard: '/kanban/boards/new',
-    postNewColumn: '/kanban/columns/new',
-    postNewTask: '/kanban/tasks/new',
-    postDragTask: '/kanban/tasks/drag',
     postUpdateUser: '/user/update',
     login: '/auth/login',
     register: '/auth/register',

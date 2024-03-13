@@ -41,7 +41,7 @@ export default function Header({loggedIn, setLoggedIn} : LoggedInProps) {
                             <a className="flex justify-start no-underline px-3" href={PAGES.home}>
                                 <div className="flex items-center">
                                     <img
-                                        className="h-8 w-auto"
+                                        className="h-10 w-auto"
                                         src={goodman}
                                         alt={APPLICATION_NAME}
                                     />

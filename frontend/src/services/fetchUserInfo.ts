@@ -2,7 +2,7 @@ import {API_ENDPOINTS} from "../common/constants";
 
 export async function fetchUserInfo() {
     const API_URL = process.env.REACT_APP_BACKEND_ORIGIN;
-    const path = API_ENDPOINTS.getOAuthUser;
+    const path = API_ENDPOINTS.getUserInfo;
 
     const response = await fetch(`${API_URL}${path}`, {
         headers: {
