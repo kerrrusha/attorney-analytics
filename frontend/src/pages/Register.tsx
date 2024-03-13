@@ -50,12 +50,15 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
                         src={goodman}
                         alt=""
                     />
-                    <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight">
+                    <h4 className="mt-2 text-center display-4 tracking-tight">
+                        Attorney Analytics
+                    </h4>
+                    <h2 className="mt-16 text-center text-2xl font-bold leading-9 tracking-tight">
                         Create account
                     </h2>
                 </div>
 
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form className="space-y-6" onSubmit={handleFormSubmit}>
                         <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div className="sm:col-span-3">

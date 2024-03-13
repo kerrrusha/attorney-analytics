@@ -14,6 +14,10 @@ export async function login(requestBody: LoginRequest) {
         method: 'POST',
         body: JSON.stringify(requestBody),
     });
+    const json = await response.json();
 
-    return response.status;
+    return {
+        status: response.status,
+        body: json,
+    };
 }

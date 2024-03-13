@@ -12,6 +12,7 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     useEffect(() => {
         if (loggedIn) {
@@ -27,12 +28,14 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
             password: password,
         }
 
-        login(requestBody).then(status => {
-            console.log("Login status:");
-            console.log(status);
+        login(requestBody).then(response => {
+            console.log(`Login status: ${response.status}`);
 
-            if (status === 200) {
+            if (response.status === 200) {
+                setError('');
                 setLoggedIn(true);
+            } else {
+                setError(response.body.message);
             }
         });
     }
@@ -46,12 +49,15 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
                         src={goodman}
                         alt=""
                     />
-                    <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight">
+                    <h4 className="mt-2 text-center display-4 tracking-tight">
+                        Attorney Analytics
+                    </h4>
+                    <h2 className="mt-16 text-center text-2xl font-bold leading-9 tracking-tight">
                         Sign in to your account
                     </h2>
                 </div>
 
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form className="space-y-6" onSubmit={handleFormSubmit}>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium leading-6">
@@ -96,6 +102,13 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
                                 />
                             </div>
                         </div>
+
+                        {
+                            error && error.length > 0 &&
+                            <div className="alert alert-danger" role="alert">
+                                {error}
+                            </div>
+                        }
 
                         <div>
                             <button
