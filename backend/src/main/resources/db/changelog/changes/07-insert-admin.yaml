@@ -29,6 +29,9 @@ databaseChangeLog:
         - sqlCheck:
             expectedResult: 1
             sql: SELECT COUNT(*) FROM role WHERE name='ADMIN'
+        - sqlCheck:
+            expectedResult: 1
+            sql: SELECT COUNT(*) FROM role WHERE name='WORKER'
       changes:
         - insert:
             tableName: user_role
@@ -39,3 +42,12 @@ databaseChangeLog:
               - column:
                   name: role_id
                   valueComputed: (SELECT id FROM role WHERE name='ADMIN')
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM user WHERE login='admin@kerrrusha.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM role WHERE name='WORKER')

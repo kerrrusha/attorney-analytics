@@ -62,8 +62,8 @@ public class User implements UserDetails {
 
     private String linkedinUrl;
 
-    @JoinColumn(name = "title_id")
     @ManyToOne
+    @JoinColumn(name = "title_id")
     private Title title;
 
     @ToString.Exclude
