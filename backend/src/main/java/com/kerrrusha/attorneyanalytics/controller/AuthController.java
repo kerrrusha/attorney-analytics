@@ -3,7 +3,6 @@ package com.kerrrusha.attorneyanalytics.controller;
 import com.google.common.net.HttpHeaders;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserLoginRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserRegistrationRequestDto;
-import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
 import com.kerrrusha.attorneyanalytics.security.AuthenticationService;
 import com.kerrrusha.attorneyanalytics.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,8 +36,14 @@ public class AuthController {
 
     @PostMapping("/register")
     @Operation(summary = "Register a new user")
-    public UserResponseDto register(@Valid @RequestBody UserRegistrationRequestDto requestDto) {
-        return userService.register(requestDto);
+    public void register(@Valid @RequestBody UserRegistrationRequestDto requestDto, HttpServletResponse response) {
+        userService.register(requestDto);
+
+        UserLoginRequestDto loginRequestDto = UserLoginRequestDto.builder()
+                .login(requestDto.getLogin())
+                .password(requestDto.getPassword())
+                .build();
+        login(loginRequestDto, response);
     }
 
     @PostMapping("/login")
