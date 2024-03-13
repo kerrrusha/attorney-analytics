@@ -13,3 +13,7 @@ export function rgbToString(color: RgbColor): string {
 export function fixNull(value: string | null): string {
     return value === null ? "" : value;
 }
+
+export function toKebabCase(str : string) {
+    return str.toLowerCase().replace(/\s+/g, '-');
+}
