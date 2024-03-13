@@ -1,6 +1,8 @@
 package com.kerrrusha.attorneyanalytics.service.impl;
 
 import com.kerrrusha.attorneyanalytics.exception.UserAlreadyExistsException;
+import com.kerrrusha.attorneyanalytics.model.user.Role;
+import com.kerrrusha.attorneyanalytics.repository.RoleRepository;
 import com.kerrrusha.attorneyanalytics.service.UserService;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserRegistrationRequestDto;
@@ -11,10 +13,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import static java.util.Collections.singleton;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    private final RoleRepository roleRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
@@ -31,6 +36,8 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setProfilePhotoUrl(request.getProfilePhotoUrl());
+        Role workerRole = roleRepository.findByName(Role.RoleName.WORKER).orElseThrow();
+        user.setRoles(singleton(workerRole));
         User savedUser = userRepository.save(user);
 
         return userMapper.toDto(savedUser);

@@ -5,5 +5,6 @@ public record UserResponseDto(
         String login,
         String firstName,
         String lastName,
-        String profilePhotoUrl) {
+        String profilePhotoUrl,
+        String[] roles) {
 }
