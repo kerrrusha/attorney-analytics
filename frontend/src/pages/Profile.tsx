@@ -75,11 +75,13 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                             <div className="pb-12 mt-0">
                                 <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                     <div className="sm:col-span-3">
-                                        <SaveableInput label="First name" postValue={updateFirstName} initialValue_={user.firstName} />
+                                        <SaveableInput label="First name" postValue={updateFirstName}
+                                                       initialValue_={user.firstName} disabled={true} />
                                     </div>
 
                                     <div className="sm:col-span-3">
-                                        <SaveableInput label="Last name" postValue={updateLastName} initialValue_={user.lastName} />
+                                        <SaveableInput label="Last name" postValue={updateLastName}
+                                                       initialValue_={user.lastName} disabled={true} />
                                     </div>
 
                                     <div className="sm:col-span-4">

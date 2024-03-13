@@ -6,9 +6,10 @@ type SaveableInputProp = {
     label: string;
     postValue: (value: string) => Promise<any>;
     initialValue_? : string;
+    disabled? : boolean;
 }
 
-export default function SaveableInput({label, postValue, initialValue_} : SaveableInputProp) {
+export default function SaveableInput({label, postValue, initialValue_, disabled=false} : SaveableInputProp) {
     const [initialValue, setInitialValue] = useState(initialValue_);
     const [value, setValue] = useState(initialValue);
     const [buttonIsActive, setButtonIsActive] = useState(false);
@@ -66,7 +67,7 @@ export default function SaveableInput({label, postValue, initialValue_} : Saveab
                     id={kebabCased}
                     className="text-black block mr-2 w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-                <button disabled={!buttonIsActive} onClick={saveValue}>
+                <button disabled={disabled || !buttonIsActive} onClick={saveValue}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                     </svg>
