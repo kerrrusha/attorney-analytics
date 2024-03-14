@@ -25,6 +25,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -70,25 +71,30 @@ public class User implements UserDetails {
     @JoinColumn(name = "title_id")
     private Title title;
 
+    @OneToMany
     @ToString.Exclude
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
-    private List<Email> emails;
+    @JoinColumn(name = "user_id")
+    private List<Email> emails = new ArrayList<>();
 
+    @OneToMany
     @ToString.Exclude
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
-    private List<Phone> phones;
+    @JoinColumn(name = "user_id")
+    private List<Phone> phones = new ArrayList<>();
 
+    @OneToMany
     @ToString.Exclude
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
-    private List<Location> locations;
+    @JoinColumn(name = "user_id")
+    private List<Location> locations = new ArrayList<>();
 
+    @OneToMany
     @ToString.Exclude
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
-    private List<Admission> admissions;
+    @JoinColumn(name = "user_id")
+    private List<Admission> admissions = new ArrayList<>();
 
+    @OneToMany
     @ToString.Exclude
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
-    private List<PracticeArea> practiceAreas;
+    @JoinColumn(name = "user_id")
+    private List<PracticeArea> practiceAreas = new ArrayList<>();
 
     @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
