@@ -74,7 +74,7 @@ public class User implements UserDetails {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval=true)
-    private List<Email> emails = new ArrayList<>();
+    private List<Email> emails;
 
     @OneToMany
     @ToString.Exclude
@@ -107,6 +107,15 @@ public class User implements UserDetails {
 
     @Column(nullable = false)
     private boolean deleted = false;
+
+    public void setEmails(List<Email> emails) {
+        if (this.emails == null) {
+            this.emails = new ArrayList<>(emails);
+            return;
+        }
+        this.emails.clear();
+        this.emails.addAll(emails);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

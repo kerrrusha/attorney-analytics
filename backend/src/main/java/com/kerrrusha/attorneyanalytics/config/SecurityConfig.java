@@ -1,6 +1,5 @@
 package com.kerrrusha.attorneyanalytics.config;
 
-import com.kerrrusha.attorneyanalytics.config.handler.FilterChainExceptionHandler;
 import com.kerrrusha.attorneyanalytics.security.JwtAuthenticationFilter;
 import com.kerrrusha.attorneyanalytics.security.ReadyUserDetailsService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.logout.LogoutFilter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -29,7 +27,6 @@ public class SecurityConfig {
 
     private static final String[] AUTH_WHITELIST = new String[] {"/oauth/**", "/auth/**", "/swagger-ui/**"};
 
-    private final FilterChainExceptionHandler filterChainExceptionHandler;
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final ReadyUserDetailsService userDetailsService;
 
@@ -46,7 +43,6 @@ public class SecurityConfig {
                                 .authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(filterChainExceptionHandler, LogoutFilter.class)
                 .userDetailsService(userDetailsService)
                 .build();
     }

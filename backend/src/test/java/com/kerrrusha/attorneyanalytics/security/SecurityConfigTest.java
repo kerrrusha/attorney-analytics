@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Slf4j
 class SecurityConfigTest {
 
-    private final SecurityConfig securityConfig = new SecurityConfig(null, null, null);
+    private final SecurityConfig securityConfig = new SecurityConfig(null, null);
 
     @Test
     void passwordEncoder() {

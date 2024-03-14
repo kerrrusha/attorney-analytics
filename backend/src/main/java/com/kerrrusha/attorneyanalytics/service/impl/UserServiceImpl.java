@@ -3,15 +3,15 @@ package com.kerrrusha.attorneyanalytics.service.impl;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserFullResponseDto;
 import com.kerrrusha.attorneyanalytics.exception.UserAlreadyExistsException;
+import com.kerrrusha.attorneyanalytics.model.user.Admission;
+import com.kerrrusha.attorneyanalytics.model.user.Email;
+import com.kerrrusha.attorneyanalytics.model.user.Location;
+import com.kerrrusha.attorneyanalytics.model.user.Phone;
+import com.kerrrusha.attorneyanalytics.model.user.PracticeArea;
 import com.kerrrusha.attorneyanalytics.model.user.Role;
 import com.kerrrusha.attorneyanalytics.model.user.Title;
 import com.kerrrusha.attorneyanalytics.repository.RoleRepository;
 import com.kerrrusha.attorneyanalytics.repository.TitleRepository;
-import com.kerrrusha.attorneyanalytics.service.UserAdmissionService;
-import com.kerrrusha.attorneyanalytics.service.UserEmailService;
-import com.kerrrusha.attorneyanalytics.service.UserLocationService;
-import com.kerrrusha.attorneyanalytics.service.UserPhoneService;
-import com.kerrrusha.attorneyanalytics.service.UserPracticeAreaService;
 import com.kerrrusha.attorneyanalytics.service.UserService;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserRegistrationRequestDto;
@@ -22,8 +22,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static java.util.Collections.singleton;
-import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
+import static java.util.Objects.nonNull;
+import static java.util.stream.Collectors.toCollection;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @Service
@@ -35,11 +40,6 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
     private final TitleRepository titleRepository;
-    private final UserEmailService userEmailService;
-    private final UserPhoneService userPhoneService;
-    private final UserLocationService userLocationService;
-    private final UserAdmissionService userAdmissionService;
-    private final UserPracticeAreaService userPracticeAreaService;
 
     @Override
     public UserResponseDto register(UserRegistrationRequestDto request) {
@@ -67,40 +67,64 @@ public class UserServiceImpl implements UserService {
         if (!user.getId().equals(requestDto.getUserId())) {
             throw new RuntimeException("User id in request and in database are different");
         }
-        if (isNotBlank(requestDto.getFirstName())) {
+
+        List<Email> expected = new ArrayList<>();
+        Email email = new Email("mail@mail.com", user);
+        expected.add(email);
+        user.setEmails(expected);
+
+        User savedUser = userRepository.save(user);
+        List<Email> actual = savedUser.getEmails();
+
+        if (nonNull(requestDto.getFirstName())) {
             user.setFirstName(requestDto.getFirstName());
         }
         if (isNotBlank(requestDto.getLastName())) {
             user.setLastName(requestDto.getLastName());
         }
-        if (isNotBlank(requestDto.getProfilePhotoUrl())) {
+        if (nonNull(requestDto.getProfilePhotoUrl())) {
             user.setProfilePhotoUrl(requestDto.getProfilePhotoUrl());
         }
-        if (isNotBlank(requestDto.getBio())) {
+        if (nonNull(requestDto.getBio())) {
             user.setBio(requestDto.getBio());
         }
-        if (isNotBlank(requestDto.getLinkedinUrl())) {
+        if (nonNull(requestDto.getLinkedinUrl())) {
             user.setLinkedinUrl(requestDto.getLinkedinUrl());
         }
-        if (isNotBlank(requestDto.getTitle())) {
+        if (nonNull(requestDto.getTitle())) {
             Title title = titleRepository.findByName(requestDto.getTitle())
                     .orElseThrow(() -> new RuntimeException("Can't find title: " + requestDto.getTitle()));
             user.setTitle(title);
         }
-        if (isNotEmpty(requestDto.getEmails())) {
-            userEmailService.update(user, requestDto.getEmails());
+        if (nonNull(requestDto.getEmails())) {
+            List<Email> emails = Arrays.stream(requestDto.getEmails())
+                    .map(emailStr -> new Email(emailStr, user))
+                    .collect(toCollection(ArrayList::new));
+            user.setEmails(emails);
         }
-        if (isNotEmpty(requestDto.getPhones())) {
-            userPhoneService.update(user, requestDto.getPhones());
+        if (nonNull(requestDto.getPhones())) {
+            List<Phone> phones = Arrays.stream(requestDto.getPhones())
+                    .map(Phone::new)
+                    .collect(toCollection(ArrayList::new));
+            user.setPhones(phones);
         }
-        if (isNotEmpty(requestDto.getLocations())) {
-            userLocationService.update(user, requestDto.getLocations());
+        if (nonNull(requestDto.getLocations())) {
+            List<Location> locations = Arrays.stream(requestDto.getLocations())
+                    .map(Location::new)
+                    .collect(toCollection(ArrayList::new));
+            user.setLocations(locations);
         }
-        if (isNotEmpty(requestDto.getAdmissions())) {
-            userAdmissionService.update(user, requestDto.getAdmissions());
+        if (nonNull(requestDto.getAdmissions())) {
+            List<Admission> admissions = Arrays.stream(requestDto.getAdmissions())
+                    .map(Admission::new)
+                    .collect(toCollection(ArrayList::new));
+            user.setAdmissions(admissions);
         }
-        if (isNotEmpty(requestDto.getPracticeAreas())) {
-            userPracticeAreaService.update(user, requestDto.getPracticeAreas());
+        if (nonNull(requestDto.getPracticeAreas())) {
+            List<PracticeArea> practiceAreas = Arrays.stream(requestDto.getPracticeAreas())
+                    .map(PracticeArea::new)
+                    .collect(toCollection(ArrayList::new));
+            user.setPracticeAreas(practiceAreas);
         }
         return userMapper.toFullDto(userRepository.save(user));
     }
