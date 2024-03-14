@@ -61,6 +61,34 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
         });
     };
 
+    const updateEmails = (newData : TableData) => {
+        return updateUser({
+            userId: user.id,
+            emails: newData.rows
+        });
+    };
+
+    const updatePhones = (newData : TableData) => {
+        return updateUser({
+            userId: user.id,
+            phones: newData.rows
+        });
+    };
+
+    const updateLocations = (newData : TableData) => {
+        return updateUser({
+            userId: user.id,
+            locations: newData.rows
+        });
+    };
+
+    const updatePracticeAreas = (newData : TableData) => {
+        return updateUser({
+            userId: user.id,
+            practiceAreas: newData.rows
+        });
+    };
+
     return user === null ? <Loading /> : (
         <>
             <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
@@ -178,6 +206,26 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                                     <div className="col-span-6">
                                         <SaveableTextArea label="Biography" postValueHandler={updateBio}
                                                        initialValue_={fixNull(user.bio)} disabled={true} />
+                                    </div>
+
+                                    <div className="col-span-6">
+                                        <span className="block text-sm font-medium leading-6 mb-2">Emails</span>
+                                        <CrudTable initialData_={{rows: user.emails}} postDataHandler={updateEmails} />
+                                    </div>
+
+                                    <div className="col-span-6">
+                                        <span className="block text-sm font-medium leading-6 mb-2">Phones</span>
+                                        <CrudTable initialData_={{rows: user.phones}} postDataHandler={updatePhones} />
+                                    </div>
+
+                                    <div className="col-span-6">
+                                        <span className="block text-sm font-medium leading-6 mb-2">Locations</span>
+                                        <CrudTable initialData_={{rows: user.admissions}} postDataHandler={updateLocations} />
+                                    </div>
+
+                                    <div className="col-span-6">
+                                        <span className="block text-sm font-medium leading-6 mb-2">Practice Areas</span>
+                                        <CrudTable initialData_={{rows: user.admissions}} postDataHandler={updatePracticeAreas} />
                                     </div>
 
                                     <div className="col-span-6">
