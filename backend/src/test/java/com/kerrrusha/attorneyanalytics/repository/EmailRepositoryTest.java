@@ -85,11 +85,9 @@ class EmailRepositoryTest {
                 new Email("user_updateEmails_ok@test.com", user),
                 new Email("user_123_updateEmails_ok@test.com", user)
         );
-        log.info(emailRepository.findAll().toString());
         user.getEmails().clear();
-        log.info(emailRepository.findAll().toString());
+        emailRepository.deleteAllByUserId(user.getId());
         user.setEmails(newEmails);
-        log.info(emailRepository.findAll().toString());
         userRepository.save(user);
 
         assertIterableEquals(newEmails, userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails());
