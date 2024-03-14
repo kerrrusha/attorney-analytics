@@ -26,7 +26,6 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@SQLRestriction("deleted=false")
 public class Email {
 
     @Id
