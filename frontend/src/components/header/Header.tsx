@@ -1,15 +1,15 @@
 import React, {Fragment, useEffect} from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import DarkModeSwitch from "./DarkModeSwitch";
+import DarkModeSwitch from "../DarkModeSwitch";
 import {useNavigate} from "react-router-dom";
-import {logout} from "../services/logout";
-import {APPLICATION_NAME, PAGES} from "../common/constants";
-import {LoggedInProps} from "../common/commonTypes";
-import {useAppSelector} from "../hooks/useAppSelector";
-import {selectUser} from "../redux/slices/authSlice";
-import useFetchUser from "../hooks/useFetchUser";
-import LoadingGif from "./LoadingGif";
-import goodman from '../resources/img/goodman.png';
+import {logout} from "../../services/logout";
+import {APPLICATION_NAME, PAGES} from "../../common/constants";
+import {LoggedInProps} from "../../common/commonTypes";
+import {useAppSelector} from "../../hooks/useAppSelector";
+import {selectUser} from "../../redux/slices/authSlice";
+import useFetchUser from "../../hooks/useFetchUser";
+import LoadingGif from "../loading/LoadingGif";
+import goodman from '../../resources/img/goodman.png';
 
 function classNames(...classes: string[]): string {
     return classes.filter(Boolean).join(' ');

@@ -17,13 +17,13 @@ export type UserUpdateRequest = {
     profilePhotoUrl?: string,
     bio?: string,
     linkedinUrl?: string,
-    title?: Title,
-    emails?: Array<Email>,
-    phones?: Array<Phone>,
-    locations?: Array<Location>,
-    admissions?: Array<Admission>,
-    practiceAreas?: Array<PracticeArea>,
-    roles?: Array<Role>,
+    title?: string,
+    emails?: Array<string>,
+    phones?: Array<string>,
+    locations?: Array<string>,
+    admissions?: Array<string>,
+    practiceAreas?: Array<string>,
+    roles?: Array<string>,
 }
 
 export type User = {
@@ -42,37 +42,13 @@ export type UserFull = {
     profilePhotoUrl: string,
     bio: string,
     linkedinUrl: string,
-    title: Title,
-    emails: Array<Email>,
-    phones: Array<Phone>,
-    locations: Array<Location>,
-    admissions: Array<Admission>,
-    practiceAreas: Array<PracticeArea>,
-    roles: Array<Role>,
-}
-
-export type Title = {
-    name: string,
-}
-
-export type Email = {
-    value: string,
-}
-
-export type Phone = {
-    value: string,
-}
-
-export type Admission = {
-    value: string,
-}
-
-export type PracticeArea = {
-    value: string,
-}
-
-export type Role = {
-    name: string,
+    title: string,
+    emails: Array<string>,
+    phones: Array<string>,
+    locations: Array<string>,
+    admissions: Array<string>,
+    practiceAreas: Array<string>,
+    roles: Array<string>,
 }
 
 export type AuthState = {

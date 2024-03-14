@@ -7,7 +7,7 @@ import Profile from "./pages/Profile";
 import {useEffect, useState} from "react";
 import {PAGES} from "./common/constants";
 import {isLoggedIn} from "./services/isLoggedIn";
-import Loading from "./components/Loading";
+import Loading from "./components/loading/Loading";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState<any>(undefined);

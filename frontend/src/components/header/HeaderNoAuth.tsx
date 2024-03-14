@@ -1,8 +1,8 @@
 import React from 'react'
 import { Disclosure } from '@headlessui/react'
-import DarkModeSwitch from "./DarkModeSwitch";
-import {APPLICATION_NAME, PAGES} from "../common/constants";
-import goodman from "../resources/img/goodman.png";
+import DarkModeSwitch from "../DarkModeSwitch";
+import {APPLICATION_NAME, PAGES} from "../../common/constants";
+import goodman from "../../resources/img/goodman.png";
 
 export default function HeaderNoAuth() {
     return (
