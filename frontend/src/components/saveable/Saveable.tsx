@@ -7,11 +7,12 @@ type SaveableProp = {
     inputElement: ReactElement,
     label: string;
     postValueHandler: (value: string) => Promise<any>;
+    validate : boolean;
+    disabled : boolean;
     initialValue_? : string;
-    disabled? : boolean;
 }
 
-export default function Saveable({inputElement, label, postValueHandler, initialValue_, disabled=false} : SaveableProp) {
+export default function Saveable({inputElement, label, postValueHandler, disabled, validate, initialValue_} : SaveableProp) {
     const [initialValue, setInitialValue] = useState(initialValue_);
     const [value, setValue] = useState(initialValue);
     const [buttonIsActive, setButtonIsActive] = useState(false);
@@ -24,12 +25,13 @@ export default function Saveable({inputElement, label, postValueHandler, initial
     const saveValue = (event : React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
 
-        const errorMessage = validateValue();
-        if (errorMessage) {
-            setErrorMessage(errorMessage);
-            return;
+        if (validate) {
+            const errorMessage = validateValue();
+            if (errorMessage) {
+                setErrorMessage(errorMessage);
+                return;
+            }
         }
-
         setErrorMessage('');
 
         postValueHandler(value!).then(result => {

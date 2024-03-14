@@ -132,12 +132,12 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                                 <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                     <div className="sm:col-span-3">
                                         <SaveableInput label="First name" postValueHandler={updateFirstName}
-                                                       initialValue_={user.firstName} disabled={true} />
+                                                       initialValue_={user.firstName} />
                                     </div>
 
                                     <div className="sm:col-span-3">
                                         <SaveableInput label="Last name" postValueHandler={updateLastName}
-                                                       initialValue_={user.lastName} disabled={true} />
+                                                       initialValue_={user.lastName} />
                                     </div>
 
                                     <div className="col-span-4">
@@ -200,37 +200,37 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
 
                                     <div className="col-span-4">
                                         <SaveableInput label="Linkedin Url" postValueHandler={updateLinkedin}
-                                                       initialValue_={fixNull(user.linkedinUrl)} disabled={true} />
+                                                       initialValue_={fixNull(user.linkedinUrl)} />
                                     </div>
 
                                     <div className="col-span-6">
                                         <SaveableTextArea label="Biography" postValueHandler={updateBio}
-                                                       initialValue_={fixNull(user.bio)} disabled={true} />
+                                                       initialValue_={fixNull(user.bio)} />
                                     </div>
 
                                     <div className="col-span-6">
                                         <span className="block text-sm font-medium leading-6 mb-2">Emails</span>
-                                        <CrudTable initialData_={{rows: user.emails}} postDataHandler={updateEmails} />
+                                        <CrudTable name="emails" initialData_={{rows: user.emails}} postDataHandler={updateEmails} />
                                     </div>
 
                                     <div className="col-span-6">
                                         <span className="block text-sm font-medium leading-6 mb-2">Phones</span>
-                                        <CrudTable initialData_={{rows: user.phones}} postDataHandler={updatePhones} />
+                                        <CrudTable name="phones" initialData_={{rows: user.phones}} postDataHandler={updatePhones} />
                                     </div>
 
                                     <div className="col-span-6">
                                         <span className="block text-sm font-medium leading-6 mb-2">Locations</span>
-                                        <CrudTable initialData_={{rows: user.locations}} postDataHandler={updateLocations} />
+                                        <CrudTable name="locations" initialData_={{rows: user.locations}} postDataHandler={updateLocations} />
                                     </div>
 
                                     <div className="col-span-6">
                                         <span className="block text-sm font-medium leading-6 mb-2">Practice Areas</span>
-                                        <CrudTable initialData_={{rows: user.practiceAreas}} postDataHandler={updatePracticeAreas} />
+                                        <CrudTable name="practiceAreas" initialData_={{rows: user.practiceAreas}} postDataHandler={updatePracticeAreas} />
                                     </div>
 
                                     <div className="col-span-6">
                                         <span className="block text-sm font-medium leading-6 mb-2">Admissions</span>
-                                        <CrudTable initialData_={{rows: user.admissions}} postDataHandler={updateAdmissions} />
+                                        <CrudTable name="admissions" initialData_={{rows: user.admissions}} postDataHandler={updateAdmissions} />
                                     </div>
 
                                     <div className="sm:col-span-4">
