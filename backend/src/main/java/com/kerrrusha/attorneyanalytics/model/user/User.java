@@ -71,23 +71,23 @@ public class User implements UserDetails {
     private Title title;
 
     @ToString.Exclude
-    @OneToMany(orphanRemoval = true)
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<Email> emails;
 
     @ToString.Exclude
-    @OneToMany(orphanRemoval = true)
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<Phone> phones;
 
     @ToString.Exclude
-    @OneToMany(orphanRemoval = true)
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<Location> locations;
 
     @ToString.Exclude
-    @OneToMany(orphanRemoval = true)
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<Admission> admissions;
 
     @ToString.Exclude
-    @OneToMany(orphanRemoval = true)
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<PracticeArea> practiceAreas;
 
     @ToString.Exclude

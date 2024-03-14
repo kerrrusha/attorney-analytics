@@ -220,12 +220,12 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
 
                                     <div className="col-span-6">
                                         <span className="block text-sm font-medium leading-6 mb-2">Locations</span>
-                                        <CrudTable initialData_={{rows: user.admissions}} postDataHandler={updateLocations} />
+                                        <CrudTable initialData_={{rows: user.locations}} postDataHandler={updateLocations} />
                                     </div>
 
                                     <div className="col-span-6">
                                         <span className="block text-sm font-medium leading-6 mb-2">Practice Areas</span>
-                                        <CrudTable initialData_={{rows: user.admissions}} postDataHandler={updatePracticeAreas} />
+                                        <CrudTable initialData_={{rows: user.practiceAreas}} postDataHandler={updatePracticeAreas} />
                                     </div>
 
                                     <div className="col-span-6">
