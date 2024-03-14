@@ -1,5 +1,6 @@
-package com.kerrrusha.attorneyanalytics.config;
+package com.kerrrusha.attorneyanalytics.security;
 
+import com.kerrrusha.attorneyanalytics.config.SecurityConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.password.PasswordEncoder;
