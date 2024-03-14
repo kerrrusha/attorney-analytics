@@ -13,6 +13,10 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
               - column:
+                  name: created_at
+                  type: datetime
+                  defaultValueComputed: now()
+              - column:
                   name: login
                   type: VARCHAR(255)
                   constraints:
