@@ -18,12 +18,6 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     unique: true
-              - column:
-                  name: deleted
-                  type: BOOLEAN
-                  defaultValue: false
-                  constraints:
-                    nullable: false
       rollback:
         - dropTable:
             tableName: title

@@ -26,16 +26,10 @@ databaseChangeLog:
                     references: user(id)
                     foreignKeyName: fk_phone_user_id
                     deleteCascade: true
-              - column:
-                  name: deleted
-                  type: BOOLEAN
-                  defaultValue: false
-                  constraints:
-                    nullable: false
         - addUniqueConstraint:
             tableName: phone
-            columnNames: user_id
-            constraintName: uk_user_id
+            columnNames: user_id, value
+            constraintName: unique_phone_user_id_value
       rollback:
         - dropTable:
             tableName: phone

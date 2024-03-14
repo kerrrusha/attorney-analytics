@@ -10,8 +10,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.util.Objects;
@@ -22,8 +20,6 @@ import java.util.Objects;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@SQLRestriction("deleted=false")
-@SQLDelete(sql = "UPDATE location SET deleted = true WHERE id=?")
 public class Location {
 
     @Id
@@ -33,8 +29,9 @@ public class Location {
     @Column(nullable = false)
     private String value;
 
-    @Column(nullable = false)
-    private boolean deleted = false;
+    public Location(String value) {
+        this.value = value;
+    }
 
     @Override
     public final boolean equals(Object o) {

@@ -1,5 +1,6 @@
 package com.kerrrusha.attorneyanalytics.model.user;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -71,9 +72,8 @@ public class User implements UserDetails {
     @JoinColumn(name = "title_id")
     private Title title;
 
-    @OneToMany
     @ToString.Exclude
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval=true)
     private List<Email> emails = new ArrayList<>();
 
     @OneToMany

@@ -12,8 +12,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.SQLRestriction;
 
 @Entity
 @Getter
@@ -21,8 +19,6 @@ import org.hibernate.annotations.SQLRestriction;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@SQLRestriction("deleted=false")
-@SQLDelete(sql = "UPDATE role SET deleted = true WHERE id=?")
 public class Role {
 
     @Id
@@ -32,9 +28,6 @@ public class Role {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = true)
     private RoleName name;
-
-    @Column(nullable = false)
-    private boolean deleted = false;
 
     public enum RoleName {
         WORKER,
