@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static java.util.Collections.emptyList;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 @Slf4j
 @DataJpaTest
@@ -25,13 +28,67 @@ class EmailRepositoryTest {
     private static final String EMAIL = "mail@mail.com";
 
     @Autowired
-    private EmailRepository emailRepository;
-
-    @Autowired
     private UserRepository userRepository;
 
     @Test
-    void deleteAllByUser() {
+    void user_setEmails_ok() {
+        User user = insertUser();
+
+        List<Email> expected = createList(new Email(EMAIL));
+        user.setEmails(expected);
+        userRepository.save(user);
+
+        List<Email> actual = userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails();
+
+        assertIterableEquals(expected, actual);
+    }
+
+    @Test
+    void email_deleteAllByUserId_ok() {
+        User user = insertUser();
+
+        List<Email> prevEmails = createList(new Email(EMAIL));
+        user.setEmails(prevEmails);
+        userRepository.save(user);
+
+        assertIterableEquals(prevEmails, userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails());
+
+        List<Email> expected = emptyList();
+        user.setEmails(expected);
+        userRepository.save(user);
+
+        assertIterableEquals(expected, userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails());
+    }
+
+    @Test
+    void user_updateEmails_ok() {
+        User user = insertUser();
+        List<Email> prevEmails = createList(
+                new Email("user_updateEmails_ok@test.com")
+        );
+        user.setEmails(prevEmails);
+        userRepository.save(user);
+
+        assertIterableEquals(prevEmails, userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails());
+
+        List<Email> newEmails = createList(
+                new Email("user_updateEmails_ok@test.com"),
+                new Email("user_123_updateEmails_ok@test.com")
+        );
+        user.setEmails(newEmails);
+        userRepository.save(user);
+
+        assertIterableEquals(newEmails, userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails());
+    }
+
+    @SafeVarargs
+    private static <T> List<T> createList(T... elements) {
+        List<T> result = new ArrayList<>();
+        Collections.addAll(result, elements);
+        return result;
+    }
+
+    private User insertUser() {
         User user = User.builder()
                 .id(ID)
                 .firstName(FIRST_NAME)
@@ -41,17 +98,6 @@ class EmailRepositoryTest {
                 .build();
         userRepository.save(user);
 
-        assertEquals(user.getLogin(), userRepository.findByLogin(user.getLogin()).orElseThrow().getLogin());
-
-        Email email = Email.builder()
-                .value(EMAIL)
-                .user(user)
-                .build();
-        emailRepository.save(email);
-
-        user.setEmails(List.of(email));
-        userRepository.save(user);
-
-        assertEquals(List.of(email), userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails());
+        return userRepository.findByLogin(user.getLogin()).orElseThrow();
     }
 }
