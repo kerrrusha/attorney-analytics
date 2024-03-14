@@ -76,24 +76,20 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval=true)
     private List<Email> emails;
 
-    @OneToMany
     @ToString.Exclude
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval=true)
     private List<Phone> phones = new ArrayList<>();
 
-    @OneToMany
     @ToString.Exclude
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval=true)
     private List<Location> locations = new ArrayList<>();
 
-    @OneToMany
     @ToString.Exclude
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval=true)
     private List<Admission> admissions = new ArrayList<>();
 
-    @OneToMany
     @ToString.Exclude
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval=true)
     private List<PracticeArea> practiceAreas = new ArrayList<>();
 
     @ToString.Exclude
@@ -115,6 +111,42 @@ public class User implements UserDetails {
         }
         this.emails.clear();
         this.emails.addAll(emails);
+    }
+
+    public void setPhones(List<Phone> phones) {
+        if (this.phones == null) {
+            this.phones = new ArrayList<>(phones);
+            return;
+        }
+        this.phones.clear();
+        this.phones.addAll(phones);
+    }
+
+    public void setLocations(List<Location> locations) {
+        if (this.locations == null) {
+            this.locations = new ArrayList<>(locations);
+            return;
+        }
+        this.locations.clear();
+        this.locations.addAll(locations);
+    }
+
+    public void setPracticeAreas(List<PracticeArea> practiceAreas) {
+        if (this.practiceAreas == null) {
+            this.practiceAreas = new ArrayList<>(practiceAreas);
+            return;
+        }
+        this.practiceAreas.clear();
+        this.practiceAreas.addAll(practiceAreas);
+    }
+
+    public void setAdmissions(List<Admission> admissions) {
+        if (this.admissions == null) {
+            this.admissions = new ArrayList<>(admissions);
+            return;
+        }
+        this.admissions.clear();
+        this.admissions.addAll(admissions);
     }
 
     @Override

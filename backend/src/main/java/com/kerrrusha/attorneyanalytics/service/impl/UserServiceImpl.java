@@ -10,6 +10,11 @@ import com.kerrrusha.attorneyanalytics.model.user.Phone;
 import com.kerrrusha.attorneyanalytics.model.user.PracticeArea;
 import com.kerrrusha.attorneyanalytics.model.user.Role;
 import com.kerrrusha.attorneyanalytics.model.user.Title;
+import com.kerrrusha.attorneyanalytics.repository.AdmissionRepository;
+import com.kerrrusha.attorneyanalytics.repository.EmailRepository;
+import com.kerrrusha.attorneyanalytics.repository.LocationRepository;
+import com.kerrrusha.attorneyanalytics.repository.PhoneRepository;
+import com.kerrrusha.attorneyanalytics.repository.PracticeAreaRepository;
 import com.kerrrusha.attorneyanalytics.repository.RoleRepository;
 import com.kerrrusha.attorneyanalytics.repository.TitleRepository;
 import com.kerrrusha.attorneyanalytics.service.UserService;
@@ -21,6 +26,7 @@ import com.kerrrusha.attorneyanalytics.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +46,11 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
     private final TitleRepository titleRepository;
+    private final EmailRepository emailRepository;
+    private final PhoneRepository phoneRepository;
+    private final LocationRepository locationRepository;
+    private final PracticeAreaRepository practiceAreaRepository;
+    private final AdmissionRepository admissionRepository;
 
     @Override
     public UserResponseDto register(UserRegistrationRequestDto request) {
@@ -61,20 +72,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserFullResponseDto update(UserUpdateRequestDto requestDto, String login) {
         User user = userRepository.findByLogin(login)
                 .orElseThrow(() -> new RuntimeException("User not found by login: " + login));
         if (!user.getId().equals(requestDto.getUserId())) {
             throw new RuntimeException("User id in request and in database are different");
         }
-
-        List<Email> expected = new ArrayList<>();
-        Email email = new Email("mail@mail.com", user);
-        expected.add(email);
-        user.setEmails(expected);
-
-        User savedUser = userRepository.save(user);
-        List<Email> actual = savedUser.getEmails();
 
         if (nonNull(requestDto.getFirstName())) {
             user.setFirstName(requestDto.getFirstName());
@@ -98,32 +102,42 @@ public class UserServiceImpl implements UserService {
         }
         if (nonNull(requestDto.getEmails())) {
             List<Email> emails = Arrays.stream(requestDto.getEmails())
-                    .map(emailStr -> new Email(emailStr, user))
+                    .map(str -> new Email(str, user))
                     .collect(toCollection(ArrayList::new));
+            user.getEmails().clear();
+            emailRepository.deleteAllByUserId(user.getId());
             user.setEmails(emails);
         }
         if (nonNull(requestDto.getPhones())) {
             List<Phone> phones = Arrays.stream(requestDto.getPhones())
-                    .map(Phone::new)
+                    .map(str -> new Phone(str, user))
                     .collect(toCollection(ArrayList::new));
+            user.getPhones().clear();
+            phoneRepository.deleteAllByUserId(user.getId());
             user.setPhones(phones);
         }
         if (nonNull(requestDto.getLocations())) {
             List<Location> locations = Arrays.stream(requestDto.getLocations())
-                    .map(Location::new)
+                    .map(str -> new Location(str, user))
                     .collect(toCollection(ArrayList::new));
+            user.getLocations().clear();
+            locationRepository.deleteAllByUserId(user.getId());
             user.setLocations(locations);
         }
         if (nonNull(requestDto.getAdmissions())) {
             List<Admission> admissions = Arrays.stream(requestDto.getAdmissions())
-                    .map(Admission::new)
+                    .map(str -> new Admission(str, user))
                     .collect(toCollection(ArrayList::new));
+            user.getAdmissions().clear();
+            admissionRepository.deleteAllByUserId(user.getId());
             user.setAdmissions(admissions);
         }
         if (nonNull(requestDto.getPracticeAreas())) {
             List<PracticeArea> practiceAreas = Arrays.stream(requestDto.getPracticeAreas())
-                    .map(PracticeArea::new)
+                    .map(str -> new PracticeArea(str, user))
                     .collect(toCollection(ArrayList::new));
+            user.getPracticeAreas().clear();
+            practiceAreaRepository.deleteAllByUserId(user.getId());
             user.setPracticeAreas(practiceAreas);
         }
         return userMapper.toFullDto(userRepository.save(user));
