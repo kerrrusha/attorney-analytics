@@ -3,7 +3,7 @@ export const MIN_VALUE_LENGTH = 3;
 export const APPLICATION_NAME = "Attorney Analytics";
 
 export const PAGES = {
-	home: '/home',
+	dashboard: '/dashboard',
     login: '/login',
     register: '/register',
     profile: '/profile',
@@ -15,7 +15,6 @@ export const API_ENDPOINTS = {
     googleOAuthLogin: '/oauth/google/login',
     logout: '/auth/logout',
     isAuthorized: '/user/authorized',
-    fetchKanban: '/kanban/boards',
     postUpdateUser: '/user/update',
     login: '/auth/login',
     register: '/auth/register',

@@ -11,7 +11,7 @@ export default function HeaderNoAuth() {
                 <>
                     <div className="mx-auto px-2 sm:px-6 lg:px-8">
                         <div className="relative flex h-16 items-center justify-between">
-                            <a className="flex justify-start no-underline px-3" href={PAGES.home}>
+                            <a className="flex justify-start no-underline px-3" href={PAGES.dashboard}>
                                 <div className="flex items-center">
                                     <img
                                         className="h-10 w-auto"

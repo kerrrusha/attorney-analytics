@@ -18,7 +18,7 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
 
     useEffect(() => {
         if (loggedIn) {
-            navigate(PAGES.home);
+            navigate(PAGES.dashboard);
         }
     }, [loggedIn]);
 
