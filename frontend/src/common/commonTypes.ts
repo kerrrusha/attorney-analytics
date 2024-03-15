@@ -65,3 +65,8 @@ export type RegisterRequest = {
     login: string,
     password: string,
 }
+
+export type KeyValueChartData = {
+    key: string,
+    value: number,
+}

@@ -1,5 +1,5 @@
 {
-  "name": "task-manager-frontend",
+  "name": "attorney-analytics-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -34,7 +34,9 @@
     "react-scripts": "5.0.1",
     "react-tailwindcss-datepicker": "^1.6.6",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "chart.js": "^3.9.1",
+    "react-chartjs-2": "^4.3.1"
   },
   "scripts": {
     "start": "react-scripts start",

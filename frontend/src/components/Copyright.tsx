@@ -7,7 +7,7 @@ export default function Copyright(props: any) {
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
             <Link color="inherit" href="https://github.com/kerrrusha" target="_blank">
-                Task Manager
+                Attorney Analytics
             </Link>
             {' '}
             {new Date().getFullYear()}
