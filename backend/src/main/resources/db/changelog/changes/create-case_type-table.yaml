@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-case_type-table
+      author: kerrrusha
+      changes:
+        - createTable:
+            tableName: case_type
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(511)
+                  constraints:
+                    nullable: false
+                    unique: true
+      rollback:
+        - dropTable:
+            tableName: title

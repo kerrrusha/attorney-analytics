@@ -23,3 +23,9 @@ databaseChangeLog:
       file: db/changelog/changes/create-practice_area-table.yaml
   - include:
       file: db/changelog/changes/insert-admin.yaml
+  - include:
+      file: db/changelog/changes/create-case_status-table.yaml
+  - include:
+      file: db/changelog/changes/create-case_type-table.yaml
+  - include:
+      file: db/changelog/changes/create-case-table.yaml
