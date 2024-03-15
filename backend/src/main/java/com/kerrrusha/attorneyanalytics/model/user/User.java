@@ -42,6 +42,7 @@ import java.util.Set;
 @SQLRestriction("deleted=false")
 @SQLDelete(sql = "UPDATE user SET deleted = true WHERE id=?")
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
