@@ -1,6 +1,6 @@
 import {InputTarget, KeyValueChartData, LoggedInProps} from "../common/commonTypes";
 import PageWithSidebar from "../components/sidebar/PageWithSidebar";
-import {useState} from "react";
+import React, {useState} from "react";
 import {Bar, Doughnut} from "react-chartjs-2"
 import 'chart.js/auto';
 import {createChartData, createOptionsHoverLabelWithPostfix} from "../common/commonUtils";
@@ -8,6 +8,9 @@ import {createChartData, createOptionsHoverLabelWithPostfix} from "../common/com
 export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
     const [dateFrom, setDateFrom] = useState(getYesterday());
     const [dateTo, setDateTo] = useState(getToday());
+    const [datesError, setDatesError] = useState('');
+    const BAD_DATE_FROM = "Date-from value should be before date-to.";
+    const BAD_DATE_TO = "Date-to value should be after date-from.";
 
     function getToday() {
         const today = new Date();
@@ -20,6 +23,24 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
         yesterday.setDate(today.getDate() - 1);
         return yesterday.toISOString().slice(0, 10);
     }
+
+    const trySetDateFrom = (newDateFrom: string) => {
+        if (new Date(newDateFrom) >= new Date(dateTo)) {
+            setDatesError(BAD_DATE_FROM);
+            return;
+        }
+        setDateFrom(newDateFrom);
+        setDatesError('');
+    };
+
+    const trySetDateTo = (newDateTo: string) => {
+        if (new Date(newDateTo) <= new Date(dateFrom)) {
+            setDatesError(BAD_DATE_TO);
+            return;
+        }
+        setDateTo(newDateTo);
+        setDatesError('');
+    };
 
     const caseTypeIncomesFetchedData: Array<KeyValueChartData> = [
         {
@@ -166,15 +187,21 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                     <label htmlFor="date-from"
                            className="block mr-2 text-m">Date from:</label>
                     <input type="date" id="date-from" value={dateFrom}
-                           onChange={({target} : InputTarget) => setDateFrom(target.value)} required />
+                           onChange={({target} : InputTarget) => trySetDateFrom(target.value)} required />
                 </div>
                 <div className="mx-5 flex flex-row items-center">
                     <label htmlFor="date-to"
                            className="block mr-2 text-m">Date to:</label>
                     <input type="date" id="date-to" value={dateTo}
-                           onChange={({target} : InputTarget) => setDateTo(target.value)} required />
+                           onChange={({target} : InputTarget) => trySetDateTo(target.value)} required />
                 </div>
             </div>
+            {
+                datesError && datesError.length > 0 &&
+                <div className="alert alert-danger" role="alert">
+                    {datesError}
+                </div>
+            }
         </div>
         <div className="flex flex-row flex-wrap">
             <div className="card background-secondary">
@@ -230,7 +257,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                             </tr>
                         </thead>
                         <tbody>
-                        {attorneysOfTheMonth.map((e, index) => <tr>
+                        {attorneysOfTheMonth.map((e, index) => <tr key={index}>
                             <th scope="row">{index + 1}</th>
                             <td>{e.attorney}</td>
                             <td>{e.title}</td>
@@ -256,7 +283,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                         </tr>
                         </thead>
                         <tbody>
-                        {latestClosedCases.map(e => <tr>
+                        {latestClosedCases.map((e, index) => <tr key={index}>
                             <th scope="row">{e.closedDate}</th>
                             <td>{e.title}</td>
                             <td>{e.description}</td>
@@ -271,7 +298,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                 <div className="card-body px-5">
                     <p className="text-center display-6">About us</p>
 
-                    <table className="mx-auto text-start">
+                    <table id="about-us" className="mx-auto text-start">
                         <tbody>
                         <tr>
                             <th scope="row" colSpan={2}>

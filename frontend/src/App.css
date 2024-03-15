@@ -63,3 +63,7 @@ table[id*=-table] tr > *:nth-child(3) { width:10%; text-align: center; }
 [type=date] {
   color: black;
 }
+
+table#about-us th {
+  padding-right: 10rem;
+}
