@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-case_type
+      author: kerrrusha
+      changes:
+        - insert:
+            tableName: case_type
+            columns:
+              - column:
+                  name: name
+                  value: "Legal Consultation"
+        - insert:
+            tableName: case_type
+            columns:
+              - column:
+                  name: name
+                  value: "Legal Document Preparation"
+        - insert:
+            tableName: case_type
+            columns:
+              - column:
+                  name: name
+                  value: "Court Representation"
+        - insert:
+            tableName: case_type
+            columns:
+              - column:
+                  name: name
+                  value: "Legal Research"
+        - insert:
+            tableName: case_type
+            columns:
+              - column:
+                  name: name
+                  value: "Contract Drafting"
+        - insert:
+            tableName: case_type
+            columns:
+              - column:
+                  name: name
+                  value: "Other"

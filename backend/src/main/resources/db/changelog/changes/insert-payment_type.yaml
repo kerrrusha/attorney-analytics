@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-payment_type
+      author: kerrrusha
+      changes:
+        - insert:
+            tableName: payment_type
+            columns:
+              - column:
+                  name: name
+                  value: INCOME
+        - insert:
+            tableName: payment_type
+            columns:
+              - column:
+                  name: name
+                  value: OUTCOME

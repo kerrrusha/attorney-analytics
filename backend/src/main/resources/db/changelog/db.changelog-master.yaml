@@ -45,3 +45,11 @@ databaseChangeLog:
       file: db/changelog/changes/create-case_user-table.yaml
   - include:
       file: db/changelog/changes/create-case_client-table.yaml
+  - include:
+      file: db/changelog/changes/insert-case_status.yaml
+  - include:
+      file: db/changelog/changes/insert-case_type.yaml
+  - include:
+      file: db/changelog/changes/insert-payment_status.yaml
+  - include:
+      file: db/changelog/changes/insert-payment_type.yaml

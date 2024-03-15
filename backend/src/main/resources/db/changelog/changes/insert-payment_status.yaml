@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-payment_status
+      author: kerrrusha
+      changes:
+        - insert:
+            tableName: payment_status
+            columns:
+              - column:
+                  name: name
+                  value: PENDING
+        - insert:
+            tableName: payment_status
+            columns:
+              - column:
+                  name: name
+                  value: FAILED
+        - insert:
+            tableName: payment_status
+            columns:
+              - column:
+                  name: name
+                  value: SUCCESS
