@@ -4,6 +4,10 @@ export const APPLICATION_NAME = "Attorney Analytics";
 
 export const PAGES = {
 	dashboard: '/dashboard',
+    payments: '/payments',
+    workers: '/workers',
+    clients: '/clients',
+    cases: '/cases',
     login: '/login',
     register: '/register',
     profile: '/profile',
