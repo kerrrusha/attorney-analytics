@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create-email-table
+      id: create-user_location-table
       author: kerrrusha
       changes:
         - createTable:
-            tableName: email
+            tableName: user_location
             columns:
               - column:
                   name: id
@@ -17,18 +17,19 @@ databaseChangeLog:
                   type: VARCHAR(511)
                   constraints:
                     nullable: false
+                    unique: true
               - column:
                   name: user_id
                   type: BIGINT
                   constraints:
                     nullable: false
                     references: user(id)
-                    foreignKeyName: fk_email_user_id
+                    foreignKeyName: fk_user_location_user_id
                     deleteCascade: true
         - addUniqueConstraint:
-            tableName: email
+            tableName: user_location
             columnNames: user_id, value
-            constraintName: unique_email_user_id_value
+            constraintName: unique_user_location_user_id_value
       rollback:
         - dropTable:
-            tableName: email
+            tableName: user_location

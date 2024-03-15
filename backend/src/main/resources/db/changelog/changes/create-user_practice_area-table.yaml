@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create-location-table
+      id: create-user_practice_area-table
       author: kerrrusha
       changes:
         - createTable:
-            tableName: location
+            tableName: user_practice_area
             columns:
               - column:
                   name: id
@@ -17,19 +17,18 @@ databaseChangeLog:
                   type: VARCHAR(511)
                   constraints:
                     nullable: false
-                    unique: true
               - column:
                   name: user_id
                   type: BIGINT
                   constraints:
                     nullable: false
                     references: user(id)
-                    foreignKeyName: fk_location_user_id
+                    foreignKeyName: fk_user_practice_area_user_id
                     deleteCascade: true
         - addUniqueConstraint:
-            tableName: location
+            tableName: user_practice_area
             columnNames: user_id, value
-            constraintName: unique_location_user_id_value
+            constraintName: unique_user_practice_area_user_id_value
       rollback:
         - dropTable:
-            tableName: location
+            tableName: user_practice_area

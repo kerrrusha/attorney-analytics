@@ -2,11 +2,11 @@ package com.kerrrusha.attorneyanalytics.mapper;
 
 import com.kerrrusha.attorneyanalytics.config.MapperConfig;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
-import com.kerrrusha.attorneyanalytics.model.user.Admission;
-import com.kerrrusha.attorneyanalytics.model.user.Email;
-import com.kerrrusha.attorneyanalytics.model.user.Location;
-import com.kerrrusha.attorneyanalytics.model.user.Phone;
-import com.kerrrusha.attorneyanalytics.model.user.PracticeArea;
+import com.kerrrusha.attorneyanalytics.model.user.UserAdmission;
+import com.kerrrusha.attorneyanalytics.model.user.UserEmail;
+import com.kerrrusha.attorneyanalytics.model.user.UserLocation;
+import com.kerrrusha.attorneyanalytics.model.user.UserPhone;
+import com.kerrrusha.attorneyanalytics.model.user.UserPracticeArea;
 import com.kerrrusha.attorneyanalytics.model.user.Role;
 import com.kerrrusha.attorneyanalytics.model.user.Title;
 import com.kerrrusha.attorneyanalytics.model.user.User;
@@ -30,33 +30,33 @@ public interface UserMapper {
         return title.getName();
     }
 
-    default String[] mapLocations(List<Location> locations) {
-        return locations.stream()
-                .map(Location::getValue)
+    default String[] mapLocations(List<UserLocation> userLocations) {
+        return userLocations.stream()
+                .map(UserLocation::getValue)
                 .toArray(String[]::new);
     }
 
-    default String[] mapEmails(List<Email> emails) {
-        return emails.stream()
-                .map(Email::getValue)
+    default String[] mapEmails(List<UserEmail> userEmails) {
+        return userEmails.stream()
+                .map(UserEmail::getValue)
                 .toArray(String[]::new);
     }
 
-    default String[] mapPhones(List<Phone> phones) {
-        return phones.stream()
-                .map(Phone::getValue)
+    default String[] mapPhones(List<UserPhone> userPhones) {
+        return userPhones.stream()
+                .map(UserPhone::getValue)
                 .toArray(String[]::new);
     }
 
-    default String[] mapAdmissions(List<Admission> admissions) {
-        return admissions.stream()
-                .map(Admission::getValue)
+    default String[] mapAdmissions(List<UserAdmission> userAdmissions) {
+        return userAdmissions.stream()
+                .map(UserAdmission::getValue)
                 .toArray(String[]::new);
     }
 
-    default String[] mapPracticeAreas(List<PracticeArea> practiceAreas) {
-        return practiceAreas.stream()
-                .map(PracticeArea::getValue)
+    default String[] mapPracticeAreas(List<UserPracticeArea> userPracticeAreas) {
+        return userPracticeAreas.stream()
+                .map(UserPracticeArea::getValue)
                 .toArray(String[]::new);
     }
 }

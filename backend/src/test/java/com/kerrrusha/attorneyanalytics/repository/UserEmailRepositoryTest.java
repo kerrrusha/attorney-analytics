@@ -1,6 +1,6 @@
 package com.kerrrusha.attorneyanalytics.repository;
 
-import com.kerrrusha.attorneyanalytics.model.user.Email;
+import com.kerrrusha.attorneyanalytics.model.user.UserEmail;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 @Slf4j
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class EmailRepositoryTest {
+class UserEmailRepositoryTest {
 
     private static final long ID = 12345L;
     private static final String FIRST_NAME = "Testfirst";
@@ -38,17 +38,17 @@ class EmailRepositoryTest {
     void user_setEmails_ok() {
         User user = insertUser();
 
-        Email expectedEmail = new Email(EMAIL, user);
-        List<Email> expected = createList(expectedEmail);
+        UserEmail expectedUserEmail = new UserEmail(EMAIL, user);
+        List<UserEmail> expected = createList(expectedUserEmail);
         user.setEmails(new ArrayList<>(expected));
         userRepository.save(user);
 
-        List<Email> actual = userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails();
+        List<UserEmail> actual = userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails();
         assertEquals(1, actual.size());
-        Email actualEmail = actual.get(0);
+        UserEmail actualUserEmail = actual.get(0);
 
-        log.info("Expected: {}", expectedEmail.getValue());
-        log.info("Actual: {}", actualEmail.getValue());
+        log.info("Expected: {}", expectedUserEmail.getValue());
+        log.info("Actual: {}", actualUserEmail.getValue());
 
         assertIterableEquals(expected, actual);
     }
@@ -57,13 +57,13 @@ class EmailRepositoryTest {
     void email_deleteAllByUserId_ok() {
         User user = insertUser();
 
-        List<Email> prevEmails = createList(new Email(EMAIL, user));
-        user.setEmails(prevEmails);
+        List<UserEmail> prevUserEmails = createList(new UserEmail(EMAIL, user));
+        user.setEmails(prevUserEmails);
         userRepository.save(user);
 
-        assertIterableEquals(prevEmails, userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails());
+        assertIterableEquals(prevUserEmails, userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails());
 
-        List<Email> expected = emptyList();
+        List<UserEmail> expected = emptyList();
         user.setEmails(expected);
         userRepository.save(user);
 
@@ -73,24 +73,24 @@ class EmailRepositoryTest {
     @Test
     void user_updateEmails_ok() {
         User user = insertUser();
-        List<Email> prevEmails = createList(
-                new Email("user_updateEmails_ok@test.com", user)
+        List<UserEmail> prevUserEmails = createList(
+                new UserEmail("user_updateEmails_ok@test.com", user)
         );
-        user.setEmails(prevEmails);
+        user.setEmails(prevUserEmails);
         userRepository.save(user);
 
-        assertIterableEquals(prevEmails, userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails());
+        assertIterableEquals(prevUserEmails, userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails());
 
-        List<Email> newEmails = createList(
-                new Email("user_updateEmails_ok@test.com", user),
-                new Email("user_123_updateEmails_ok@test.com", user)
+        List<UserEmail> newUserEmails = createList(
+                new UserEmail("user_updateEmails_ok@test.com", user),
+                new UserEmail("user_123_updateEmails_ok@test.com", user)
         );
         user.getEmails().clear();
         emailRepository.deleteAllByUserId(user.getId());
-        user.setEmails(newEmails);
+        user.setEmails(newUserEmails);
         userRepository.save(user);
 
-        assertIterableEquals(newEmails, userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails());
+        assertIterableEquals(newUserEmails, userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails());
     }
 
     @SafeVarargs

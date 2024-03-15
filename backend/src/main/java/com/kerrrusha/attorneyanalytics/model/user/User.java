@@ -74,23 +74,23 @@ public class User implements UserDetails {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval=true)
-    private List<Email> emails;
+    private List<UserEmail> emails;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval=true)
-    private List<Phone> phones = new ArrayList<>();
+    private List<UserPhone> phones = new ArrayList<>();
 
     @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval=true)
-    private List<Location> locations = new ArrayList<>();
+    private List<UserLocation> locations = new ArrayList<>();
 
     @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval=true)
-    private List<Admission> admissions = new ArrayList<>();
+    private List<UserAdmission> admissions = new ArrayList<>();
 
     @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval=true)
-    private List<PracticeArea> practiceAreas = new ArrayList<>();
+    private List<UserPracticeArea> practiceAreas = new ArrayList<>();
 
     @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
@@ -104,7 +104,7 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private boolean deleted = false;
 
-    public void setEmails(List<Email> emails) {
+    public void setEmails(List<UserEmail> emails) {
         if (this.emails == null) {
             this.emails = new ArrayList<>(emails);
             return;
@@ -113,7 +113,7 @@ public class User implements UserDetails {
         this.emails.addAll(emails);
     }
 
-    public void setPhones(List<Phone> phones) {
+    public void setPhones(List<UserPhone> phones) {
         if (this.phones == null) {
             this.phones = new ArrayList<>(phones);
             return;
@@ -122,7 +122,7 @@ public class User implements UserDetails {
         this.phones.addAll(phones);
     }
 
-    public void setLocations(List<Location> locations) {
+    public void setLocations(List<UserLocation> locations) {
         if (this.locations == null) {
             this.locations = new ArrayList<>(locations);
             return;
@@ -131,7 +131,7 @@ public class User implements UserDetails {
         this.locations.addAll(locations);
     }
 
-    public void setPracticeAreas(List<PracticeArea> practiceAreas) {
+    public void setPracticeAreas(List<UserPracticeArea> practiceAreas) {
         if (this.practiceAreas == null) {
             this.practiceAreas = new ArrayList<>(practiceAreas);
             return;
@@ -140,7 +140,7 @@ public class User implements UserDetails {
         this.practiceAreas.addAll(practiceAreas);
     }
 
-    public void setAdmissions(List<Admission> admissions) {
+    public void setAdmissions(List<UserAdmission> admissions) {
         if (this.admissions == null) {
             this.admissions = new ArrayList<>(admissions);
             return;

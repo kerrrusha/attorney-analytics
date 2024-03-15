@@ -3,11 +3,11 @@ package com.kerrrusha.attorneyanalytics.service.impl;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
 import com.kerrrusha.attorneyanalytics.exception.UserAlreadyExistsException;
-import com.kerrrusha.attorneyanalytics.model.user.Admission;
-import com.kerrrusha.attorneyanalytics.model.user.Email;
-import com.kerrrusha.attorneyanalytics.model.user.Location;
-import com.kerrrusha.attorneyanalytics.model.user.Phone;
-import com.kerrrusha.attorneyanalytics.model.user.PracticeArea;
+import com.kerrrusha.attorneyanalytics.model.user.UserAdmission;
+import com.kerrrusha.attorneyanalytics.model.user.UserEmail;
+import com.kerrrusha.attorneyanalytics.model.user.UserLocation;
+import com.kerrrusha.attorneyanalytics.model.user.UserPhone;
+import com.kerrrusha.attorneyanalytics.model.user.UserPracticeArea;
 import com.kerrrusha.attorneyanalytics.model.user.Role;
 import com.kerrrusha.attorneyanalytics.model.user.Title;
 import com.kerrrusha.attorneyanalytics.repository.AdmissionRepository;
@@ -100,40 +100,40 @@ public class UserServiceImpl implements UserService {
             user.setTitle(title);
         }
         if (nonNull(requestDto.getEmails())) {
-            List<Email> emails = Arrays.stream(requestDto.getEmails())
-                    .map(str -> new Email(str, user))
+            List<UserEmail> emails = Arrays.stream(requestDto.getEmails())
+                    .map(str -> new UserEmail(str, user))
                     .collect(toCollection(ArrayList::new));
             user.getEmails().clear();
             emailRepository.deleteAllByUserId(user.getId());
             user.setEmails(emails);
         }
         if (nonNull(requestDto.getPhones())) {
-            List<Phone> phones = Arrays.stream(requestDto.getPhones())
-                    .map(str -> new Phone(str, user))
+            List<UserPhone> phones = Arrays.stream(requestDto.getPhones())
+                    .map(str -> new UserPhone(str, user))
                     .collect(toCollection(ArrayList::new));
             user.getPhones().clear();
             phoneRepository.deleteAllByUserId(user.getId());
             user.setPhones(phones);
         }
         if (nonNull(requestDto.getLocations())) {
-            List<Location> locations = Arrays.stream(requestDto.getLocations())
-                    .map(str -> new Location(str, user))
+            List<UserLocation> locations = Arrays.stream(requestDto.getLocations())
+                    .map(str -> new UserLocation(str, user))
                     .collect(toCollection(ArrayList::new));
             user.getLocations().clear();
             locationRepository.deleteAllByUserId(user.getId());
             user.setLocations(locations);
         }
         if (nonNull(requestDto.getAdmissions())) {
-            List<Admission> admissions = Arrays.stream(requestDto.getAdmissions())
-                    .map(str -> new Admission(str, user))
+            List<UserAdmission> admissions = Arrays.stream(requestDto.getAdmissions())
+                    .map(str -> new UserAdmission(str, user))
                     .collect(toCollection(ArrayList::new));
             user.getAdmissions().clear();
             admissionRepository.deleteAllByUserId(user.getId());
             user.setAdmissions(admissions);
         }
         if (nonNull(requestDto.getPracticeAreas())) {
-            List<PracticeArea> practiceAreas = Arrays.stream(requestDto.getPracticeAreas())
-                    .map(str -> new PracticeArea(str, user))
+            List<UserPracticeArea> practiceAreas = Arrays.stream(requestDto.getPracticeAreas())
+                    .map(str -> new UserPracticeArea(str, user))
                     .collect(toCollection(ArrayList::new));
             user.getPracticeAreas().clear();
             practiceAreaRepository.deleteAllByUserId(user.getId());

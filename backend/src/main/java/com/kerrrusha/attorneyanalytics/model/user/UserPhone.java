@@ -24,7 +24,7 @@ import java.util.Objects;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Location {
+public class UserPhone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +38,7 @@ public class Location {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    public Location(String value, User user) {
+    public UserPhone(String value, User user) {
         this.value = value;
         this.user = user;
     }
@@ -50,7 +50,7 @@ public class Location {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Location other = (Location) o;
+        UserPhone other = (UserPhone) o;
         return getId() != null && Objects.equals(getId(), other.getId());
     }
 

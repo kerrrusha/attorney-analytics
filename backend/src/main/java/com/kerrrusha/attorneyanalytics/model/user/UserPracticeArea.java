@@ -24,7 +24,7 @@ import java.util.Objects;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Admission {
+public class UserPracticeArea {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +38,7 @@ public class Admission {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    public Admission(String value, User user) {
+    public UserPracticeArea(String value, User user) {
         this.value = value;
         this.user = user;
     }
@@ -50,7 +50,7 @@ public class Admission {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Admission other = (Admission) o;
+        UserPracticeArea other = (UserPracticeArea) o;
         return getId() != null && Objects.equals(getId(), other.getId());
     }
 

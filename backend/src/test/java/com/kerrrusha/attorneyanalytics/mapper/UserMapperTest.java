@@ -1,11 +1,11 @@
 package com.kerrrusha.attorneyanalytics.mapper;
 
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
-import com.kerrrusha.attorneyanalytics.model.user.Admission;
-import com.kerrrusha.attorneyanalytics.model.user.Email;
-import com.kerrrusha.attorneyanalytics.model.user.Location;
-import com.kerrrusha.attorneyanalytics.model.user.Phone;
-import com.kerrrusha.attorneyanalytics.model.user.PracticeArea;
+import com.kerrrusha.attorneyanalytics.model.user.UserAdmission;
+import com.kerrrusha.attorneyanalytics.model.user.UserEmail;
+import com.kerrrusha.attorneyanalytics.model.user.UserLocation;
+import com.kerrrusha.attorneyanalytics.model.user.UserPhone;
+import com.kerrrusha.attorneyanalytics.model.user.UserPracticeArea;
 import com.kerrrusha.attorneyanalytics.model.user.Title;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import org.junit.jupiter.api.Test;
@@ -50,11 +50,11 @@ class UserMapperTest {
                 .linkedinUrl(LINKEDIN_URL)
                 .bio(BIO)
                 .title(Title.builder().name(TITLE).build())
-                .locations(List.of(Location.builder().value(LOCATION).build()))
-                .emails(List.of(Email.builder().value(EMAIL).build()))
-                .phones(List.of(Phone.builder().value(PHONE).build()))
-                .admissions(List.of(Admission.builder().value(ADMISSION).build()))
-                .practiceAreas(List.of(PracticeArea.builder().value(PRACTICE_AREA).build()))
+                .locations(List.of(UserLocation.builder().value(LOCATION).build()))
+                .emails(List.of(UserEmail.builder().value(EMAIL).build()))
+                .phones(List.of(UserPhone.builder().value(PHONE).build()))
+                .admissions(List.of(UserAdmission.builder().value(ADMISSION).build()))
+                .practiceAreas(List.of(UserPracticeArea.builder().value(PRACTICE_AREA).build()))
                 .build();
         UserResponseDto expected = UserResponseDto.builder()
                 .id(ID)

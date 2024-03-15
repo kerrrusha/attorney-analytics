@@ -12,15 +12,15 @@ databaseChangeLog:
   - include:
       file: db/changelog/changes/insert-roles.yaml
   - include:
-      file: db/changelog/changes/create-admission-table.yaml
+      file: db/changelog/changes/create-user_admission-table.yaml
   - include:
-      file: db/changelog/changes/create-email-table.yaml
+      file: db/changelog/changes/create-user_email-table.yaml
   - include:
-      file: db/changelog/changes/create-location-table.yaml
+      file: db/changelog/changes/create-user_location-table.yaml
   - include:
-      file: db/changelog/changes/create-phone-table.yaml
+      file: db/changelog/changes/create-user_phone-table.yaml
   - include:
-      file: db/changelog/changes/create-practice_area-table.yaml
+      file: db/changelog/changes/create-user_practice_area-table.yaml
   - include:
       file: db/changelog/changes/insert-admin.yaml
   - include:

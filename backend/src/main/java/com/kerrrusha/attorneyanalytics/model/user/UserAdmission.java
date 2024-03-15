@@ -22,10 +22,9 @@ import java.util.Objects;
 @Getter
 @Setter
 @Builder
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Email {
+public class UserAdmission {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +38,7 @@ public class Email {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    public Email(String value, User user) {
+    public UserAdmission(String value, User user) {
         this.value = value;
         this.user = user;
     }
@@ -51,8 +50,8 @@ public class Email {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Email email = (Email) o;
-        return getId() != null && Objects.equals(getId(), email.getId());
+        UserAdmission other = (UserAdmission) o;
+        return getId() != null && Objects.equals(getId(), other.getId());
     }
 
     @Override

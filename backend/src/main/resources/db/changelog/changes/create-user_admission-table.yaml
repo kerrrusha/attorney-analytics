@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create-admission-table
+      id: create-user_admission-table
       author: kerrrusha
       changes:
         - createTable:
-            tableName: admission
+            tableName: user_admission
             columns:
               - column:
                   name: id
@@ -24,12 +24,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     references: user(id)
-                    foreignKeyName: fk_admission_user_id
+                    foreignKeyName: fk_user_admission_user_id
                     deleteCascade: true
         - addUniqueConstraint:
-            tableName: admission
+            tableName: user_admission
             columnNames: user_id, value
-            constraintName: unique_admission_user_id_value
+            constraintName: unique_user_admission_user_id_value
       rollback:
         - dropTable:
-            tableName: admission
+            tableName: user_admission
