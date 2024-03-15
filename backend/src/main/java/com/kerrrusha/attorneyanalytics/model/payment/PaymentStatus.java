@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.model.case_;
+package com.kerrrusha.attorneyanalytics.model.payment;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,7 +19,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CaseStatus {
+public class PaymentStatus {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,13 +27,11 @@ public class CaseStatus {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = true)
-    private CaseStatusName name;
+    private PaymentStatusName name;
 
-    public enum CaseStatusName {
+    public enum PaymentStatusName {
         PENDING,
-        REJECTED,
-        IN_PROGRESS,
-        SUCCESS,
-        FAILED
+        FAILED,
+        SUCCESS
     }
 }

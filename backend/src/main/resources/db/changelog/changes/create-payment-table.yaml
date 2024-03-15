@@ -22,6 +22,8 @@ databaseChangeLog:
               - column:
                   name: amount_in_cents
                   type: BIGINT
+                  constraints:
+                    nullable: false
               - column:
                   name: case_id
                   type: BIGINT
@@ -43,6 +45,12 @@ databaseChangeLog:
                     references: payment_type(id)
                     foreignKeyName: fk_payment_payment_type_id
                     deleteCascade: true
+              - column:
+                  name: deleted
+                  type: BOOLEAN
+                  defaultValue: false
+                  constraints:
+                    nullable: false
       rollback:
         - dropTable:
             tableName: payment
