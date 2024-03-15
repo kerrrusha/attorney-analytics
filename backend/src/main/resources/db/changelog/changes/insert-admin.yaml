@@ -36,7 +36,7 @@ databaseChangeLog:
                   name: profile_photo_url
                   value: 'https://avatars.githubusercontent.com/u/73041091?v=4'
         - insert:
-            tableName: admission
+            tableName: user_admission
             columns:
               - column:
                   name: value
@@ -45,7 +45,7 @@ databaseChangeLog:
                   name: user_id
                   value: 1
         - insert:
-            tableName: admission
+            tableName: user_admission
             columns:
               - column:
                   name: value
@@ -54,7 +54,7 @@ databaseChangeLog:
                   name: user_id
                   value: 1
         - insert:
-            tableName: email
+            tableName: user_email
             columns:
               - column:
                   name: value
@@ -63,7 +63,7 @@ databaseChangeLog:
                   name: user_id
                   value: 1
         - insert:
-            tableName: location
+            tableName: user_location
             columns:
               - column:
                   name: value
@@ -72,7 +72,7 @@ databaseChangeLog:
                   name: user_id
                   value: 1
         - insert:
-            tableName: location
+            tableName: user_location
             columns:
               - column:
                   name: value
@@ -81,7 +81,7 @@ databaseChangeLog:
                   name: user_id
                   value: 1
         - insert:
-            tableName: location
+            tableName: user_location
             columns:
               - column:
                   name: value
@@ -90,7 +90,7 @@ databaseChangeLog:
                   name: user_id
                   value: 1
         - insert:
-            tableName: phone
+            tableName: user_phone
             columns:
               - column:
                   name: value
@@ -99,7 +99,7 @@ databaseChangeLog:
                   name: user_id
                   value: 1
         - insert:
-            tableName: practice_area
+            tableName: user_practice_area
             columns:
               - column:
                   name: value
@@ -108,7 +108,7 @@ databaseChangeLog:
                   name: user_id
                   value: 1
         - insert:
-            tableName: practice_area
+            tableName: user_practice_area
             columns:
               - column:
                   name: value
