@@ -29,3 +29,9 @@ databaseChangeLog:
       file: db/changelog/changes/create-case_type-table.yaml
   - include:
       file: db/changelog/changes/create-case-table.yaml
+  - include:
+      file: db/changelog/changes/create-client-table.yaml
+  - include:
+      file: db/changelog/changes/create-client_phone-table.yaml
+  - include:
+      file: db/changelog/changes/create-client_email-table.yaml

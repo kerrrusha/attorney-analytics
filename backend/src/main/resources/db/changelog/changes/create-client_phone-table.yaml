@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-client_phone-table
+      author: kerrrusha
+      changes:
+        - createTable:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: value
+                  type: VARCHAR(511)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: client_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    references: client(id)
+                    foreignKeyName: fk_client_phone_client_id
+                    deleteCascade: true
+        - addUniqueConstraint:
+            tableName: client_phone
+            columnNames: client_id, value
+            constraintName: unique_client_phone_client_id_value
+      rollback:
+        - dropTable:
+            tableName: client_phone
