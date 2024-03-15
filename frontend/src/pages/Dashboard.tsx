@@ -93,12 +93,70 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
     ];
     const monthOutcomesFetchedData: Array<KeyValueChartData> = monthIncomesFetchedData;
 
+    const attorneysOfTheMonth = [
+        {
+            attorney: "Saul Goodman",
+            title: "CEO",
+            casesParticipated: 15,
+            totalIncome: "20 234$"
+        },
+        {
+            attorney: "Mark Rober",
+            title: "Of Counsel",
+            casesParticipated: 9,
+            totalIncome: "10 234$"
+        },
+        {
+            attorney: "Mr Beast",
+            title: "Partner",
+            casesParticipated: 5,
+            totalIncome: "1 234$"
+        },
+    ];
+
+    const latestClosedCases = [
+        {
+            closedDate: "Saul Goodman",
+            title: "Some court action",
+            description: "Was very hard but we won",
+            client: "Big Boss",
+            assignedAttorneys: 15
+        },
+        {
+            closedDate: "Saul Goodman",
+            title: "Some court action",
+            description: "Was very hard but we won",
+            client: "Big Boss",
+            assignedAttorneys: 15
+        },
+        {
+            closedDate: "Saul Goodman",
+            title: "Some court action",
+            description: "Was very hard but we won",
+            client: "Big Boss",
+            assignedAttorneys: 15
+        },
+    ];
+
+    const aboutUs = {
+        workers: 145,
+        clients: 134,
+        cases: {
+            total: 345,
+            success: 43,
+            inProgress: 34,
+            failed: 23,
+            rejected: 23,
+            pending: 5
+        }
+    };
+
     const [caseTypeIncomesData, setCaseTypeIncomesData] = useState(createChartData(caseTypeIncomesFetchedData));
     const [caseTypeOutcomesData, setCaseTypeOutcomesData] = useState(createChartData(caseTypeOutcomesFetchedData));
     const [clientIncomesData, setClientIncomesData] = useState(createChartData(clientIncomesFetchedData));
     const [clientOutcomesData, setClientOutcomesData] = useState(createChartData(clientOutcomesFetchedData));
-    const [monthIncomesData, setmonthIncomesData] = useState(createChartData(monthIncomesFetchedData));
-    const [monthOutcomesData, setmonthOutcomesData] = useState(createChartData(monthOutcomesFetchedData));
+    const [monthIncomesData, setMonthIncomesData] = useState(createChartData(monthIncomesFetchedData));
+    const [monthOutcomesData, setMonthOutcomesData] = useState(createChartData(monthOutcomesFetchedData));
 
     const contentElement = <div className="px-3">
         <div>
@@ -172,27 +230,13 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Saul Goodman</td>
-                                <td>CEO</td>
-                                <td>15</td>
-                                <td>20 234$</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Mark Rober</td>
-                                <td>Of Counsel</td>
-                                <td>9</td>
-                                <td>10 234$</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Mr Beast</td>
-                                <td>Partner</td>
-                                <td>5</td>
-                                <td>1 234$</td>
-                            </tr>
+                        {attorneysOfTheMonth.map((e, index) => <tr>
+                            <th scope="row">{index + 1}</th>
+                            <td>{e.attorney}</td>
+                            <td>{e.title}</td>
+                            <td>{e.casesParticipated}</td>
+                            <td>{e.totalIncome}</td>
+                        </tr>)}
                         </tbody>
                     </table>
                 </div>
@@ -208,31 +252,17 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                             <th scope="col">Title</th>
                             <th scope="col">Description</th>
                             <th scope="col">Client</th>
-                            <th scope="col">Assigned workers</th>
+                            <th scope="col">Assigned attorneys</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">15.03.2024</th>
-                            <td>Saul Goodman</td>
-                            <td>20 234$</td>
-                            <td>CoolFirm inc.</td>
-                            <td>Saul Goodman</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">13.03.2024</th>
-                            <td>Mark Rober</td>
-                            <td>10 234$</td>
-                            <td>CoolFirm inc.</td>
-                            <td>Saul Goodman, Mark Rober</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">12.03.2024</th>
-                            <td>Mr Beast</td>
-                            <td>1 234$</td>
-                            <td>CoolFirm inc.</td>
-                            <td>Saul Goodman</td>
-                        </tr>
+                        {latestClosedCases.map(e => <tr>
+                            <th scope="row">{e.closedDate}</th>
+                            <td>{e.title}</td>
+                            <td>{e.description}</td>
+                            <td>{e.client}</td>
+                            <td>{e.assignedAttorneys}</td>
+                        </tr>)}
                         </tbody>
                     </table>
                 </div>
@@ -249,8 +279,8 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                             </th>
                         </tr>
                         <tr>
-                            <th scope="row">Employed:</th>
-                            <td>100</td>
+                            <th scope="row">Total:</th>
+                            <td>{aboutUs.workers}</td>
                         </tr>
                         <tr>
                             <th scope="row" colSpan={2}>
@@ -259,7 +289,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                         </tr>
                         <tr>
                             <th scope="row">Total:</th>
-                            <td>100</td>
+                            <td>{aboutUs.clients}</td>
                         </tr>
                         <tr>
                             <th scope="row" colSpan={2}>
@@ -268,27 +298,27 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                         </tr>
                         <tr>
                             <th scope="row">Total:</th>
-                            <td>100</td>
+                            <td>{aboutUs.cases.total}</td>
                         </tr>
                         <tr>
                             <th scope="row">Success:</th>
-                            <td>100</td>
+                            <td>{aboutUs.cases.success}</td>
                         </tr>
                         <tr>
                             <th scope="row">In progress:</th>
-                            <td>100</td>
+                            <td>{aboutUs.cases.inProgress}</td>
                         </tr>
                         <tr>
                             <th scope="row">Failed:</th>
-                            <td>100</td>
+                            <td>{aboutUs.cases.failed}</td>
                         </tr>
                         <tr>
                             <th scope="row">Rejected:</th>
-                            <td>100</td>
+                            <td>{aboutUs.cases.rejected}</td>
                         </tr>
                         <tr>
                             <th scope="row">Pending:</th>
-                            <td>100</td>
+                            <td>{aboutUs.cases.pending}</td>
                         </tr>
                         </tbody>
                     </table>
