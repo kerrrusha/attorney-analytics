@@ -46,7 +46,7 @@ export default function Header({loggedIn, setLoggedIn} : LoggedInProps) {
                                         alt={APPLICATION_NAME}
                                     />
                                     <h3 className="font-bold font-sans site-name mb-0">{APPLICATION_NAME}</h3>
-                                    {<h5></h5>}
+                                    {userFetched && user.roles.includes("ADMIN") && <h5 className="m-0 mx-4">admin</h5>}
                                 </div>
                             </a>
                             <div className="flex flex-1 absolute inset-y-0 right-0 justify-end items-center sm:static sm:inset-auto sm:ml-6">
