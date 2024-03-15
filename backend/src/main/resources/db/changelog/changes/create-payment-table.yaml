@@ -4,7 +4,7 @@ databaseChangeLog:
       author: kerrrusha
       changes:
         - createTable:
-            tableName: case
+            tableName: payment
             columns:
               - column:
                   name: id
