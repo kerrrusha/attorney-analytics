@@ -38,6 +38,12 @@ databaseChangeLog:
                     references: case_type(id)
                     foreignKeyName: fk_case_case_type_id
                     deleteCascade: true
+              - column:
+                  name: deleted
+                  type: BOOLEAN
+                  defaultValue: false
+                  constraints:
+                    nullable: false
       rollback:
         - dropTable:
             tableName: case
