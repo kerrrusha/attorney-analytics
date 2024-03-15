@@ -2,7 +2,7 @@ package com.kerrrusha.attorneyanalytics.security;
 
 import com.kerrrusha.attorneyanalytics.dto.auth.JwtAuthenticationResponse;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserLoginRequestDto;
-import com.kerrrusha.attorneyanalytics.repository.UserRepository;
+import com.kerrrusha.attorneyanalytics.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

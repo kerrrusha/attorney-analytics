@@ -1,8 +1,8 @@
-package com.kerrrusha.attorneyanalytics.repository;
+package com.kerrrusha.attorneyanalytics.repository.user;
 
 import com.kerrrusha.attorneyanalytics.model.user.UserAdmission;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AdmissionRepository extends JpaRepository<UserAdmission, Long> {
+public interface UserAdmissionRepository extends JpaRepository<UserAdmission, Long> {
     void deleteAllByUserId(Long userId);
 }

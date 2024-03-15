@@ -1,8 +1,8 @@
-package com.kerrrusha.attorneyanalytics.repository;
+package com.kerrrusha.attorneyanalytics.repository.user;
 
 import com.kerrrusha.attorneyanalytics.model.user.UserLocation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface LocationRepository extends JpaRepository<UserLocation, Long> {
+public interface UserLocationRepository extends JpaRepository<UserLocation, Long> {
     void deleteAllByUserId(Long userId);
 }

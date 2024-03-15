@@ -10,18 +10,18 @@ import com.kerrrusha.attorneyanalytics.model.user.UserPhone;
 import com.kerrrusha.attorneyanalytics.model.user.UserPracticeArea;
 import com.kerrrusha.attorneyanalytics.model.user.Role;
 import com.kerrrusha.attorneyanalytics.model.user.Title;
-import com.kerrrusha.attorneyanalytics.repository.AdmissionRepository;
-import com.kerrrusha.attorneyanalytics.repository.EmailRepository;
-import com.kerrrusha.attorneyanalytics.repository.LocationRepository;
-import com.kerrrusha.attorneyanalytics.repository.PhoneRepository;
-import com.kerrrusha.attorneyanalytics.repository.PracticeAreaRepository;
-import com.kerrrusha.attorneyanalytics.repository.RoleRepository;
-import com.kerrrusha.attorneyanalytics.repository.TitleRepository;
+import com.kerrrusha.attorneyanalytics.repository.user.UserAdmissionRepository;
+import com.kerrrusha.attorneyanalytics.repository.user.UserEmailRepository;
+import com.kerrrusha.attorneyanalytics.repository.user.UserLocationRepository;
+import com.kerrrusha.attorneyanalytics.repository.user.UserPhoneRepository;
+import com.kerrrusha.attorneyanalytics.repository.user.UserPracticeAreaRepository;
+import com.kerrrusha.attorneyanalytics.repository.user.RoleRepository;
+import com.kerrrusha.attorneyanalytics.repository.user.TitleRepository;
 import com.kerrrusha.attorneyanalytics.service.UserService;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserRegistrationRequestDto;
 import com.kerrrusha.attorneyanalytics.mapper.UserMapper;
-import com.kerrrusha.attorneyanalytics.repository.UserRepository;
+import com.kerrrusha.attorneyanalytics.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -45,11 +45,11 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
     private final TitleRepository titleRepository;
-    private final EmailRepository emailRepository;
-    private final PhoneRepository phoneRepository;
-    private final LocationRepository locationRepository;
-    private final PracticeAreaRepository practiceAreaRepository;
-    private final AdmissionRepository admissionRepository;
+    private final UserEmailRepository emailRepository;
+    private final UserPhoneRepository phoneRepository;
+    private final UserLocationRepository locationRepository;
+    private final UserPracticeAreaRepository practiceAreaRepository;
+    private final UserAdmissionRepository admissionRepository;
 
     @Override
     public UserResponseDto register(UserRegistrationRequestDto request) {

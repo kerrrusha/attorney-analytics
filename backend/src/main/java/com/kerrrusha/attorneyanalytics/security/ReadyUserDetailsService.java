@@ -1,6 +1,6 @@
 package com.kerrrusha.attorneyanalytics.security;
 
-import com.kerrrusha.attorneyanalytics.repository.UserRepository;
+import com.kerrrusha.attorneyanalytics.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

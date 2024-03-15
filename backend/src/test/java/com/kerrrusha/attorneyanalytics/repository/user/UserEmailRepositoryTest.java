@@ -1,5 +1,6 @@
-package com.kerrrusha.attorneyanalytics.repository;
+package com.kerrrusha.attorneyanalytics.repository.user;
 
+import com.kerrrusha.attorneyanalytics.model.client.Client;
 import com.kerrrusha.attorneyanalytics.model.user.UserEmail;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.kerrrusha.attorneyanalytics.helper.CommonHelper.createList;
 import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
@@ -32,7 +34,7 @@ class UserEmailRepositoryTest {
     private UserRepository userRepository;
 
     @Autowired
-    private EmailRepository emailRepository;
+    private UserEmailRepository emailRepository;
 
     @Test
     void user_setEmails_ok() {
@@ -93,13 +95,6 @@ class UserEmailRepositoryTest {
         assertIterableEquals(newUserEmails, userRepository.findByLogin(user.getLogin()).orElseThrow().getEmails());
     }
 
-    @SafeVarargs
-    private static <T> List<T> createList(T... elements) {
-        List<T> result = new ArrayList<>();
-        Collections.addAll(result, elements);
-        return result;
-    }
-
     private User insertUser() {
         User user = User.builder()
                 .id(ID)
@@ -111,5 +106,9 @@ class UserEmailRepositoryTest {
         userRepository.save(user);
 
         return userRepository.findByLogin(user.getLogin()).orElseThrow();
+    }
+
+    private User getUserFromDB(User detached) {
+        return userRepository.findByLogin(detached.getLogin()).orElseThrow();
     }
 }

@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.repository;
+package com.kerrrusha.attorneyanalytics.repository.user;
 
 import com.kerrrusha.attorneyanalytics.model.user.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
