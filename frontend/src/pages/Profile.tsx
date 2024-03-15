@@ -1,20 +1,20 @@
 import Header from '../components/header/Header';
 import SaveableInput from "../components/saveable/SaveableInput";
-import {LoggedInProps, UserFull, UserUpdateRequest} from "../common/commonTypes";
+import {LoggedInProps, User, UserUpdateRequest} from "../common/commonTypes";
 import {useAppSelector} from "../hooks/useAppSelector";
-import {selectUserFull, setUser} from "../redux/slices/authSlice";
+import {selectUser, setUser} from "../redux/slices/authSlice";
 import LoadingGif from "../components/loading/LoadingGif";
 import {postUpdateUser} from "../services/postUpdateUser";
 import {useAppDispatch} from "../hooks/useAppDispatch";
 import Loading from "../components/loading/Loading";
-import useFetchUserFull from "../hooks/useFetchUserFull";
 import {fixNull} from "../common/commonUtils";
 import SaveableTextArea from "../components/saveable/SaveableTextArea";
 import CrudTable, {TableData} from "../components/CrudTable";
+import useFetchUser from "../hooks/useFetchUser";
 
 export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
-    const [userFetched] = useFetchUserFull();
-    const user : UserFull | null = useAppSelector(selectUserFull)!;
+    const [userFetched] = useFetchUser();
+    const user : User | null = useAppSelector(selectUser)!;
     const dispatch = useAppDispatch();
 
     const updateUser = (requestBody : UserUpdateRequest) => {

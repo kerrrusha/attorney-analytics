@@ -1,6 +1,6 @@
 package com.kerrrusha.attorneyanalytics.mapper;
 
-import com.kerrrusha.attorneyanalytics.dto.user.response.UserFullResponseDto;
+import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
 import com.kerrrusha.attorneyanalytics.model.user.Admission;
 import com.kerrrusha.attorneyanalytics.model.user.Email;
 import com.kerrrusha.attorneyanalytics.model.user.Location;
@@ -56,7 +56,7 @@ class UserMapperTest {
                 .admissions(List.of(Admission.builder().value(ADMISSION).build()))
                 .practiceAreas(List.of(PracticeArea.builder().value(PRACTICE_AREA).build()))
                 .build();
-        UserFullResponseDto expected = UserFullResponseDto.builder()
+        UserResponseDto expected = UserResponseDto.builder()
                 .id(ID)
                 .firstName(FIRST_NAME)
                 .lastName(LAST_NAME)
@@ -72,7 +72,7 @@ class UserMapperTest {
                 .practiceAreas(toArray(PRACTICE_AREA))
                 .build();
 
-        UserFullResponseDto actual = userMapper.toFullDto(user);
+        UserResponseDto actual = userMapper.toDto(user);
         assertEquals(expected, actual);
     }
 }

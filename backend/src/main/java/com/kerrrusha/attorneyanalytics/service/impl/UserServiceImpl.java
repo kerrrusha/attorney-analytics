@@ -1,7 +1,7 @@
 package com.kerrrusha.attorneyanalytics.service.impl;
 
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
-import com.kerrrusha.attorneyanalytics.dto.user.response.UserFullResponseDto;
+import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
 import com.kerrrusha.attorneyanalytics.exception.UserAlreadyExistsException;
 import com.kerrrusha.attorneyanalytics.model.user.Admission;
 import com.kerrrusha.attorneyanalytics.model.user.Email;
@@ -20,7 +20,6 @@ import com.kerrrusha.attorneyanalytics.repository.TitleRepository;
 import com.kerrrusha.attorneyanalytics.service.UserService;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserRegistrationRequestDto;
-import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
 import com.kerrrusha.attorneyanalytics.mapper.UserMapper;
 import com.kerrrusha.attorneyanalytics.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -73,7 +72,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserFullResponseDto update(UserUpdateRequestDto requestDto, String login) {
+    public UserResponseDto update(UserUpdateRequestDto requestDto, String login) {
         User user = userRepository.findByLogin(login)
                 .orElseThrow(() -> new RuntimeException("User not found by login: " + login));
         if (!user.getId().equals(requestDto.getUserId())) {
@@ -140,19 +139,13 @@ public class UserServiceImpl implements UserService {
             practiceAreaRepository.deleteAllByUserId(user.getId());
             user.setPracticeAreas(practiceAreas);
         }
-        return userMapper.toFullDto(userRepository.save(user));
+        return userMapper.toDto(userRepository.save(user));
     }
 
     @Override
     public UserResponseDto findByEmail(String email) {
         User user = findUserByEmail(email);
         return userMapper.toDto(user);
-    }
-
-    @Override
-    public UserFullResponseDto findFullByEmail(String email) {
-        User user = findUserByEmail(email);
-        return userMapper.toFullDto(user);
     }
 
     private User findUserByEmail(String email) {

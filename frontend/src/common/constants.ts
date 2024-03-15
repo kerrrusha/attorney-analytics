@@ -15,7 +15,6 @@ export const PAGES = {
 
 export const API_ENDPOINTS = {
     getUserInfo: '/user/info',
-    getUserFullInfo: '/user/full-info',
     googleOAuthLogin: '/oauth/google/login',
     logout: '/auth/logout',
     isAuthorized: '/user/authorized',

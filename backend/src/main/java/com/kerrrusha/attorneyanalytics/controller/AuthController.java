@@ -41,7 +41,7 @@ public class AuthController {
         UserResponseDto responseDto = userService.register(requestDto);
 
         UserLoginRequestDto loginRequestDto = UserLoginRequestDto.builder()
-                .login(responseDto.login())
+                .login(responseDto.getLogin())
                 .password(requestDto.getPassword())
                 .build();
         login(loginRequestDto, response);

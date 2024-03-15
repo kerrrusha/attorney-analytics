@@ -1,0 +1,150 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-admin-user
+      author: kerrrusha
+      preConditions:
+        - sqlCheck:
+            expectedResult: 1
+            sql: SELECT COUNT(*) FROM title WHERE name='Chief Executive Officer (CEO)'
+      changes:
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: login
+                  value: 'admin@kerrrusha.com'
+              - column:
+                  name: password
+#                  password: realcooladminpassword123
+                  value: '$2a$10$WDuqr6sjxN5sVYE35/2.sO4ikfDpvKK5FDggA7V/kpxH8XSYS/0s2'
+              - column:
+                  name: first_name
+                  value: 'Kirill'
+              - column:
+                  name: last_name
+                  value: 'Koval'
+              - column:
+                  name: bio
+                  value: 'A long time ago in a galaxy far, far away...'
+              - column:
+                  name: linkedin_url
+                  value: 'https://linkedin.com/in/kerrrusha'
+              - column:
+                  name: title_id
+                  value: 1
+              - column:
+                  name: profile_photo_url
+                  value: 'https://avatars.githubusercontent.com/u/73041091?v=4'
+        - insert:
+            tableName: admission
+            columns:
+              - column:
+                  name: value
+                  value: 'California, US'
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: admission
+            columns:
+              - column:
+                  name: value
+                  value: 'Chernihiv, UA'
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: email
+            columns:
+              - column:
+                  name: value
+                  value: 'mail@mail.com'
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: location
+            columns:
+              - column:
+                  name: value
+                  value: 'Chernihiv, UA'
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: location
+            columns:
+              - column:
+                  name: value
+                  value: 'Kyiv, UA'
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: location
+            columns:
+              - column:
+                  name: value
+                  value: 'Los Angeles, US'
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: phone
+            columns:
+              - column:
+                  name: value
+                  value: '+380123456789'
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: practice_area
+            columns:
+              - column:
+                  name: value
+                  value: 'IT'
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: practice_area
+            columns:
+              - column:
+                  name: value
+                  value: 'Civil Right'
+              - column:
+                  name: user_id
+                  value: 1
+  - changeSet:
+      id: insert-admin
+      author: kerrrusha
+      preConditions:
+        - sqlCheck:
+            expectedResult: 1
+            sql: SELECT COUNT(*) FROM user WHERE login='admin@kerrrusha.com'
+        - sqlCheck:
+            expectedResult: 1
+            sql: SELECT COUNT(*) FROM role WHERE name='ADMIN'
+        - sqlCheck:
+            expectedResult: 1
+            sql: SELECT COUNT(*) FROM role WHERE name='WORKER'
+      changes:
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM user WHERE login='admin@kerrrusha.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM role WHERE name='ADMIN')
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM user WHERE login='admin@kerrrusha.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM role WHERE name='WORKER')

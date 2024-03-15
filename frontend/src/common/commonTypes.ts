@@ -30,14 +30,6 @@ export type User = {
     firstName: string,
     lastName: string,
     profilePhotoUrl: string,
-};
-
-export type UserFull = {
-    id: string,
-    login: string,
-    firstName: string,
-    lastName: string,
-    profilePhotoUrl: string,
     bio: string,
     linkedinUrl: string,
     title: string,
@@ -51,7 +43,6 @@ export type UserFull = {
 
 export type AuthState = {
     user: User | null,
-    userFull: UserFull | null,
 }
 
 export type LoginRequest = {
