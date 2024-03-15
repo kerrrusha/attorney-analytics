@@ -20,4 +20,4 @@ databaseChangeLog:
                     unique: true
       rollback:
         - dropTable:
-            tableName: title
+            tableName: case_status

@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create-case_type-table
+      id: create-payment_status-table
       author: kerrrusha
       changes:
         - createTable:
-            tableName: case_type
+            tableName: payment_status
             columns:
               - column:
                   name: id
@@ -20,4 +20,4 @@ databaseChangeLog:
                     unique: true
       rollback:
         - dropTable:
-            tableName: case_type
+            tableName: payment_status

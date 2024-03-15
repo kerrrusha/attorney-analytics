@@ -35,3 +35,9 @@ databaseChangeLog:
       file: db/changelog/changes/create-client_phone-table.yaml
   - include:
       file: db/changelog/changes/create-client_email-table.yaml
+  - include:
+      file: db/changelog/changes/create-payment_status-table.yaml
+  - include:
+      file: db/changelog/changes/create-payment_type-table.yaml
+  - include:
+      file: db/changelog/changes/create-payment-table.yaml

@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: create-case-table
+      id: create-payment-table
       author: kerrrusha
       changes:
         - createTable:
@@ -17,27 +17,32 @@ databaseChangeLog:
                   type: datetime
                   defaultValueComputed: now()
               - column:
-                  name: title
-                  type: VARCHAR(511)
-                  constraints:
-                    nullable: false
-              - column:
                   name: description
                   type: TEXT
               - column:
-                  name: case_status_id
+                  name: amount_in_cents
+                  type: BIGINT
+              - column:
+                  name: case_id
                   type: BIGINT
                   constraints:
-                    references: case_status(id)
-                    foreignKeyName: fk_case_case_status_id
+                    references: case(id)
+                    foreignKeyName: fk_payment_case_id
                     deleteCascade: true
               - column:
-                  name: case_type_id
+                  name: payment_status_id
                   type: BIGINT
                   constraints:
-                    references: case_type(id)
-                    foreignKeyName: fk_case_case_type_id
+                    references: payment_status(id)
+                    foreignKeyName: fk_payment_payment_status_id
+                    deleteCascade: true
+              - column:
+                  name: payment_type_id
+                  type: BIGINT
+                  constraints:
+                    references: payment_type(id)
+                    foreignKeyName: fk_payment_payment_type_id
                     deleteCascade: true
       rollback:
         - dropTable:
-            tableName: case
+            tableName: payment
