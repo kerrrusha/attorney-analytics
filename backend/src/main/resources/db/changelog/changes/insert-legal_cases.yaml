@@ -1,0 +1,215 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-legal_cases
+      author: kerrrusha
+      changes:
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: 2024-03-16 10:00:00
+              - column:
+                  name: updated_at
+                  value: 2024-03-16 10:30:00
+              - column:
+                  name: title
+                  value: 'Personal Injury Case'
+              - column:
+                  name: description
+                  value: 'Client injured in a car accident'
+              - column:
+                  name: legal_case_type_id
+                  value: 3
+              - column:
+                  name: legal_case_status_id
+                  value: 4
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: 2024-03-16 11:15:00
+              - column:
+                  name: updated_at
+                  value: 2024-03-16 11:45:00
+              - column:
+                  name: title
+                  value: 'Contract Dispute'
+              - column:
+                  name: description
+                  value: 'Dispute over contract terms'
+              - column:
+                  name: legal_case_type_id
+                  value: 2
+              - column:
+                  name: legal_case_status_id
+                  value: 2
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: 2024-03-16 12:30:00
+              - column:
+                  name: updated_at
+                  value: 2024-03-16 13:00:00
+              - column:
+                  name: title
+                  value: 'Divorce Proceedings'
+              - column:
+                  name: description
+                  value: 'Couple seeking divorce settlement'
+              - column:
+                  name: legal_case_type_id
+                  value: 1
+              - column:
+                  name: legal_case_status_id
+                  value: 3
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: 2024-03-16 14:45:00
+              - column:
+                  name: updated_at
+                  value: 2024-03-16 15:15:00
+              - column:
+                  name: title
+                  value: 'Real Estate Transaction'
+              - column:
+                  name: description
+                  value: 'Sale of residential property'
+              - column:
+                  name: legal_case_type_id
+                  value: 4
+              - column:
+                  name: legal_case_status_id
+                  value: 1
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: 2024-03-16 16:00:00
+              - column:
+                  name: updated_at
+                  value: 2024-03-16 16:30:00
+              - column:
+                  name: title
+                  value: 'Employment Dispute'
+              - column:
+                  name: description
+                  value: 'Wrongful termination claim'
+              - column:
+                  name: legal_case_type_id
+                  value: 5
+              - column:
+                  name: legal_case_status_id
+                  value: 5
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: 2024-03-16 17:20:00
+              - column:
+                  name: updated_at
+                  value: 2024-03-16 17:50:00
+              - column:
+                  name: title
+                  value: 'Criminal Defense Case'
+              - column:
+                  name: description
+                  value: 'Client accused of theft'
+              - column:
+                  name: legal_case_type_id
+                  value: 6
+              - column:
+                  name: legal_case_status_id
+                  value: 2
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: 2024-03-16 18:40:00
+              - column:
+                  name: updated_at
+                  value: 2024-03-16 19:10:00
+              - column:
+                  name: title
+                  value: 'Intellectual Property Dispute'
+              - column:
+                  name: description
+                  value: 'Trademark infringement claim'
+              - column:
+                  name: legal_case_type_id
+                  value: 3
+              - column:
+                  name: legal_case_status_id
+                  value: 4
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: 2024-03-16 20:00:00
+              - column:
+                  name: updated_at
+                  value: 2024-03-16 20:30:00
+              - column:
+                  name: title
+                  value: 'Immigration Case'
+              - column:
+                  name: description
+                  value: 'Client applying for citizenship'
+              - column:
+                  name: legal_case_type_id
+                  value: 1
+              - column:
+                  name: legal_case_status_id
+                  value: 1
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: 2024-03-16 21:15:00
+              - column:
+                  name: updated_at
+                  value: 2024-03-16 21:45:00
+              - column:
+                  name: title
+                  value: 'Bankruptcy Filing'
+              - column:
+                  name: description
+                  value: 'Individual filing for bankruptcy protection'
+              - column:
+                  name: legal_case_type_id
+                  value: 2
+              - column:
+                  name: legal_case_status_id
+                  value: 3
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: 2024-03-16 22:30:00
+              - column:
+                  name: updated_at
+                  value: 2024-03-16 23:00:00
+              - column:
+                  name: title
+                  value: 'Environmental Law Case'
+              - column:
+                  name: description
+                  value: 'Pollution cleanup litigation'
+              - column:
+                  name: legal_case_type_id
+                  value: 4
+              - column:
+                  name: legal_case_status_id
+                  value: 5
