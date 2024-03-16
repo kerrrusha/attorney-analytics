@@ -1,0 +1,505 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-users
+      author: kerrrusha
+      changes:
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: login
+                  value: 'alexandra.rodriguez@example.com'
+              - column:
+                  name: password
+                  #                  password: realcooladminpassword123
+                  value: '$2a$10$WDuqr6sjxN5sVYE35/2.sO4ikfDpvKK5FDggA7V/kpxH8XSYS/0s2'
+              - column:
+                  name: first_name
+                  value: 'Alexandra'
+              - column:
+                  name: last_name
+                  value: 'Rodriguez'
+              - column:
+                  name: bio
+                  value: 'Alexandra Rodriguez is an experienced attorney specializing in corporate law. She has successfully handled numerous mergers and acquisitions.'
+              - column:
+                  name: linkedin_url
+                  value: 'https://www.linkedin.com/in/alexandra-rodriguez'
+              - column:
+                  name: title_id
+                  value: 2
+              - column:
+                  name: profile_photo_url
+                  value: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQAU6p4_vPLxIkTSZcLmCUZf7VAbFAHSCJSvE6k9tQaVJ0mxUn-'
+        - insert:
+            tableName: user_admission
+            columns:
+              - column:
+                  name: value
+                  value: 'New York State Bar'
+              - column:
+                  name: user_id
+                  value: 2
+        - insert:
+            tableName: user_email
+            columns:
+              - column:
+                  name: value
+                  value: 'alexandra.rodriguez@lawfirm.com'
+              - column:
+                  name: user_id
+                  value: 2
+        - insert:
+            tableName: user_location
+            columns:
+              - column:
+                  name: value
+                  value: 'New York City, NY'
+              - column:
+                  name: user_id
+                  value: 2
+        - insert:
+            tableName: user_phone
+            columns:
+              - column:
+                  name: value
+                  value: '+1 (555) 123-4567'
+              - column:
+                  name: user_id
+                  value: 2
+        - insert:
+            tableName: user_practice_area
+            columns:
+              - column:
+                  name: value
+                  value: 'Corporate Law'
+              - column:
+                  name: user_id
+                  value: 2
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: login
+                  value: 'benjamin.chang@example.com'
+              - column:
+                  name: password
+                  #                  password: realcooladminpassword123
+                  value: '$2a$10$WDuqr6sjxN5sVYE35/2.sO4ikfDpvKK5FDggA7V/kpxH8XSYS/0s2'
+              - column:
+                  name: first_name
+                  value: 'Benjamin'
+              - column:
+                  name: last_name
+                  value: 'Chang'
+              - column:
+                  name: bio
+                  value: 'Benjamin Chang is a skilled trial lawyer with expertise in criminal defense. He has successfully defended clients in high-profile cases.'
+              - column:
+                  name: linkedin_url
+                  value: 'https://www.linkedin.com/in/benjamin-chang'
+              - column:
+                  name: title_id
+                  value: 3
+              - column:
+                  name: profile_photo_url
+                  value: 'https://vader.news/__export/1687650960197/sites/gadgets/img/2023/06/24/better_call_saul.jpg_394957636.jpg'
+        - insert:
+            tableName: user_admission
+            columns:
+              - column:
+                  name: value
+                  value: 'California State Bar'
+              - column:
+                  name: user_id
+                  value: 3
+        - insert:
+            tableName: user_email
+            columns:
+              - column:
+                  name: value
+                  value: 'benjamin.chang@lawfirm.com'
+              - column:
+                  name: user_id
+                  value: 3
+        - insert:
+            tableName: user_location
+            columns:
+              - column:
+                  name: value
+                  value: 'Los Angeles, CA'
+              - column:
+                  name: user_id
+                  value: 3
+        - insert:
+            tableName: user_phone
+            columns:
+              - column:
+                  name: value
+                  value: '+1 (555) 987-6543'
+              - column:
+                  name: user_id
+                  value: 3
+        - insert:
+            tableName: user_practice_area
+            columns:
+              - column:
+                  name: value
+                  value: 'Criminal Defense'
+              - column:
+                  name: user_id
+                  value: 3
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: login
+                  value: 'catherine.nguyen@example.com'
+              - column:
+                  name: password
+                  #                  password: realcooladminpassword123
+                  value: '$2a$10$WDuqr6sjxN5sVYE35/2.sO4ikfDpvKK5FDggA7V/kpxH8XSYS/0s2'
+              - column:
+                  name: first_name
+                  value: 'Catherine'
+              - column:
+                  name: last_name
+                  value: 'Nguyen'
+              - column:
+                  name: bio
+                  value: 'Catherine Nguyen is a dedicated family law attorney with a passion for helping clients navigate divorce and child custody matters.'
+              - column:
+                  name: linkedin_url
+                  value: 'https://www.linkedin.com/in/catherine-nguyen'
+              - column:
+                  name: title_id
+                  value: 4
+              - column:
+                  name: profile_photo_url
+                  value: 'https://static.wikia.nocookie.net/breakingbad/images/4/48/Kim_Wexler_infobox.png/revision/latest/scale-to-width/360?cb=20220823082914'
+        - insert:
+            tableName: user_admission
+            columns:
+              - column:
+                  name: value
+                  value: 'Texas State Bar'
+              - column:
+                  name: user_id
+                  value: 4
+        - insert:
+            tableName: user_email
+            columns:
+              - column:
+                  name: value
+                  value: 'catherine.nguyen@lawfirm.com'
+              - column:
+                  name: user_id
+                  value: 4
+        - insert:
+            tableName: user_location
+            columns:
+              - column:
+                  name: value
+                  value: 'Houston, TX'
+              - column:
+                  name: user_id
+                  value: 4
+        - insert:
+            tableName: user_phone
+            columns:
+              - column:
+                  name: value
+                  value: '+1 (555) 789-0123'
+              - column:
+                  name: user_id
+                  value: 4
+        - insert:
+            tableName: user_practice_area
+            columns:
+              - column:
+                  name: value
+                  value: 'Family Law'
+              - column:
+                  name: user_id
+                  value: 4
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: login
+                  value: 'daniel.lee@example.com'
+              - column:
+                  name: password
+                  #                  password: realcooladminpassword123
+                  value: '$2a$10$WDuqr6sjxN5sVYE35/2.sO4ikfDpvKK5FDggA7V/kpxH8XSYS/0s2'
+              - column:
+                  name: first_name
+                  value: 'Daniel'
+              - column:
+                  name: last_name
+                  value: 'Lee'
+              - column:
+                  name: bio
+                  value: 'Daniel Lee is an accomplished real estate attorney known for his expertise in property transactions and land use regulations.'
+              - column:
+                  name: linkedin_url
+                  value: 'https://www.linkedin.com/in/daniel-lee'
+              - column:
+                  name: title_id
+                  value: 5
+              - column:
+                  name: profile_photo_url
+                  value: 'https://static.wikia.nocookie.net/breakingbad/images/6/6a/Chuck_McGill_Infobox.jpeg/revision/latest/scale-to-width/360?cb=20220820131704'
+        - insert:
+            tableName: user_admission
+            columns:
+              - column:
+                  name: value
+                  value: 'Florida State Bar'
+              - column:
+                  name: user_id
+                  value: 5
+        - insert:
+            tableName: user_email
+            columns:
+              - column:
+                  name: value
+                  value: 'daniel.lee@lawfirm.com'
+              - column:
+                  name: user_id
+                  value: 5
+        - insert:
+            tableName: user_location
+            columns:
+              - column:
+                  name: value
+                  value: 'Miami, FL'
+              - column:
+                  name: user_id
+                  value: 5
+        - insert:
+            tableName: user_phone
+            columns:
+              - column:
+                  name: value
+                  value: '+1 (555) 345-6789'
+              - column:
+                  name: user_id
+                  value: 5
+        - insert:
+            tableName: user_practice_area
+            columns:
+              - column:
+                  name: value
+                  value: 'Real Estate Law'
+              - column:
+                  name: user_id
+                  value: 5
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: login
+                  value: 'emily.patel@example.com'
+              - column:
+                  name: password
+                  #                  password: realcooladminpassword123
+                  value: '$2a$10$WDuqr6sjxN5sVYE35/2.sO4ikfDpvKK5FDggA7V/kpxH8XSYS/0s2'
+              - column:
+                  name: first_name
+                  value: 'Emily'
+              - column:
+                  name: last_name
+                  value: 'Patel'
+              - column:
+                  name: bio
+                  value: 'Emily Patel is a skilled intellectual property lawyer with a focus on trademarks, patents, and copyrights.'
+              - column:
+                  name: linkedin_url
+                  value: 'https://www.linkedin.com/in/emily-patel'
+              - column:
+                  name: title_id
+                  value: 6
+              - column:
+                  name: profile_photo_url
+                  value: 'https://static.wikia.nocookie.net/breakingbad/images/b/be/Skyler_2009.jpg/revision/latest?cb=20210621131734&path-prefix=ru'
+        - insert:
+            tableName: user_admission
+            columns:
+              - column:
+                  name: value
+                  value: 'Massachusetts State Bar'
+              - column:
+                  name: user_id
+                  value: 6
+        - insert:
+            tableName: user_email
+            columns:
+              - column:
+                  name: value
+                  value: 'emily.patel@lawfirm.com'
+              - column:
+                  name: user_id
+                  value: 6
+        - insert:
+            tableName: user_location
+            columns:
+              - column:
+                  name: value
+                  value: 'Boston, MA'
+              - column:
+                  name: user_id
+                  value: 6
+        - insert:
+            tableName: user_phone
+            columns:
+              - column:
+                  name: value
+                  value: '+1 (555) 234-5678'
+              - column:
+                  name: user_id
+                  value: 6
+        - insert:
+            tableName: user_practice_area
+            columns:
+              - column:
+                  name: value
+                  value: 'Intellectual Property Law'
+              - column:
+                  name: user_id
+                  value: 6
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: login
+                  value: 'gavin.murphy@example.com'
+              - column:
+                  name: password
+                  #                  password: realcooladminpassword123
+                  value: '$2a$10$WDuqr6sjxN5sVYE35/2.sO4ikfDpvKK5FDggA7V/kpxH8XSYS/0s2'
+              - column:
+                  name: first_name
+                  value: 'Gavin'
+              - column:
+                  name: last_name
+                  value: 'Murphy'
+              - column:
+                  name: bio
+                  value: 'Gavin Murphy is an experienced immigration attorney helping individuals and businesses navigate the complex U.S. immigration system'
+              - column:
+                  name: linkedin_url
+                  value: 'https://www.linkedin.com/in/gavin-murphy'
+              - column:
+                  name: title_id
+                  value: 7
+              - column:
+                  name: profile_photo_url
+                  value: 'https://static.wikia.nocookie.net/breakingbad/images/4/4f/Season_2_-_Hank.jpg/revision/latest?cb=20210417170418&path-prefix=ru'
+        - insert:
+            tableName: user_admission
+            columns:
+              - column:
+                  name: value
+                  value: 'Illinois State Bar'
+              - column:
+                  name: user_id
+                  value: 7
+        - insert:
+            tableName: user_email
+            columns:
+              - column:
+                  name: value
+                  value: 'gavin.murphy@lawfirm.com'
+              - column:
+                  name: user_id
+                  value: 7
+        - insert:
+            tableName: user_location
+            columns:
+              - column:
+                  name: value
+                  value: 'Chicago, IL'
+              - column:
+                  name: user_id
+                  value: 7
+        - insert:
+            tableName: user_phone
+            columns:
+              - column:
+                  name: value
+                  value: '+1 (555) 456-7890'
+              - column:
+                  name: user_id
+                  value: 7
+        - insert:
+            tableName: user_practice_area
+            columns:
+              - column:
+                  name: value
+                  value: 'Immigration Law'
+              - column:
+                  name: user_id
+                  value: 7
+  - changeSet:
+      id: insert-user-roles
+      author: kerrrusha
+      preConditions:
+        - sqlCheck:
+            expectedResult: 1
+            sql: SELECT COUNT(*) FROM role WHERE name='WORKER'
+      changes:
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM role WHERE name='WORKER')
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM role WHERE name='WORKER')
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  value: 4
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM role WHERE name='WORKER')
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  value: 5
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM role WHERE name='WORKER')
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  value: 6
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM role WHERE name='WORKER')
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  value: 7
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM role WHERE name='WORKER')
