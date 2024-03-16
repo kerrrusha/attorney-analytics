@@ -17,6 +17,10 @@ databaseChangeLog:
                   type: datetime
                   defaultValueComputed: now()
               - column:
+                  name: updated_at
+                  type: datetime
+                  defaultValueComputed: now()
+              - column:
                   name: description
                   type: TEXT
               - column:

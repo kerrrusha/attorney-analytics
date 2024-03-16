@@ -17,6 +17,10 @@ databaseChangeLog:
                   type: datetime
                   defaultValueComputed: now()
               - column:
+                  name: updated_at
+                  type: datetime
+                  defaultValueComputed: now()
+              - column:
                   name: title
                   type: VARCHAR(511)
                   constraints:
@@ -28,6 +32,7 @@ databaseChangeLog:
                   name: legal_case_status_id
                   type: BIGINT
                   constraints:
+                    nullable: false
                     references: legal_case_status(id)
                     foreignKeyName: fk_legal_case_legal_case_status_id
                     deleteCascade: true
@@ -35,6 +40,7 @@ databaseChangeLog:
                   name: legal_case_type_id
                   type: BIGINT
                   constraints:
+                    nullable: false
                     references: legal_case_type(id)
                     foreignKeyName: fk_legal_case_legal_case_type_id
                     deleteCascade: true

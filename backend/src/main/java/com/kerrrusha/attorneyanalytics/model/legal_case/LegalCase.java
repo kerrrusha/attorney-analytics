@@ -21,6 +21,7 @@ import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -44,6 +45,9 @@ public class LegalCase {
     @CreatedDate
     private LocalDateTime createdAt;
 
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+
     @Column(nullable = false)
     private String title;
 
@@ -56,7 +60,7 @@ public class LegalCase {
             joinColumns = @JoinColumn(name = "legal_case_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<User> assignedUsers = new ArrayList<>();
+    private List<User> assignedAttorneys = new ArrayList<>();
 
     @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
@@ -68,11 +72,11 @@ public class LegalCase {
     private List<Client> assignedClients = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "legal_case_status_id")
+    @JoinColumn(name = "legal_case_status_id", nullable = false)
     private LegalCaseStatus legalCaseStatus;
 
     @ManyToOne
-    @JoinColumn(name = "legal_case_type_id")
+    @JoinColumn(name = "legal_case_type_id", nullable = false)
     private LegalCaseType legalCaseType;
 
     @Column(nullable = false)
