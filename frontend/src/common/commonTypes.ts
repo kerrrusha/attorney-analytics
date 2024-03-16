@@ -71,6 +71,7 @@ export type AboutUsDto = {
 export type DashboardState = {
     aboutUs: AboutUsDto | null,
     latestClosedCases: LatestClosedCasesDto | null,
+    attorneysOfTheMonth: AttorneysOfTheMonthDto | null,
 }
 
 export type LatestClosedCasesDto = Array<{
@@ -79,4 +80,11 @@ export type LatestClosedCasesDto = Array<{
     status: string,
     clients: string,
     assignedAttorneys: string,
+}>
+
+export type AttorneysOfTheMonthDto = Array<{
+    attorneyFullName: string,
+    title: string,
+    casesParticipated: string,
+    successfullyClosedRate: number,
 }>

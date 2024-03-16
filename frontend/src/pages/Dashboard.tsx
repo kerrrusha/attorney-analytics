@@ -1,15 +1,23 @@
-import {AboutUsDto, InputTarget, KeyValueChartData, LatestClosedCasesDto, LoggedInProps} from "../common/commonTypes";
+import {
+    AboutUsDto,
+    AttorneysOfTheMonthDto,
+    InputTarget,
+    KeyValueChartData,
+    LatestClosedCasesDto,
+    LoggedInProps
+} from "../common/commonTypes";
 import PageWithSidebar from "../components/sidebar/PageWithSidebar";
-import React, {useState} from "react";
+import {useState} from "react";
 import 'chart.js/auto';
 import { toPascalCase } from "../common/commonUtils";
 import useFetchAboutUs from "../hooks/useFetchAboutUs";
 import {useAppSelector} from "../hooks/useAppSelector";
-import {selectAboutUs, selectLatestClosedCases} from "../redux/slices/dashboardSlice";
+import {selectAboutUs, selectAttorneysOfTheMonth, selectLatestClosedCases} from "../redux/slices/dashboardSlice";
 import LoadingGif from "../components/loading/LoadingGif";
 import {rateXvmColorValue} from "../common/XvmColorValue";
 import useFetchLatestClosedCases from "../hooks/useFetchLatestClosedCases";
 import {createIncomeOutcomeChart, createSimpleDoughnut} from "../common/chartHelper";
+import useFetchAttorneysOfTheMonth from "../hooks/useFetchAttorneysOfTheMonth";
 
 export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
     const [dateFrom, setDateFrom] = useState(getYesterday());
@@ -137,26 +145,29 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
         }
     ];
 
-    const attorneysOfTheMonth = [
-        {
-            attorney: "Saul Goodman",
-            title: "CEO",
-            casesParticipated: 15,
-            successfullyClosedRate: 0.7153
-        },
-        {
-            attorney: "Mark Rober",
-            title: "Of Counsel",
-            casesParticipated: 9,
-            successfullyClosedRate: 0.5153
-        },
-        {
-            attorney: "Mr Beast",
-            title: "Partner",
-            casesParticipated: 5,
-            successfullyClosedRate: 0.4953
-        },
-    ];
+    // const attorneysOfTheMonth = [
+    //     {
+    //         attorney: "Saul Goodman",
+    //         title: "CEO",
+    //         casesParticipated: 15,
+    //         successfullyClosedRate: 0.7153
+    //     },
+    //     {
+    //         attorney: "Mark Rober",
+    //         title: "Of Counsel",
+    //         casesParticipated: 9,
+    //         successfullyClosedRate: 0.5153
+    //     },
+    //     {
+    //         attorney: "Mr Beast",
+    //         title: "Partner",
+    //         casesParticipated: 5,
+    //         successfullyClosedRate: 0.4953
+    //     },
+    // ];
+
+    const [attorneysOfTheMonthFetched] = useFetchAttorneysOfTheMonth();
+    const attorneysOfTheMonth: AttorneysOfTheMonthDto = useAppSelector(selectAttorneysOfTheMonth)!;
 
     const [latestClosedCasesFetched] = useFetchLatestClosedCases();
     const latestClosedCases: LatestClosedCasesDto = useAppSelector(selectLatestClosedCases)!;
@@ -253,7 +264,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                         <tbody>
                         {attorneysOfTheMonth.map((e, index) => <tr key={index}>
                             <th scope="row">{index + 1}</th>
-                            <td>{e.attorney}</td>
+                            <td>{e.attorneyFullName}</td>
                             <td>{e.title}</td>
                             <td>{e.casesParticipated}</td>
                             <td className={rateXvmColorValue.getColorClassName(e.successfullyClosedRate)}>{e.successfullyClosedRate}</td>

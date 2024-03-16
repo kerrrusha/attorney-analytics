@@ -1,10 +1,11 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {AboutUsDto, AuthState, DashboardState, LatestClosedCasesDto, User} from "../../common/commonTypes";
+import {AboutUsDto, AttorneysOfTheMonthDto, DashboardState, LatestClosedCasesDto, User} from "../../common/commonTypes";
 import {RootState} from "../store";
 
 const initialState: DashboardState = {
     aboutUs: null,
     latestClosedCases: null,
+    attorneysOfTheMonth: null,
 };
 
 export const dashboardSlice = createSlice({
@@ -17,10 +18,14 @@ export const dashboardSlice = createSlice({
         setLatestClosedCases: (state: DashboardState, action: PayloadAction<LatestClosedCasesDto>) => {
             state.latestClosedCases = action.payload;
         },
+        setAttorneysOfTheMonth: (state: DashboardState, action: PayloadAction<AttorneysOfTheMonthDto>) => {
+            state.attorneysOfTheMonth = action.payload;
+        },
     },
 });
 
-export const { setAboutUs, setLatestClosedCases } = dashboardSlice.actions;
+export const { setAboutUs, setLatestClosedCases, setAttorneysOfTheMonth } = dashboardSlice.actions;
 
 export const selectAboutUs = (state: RootState) => state.dashboard.aboutUs;
 export const selectLatestClosedCases = (state: RootState) => state.dashboard.latestClosedCases;
+export const selectAttorneysOfTheMonth = (state: RootState) => state.dashboard.attorneysOfTheMonth;
