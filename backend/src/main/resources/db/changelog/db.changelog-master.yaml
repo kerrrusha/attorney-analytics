@@ -53,3 +53,5 @@ databaseChangeLog:
       file: db/changelog/changes/insert-payment_status.yaml
   - include:
       file: db/changelog/changes/insert-payment_type.yaml
+  - include:
+      file: db/changelog/changes/insert-clients.yaml

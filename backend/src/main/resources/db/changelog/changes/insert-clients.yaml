@@ -1,0 +1,140 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-clients
+      author: kerrrusha
+      changes:
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'John'
+              - column:
+                  name: last_name
+                  value: 'Smith'
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'Emily'
+              - column:
+                  name: last_name
+                  value: 'Johnson'
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'Michael'
+              - column:
+                  name: last_name
+                  value: 'Williams'
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'Sarah'
+              - column:
+                  name: last_name
+                  value: 'Brown'
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'David'
+              - column:
+                  name: last_name
+                  value: 'Davis'
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'Jessica'
+              - column:
+                  name: last_name
+                  value: 'Miller'
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'Matthew'
+              - column:
+                  name: last_name
+                  value: 'Wilson'
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'Amanda'
+              - column:
+                  name: last_name
+                  value: 'Taylor'
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'Christopher'
+              - column:
+                  name: last_name
+                  value: 'Anderson'
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'Samantha'
+              - column:
+                  name: last_name
+                  value: 'Martinez'
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'James'
+              - column:
+                  name: last_name
+                  value: 'Jones'
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'Ashley'
+              - column:
+                  name: last_name
+                  value: 'Jackson'
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'Daniel'
+              - column:
+                  name: last_name
+                  value: 'White'
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'Elizabeth'
+              - column:
+                  name: last_name
+                  value: 'Harris'
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: first_name
+                  value: 'Ryan'
+              - column:
+                  name: last_name
+                  value: 'Thompson'
