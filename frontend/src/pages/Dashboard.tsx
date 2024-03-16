@@ -123,43 +123,43 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
             attorney: "Saul Goodman",
             title: "CEO",
             casesParticipated: 15,
-            totalIncome: "20 234$"
+            successfullyClosed: "71.53%"
         },
         {
             attorney: "Mark Rober",
             title: "Of Counsel",
             casesParticipated: 9,
-            totalIncome: "10 234$"
+            successfullyClosed: "61.53%"
         },
         {
             attorney: "Mr Beast",
             title: "Partner",
             casesParticipated: 5,
-            totalIncome: "1 234$"
+            successfullyClosed: "51.53%"
         },
     ];
 
     const latestClosedCases = [
         {
-            closedDate: "Saul Goodman",
+            closedDate: "13.03.2024",
             title: "Some court action",
             description: "Was very hard but we won",
-            client: "Big Boss",
-            assignedAttorneys: 15
+            clients: "Big Boss 1",
+            assignedAttorneys: "John McClain, Saul Goodman"
         },
         {
-            closedDate: "Saul Goodman",
+            closedDate: "12.03.2024",
             title: "Some court action",
             description: "Was very hard but we won",
-            client: "Big Boss",
-            assignedAttorneys: 15
+            clients: "Big Boss 1, Big Boss 2",
+            assignedAttorneys: "Saul Goodman"
         },
         {
-            closedDate: "Saul Goodman",
+            closedDate: "11.03.2024",
             title: "Some court action",
             description: "Was very hard but we won",
-            client: "Big Boss",
-            assignedAttorneys: 15
+            clients: "Big Boss 3",
+            assignedAttorneys: "Saul Goodman"
         },
     ];
 
@@ -251,7 +251,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                                 <th scope="col">Attorney</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Cases participated</th>
-                                <th scope="col">Total income</th>
+                                <th scope="col">Successfully closed</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -260,7 +260,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                             <td>{e.attorney}</td>
                             <td>{e.title}</td>
                             <td>{e.casesParticipated}</td>
-                            <td>{e.totalIncome}</td>
+                            <td>{e.successfullyClosed}</td>
                         </tr>)}
                         </tbody>
                     </table>
@@ -276,8 +276,8 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                             <th scope="col">Closed date</th>
                             <th scope="col">Title</th>
                             <th scope="col">Description</th>
-                            <th scope="col">Client</th>
-                            <th scope="col">Assigned attorneys</th>
+                            <th scope="col">Client(s)</th>
+                            <th scope="col">Assigned attorney(s)</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -285,7 +285,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                             <th scope="row">{e.closedDate}</th>
                             <td>{e.title}</td>
                             <td>{e.description}</td>
-                            <td>{e.client}</td>
+                            <td>{e.clients}</td>
                             <td>{e.assignedAttorneys}</td>
                         </tr>)}
                         </tbody>
