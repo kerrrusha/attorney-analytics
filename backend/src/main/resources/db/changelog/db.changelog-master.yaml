@@ -59,3 +59,7 @@ databaseChangeLog:
       file: db/changelog/changes/insert-legal_cases.yaml
   - include:
       file: db/changelog/changes/insert-users.yaml
+  - include:
+      file: db/changelog/changes/insert-legal_case_clients.yaml
+  - include:
+      file: db/changelog/changes/insert-legal_case_users.yaml

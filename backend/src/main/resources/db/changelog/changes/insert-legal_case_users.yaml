@@ -1,0 +1,86 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-legal_case_users
+      author: kerrrusha
+      changes:
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 2
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 3
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 4
+              - column:
+                  name: user_id
+                  value: 2
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 5
+              - column:
+                  name: user_id
+                  value: 3
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 6
+              - column:
+                  name: user_id
+                  value: 4
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 7
+              - column:
+                  name: user_id
+                  value: 5
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 8
+              - column:
+                  name: user_id
+                  value: 6
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 9
+              - column:
+                  name: user_id
+                  value: 7
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 10
+              - column:
+                  name: user_id
+                  value: 1

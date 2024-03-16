@@ -65,8 +65,8 @@ public class LegalCase {
     @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "case_client",
-            joinColumns = @JoinColumn(name = "case_id"),
+            name = "legal_case_client",
+            joinColumns = @JoinColumn(name = "legal_case_id"),
             inverseJoinColumns = @JoinColumn(name = "client_id")
     )
     private List<Client> assignedClients = new ArrayList<>();

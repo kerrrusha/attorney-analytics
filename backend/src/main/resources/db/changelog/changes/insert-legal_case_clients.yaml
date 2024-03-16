@@ -1,0 +1,131 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-legal_case_clients
+      author: kerrrusha
+      changes:
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 2
+              - column:
+                  name: client_id
+                  value: 2
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 3
+              - column:
+                  name: client_id
+                  value: 3
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 4
+              - column:
+                  name: client_id
+                  value: 4
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 5
+              - column:
+                  name: client_id
+                  value: 5
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 6
+              - column:
+                  name: client_id
+                  value: 6
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 6
+              - column:
+                  name: client_id
+                  value: 10
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 7
+              - column:
+                  name: client_id
+                  value: 7
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 7
+              - column:
+                  name: client_id
+                  value: 11
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 8
+              - column:
+                  name: client_id
+                  value: 8
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 8
+              - column:
+                  name: client_id
+                  value: 12
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 9
+              - column:
+                  name: client_id
+                  value: 9
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 9
+              - column:
+                  name: client_id
+                  value: 13
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 10
+              - column:
+                  name: client_id
+                  value: 10
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 10
+              - column:
+                  name: client_id
+                  value: 14
