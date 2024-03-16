@@ -61,3 +61,13 @@ export type KeyValueChartData = {
     key: string,
     value: number,
 }
+
+export type AboutUs = {
+    workers: number,
+    clients: number,
+    cases: any
+}
+
+export type DashboardState = {
+    aboutUs: AboutUs | null,
+}

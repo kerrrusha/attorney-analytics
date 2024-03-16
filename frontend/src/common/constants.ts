@@ -21,4 +21,5 @@ export const API_ENDPOINTS = {
     postUpdateUser: '/user/update',
     login: '/auth/login',
     register: '/auth/register',
+    getAboutUs: '/dashboard/about-us',
 }

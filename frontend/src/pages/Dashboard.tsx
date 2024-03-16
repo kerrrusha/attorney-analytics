@@ -1,9 +1,13 @@
-import {InputTarget, KeyValueChartData, LoggedInProps} from "../common/commonTypes";
+import {AboutUs, InputTarget, KeyValueChartData, LoggedInProps} from "../common/commonTypes";
 import PageWithSidebar from "../components/sidebar/PageWithSidebar";
 import React, {useState} from "react";
 import {Bar, Doughnut} from "react-chartjs-2"
 import 'chart.js/auto';
 import {createChartData, createOptionsHoverLabelWithPostfix} from "../common/commonUtils";
+import useFetchAboutUs from "../hooks/useFetchAboutUs";
+import {useAppSelector} from "../hooks/useAppSelector";
+import {selectAboutUs} from "../redux/slices/dashboardSlice";
+import LoadingGif from "../components/loading/LoadingGif";
 
 export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
     const [dateFrom, setDateFrom] = useState(getYesterday());
@@ -159,18 +163,21 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
         },
     ];
 
-    const aboutUs = {
-        workers: 145,
-        clients: 134,
-        cases: {
-            total: 345,
-            success: 43,
-            inProgress: 34,
-            failed: 23,
-            rejected: 23,
-            pending: 5
-        }
-    };
+    // const aboutUs = {
+    //     workers: 145,
+    //     clients: 134,
+    //     cases: {
+    //         total: 345,
+    //         success: 43,
+    //         inProgress: 34,
+    //         failed: 23,
+    //         rejected: 23,
+    //         pending: 5
+    //     }
+    // };
+
+    const [aboutUsFetched] = useFetchAboutUs();
+    const aboutUs: AboutUs = useAppSelector(selectAboutUs)!;
 
     const [caseTypeIncomesData, setCaseTypeIncomesData] = useState(createChartData(caseTypeIncomesFetchedData));
     const [caseTypeOutcomesData, setCaseTypeOutcomesData] = useState(createChartData(caseTypeOutcomesFetchedData));
@@ -298,6 +305,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                 <div className="card-body px-5">
                     <p className="text-center display-6">About us</p>
 
+                    {!aboutUs ? <LoadingGif /> :
                     <table id="about-us" className="mx-auto text-start">
                         <tbody>
                         <tr>
@@ -348,7 +356,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                             <td>{aboutUs.cases.pending}</td>
                         </tr>
                         </tbody>
-                    </table>
+                    </table>}
                 </div>
             </div>
         </div>

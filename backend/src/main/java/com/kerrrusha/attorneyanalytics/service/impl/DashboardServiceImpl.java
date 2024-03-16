@@ -1,0 +1,35 @@
+package com.kerrrusha.attorneyanalytics.service.impl;
+
+import com.kerrrusha.attorneyanalytics.dto.AboutUsDto;
+import com.kerrrusha.attorneyanalytics.model.case_.CaseStatus;
+import com.kerrrusha.attorneyanalytics.repository.CaseRepository;
+import com.kerrrusha.attorneyanalytics.repository.client.ClientRepository;
+import com.kerrrusha.attorneyanalytics.repository.user.UserRepository;
+import com.kerrrusha.attorneyanalytics.service.DashboardService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+public class DashboardServiceImpl implements DashboardService {
+
+    private final UserRepository userRepository;
+    private final ClientRepository clientRepository;
+    private final CaseRepository caseRepository;
+
+    @Override
+    public AboutUsDto collectAboutUsInfo() {
+        AboutUsDto result = new AboutUsDto();
+
+        result.setCaseStatusToAmount(Arrays.stream(CaseStatus.CaseStatusName.values())
+                .collect(Collectors.toMap(Function.identity(), caseRepository::countByCaseStatusName)));
+        result.setWorkers(userRepository.count());
+        result.setClients(clientRepository.count());
+
+        return result;
+    }
+}
