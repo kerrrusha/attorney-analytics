@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {AboutUs, AuthState, DashboardState, User} from "../../common/commonTypes";
+import {AboutUsDto, AuthState, DashboardState, User} from "../../common/commonTypes";
 import {RootState} from "../store";
 
 const initialState: DashboardState = {
@@ -10,7 +10,7 @@ export const dashboardSlice = createSlice({
     name: 'dashboard',
     initialState,
     reducers: {
-        setAboutUs: (state: DashboardState, action: PayloadAction<AboutUs>) => {
+        setAboutUs: (state: DashboardState, action: PayloadAction<AboutUsDto>) => {
             state.aboutUs = action.payload;
         },
     },

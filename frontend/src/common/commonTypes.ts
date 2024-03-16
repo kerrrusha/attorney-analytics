@@ -62,12 +62,12 @@ export type KeyValueChartData = {
     value: number,
 }
 
-export type AboutUs = {
+export type AboutUsDto = {
     workers: number,
     clients: number,
-    cases: any
+    caseStatusToAmount: Record<string, number>
 }
 
 export type DashboardState = {
-    aboutUs: AboutUs | null,
+    aboutUs: AboutUsDto | null,
 }

@@ -1,9 +1,9 @@
-import {AboutUs, InputTarget, KeyValueChartData, LoggedInProps} from "../common/commonTypes";
+import {AboutUsDto, InputTarget, KeyValueChartData, LoggedInProps} from "../common/commonTypes";
 import PageWithSidebar from "../components/sidebar/PageWithSidebar";
 import React, {useState} from "react";
 import {Bar, Doughnut} from "react-chartjs-2"
 import 'chart.js/auto';
-import {createChartData, createOptionsHoverLabelWithPostfix} from "../common/commonUtils";
+import {createChartData, createOptionsHoverLabelWithPostfix, toPascalCase} from "../common/commonUtils";
 import useFetchAboutUs from "../hooks/useFetchAboutUs";
 import {useAppSelector} from "../hooks/useAppSelector";
 import {selectAboutUs} from "../redux/slices/dashboardSlice";
@@ -163,21 +163,12 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
         },
     ];
 
-    // const aboutUs = {
-    //     workers: 145,
-    //     clients: 134,
-    //     cases: {
-    //         total: 345,
-    //         success: 43,
-    //         inProgress: 34,
-    //         failed: 23,
-    //         rejected: 23,
-    //         pending: 5
-    //     }
-    // };
-
     const [aboutUsFetched] = useFetchAboutUs();
-    const aboutUs: AboutUs = useAppSelector(selectAboutUs)!;
+    const aboutUs: AboutUsDto = useAppSelector(selectAboutUs)!;
+
+    const getAboutUsTotalCases = () => {
+        return Object.values(aboutUs.caseStatusToAmount).reduce((acc, val) => acc + val, 0);
+    };
 
     const [caseTypeIncomesData, setCaseTypeIncomesData] = useState(createChartData(caseTypeIncomesFetchedData));
     const [caseTypeOutcomesData, setCaseTypeOutcomesData] = useState(createChartData(caseTypeOutcomesFetchedData));
@@ -305,7 +296,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                 <div className="card-body px-5">
                     <p className="text-center display-6">About us</p>
 
-                    {!aboutUs ? <LoadingGif /> :
+                    {!aboutUsFetched ? <LoadingGif /> :
                     <table id="about-us" className="mx-auto text-start">
                         <tbody>
                         <tr>
@@ -333,28 +324,14 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                         </tr>
                         <tr>
                             <th scope="row">Total:</th>
-                            <td>{aboutUs.cases.total}</td>
+                            <td>{getAboutUsTotalCases()}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">Success:</th>
-                            <td>{aboutUs.cases.success}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">In progress:</th>
-                            <td>{aboutUs.cases.inProgress}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Failed:</th>
-                            <td>{aboutUs.cases.failed}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Rejected:</th>
-                            <td>{aboutUs.cases.rejected}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Pending:</th>
-                            <td>{aboutUs.cases.pending}</td>
-                        </tr>
+                        {Object.keys(aboutUs.caseStatusToAmount).map((caseStatusName, index) => {
+                            return <tr key={index}>
+                                <th scope="row">{toPascalCase(caseStatusName)}:</th>
+                                <td>{aboutUs.caseStatusToAmount[caseStatusName]}</td>
+                            </tr>;
+                        })}
                         </tbody>
                     </table>}
                 </div>
