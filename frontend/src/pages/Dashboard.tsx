@@ -1,15 +1,15 @@
 import {AboutUsDto, InputTarget, KeyValueChartData, LatestClosedCasesDto, LoggedInProps} from "../common/commonTypes";
 import PageWithSidebar from "../components/sidebar/PageWithSidebar";
 import React, {useState} from "react";
-import {Bar, Doughnut} from "react-chartjs-2"
 import 'chart.js/auto';
-import {createChartData, createOptionsHoverLabelWithPostfix, toPascalCase} from "../common/commonUtils";
+import { toPascalCase } from "../common/commonUtils";
 import useFetchAboutUs from "../hooks/useFetchAboutUs";
 import {useAppSelector} from "../hooks/useAppSelector";
 import {selectAboutUs, selectLatestClosedCases} from "../redux/slices/dashboardSlice";
 import LoadingGif from "../components/loading/LoadingGif";
 import {rateXvmColorValue} from "../common/XvmColorValue";
 import useFetchLatestClosedCases from "../hooks/useFetchLatestClosedCases";
+import {createIncomeOutcomeChart, createSimpleDoughnut} from "../common/chartHelper";
 
 export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
     const [dateFrom, setDateFrom] = useState(getYesterday());
@@ -118,7 +118,24 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
             value: 14000
         }
     ];
-    const monthOutcomesFetchedData: Array<KeyValueChartData> = monthIncomesFetchedData;
+    const monthOutcomesFetchedData: Array<KeyValueChartData> = [
+        {
+            key: "March",
+            value: 3500
+        },
+        {
+            key: "April",
+            value: 4000
+        },
+        {
+            key: "May",
+            value: 3000
+        },
+        {
+            key: "June",
+            value: 1400
+        }
+    ];
 
     const attorneysOfTheMonth = [
         {
@@ -141,30 +158,6 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
         },
     ];
 
-    // const latestClosedCases = [
-    //     {
-    //         closedDate: "13.03.2024",
-    //         title: "Some court action",
-    //         status: "SUCCESS",
-    //         clients: "Big Boss 1",
-    //         assignedAttorneys: "John McClain, Saul Goodman"
-    //     },
-    //     {
-    //         closedDate: "12.03.2024",
-    //         title: "Some court action",
-    //         status: "SUCCESS",
-    //         clients: "Big Boss 1, Big Boss 2",
-    //         assignedAttorneys: "Saul Goodman"
-    //     },
-    //     {
-    //         closedDate: "11.03.2024",
-    //         title: "Some court action",
-    //         status: "FAILED",
-    //         clients: "Big Boss 3",
-    //         assignedAttorneys: "Saul Goodman"
-    //     },
-    // ];
-
     const [latestClosedCasesFetched] = useFetchLatestClosedCases();
     const latestClosedCases: LatestClosedCasesDto = useAppSelector(selectLatestClosedCases)!;
 
@@ -185,13 +178,6 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
         }
         return "text-primary";
     }
-
-    const [caseTypeIncomesData, setCaseTypeIncomesData] = useState(createChartData(caseTypeIncomesFetchedData));
-    const [caseTypeOutcomesData, setCaseTypeOutcomesData] = useState(createChartData(caseTypeOutcomesFetchedData));
-    const [clientIncomesData, setClientIncomesData] = useState(createChartData(clientIncomesFetchedData));
-    const [clientOutcomesData, setClientOutcomesData] = useState(createChartData(clientOutcomesFetchedData));
-    const [monthIncomesData, setMonthIncomesData] = useState(createChartData(monthIncomesFetchedData));
-    const [monthOutcomesData, setMonthOutcomesData] = useState(createChartData(monthOutcomesFetchedData));
 
     const contentElement = <div className="px-3">
         <div>
@@ -221,37 +207,31 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
             <div className="card background-secondary">
                 <div className="card-body text-center">
                     <h5 className="mb-3">Incomes by case type</h5>
-                    <Doughnut data={caseTypeIncomesData} options={createOptionsHoverLabelWithPostfix(caseTypeIncomesFetchedData, "$")} />
+                    {createSimpleDoughnut(caseTypeIncomesFetchedData)}
                 </div>
             </div>
             <div className="card background-secondary">
                 <div className="card-body text-center">
                     <h5 className="mb-3">Outcomes by case type</h5>
-                    <Doughnut data={caseTypeOutcomesData} options={createOptionsHoverLabelWithPostfix(caseTypeOutcomesFetchedData, "$")} />
+                    {createSimpleDoughnut(caseTypeOutcomesFetchedData)}
                 </div>
             </div>
             <div className="card background-secondary">
                 <div className="card-body text-center">
                     <h5 className="mb-3">Incomes by clients</h5>
-                    <Doughnut data={clientIncomesData} options={createOptionsHoverLabelWithPostfix(clientIncomesFetchedData, "$")} />
+                    {createSimpleDoughnut(clientIncomesFetchedData)}
                 </div>
             </div>
             <div className="card background-secondary">
                 <div className="card-body text-center">
                     <h5 className="mb-3">Outcomes by clients</h5>
-                    <Doughnut data={clientOutcomesData} options={createOptionsHoverLabelWithPostfix(clientOutcomesFetchedData, "$")} />
+                    {createSimpleDoughnut(clientOutcomesFetchedData)}
                 </div>
             </div>
-            <div className="card background-secondary">
+            <div className="card background-secondary" style={{width: "51.2rem"}}>
                 <div className="card-body text-center">
-                    <h5 className="mb-3">Incomes by months</h5>
-                    <Bar data={monthIncomesData} options={createOptionsHoverLabelWithPostfix(monthIncomesFetchedData, "$", false)} />
-                </div>
-            </div>
-            <div className="card background-secondary">
-                <div className="card-body text-center">
-                    <h5 className="mb-3">Outcomes by months</h5>
-                    <Bar data={monthOutcomesData} options={createOptionsHoverLabelWithPostfix(monthOutcomesFetchedData, "$", false)} />
+                    <h5 className="mb-3">Incomes/outcomes by months</h5>
+                    {createIncomeOutcomeChart(monthIncomesFetchedData, monthOutcomesFetchedData)}
                 </div>
             </div>
         </div>
@@ -319,48 +299,50 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                     </table>}
                 </div>
             </div>
+        </div>
+        <div className="flex flex-row flex-wrap">
             <div className="card background-secondary">
                 <div className="card-body px-5">
                     <p className="text-center display-6">About us</p>
 
                     {!aboutUsFetched ? <LoadingGif /> :
-                    <table id="about-us" className="mx-auto text-start">
-                        <tbody>
-                        <tr>
-                            <th scope="row" colSpan={2}>
-                                <p className="my-3 mb-2 text-lg">Workers</p>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th scope="row">Total:</th>
-                            <td>{aboutUs.workers}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" colSpan={2}>
-                                <p className="my-3 mb-2 text-lg">Clients</p>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th scope="row">Total:</th>
-                            <td>{aboutUs.clients}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" colSpan={2}>
-                                <p className="my-3 mb-2 text-lg">Cases</p>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th scope="row">Total:</th>
-                            <td>{getAboutUsTotalCases()}</td>
-                        </tr>
-                        {Object.keys(aboutUs.caseStatusToAmount).map((caseStatusName, index) => {
-                            return <tr key={index}>
-                                <th scope="row">{toPascalCase(caseStatusName)}:</th>
-                                <td>{aboutUs.caseStatusToAmount[caseStatusName]}</td>
-                            </tr>;
-                        })}
-                        </tbody>
-                    </table>}
+                        <table id="about-us" className="mx-auto text-start">
+                            <tbody>
+                            <tr>
+                                <th scope="row" colSpan={2}>
+                                    <p className="my-3 mb-2 text-lg">Workers</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Total:</th>
+                                <td>{aboutUs.workers}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" colSpan={2}>
+                                    <p className="my-3 mb-2 text-lg">Clients</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Total:</th>
+                                <td>{aboutUs.clients}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" colSpan={2}>
+                                    <p className="my-3 mb-2 text-lg">Cases</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Total:</th>
+                                <td>{getAboutUsTotalCases()}</td>
+                            </tr>
+                            {Object.keys(aboutUs.caseStatusToAmount).map((caseStatusName, index) => {
+                                return <tr key={index}>
+                                    <th scope="row">{toPascalCase(caseStatusName)}:</th>
+                                    <td>{aboutUs.caseStatusToAmount[caseStatusName]}</td>
+                                </tr>;
+                            })}
+                            </tbody>
+                        </table>}
                 </div>
             </div>
         </div>

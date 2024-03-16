@@ -16,7 +16,7 @@ export default function Sidebar({activePageName}: SidebarProps) {
     ]
 
     return (
-        <div className="w-[230px] flex flex-column background-secondary sticky py-4">
+        <div className="w-[230px] flex flex-column background-secondary sticky py-4" style={{zIndex: 50}}>
             {buttonsData.map((buttonData, index) =>
                 <SidebarButton key={index} name={buttonData.name} url={buttonData.url}
                                isActive={buttonData.name.toLowerCase() === activePageName} iconUrl={buttonData.iconUrl} />)}
