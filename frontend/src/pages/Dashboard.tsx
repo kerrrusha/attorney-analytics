@@ -262,7 +262,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                     </table>
                     <div className="mt-5 text-start px-3 text-sm">
                         <span>
-                            *Successfully closed rate of the month - rate of closed legal cases by attorney in last month
+                            *Successfully closed rate of the month - rate of closed legal cases (with status SUCCESS) by attorney in last month
                             (participating in team also counts) to the total amount of cases participated in last month.
                         </span>
                         <p>
