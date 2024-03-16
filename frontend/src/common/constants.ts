@@ -22,4 +22,5 @@ export const API_ENDPOINTS = {
     login: '/auth/login',
     register: '/auth/register',
     getAboutUs: '/dashboard/about-us',
+    getLatestClosedCases: '/dashboard/latest-closed-cases',
 }

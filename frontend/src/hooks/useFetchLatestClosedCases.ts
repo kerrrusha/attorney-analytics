@@ -1,19 +1,19 @@
 import {useEffect, useState} from "react";
 import {useAppDispatch} from "./useAppDispatch";
-import {setAboutUs} from "../redux/slices/dashboardSlice";
 import {doGetRequestApiJson} from "../services/doGetRequestApiJson";
 import {API_ENDPOINTS} from "../common/constants";
+import {setLatestClosedCases} from "../redux/slices/dashboardSlice";
 
-export default function useFetchAboutUs() : [boolean] {
+export default function useFetchLatestClosedCases() : [boolean] {
     const dispatch = useAppDispatch();
     const [fetched, setFetched] = useState(false);
 
     useEffect(() => {
-        doGetRequestApiJson(API_ENDPOINTS.getAboutUs).then(result => {
-            console.log(`Fetched aboutUs:`);
+        doGetRequestApiJson(API_ENDPOINTS.getLatestClosedCases).then(result => {
+            console.log(`Fetched LatestClosedCases:`);
             console.log(result);
 
-            dispatch(setAboutUs(result));
+            dispatch(setLatestClosedCases(result));
             setFetched(true);
         });
     }, []);

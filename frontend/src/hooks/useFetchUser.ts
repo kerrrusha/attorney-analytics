@@ -1,14 +1,15 @@
 import {useEffect, useState} from "react";
 import {setUser} from "../redux/slices/authSlice";
 import {useAppDispatch} from "./useAppDispatch";
-import {fetchUserInfo} from "../services/fetchUserInfo";
+import {doGetRequestApiJson} from "../services/doGetRequestApiJson";
+import {API_ENDPOINTS} from "../common/constants";
 
 export default function useFetchUser() : [boolean] {
     const dispatch = useAppDispatch();
     const [fetched, setFetched] = useState(false);
 
     useEffect(() => {
-        fetchUserInfo().then(user => {
+        doGetRequestApiJson(API_ENDPOINTS.getUserInfo).then(user => {
             console.log(`Fetched user:`);
             console.log(user);
 

@@ -70,4 +70,13 @@ export type AboutUsDto = {
 
 export type DashboardState = {
     aboutUs: AboutUsDto | null,
+    latestClosedCases: LatestClosedCasesDto | null,
 }
+
+export type LatestClosedCasesDto = Array<{
+    closedDate: string,
+    title: string,
+    status: string,
+    clients: string,
+    assignedAttorneys: string,
+}>

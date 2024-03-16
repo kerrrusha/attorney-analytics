@@ -1,4 +1,4 @@
-import {AboutUsDto, InputTarget, KeyValueChartData, LoggedInProps} from "../common/commonTypes";
+import {AboutUsDto, InputTarget, KeyValueChartData, LatestClosedCasesDto, LoggedInProps} from "../common/commonTypes";
 import PageWithSidebar from "../components/sidebar/PageWithSidebar";
 import React, {useState} from "react";
 import {Bar, Doughnut} from "react-chartjs-2"
@@ -6,9 +6,10 @@ import 'chart.js/auto';
 import {createChartData, createOptionsHoverLabelWithPostfix, toPascalCase} from "../common/commonUtils";
 import useFetchAboutUs from "../hooks/useFetchAboutUs";
 import {useAppSelector} from "../hooks/useAppSelector";
-import {selectAboutUs} from "../redux/slices/dashboardSlice";
+import {selectAboutUs, selectLatestClosedCases} from "../redux/slices/dashboardSlice";
 import LoadingGif from "../components/loading/LoadingGif";
 import {rateXvmColorValue} from "../common/XvmColorValue";
+import useFetchLatestClosedCases from "../hooks/useFetchLatestClosedCases";
 
 export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
     const [dateFrom, setDateFrom] = useState(getYesterday());
@@ -295,6 +296,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                 <div className="card-body text-center">
                     <p className="mb-3 display-6">Latest closed cases</p>
 
+                    {!latestClosedCasesFetched ? <LoadingGif /> :
                     <table className="w-100">
                         <thead>
                         <tr>
@@ -314,7 +316,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                             <td>{e.assignedAttorneys}</td>
                         </tr>)}
                         </tbody>
-                    </table>
+                    </table>}
                 </div>
             </div>
             <div className="card background-secondary">
