@@ -1,0 +1,53 @@
+.xvm-red {
+    color: rgb(254,14,0);
+    font-weight: 600;
+}
+
+.xvm-orange {
+    color: rgb(254,121,3);
+    font-weight: 600;
+}
+
+.xvm-yellow {
+    color: rgb(248,244,3);
+    font-weight: 600;
+}
+
+.xvm-green {
+    color: rgb(96,255,0);
+    font-weight: 600;
+}
+
+.xvm-blue {
+    color: rgb(2,201,179);
+    font-weight: 600;
+}
+
+.xvm-violet {
+    color: rgb(208,66,243);
+    font-weight: 600;
+}
+
+.bg-xvm-red {
+    background-color: rgb(254,14,0)!important;
+}
+
+.bg-xvm-orange {
+    background-color: rgb(254,121,3)!important;
+}
+
+.bg-xvm-yellow {
+    background-color: rgb(248,244,3)!important;
+}
+
+.bg-xvm-green {
+    background-color: rgb(96,255,0)!important;
+}
+
+.bg-xvm-blue {
+    background-color: rgb(2,201,179)!important;
+}
+
+.bg-xvm-violet {
+    background-color: rgb(208,66,243)!important;
+}

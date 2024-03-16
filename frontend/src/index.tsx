@@ -1,10 +1,11 @@
 import React, {ErrorInfo} from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './tailwind.css';
-import './bootstrap.css';
-import './index.css';
-import './App.css';
+import './resources/css/tailwind.css';
+import './resources/css/bootstrap.css';
+import './resources/css/index.css';
+import './resources/css/App.css';
+import './resources/css/stat.css';
 import store from "./redux/store";
 import {Provider} from "react-redux";
 import {ErrorBoundary} from "react-error-boundary";

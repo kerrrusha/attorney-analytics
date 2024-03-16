@@ -8,6 +8,7 @@ import useFetchAboutUs from "../hooks/useFetchAboutUs";
 import {useAppSelector} from "../hooks/useAppSelector";
 import {selectAboutUs} from "../redux/slices/dashboardSlice";
 import LoadingGif from "../components/loading/LoadingGif";
+import {rateXvmColorValue} from "../common/XvmColorValue";
 
 export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
     const [dateFrom, setDateFrom] = useState(getYesterday());
@@ -123,45 +124,48 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
             attorney: "Saul Goodman",
             title: "CEO",
             casesParticipated: 15,
-            successfullyClosed: "71.53%"
+            successfullyClosedRate: 0.7153
         },
         {
             attorney: "Mark Rober",
             title: "Of Counsel",
             casesParticipated: 9,
-            successfullyClosed: "61.53%"
+            successfullyClosedRate: 0.5153
         },
         {
             attorney: "Mr Beast",
             title: "Partner",
             casesParticipated: 5,
-            successfullyClosed: "51.53%"
+            successfullyClosedRate: 0.4953
         },
     ];
 
-    const latestClosedCases = [
-        {
-            closedDate: "13.03.2024",
-            title: "Some court action",
-            description: "Was very hard but we won",
-            clients: "Big Boss 1",
-            assignedAttorneys: "John McClain, Saul Goodman"
-        },
-        {
-            closedDate: "12.03.2024",
-            title: "Some court action",
-            description: "Was very hard but we won",
-            clients: "Big Boss 1, Big Boss 2",
-            assignedAttorneys: "Saul Goodman"
-        },
-        {
-            closedDate: "11.03.2024",
-            title: "Some court action",
-            description: "Was very hard but we won",
-            clients: "Big Boss 3",
-            assignedAttorneys: "Saul Goodman"
-        },
-    ];
+    // const latestClosedCases = [
+    //     {
+    //         closedDate: "13.03.2024",
+    //         title: "Some court action",
+    //         status: "SUCCESS",
+    //         clients: "Big Boss 1",
+    //         assignedAttorneys: "John McClain, Saul Goodman"
+    //     },
+    //     {
+    //         closedDate: "12.03.2024",
+    //         title: "Some court action",
+    //         status: "SUCCESS",
+    //         clients: "Big Boss 1, Big Boss 2",
+    //         assignedAttorneys: "Saul Goodman"
+    //     },
+    //     {
+    //         closedDate: "11.03.2024",
+    //         title: "Some court action",
+    //         status: "FAILED",
+    //         clients: "Big Boss 3",
+    //         assignedAttorneys: "Saul Goodman"
+    //     },
+    // ];
+
+    const [latestClosedCasesFetched] = useFetchLatestClosedCases();
+    const latestClosedCases: LatestClosedCasesDto = useAppSelector(selectLatestClosedCases)!;
 
     const [aboutUsFetched] = useFetchAboutUs();
     const aboutUs: AboutUsDto = useAppSelector(selectAboutUs)!;
@@ -169,6 +173,17 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
     const getAboutUsTotalCases = () => {
         return Object.values(aboutUs.caseStatusToAmount).reduce((acc, val) => acc + val, 0);
     };
+
+    const getStatusTextColorClass = (status: string)=> {
+        status = status.toUpperCase();
+        if (status === "SUCCESS") {
+            return "text-success";
+        }
+        if (status === "FAILED" || status === "REJECTED") {
+            return "text-danger";
+        }
+        return "text-primary";
+    }
 
     const [caseTypeIncomesData, setCaseTypeIncomesData] = useState(createChartData(caseTypeIncomesFetchedData));
     const [caseTypeOutcomesData, setCaseTypeOutcomesData] = useState(createChartData(caseTypeOutcomesFetchedData));
@@ -251,7 +266,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                                 <th scope="col">Attorney</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Cases participated</th>
-                                <th scope="col">Successfully closed</th>
+                                <th scope="col">Successfully closed rate*</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -260,10 +275,20 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                             <td>{e.attorney}</td>
                             <td>{e.title}</td>
                             <td>{e.casesParticipated}</td>
-                            <td>{e.successfullyClosed}</td>
+                            <td className={rateXvmColorValue.getColorClassName(e.successfullyClosedRate)}>{e.successfullyClosedRate}</td>
                         </tr>)}
                         </tbody>
                     </table>
+                    <div className="mt-5 text-start px-3 text-sm">
+                        <span>
+                            *Successfully closed rate of the month - rate of closed legal cases by attorney in last month
+                            (participating in team also counts) to the total amount of cases participated in last month.
+                        </span>
+                        <p>
+                            Can be in range from 0 to 1.
+                        </p>
+                        {rateXvmColorValue.getInfoReactElement()}
+                    </div>
                 </div>
             </div>
             <div className="card background-secondary">
@@ -275,7 +300,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                         <tr>
                             <th scope="col">Closed date</th>
                             <th scope="col">Title</th>
-                            <th scope="col">Description</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Client(s)</th>
                             <th scope="col">Assigned attorney(s)</th>
                         </tr>
@@ -284,7 +309,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                         {latestClosedCases.map((e, index) => <tr key={index}>
                             <th scope="row">{e.closedDate}</th>
                             <td>{e.title}</td>
-                            <td>{e.description}</td>
+                            <td className={getStatusTextColorClass(e.status)}>{e.status}</td>
                             <td>{e.clients}</td>
                             <td>{e.assignedAttorneys}</td>
                         </tr>)}
