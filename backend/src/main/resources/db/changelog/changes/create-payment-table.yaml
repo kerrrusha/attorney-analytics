@@ -25,11 +25,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: case_id
+                  name: legal_case_id
                   type: BIGINT
                   constraints:
-                    references: case(id)
-                    foreignKeyName: fk_payment_case_id
+                    references: legal_case(id)
+                    foreignKeyName: fk_payment_legal_case_id
                     deleteCascade: true
               - column:
                   name: payment_status_id

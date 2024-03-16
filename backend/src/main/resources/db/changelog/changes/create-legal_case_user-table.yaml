@@ -1,31 +1,31 @@
 databaseChangeLog:
   - changeSet:
-      id: create-case_client-table
+      id: create-legal_case_user-table
       author: kerrrusha
       changes:
         - createTable:
-            tableName: case_client
+            tableName: legal_case_user
             columns:
               - column:
-                  name: case_id
+                  name: legal_case_id
                   type: BIGINT
                   constraints:
                     nullable: false
-                    references: case(id)
-                    foreignKeyName: fk_case_client_case_id
+                    references: legal_case(id)
+                    foreignKeyName: fk_legal_case_user_legal_case_id
                     deleteCascade: true
                     primaryKey: true
               - column:
-                  name: client_id
+                  name: user_id
                   type: BIGINT
                   constraints:
                     nullable: false
-                    references: client(id)
-                    foreignKeyName: fk_case_client_client_id
+                    references: user(id)
+                    foreignKeyName: fk_legal_case_user_user_id
                     deleteCascade: true
                     primaryKey: true
             primaryKey:
-              columnNames: case_id, client_id
+              columnNames: legal_case_id, user_id
       rollback:
         - dropTable:
-            tableName: case_client
+            tableName: legal_case_user

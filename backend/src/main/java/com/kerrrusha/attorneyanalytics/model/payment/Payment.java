@@ -1,6 +1,6 @@
 package com.kerrrusha.attorneyanalytics.model.payment;
 
-import com.kerrrusha.attorneyanalytics.model.case_.Case;
+import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCase;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,7 +42,7 @@ public class Payment {
 
     @ManyToOne
     @JoinColumn(name = "case_id")
-    private Case case_;
+    private LegalCase legalCase;
 
     @Column(nullable = false)
     private Long amountInCents;

@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.model.case_;
+package com.kerrrusha.attorneyanalytics.model.legal_case;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +17,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CaseType {
+public class LegalCaseType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

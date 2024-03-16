@@ -1,6 +1,6 @@
 package com.kerrrusha.attorneyanalytics.dto;
 
-import com.kerrrusha.attorneyanalytics.model.case_.CaseStatus;
+import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCaseStatus;
 import lombok.Data;
 
 import java.util.Map;
@@ -10,5 +10,5 @@ public class AboutUsDto {
 
     private Long workers;
     private Long clients;
-    private Map<CaseStatus.CaseStatusName, Long> caseStatusToAmount;
+    private Map<LegalCaseStatus.CaseStatusName, Long> caseStatusToAmount;
 }

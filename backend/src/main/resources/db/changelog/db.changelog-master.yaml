@@ -24,11 +24,11 @@ databaseChangeLog:
   - include:
       file: db/changelog/changes/insert-admin.yaml
   - include:
-      file: db/changelog/changes/create-case_status-table.yaml
+      file: db/changelog/changes/create-legal_case_status-table.yaml
   - include:
-      file: db/changelog/changes/create-case_type-table.yaml
+      file: db/changelog/changes/create-legal_case_type-table.yaml
   - include:
-      file: db/changelog/changes/create-case-table.yaml
+      file: db/changelog/changes/create-legal_case-table.yaml
   - include:
       file: db/changelog/changes/create-client-table.yaml
   - include:
@@ -42,13 +42,13 @@ databaseChangeLog:
   - include:
       file: db/changelog/changes/create-payment-table.yaml
   - include:
-      file: db/changelog/changes/create-case_user-table.yaml
+      file: db/changelog/changes/create-legal_case_user-table.yaml
   - include:
-      file: db/changelog/changes/create-case_client-table.yaml
+      file: db/changelog/changes/create-legal_case_client-table.yaml
   - include:
-      file: db/changelog/changes/insert-case_status.yaml
+      file: db/changelog/changes/insert-legal_case_status.yaml
   - include:
-      file: db/changelog/changes/insert-case_type.yaml
+      file: db/changelog/changes/insert-legal_case_type.yaml
   - include:
       file: db/changelog/changes/insert-payment_status.yaml
   - include:

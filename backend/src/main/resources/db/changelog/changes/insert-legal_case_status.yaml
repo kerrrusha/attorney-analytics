@@ -1,34 +1,34 @@
 databaseChangeLog:
   - changeSet:
-      id: insert-case_status
+      id: insert-legal_case_status
       author: kerrrusha
       changes:
         - insert:
-            tableName: case_status
+            tableName: legal_case_status
             columns:
               - column:
                   name: name
                   value: PENDING
         - insert:
-            tableName: case_status
+            tableName: legal_case_status
             columns:
               - column:
                   name: name
                   value: REJECTED
         - insert:
-            tableName: case_status
+            tableName: legal_case_status
             columns:
               - column:
                   name: name
                   value: IN_PROGRESS
         - insert:
-            tableName: case_status
+            tableName: legal_case_status
             columns:
               - column:
                   name: name
                   value: SUCCESS
         - insert:
-            tableName: case_status
+            tableName: legal_case_status
             columns:
               - column:
                   name: name

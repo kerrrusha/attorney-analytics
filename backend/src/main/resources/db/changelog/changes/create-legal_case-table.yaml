@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create-case-table
+      id: create-legal_case-table
       author: kerrrusha
       changes:
         - createTable:
-            tableName: case
+            tableName: legal_case
             columns:
               - column:
                   name: id
@@ -25,18 +25,18 @@ databaseChangeLog:
                   name: description
                   type: TEXT
               - column:
-                  name: case_status_id
+                  name: legal_case_status_id
                   type: BIGINT
                   constraints:
-                    references: case_status(id)
-                    foreignKeyName: fk_case_case_status_id
+                    references: legal_case_status(id)
+                    foreignKeyName: fk_legal_case_legal_case_status_id
                     deleteCascade: true
               - column:
-                  name: case_type_id
+                  name: legal_case_type_id
                   type: BIGINT
                   constraints:
-                    references: case_type(id)
-                    foreignKeyName: fk_case_case_type_id
+                    references: legal_case_type(id)
+                    foreignKeyName: fk_legal_case_legal_case_type_id
                     deleteCascade: true
               - column:
                   name: deleted
@@ -46,4 +46,4 @@ databaseChangeLog:
                     nullable: false
       rollback:
         - dropTable:
-            tableName: case
+            tableName: legal_case

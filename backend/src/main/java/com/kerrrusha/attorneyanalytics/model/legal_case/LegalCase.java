@@ -1,10 +1,7 @@
-package com.kerrrusha.attorneyanalytics.model.case_;
+package com.kerrrusha.attorneyanalytics.model.legal_case;
 
 import com.kerrrusha.attorneyanalytics.model.client.Client;
-import com.kerrrusha.attorneyanalytics.model.user.Title;
 import com.kerrrusha.attorneyanalytics.model.user.User;
-import com.kerrrusha.attorneyanalytics.model.user.UserPracticeArea;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -15,7 +12,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -38,8 +34,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @SQLRestriction("deleted=false")
-@SQLDelete(sql = "UPDATE case SET deleted = true WHERE id=?")
-public class Case {
+@SQLDelete(sql = "UPDATE legal_case SET deleted = true WHERE id=?")
+public class LegalCase {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,8 +52,8 @@ public class Case {
     @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "case_user",
-            joinColumns = @JoinColumn(name = "case_id"),
+            name = "legal_case_user",
+            joinColumns = @JoinColumn(name = "legal_case_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private List<User> assignedUsers = new ArrayList<>();
@@ -72,12 +68,12 @@ public class Case {
     private List<Client> assignedClients = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "case_status_id")
-    private CaseStatus caseStatus;
+    @JoinColumn(name = "legal_case_status_id")
+    private LegalCaseStatus legalCaseStatus;
 
     @ManyToOne
-    @JoinColumn(name = "case_type_id")
-    private CaseType caseType;
+    @JoinColumn(name = "legal_case_type_id")
+    private LegalCaseType legalCaseType;
 
     @Column(nullable = false)
     private boolean deleted = false;
