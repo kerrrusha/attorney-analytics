@@ -8,10 +8,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: created_at
-                  value: '2024-01-01T08:00:00'
+                  value: '2024-03-01T08:00:00'
               - column:
                   name: updated_at
-                  value: '2024-01-01T08:30:00'
+                  value: '2024-03-01T08:30:00'
               - column:
                   name: description
                   value: 'Initial consultation fee'
@@ -32,10 +32,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: created_at
-                  value: '2024-01-03T08:00:00'
+                  value: '2024-03-03T08:00:00'
               - column:
                   name: updated_at
-                  value: '2024-01-03T08:30:00'
+                  value: '2024-03-03T08:30:00'
               - column:
                   name: description
                   value: 'Retainer payment'
@@ -56,10 +56,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: created_at
-                  value: '2024-01-04T08:00:00'
+                  value: '2024-03-04T08:00:00'
               - column:
                   name: updated_at
-                  value: '2024-01-04T08:30:00'
+                  value: '2024-03-04T08:30:00'
               - column:
                   name: description
                   value: 'Court filing fees'
@@ -80,10 +80,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: created_at
-                  value: '2024-01-05T08:00:00'
+                  value: '2024-03-05T08:00:00'
               - column:
                   name: updated_at
-                  value: '2024-01-05T08:30:00'
+                  value: '2024-03-05T08:30:00'
               - column:
                   name: description
                   value: 'Legal research expenses'
@@ -104,10 +104,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: created_at
-                  value: '2024-01-05T08:00:00'
+                  value: '2024-03-05T08:00:00'
               - column:
                   name: updated_at
-                  value: '2024-01-05T08:30:00'
+                  value: '2024-03-05T08:30:00'
               - column:
                   name: description
                   value: 'Expert witness fees'
@@ -128,10 +128,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: created_at
-                  value: '2024-01-06T08:00:00'
+                  value: '2024-03-06T08:00:00'
               - column:
                   name: updated_at
-                  value: '2024-01-06T08:30:00'
+                  value: '2024-03-06T08:30:00'
               - column:
                   name: description
                   value: 'Pre-trial preparation'
@@ -152,10 +152,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: created_at
-                  value: '2024-01-07T08:00:00'
+                  value: '2024-03-07T08:00:00'
               - column:
                   name: updated_at
-                  value: '2024-01-07T08:30:00'
+                  value: '2024-03-07T08:30:00'
               - column:
                   name: description
                   value: 'Settlement negotiation fees'
@@ -176,10 +176,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: created_at
-                  value: '2024-01-08T08:00:00'
+                  value: '2024-03-08T08:00:00'
               - column:
                   name: updated_at
-                  value: '2024-01-08T08:30:00'
+                  value: '2024-03-08T08:30:00'
               - column:
                   name: description
                   value: 'Trial court appearance fees'
@@ -200,10 +200,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: created_at
-                  value: '2024-01-09T08:00:00'
+                  value: '2024-03-09T08:00:00'
               - column:
                   name: updated_at
-                  value: '2024-01-09T08:30:00'
+                  value: '2024-03-09T08:30:00'
               - column:
                   name: description
                   value: 'Appeal filing fees'
@@ -224,10 +224,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: created_at
-                  value: '2024-01-10T08:00:00'
+                  value: '2024-03-10T08:00:00'
               - column:
                   name: updated_at
-                  value: '2024-01-10T08:30:00'
+                  value: '2024-03-10T08:30:00'
               - column:
                   name: description
                   value: 'Deposition costs'
@@ -248,10 +248,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: created_at
-                  value: '2024-01-11T08:00:00'
+                  value: '2024-03-11T08:00:00'
               - column:
                   name: updated_at
-                  value: '2024-01-11T08:30:00'
+                  value: '2024-03-11T08:30:00'
               - column:
                   name: description
                   value: 'Mediation session fees'
@@ -272,10 +272,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: created_at
-                  value: '2024-01-12T08:00:00'
+                  value: '2024-03-12T08:00:00'
               - column:
                   name: updated_at
-                  value: '2024-01-12T08:30:00'
+                  value: '2024-03-12T08:30:00'
               - column:
                   name: description
                   value: 'Court order compliance fees'
@@ -296,10 +296,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: created_at
-                  value: '2024-01-13T08:00:00'
+                  value: '2024-03-15T08:00:00'
               - column:
                   name: updated_at
-                  value: '2024-01-13T08:30:00'
+                  value: '2024-03-15T08:30:00'
               - column:
                   name: description
                   value: "Attorney's hourly rate"
@@ -320,10 +320,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: created_at
-                  value: '2024-01-14T08:00:00'
+                  value: '2024-03-14T08:00:00'
               - column:
                   name: updated_at
-                  value: '2024-01-14T08:30:00'
+                  value: '2024-03-14T08:30:00'
               - column:
                   name: description
                   value: "Legal document drafting fees"

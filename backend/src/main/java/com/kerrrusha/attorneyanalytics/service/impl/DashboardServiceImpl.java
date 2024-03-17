@@ -2,19 +2,26 @@ package com.kerrrusha.attorneyanalytics.service.impl;
 
 import com.kerrrusha.attorneyanalytics.dto.dashboard.AboutUsDto;
 import com.kerrrusha.attorneyanalytics.dto.dashboard.AttorneyOfTheMonthDto;
+import com.kerrrusha.attorneyanalytics.dto.dashboard.IncomesOutcomesDto;
+import com.kerrrusha.attorneyanalytics.dto.dashboard.KeyValueDataDto;
 import com.kerrrusha.attorneyanalytics.dto.dashboard.LatestClosedCaseDto;
+import com.kerrrusha.attorneyanalytics.dto.dashboard.StatsByDatesDto;
 import com.kerrrusha.attorneyanalytics.model.FullNameProvider;
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCase;
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCaseStatus;
+import com.kerrrusha.attorneyanalytics.model.payment.Payment;
+import com.kerrrusha.attorneyanalytics.model.payment.PaymentType;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import com.kerrrusha.attorneyanalytics.repository.legal_case.LegalCaseRepository;
 import com.kerrrusha.attorneyanalytics.repository.client.ClientRepository;
+import com.kerrrusha.attorneyanalytics.repository.payment.PaymentRepository;
 import com.kerrrusha.attorneyanalytics.repository.user.UserRepository;
 import com.kerrrusha.attorneyanalytics.service.DashboardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Limit;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -32,12 +39,14 @@ import static java.util.stream.Collectors.joining;
 public class DashboardServiceImpl implements DashboardService {
 
     private static final int LATEST_CLOSED_CASES_LIMIT = 5;
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private static final DateTimeFormatter RESPONSE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private static final DateTimeFormatter REACT_DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final String SEPARATOR = ", ";
 
     private final UserRepository userRepository;
     private final ClientRepository clientRepository;
     private final LegalCaseRepository legalCaseRepository;
+    private final PaymentRepository paymentRepository;
 
     @Override
     public AboutUsDto collectInfoAboutUs() {
@@ -61,7 +70,7 @@ public class DashboardServiceImpl implements DashboardService {
     @Override
     public List<AttorneyOfTheMonthDto> getAttorneysOfTheMonth() {
         LocalDateTime currentDateTime = LocalDateTime.now();
-        LocalDateTime firstDayOfCurrentMonth = currentDateTime.withDayOfMonth(1);
+        LocalDateTime firstDayOfCurrentMonth = getFirstDayOfMonth(currentDateTime);
         LocalDateTime lastDayOfLastMonth = firstDayOfCurrentMonth.minusDays(1);
         LocalDateTime firstDayOfLastMonth = lastDayOfLastMonth.withDayOfMonth(1);
         LocalDateTime startOfLastMonth = firstDayOfLastMonth.withHour(0).withMinute(0).withSecond(0);
@@ -108,10 +117,97 @@ public class DashboardServiceImpl implements DashboardService {
                 .toList();
     }
 
+    @Override
+    public StatsByDatesDto getStatsByDates(String dateFromStr, String dateToStr) {
+        LocalDateTime dateFrom = LocalDate.parse(dateFromStr, REACT_DATETIME_FORMATTER).atStartOfDay();
+        LocalDateTime dateFromFirstDayOfMonth = getFirstDayOfMonth(dateFrom);
+        LocalDateTime dateTo = LocalDate.parse(dateToStr, REACT_DATETIME_FORMATTER).atStartOfDay();
+        LocalDateTime dateToLastDayOfMonth = getLastDayOfMonth(dateTo);
+        StatsByDatesDto result = new StatsByDatesDto();
+
+        IncomesOutcomesDto monthIncomesOutcomes = new IncomesOutcomesDto();
+        List<Payment> payments = paymentRepository.findByCreatedAtBetween(dateFromFirstDayOfMonth, dateToLastDayOfMonth);
+        monthIncomesOutcomes.setIncomes(getMonthIncomes(payments));
+        monthIncomesOutcomes.setOutcomes(getMonthOutcomes(payments));
+        result.setMonthIncomesOutcomes(monthIncomesOutcomes);
+
+        IncomesOutcomesDto caseTypeIncomesOutcomes = new IncomesOutcomesDto();
+        caseTypeIncomesOutcomes.setIncomes(getCaseTypeIncomes(payments));
+        caseTypeIncomesOutcomes.setOutcomes(getCaseTypeOutcomes(payments));
+        result.setCaseTypeIncomesOutcomes(caseTypeIncomesOutcomes);
+
+        IncomesOutcomesDto clientIncomesOutcomes = new IncomesOutcomesDto();
+        clientIncomesOutcomes.setIncomes(getClientIncomes(payments));
+        clientIncomesOutcomes.setOutcomes(getClientOutcomes(payments));
+        result.setClientIncomesOutcomes(clientIncomesOutcomes);
+
+        return result;
+    }
+
+    private List<KeyValueDataDto> getClientIncomes(List<Payment> payments) {
+        return getKeyValuesDataByPaymentType(
+                payments,
+                PaymentType.PaymentTypeName.INCOME,
+                e -> e.getLegalCase().getAssignedClients().toString());
+    }
+
+    private List<KeyValueDataDto> getClientOutcomes(List<Payment> payments) {
+        return getKeyValuesDataByPaymentType(
+                payments,
+                PaymentType.PaymentTypeName.OUTCOME,
+                e -> e.getLegalCase().getAssignedClients().toString());
+    }
+
+    private List<KeyValueDataDto> getCaseTypeIncomes(List<Payment> payments) {
+        return getKeyValuesDataByPaymentType(
+                payments,
+                PaymentType.PaymentTypeName.INCOME,
+                e -> e.getLegalCase().getLegalCaseType().getName());
+    }
+
+    private List<KeyValueDataDto> getCaseTypeOutcomes(List<Payment> payments) {
+        return getKeyValuesDataByPaymentType(
+                payments,
+                PaymentType.PaymentTypeName.OUTCOME,
+                e -> e.getLegalCase().getLegalCaseType().getName());
+    }
+
+    private List<KeyValueDataDto> getMonthIncomes(List<Payment> payments) {
+        return getKeyValuesDataByPaymentType(
+                payments,
+                PaymentType.PaymentTypeName.INCOME,
+                e -> e.getCreatedAt().getMonth().name());
+    }
+
+    private List<KeyValueDataDto> getMonthOutcomes(List<Payment> payments) {
+        return getKeyValuesDataByPaymentType(
+                payments,
+                PaymentType.PaymentTypeName.OUTCOME,
+                e -> e.getCreatedAt().getMonth().name());
+    }
+
+    private List<KeyValueDataDto> getKeyValuesDataByPaymentType(
+            List<Payment> payments,
+            PaymentType.PaymentTypeName typeName,
+            Function<Payment, String> getKey) {
+        return payments.stream()
+                .filter(e -> e.getPaymentType().getName().equals(typeName))
+                .map(e -> new KeyValueDataDto(getKey.apply(e), e.getAmountInCentsFormatted()))
+                .toList();
+    }
+
+    private LocalDateTime getFirstDayOfMonth(LocalDateTime dateTime) {
+        return dateTime.withDayOfMonth(1);
+    }
+
+    private LocalDateTime getLastDayOfMonth(LocalDateTime dateTime) {
+        return dateTime.plusMonths(1).minusDays(1).withHour(23).withMinute(59).withSecond(59);
+    }
+
     private LatestClosedCaseDto mapToLatestClosedCaseDto(LegalCase legalCase) {
         LatestClosedCaseDto result = new LatestClosedCaseDto();
 
-        result.setClosedDate(legalCase.getUpdatedAt().format(formatter));
+        result.setClosedDate(legalCase.getUpdatedAt().format(RESPONSE_FORMATTER));
         result.setTitle(legalCase.getTitle());
         result.setStatus(legalCase.getLegalCaseStatus().getName().name());
         result.setAssignedAttorneys(legalCase.getAssignedAttorneys()

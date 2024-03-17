@@ -1,5 +1,6 @@
 package com.kerrrusha.attorneyanalytics.model.payment;
 
+import com.kerrrusha.attorneyanalytics.model.MoneyAmountFormattedProvider;
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCase;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,7 +31,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @SQLRestriction("deleted=false")
 @SQLDelete(sql = "UPDATE payment SET deleted = true WHERE id=?")
-public class Payment {
+public class Payment implements MoneyAmountFormattedProvider {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,7 +46,7 @@ public class Payment {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "case_id")
+    @JoinColumn(name = "legal_case_id")
     private LegalCase legalCase;
 
     @Column(nullable = false)

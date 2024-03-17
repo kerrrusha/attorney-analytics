@@ -32,6 +32,7 @@ databaseChangeLog:
                   name: legal_case_id
                   type: BIGINT
                   constraints:
+                    nullable: false
                     references: legal_case(id)
                     foreignKeyName: fk_payment_legal_case_id
                     deleteCascade: true
@@ -39,6 +40,7 @@ databaseChangeLog:
                   name: payment_status_id
                   type: BIGINT
                   constraints:
+                    nullable: false
                     references: payment_status(id)
                     foreignKeyName: fk_payment_payment_status_id
                     deleteCascade: true
@@ -46,6 +48,7 @@ databaseChangeLog:
                   name: payment_type_id
                   type: BIGINT
                   constraints:
+                    nullable: false
                     references: payment_type(id)
                     foreignKeyName: fk_payment_payment_type_id
                     deleteCascade: true
