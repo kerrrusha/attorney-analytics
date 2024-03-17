@@ -103,6 +103,7 @@ public class DashboardServiceImpl implements DashboardService {
 
                     return result;
                 })
+                .sorted(Comparator.comparing(AttorneyOfTheMonthDto::getAttorneyFullName))
                 .sorted(Comparator.comparingDouble(AttorneyOfTheMonthDto::getSuccessfullyClosedRate).reversed())
                 .toList();
     }
