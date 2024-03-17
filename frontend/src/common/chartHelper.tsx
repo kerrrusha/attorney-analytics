@@ -1,14 +1,14 @@
-import {KeyValueChartData} from "./commonTypes";
+import {KeyValueData} from "./commonTypes";
 import {generateRandomColors} from "./commonUtils";
 import {Bar, Doughnut} from "react-chartjs-2";
 import React from "react";
 
-export function createIncomeOutcomeChart(incomeData: Array<KeyValueChartData>, outcomeData: Array<KeyValueChartData>) {
+export function createIncomeOutcomeChart(incomeData: Array<KeyValueData>, outcomeData: Array<KeyValueData>) {
     return <Bar data={createIncomeOutcomeChartData(incomeData, outcomeData)}
                 options={createIncomeOutcomeOptions()} />;
 }
 
-function createIncomeOutcomeChartData(incomeData: Array<KeyValueChartData>, outcomeData: Array<KeyValueChartData>): any {
+function createIncomeOutcomeChartData(incomeData: Array<KeyValueData>, outcomeData: Array<KeyValueData>): any {
     return {
         labels: incomeData.map((data) => data.key),
         datasets: [
@@ -66,12 +66,12 @@ function createIncomeOutcomeOptions(): any {
     };
 }
 
-export function createSimpleDoughnut(keyValueData: Array<KeyValueChartData>) {
+export function createSimpleDoughnut(keyValueData: Array<KeyValueData>) {
     return <Doughnut data={createChartData(keyValueData)} options={createOptionsHoverLabelWithPostfix(keyValueData, "$")} />;
 }
 
-function createOptionsHoverLabelWithPostfix(keyValueData: Array<KeyValueChartData>, postfix: string,
-                                                   display=true): any {
+function createOptionsHoverLabelWithPostfix(keyValueData: Array<KeyValueData>, postfix: string,
+                                            display=true): any {
     return {
         plugins: {
             legend: {
@@ -96,7 +96,7 @@ function createOptionsHoverLabelWithPostfix(keyValueData: Array<KeyValueChartDat
     };
 }
 
-function createChartData(keyValueData: Array<KeyValueChartData>): any {
+function createChartData(keyValueData: Array<KeyValueData>): any {
     return {
         labels: keyValueData.map((data) => data.key),
         datasets: [

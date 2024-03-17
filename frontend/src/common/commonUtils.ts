@@ -1,4 +1,4 @@
-import {KeyValueChartData} from "./commonTypes";
+import {KeyValueData} from "./commonTypes";
 
 export function fixNull(value: string | null): string {
     return value === null ? "" : value;

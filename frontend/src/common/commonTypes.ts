@@ -1,4 +1,5 @@
 import {Dispatch} from "react";
+import useFetchStatsByDates from "../hooks/useFetchStatsByDates";
 
 export type InputTarget = {
     target: HTMLInputElement;
@@ -57,7 +58,7 @@ export type RegisterRequest = {
     password: string,
 }
 
-export type KeyValueChartData = {
+export type KeyValueData = {
     key: string,
     value: number,
 }
@@ -72,6 +73,7 @@ export type DashboardState = {
     aboutUs: AboutUsDto | null,
     latestClosedCases: LatestClosedCasesDto | null,
     attorneysOfTheMonth: AttorneysOfTheMonthDto | null,
+    statsByDates: StatsByDatesDto | null,
 }
 
 export type LatestClosedCasesDto = Array<{
@@ -88,3 +90,14 @@ export type AttorneysOfTheMonthDto = Array<{
     casesParticipated: number,
     successfullyClosedRate: number,
 }>
+
+export type StatsByDatesDto = {
+    caseTypeIncomesOutcomes: IncomesOutcomes,
+    clientIncomesOutcomes: IncomesOutcomes,
+    monthIncomesOutcomes: IncomesOutcomes,
+}
+
+export type IncomesOutcomes = {
+    incomes: Array<KeyValueData>,
+    outcomes: Array<KeyValueData>,
+}

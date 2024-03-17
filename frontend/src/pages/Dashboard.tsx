@@ -2,9 +2,8 @@ import {
     AboutUsDto,
     AttorneysOfTheMonthDto,
     InputTarget,
-    KeyValueChartData,
     LatestClosedCasesDto,
-    LoggedInProps
+    LoggedInProps, StatsByDatesDto
 } from "../common/commonTypes";
 import PageWithSidebar from "../components/sidebar/PageWithSidebar";
 import {useState} from "react";
@@ -12,12 +11,18 @@ import 'chart.js/auto';
 import { toPascalCase } from "../common/commonUtils";
 import useFetchAboutUs from "../hooks/useFetchAboutUs";
 import {useAppSelector} from "../hooks/useAppSelector";
-import {selectAboutUs, selectAttorneysOfTheMonth, selectLatestClosedCases} from "../redux/slices/dashboardSlice";
+import {
+    selectAboutUs,
+    selectAttorneysOfTheMonth,
+    selectLatestClosedCases,
+    selectStatsByDates
+} from "../redux/slices/dashboardSlice";
 import LoadingGif from "../components/loading/LoadingGif";
 import {rateXvmColorValue} from "../common/XvmColorValue";
 import useFetchLatestClosedCases from "../hooks/useFetchLatestClosedCases";
 import {createIncomeOutcomeChart, createSimpleDoughnut} from "../common/chartHelper";
 import useFetchAttorneysOfTheMonth from "../hooks/useFetchAttorneysOfTheMonth";
+import useFetchStatsByDates from "../hooks/useFetchStatsByDates";
 
 export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
     const [dateFrom, setDateFrom] = useState(getYesterday());
@@ -56,94 +61,8 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
         setDatesError('');
     };
 
-    const caseTypeIncomesFetchedData: Array<KeyValueChartData> = [
-        {
-            key: "Legal Consultation",
-            value: 100
-        },
-        {
-            key: "Legal Document Preparation",
-            value: 110
-        },
-        {
-            key: "Court Representation",
-            value: 110
-        },
-        {
-            key: "Legal Research",
-            value: 30
-        },
-        {
-            key: "Contract Drafting",
-            value: 110
-        },
-        {
-            key: "Other",
-            value: 10
-        },
-    ];
-    const caseTypeOutcomesFetchedData: Array<KeyValueChartData> = caseTypeIncomesFetchedData;
-
-    const clientIncomesFetchedData: Array<KeyValueChartData> = [
-        {
-            key: "John Petrucci",
-            value: 2500
-        },
-        {
-            key: "James Hetfield",
-            value: 110000
-        },
-        {
-            key: "Kirk Hammett",
-            value: 14000
-        },
-        {
-            key: "Albert Einstein",
-            value: 34000
-        },
-        {
-            key: "Elon Musk",
-            value: 300000
-        }
-    ];
-    const clientOutcomesFetchedData: Array<KeyValueChartData> = clientIncomesFetchedData;
-
-    const monthIncomesFetchedData: Array<KeyValueChartData> = [
-        {
-            key: "March",
-            value: 32500
-        },
-        {
-            key: "April",
-            value: 40000
-        },
-        {
-            key: "May",
-            value: 34000
-        },
-        {
-            key: "June",
-            value: 14000
-        }
-    ];
-    const monthOutcomesFetchedData: Array<KeyValueChartData> = [
-        {
-            key: "March",
-            value: 3500
-        },
-        {
-            key: "April",
-            value: 4000
-        },
-        {
-            key: "May",
-            value: 3000
-        },
-        {
-            key: "June",
-            value: 1400
-        }
-    ];
+    const [statsByDatesFetched] = useFetchStatsByDates(dateFrom, dateTo);
+    const statsByDates: StatsByDatesDto = useAppSelector(selectStatsByDates)!;
 
     const [attorneysOfTheMonthFetched] = useFetchAttorneysOfTheMonth();
     const attorneysOfTheMonth: AttorneysOfTheMonthDto = useAppSelector(selectAttorneysOfTheMonth)!;
@@ -193,45 +112,47 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                 </div>
             }
         </div>
+        {!statsByDatesFetched ? <LoadingGif /> :
         <div className="flex flex-row flex-wrap">
             <div className="card background-secondary">
                 <div className="card-body text-center">
                     <h5 className="mb-3">Incomes by case type</h5>
-                    {createSimpleDoughnut(caseTypeIncomesFetchedData)}
+                    {createSimpleDoughnut(statsByDates.caseTypeIncomesOutcomes.incomes)}
                 </div>
             </div>
             <div className="card background-secondary">
                 <div className="card-body text-center">
                     <h5 className="mb-3">Outcomes by case type</h5>
-                    {createSimpleDoughnut(caseTypeOutcomesFetchedData)}
+                    {createSimpleDoughnut(statsByDates.caseTypeIncomesOutcomes.outcomes)}
                 </div>
             </div>
             <div className="card background-secondary">
                 <div className="card-body text-center">
                     <h5 className="mb-3">Incomes by clients</h5>
-                    {createSimpleDoughnut(clientIncomesFetchedData)}
+                    {createSimpleDoughnut(statsByDates.clientIncomesOutcomes.incomes)}
                 </div>
             </div>
             <div className="card background-secondary">
                 <div className="card-body text-center">
                     <h5 className="mb-3">Outcomes by clients</h5>
-                    {createSimpleDoughnut(clientOutcomesFetchedData)}
+                    {createSimpleDoughnut(statsByDates.clientIncomesOutcomes.outcomes)}
                 </div>
             </div>
             <div className="card background-secondary" style={{width: "51.2rem"}}>
                 <div className="card-body text-center">
                     <h5 className="mb-3">Incomes/outcomes by months</h5>
-                    {createIncomeOutcomeChart(monthIncomesFetchedData, monthOutcomesFetchedData)}
+                    {createIncomeOutcomeChart(statsByDates.monthIncomesOutcomes.incomes, statsByDates.monthIncomesOutcomes.outcomes)}
                 </div>
             </div>
         </div>
+        }
         <hr />
         <div className="flex flex-row flex-wrap large">
             <div className="card background-secondary">
                 <div className="card-body text-center">
                     <p className="mb-3 display-6">Attorneys of the month</p>
 
-                    {!latestClosedCasesFetched ? <LoadingGif /> :
+                    {!attorneysOfTheMonthFetched ? <LoadingGif /> :
                     <table className="w-100">
                         <thead>
                             <tr>
@@ -295,7 +216,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
         <div className="flex flex-row flex-wrap">
             <div className="card background-secondary">
                 <div className="card-body px-5">
-                    <p className="text-center display-6">About us</p>
+                    <p className="text-center display-6">Firm state</p>
 
                     {!aboutUsFetched ? <LoadingGif /> :
                         <table id="about-us" className="mx-auto text-start">
