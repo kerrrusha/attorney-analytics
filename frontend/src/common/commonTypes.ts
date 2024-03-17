@@ -85,6 +85,6 @@ export type LatestClosedCasesDto = Array<{
 export type AttorneysOfTheMonthDto = Array<{
     attorneyFullName: string,
     title: string,
-    casesParticipated: string,
+    casesParticipated: number,
     successfullyClosedRate: number,
 }>

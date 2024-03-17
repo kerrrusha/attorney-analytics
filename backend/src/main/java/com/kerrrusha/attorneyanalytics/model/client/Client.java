@@ -1,5 +1,6 @@
 package com.kerrrusha.attorneyanalytics.model.client;
 
+import com.kerrrusha.attorneyanalytics.model.FullNameProvider;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,7 +31,7 @@ import java.util.List;
 @AllArgsConstructor
 @SQLRestriction("deleted=false")
 @SQLDelete(sql = "UPDATE client SET deleted = true WHERE id=?")
-public class Client {
+public class Client implements FullNameProvider {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

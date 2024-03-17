@@ -26,6 +26,10 @@ databaseChangeLog:
                     primaryKey: true
             primaryKey:
               columnNames: user_id, role_id
+        - addUniqueConstraint:
+            tableName: user_role
+            columnNames: user_id, role_id
+            constraintName: unique_user_role_user_id_role_id
       rollback:
         - dropTable:
             tableName: user_role

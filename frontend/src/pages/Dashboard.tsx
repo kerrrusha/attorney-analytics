@@ -145,27 +145,6 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
         }
     ];
 
-    // const attorneysOfTheMonth = [
-    //     {
-    //         attorney: "Saul Goodman",
-    //         title: "CEO",
-    //         casesParticipated: 15,
-    //         successfullyClosedRate: 0.7153
-    //     },
-    //     {
-    //         attorney: "Mark Rober",
-    //         title: "Of Counsel",
-    //         casesParticipated: 9,
-    //         successfullyClosedRate: 0.5153
-    //     },
-    //     {
-    //         attorney: "Mr Beast",
-    //         title: "Partner",
-    //         casesParticipated: 5,
-    //         successfullyClosedRate: 0.4953
-    //     },
-    // ];
-
     const [attorneysOfTheMonthFetched] = useFetchAttorneysOfTheMonth();
     const attorneysOfTheMonth: AttorneysOfTheMonthDto = useAppSelector(selectAttorneysOfTheMonth)!;
 
@@ -251,6 +230,8 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
             <div className="card background-secondary">
                 <div className="card-body text-center">
                     <p className="mb-3 display-6">Attorneys of the month</p>
+
+                    {!latestClosedCasesFetched ? <LoadingGif /> :
                     <table className="w-100">
                         <thead>
                             <tr>
@@ -270,7 +251,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                             <td className={rateXvmColorValue.getColorClassName(e.successfullyClosedRate)}>{e.successfullyClosedRate}</td>
                         </tr>)}
                         </tbody>
-                    </table>
+                    </table>}
                     <div className="mt-5 text-start px-3 text-sm">
                         <span>
                             *Successfully closed rate of the month - rate of closed legal cases (with status SUCCESS) by attorney in last month

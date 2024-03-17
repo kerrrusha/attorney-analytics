@@ -84,3 +84,70 @@ databaseChangeLog:
               - column:
                   name: user_id
                   value: 1
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 11
+              - column:
+                  name: user_id
+                  value: 5
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 11
+              - column:
+                  name: user_id
+                  value: 2
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 12
+              - column:
+                  name: user_id
+                  value: 3
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 12
+              - column:
+                  name: user_id
+                  value: 4
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 12
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 13
+              - column:
+                  name: user_id
+                  value: 3
+        - insert:
+            tableName: legal_case_user
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 14
+              - column:
+                  name: user_id
+                  value: 7
+        - addUniqueConstraint:
+            tableName: legal_case_user
+            columnNames: legal_case_id, user_id
+            constraintName: unique_legal_case_user-legal_case_id-user_id

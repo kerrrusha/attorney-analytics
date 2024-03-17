@@ -1,6 +1,7 @@
 package com.kerrrusha.attorneyanalytics.controller;
 
 import com.kerrrusha.attorneyanalytics.dto.dashboard.AboutUsDto;
+import com.kerrrusha.attorneyanalytics.dto.dashboard.AttorneyOfTheMonthDto;
 import com.kerrrusha.attorneyanalytics.dto.dashboard.LatestClosedCaseDto;
 import com.kerrrusha.attorneyanalytics.service.DashboardService;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +20,16 @@ public class DashboardController {
 
     @GetMapping("/about-us")
     public AboutUsDto getAboutUs() {
-        return dashboardService.collectAboutUsInfo();
+        return dashboardService.collectInfoAboutUs();
     }
 
     @GetMapping("/latest-closed-cases")
     public List<LatestClosedCaseDto> getLatestClosedCases() {
         return dashboardService.getLatestClosedCases();
+    }
+
+    @GetMapping("/attorneys-of-the-month")
+    public List<AttorneyOfTheMonthDto> getAttorneysOfTheMonth() {
+        return dashboardService.getAttorneysOfTheMonth();
     }
 }

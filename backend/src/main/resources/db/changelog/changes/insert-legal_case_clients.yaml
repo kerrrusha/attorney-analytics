@@ -129,3 +129,52 @@ databaseChangeLog:
               - column:
                   name: client_id
                   value: 14
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 11
+              - column:
+                  name: client_id
+                  value: 15
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 11
+              - column:
+                  name: client_id
+                  value: 4
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 12
+              - column:
+                  name: client_id
+                  value: 7
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 13
+              - column:
+                  name: client_id
+                  value: 1
+        - insert:
+            tableName: legal_case_client
+            columns:
+              - column:
+                  name: legal_case_id
+                  value: 14
+              - column:
+                  name: client_id
+                  value: 12
+        - addUniqueConstraint:
+            tableName: legal_case_client
+            columnNames: legal_case_id, client_id
+            constraintName: unique_legal_case_client-legal_case_id-client_id
