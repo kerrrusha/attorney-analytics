@@ -1,6 +1,5 @@
 package com.kerrrusha.attorneyanalytics.repository.user;
 
-import com.kerrrusha.attorneyanalytics.model.client.Client;
 import com.kerrrusha.attorneyanalytics.model.user.UserEmail;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import lombok.extern.slf4j.Slf4j;
@@ -10,10 +9,9 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import static com.kerrrusha.attorneyanalytics.helper.CommonHelper.createList;
+import static com.kerrrusha.attorneyanalytics.common.helper.CommonHelper.createList;
 import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;

@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.service.impl;
+package com.kerrrusha.attorneyanalytics.service.user.impl;
 
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
@@ -17,7 +17,7 @@ import com.kerrrusha.attorneyanalytics.repository.user.UserPhoneRepository;
 import com.kerrrusha.attorneyanalytics.repository.user.UserPracticeAreaRepository;
 import com.kerrrusha.attorneyanalytics.repository.user.RoleRepository;
 import com.kerrrusha.attorneyanalytics.repository.user.TitleRepository;
-import com.kerrrusha.attorneyanalytics.service.UserService;
+import com.kerrrusha.attorneyanalytics.service.user.UserService;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserRegistrationRequestDto;
 import com.kerrrusha.attorneyanalytics.mapper.UserMapper;

@@ -5,7 +5,7 @@ import com.kerrrusha.attorneyanalytics.dto.user.request.UserLoginRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserRegistrationRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
 import com.kerrrusha.attorneyanalytics.security.AuthenticationService;
-import com.kerrrusha.attorneyanalytics.service.UserService;
+import com.kerrrusha.attorneyanalytics.service.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.kerrrusha.attorneyanalytics.helper.AuthHelper.createAuthCookie;
-import static com.kerrrusha.attorneyanalytics.helper.AuthHelper.createLogoutCookie;
+import static com.kerrrusha.attorneyanalytics.common.helper.AuthHelper.createAuthCookie;
+import static com.kerrrusha.attorneyanalytics.common.helper.AuthHelper.createLogoutCookie;
 
 @RestController
 @RequiredArgsConstructor

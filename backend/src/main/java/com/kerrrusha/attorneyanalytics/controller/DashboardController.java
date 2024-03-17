@@ -4,7 +4,7 @@ import com.kerrrusha.attorneyanalytics.dto.dashboard.AboutUsDto;
 import com.kerrrusha.attorneyanalytics.dto.dashboard.AttorneyOfTheMonthDto;
 import com.kerrrusha.attorneyanalytics.dto.dashboard.LatestClosedCaseDto;
 import com.kerrrusha.attorneyanalytics.dto.dashboard.StatsByDatesDto;
-import com.kerrrusha.attorneyanalytics.service.DashboardService;
+import com.kerrrusha.attorneyanalytics.service.dashboard.DashboardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

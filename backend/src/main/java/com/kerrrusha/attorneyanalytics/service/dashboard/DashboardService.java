@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.service;
+package com.kerrrusha.attorneyanalytics.service.dashboard;
 
 import com.kerrrusha.attorneyanalytics.dto.dashboard.AboutUsDto;
 import com.kerrrusha.attorneyanalytics.dto.dashboard.AttorneyOfTheMonthDto;

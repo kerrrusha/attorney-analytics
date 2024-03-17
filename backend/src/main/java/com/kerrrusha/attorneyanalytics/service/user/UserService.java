@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.service;
+package com.kerrrusha.attorneyanalytics.service.user;
 
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserRegistrationRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;

@@ -27,8 +27,8 @@ import useFetchStatsByDates from "../hooks/useFetchStatsByDates";
 export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
     // const [dateFrom, setDateFrom] = useState(getYesterday());
     // const [dateTo, setDateTo] = useState(getToday());
-    const [dateFrom, setDateFrom] = useState('2024-03-01');
-    const [dateTo, setDateTo] = useState('2024-03-17');
+    const [dateFrom, setDateFrom] = useState('2023-09-01');
+    const [dateTo, setDateTo] = useState('2024-03-31');
     const [datesError, setDatesError] = useState('');
     const BAD_DATE_FROM = "Date-from value should be before date-to.";
     const BAD_DATE_TO = "Date-to value should be after date-from.";
@@ -142,7 +142,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
                     {createSimpleDoughnut(statsByDates.clientIncomesOutcomes.outcomes)}
                 </div>
             </div>
-            <div className="card background-secondary" style={{width: "51.2rem"}}>
+            <div className="card background-secondary" style={{width: "51.6rem"}}>
                 <div className="card-body text-center">
                     <h5 className="mb-3">Incomes/outcomes by months</h5>
                     {createIncomeOutcomeChart(statsByDates.monthIncomesOutcomes.incomes, statsByDates.monthIncomesOutcomes.outcomes)}

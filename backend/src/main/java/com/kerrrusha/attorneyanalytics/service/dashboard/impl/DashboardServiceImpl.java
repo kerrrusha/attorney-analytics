@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.service.impl;
+package com.kerrrusha.attorneyanalytics.service.dashboard.impl;
 
 import com.kerrrusha.attorneyanalytics.dto.dashboard.AboutUsDto;
 import com.kerrrusha.attorneyanalytics.dto.dashboard.AttorneyOfTheMonthDto;
@@ -16,7 +16,7 @@ import com.kerrrusha.attorneyanalytics.repository.legal_case.LegalCaseRepository
 import com.kerrrusha.attorneyanalytics.repository.client.ClientRepository;
 import com.kerrrusha.attorneyanalytics.repository.payment.PaymentRepository;
 import com.kerrrusha.attorneyanalytics.repository.user.UserRepository;
-import com.kerrrusha.attorneyanalytics.service.DashboardService;
+import com.kerrrusha.attorneyanalytics.service.dashboard.DashboardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Limit;
 import org.springframework.stereotype.Service;
@@ -43,6 +43,7 @@ public class DashboardServiceImpl implements DashboardService {
     private static final DateTimeFormatter RESPONSE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     private static final DateTimeFormatter REACT_DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final String SEPARATOR = ", ";
+    private static final String SPACE = " ";
     private static final int CENTS_IN_DOLLAR = 100;
 
     private final UserRepository userRepository;
@@ -129,25 +130,36 @@ public class DashboardServiceImpl implements DashboardService {
 
         IncomesOutcomesDto monthIncomesOutcomes = new IncomesOutcomesDto();
         List<Payment> monthPayments = paymentRepository.findByCreatedAtBetween(dateFromFirstDayOfMonth, dateToLastDayOfMonth);
-        monthIncomesOutcomes.setIncomes(groupByKey(getMonthIncomes(monthPayments)));
-        monthIncomesOutcomes.setOutcomes(groupByKey(getMonthOutcomes(monthPayments)));
+        monthIncomesOutcomes.setIncomes(groupByKeyOrderByKey(getMonthIncomes(monthPayments)));
+        monthIncomesOutcomes.setOutcomes(groupByKeyOrderByKey(getMonthOutcomes(monthPayments)));
         result.setMonthIncomesOutcomes(monthIncomesOutcomes);
 
         IncomesOutcomesDto caseTypeIncomesOutcomes = new IncomesOutcomesDto();
         List<Payment> rangePayments = paymentRepository.findByCreatedAtBetween(dateFrom, dateTo);
-        caseTypeIncomesOutcomes.setIncomes(groupByKey(getCaseTypeIncomes(rangePayments)));
-        caseTypeIncomesOutcomes.setOutcomes(groupByKey(getCaseTypeOutcomes(rangePayments)));
+        caseTypeIncomesOutcomes.setIncomes(groupByKeyOrderByValue(getCaseTypeIncomes(rangePayments)));
+        caseTypeIncomesOutcomes.setOutcomes(groupByKeyOrderByValue(getCaseTypeOutcomes(rangePayments)));
         result.setCaseTypeIncomesOutcomes(caseTypeIncomesOutcomes);
 
         IncomesOutcomesDto clientIncomesOutcomes = new IncomesOutcomesDto();
-        clientIncomesOutcomes.setIncomes(groupByKey(getClientIncomes(rangePayments)));
-        clientIncomesOutcomes.setOutcomes(groupByKey(getClientOutcomes(rangePayments)));
+        clientIncomesOutcomes.setIncomes(groupByKeyOrderByValue(getClientIncomes(rangePayments)));
+        clientIncomesOutcomes.setOutcomes(groupByKeyOrderByValue(getClientOutcomes(rangePayments)));
         result.setClientIncomesOutcomes(clientIncomesOutcomes);
 
         return result;
     }
 
-    private List<KeyValueDataDto> groupByKey(List<KeyValueDataDto> keyValues) {
+    private List<KeyValueDataDto> groupByKeyOrderByKey(List<KeyValueDataDto> keyValues) {
+        return groupByKeyOrderBy(keyValues,
+                Comparator.comparing(KeyValueDataDto::getKey));
+    }
+
+    private List<KeyValueDataDto> groupByKeyOrderByValue(List<KeyValueDataDto> keyValues) {
+        return groupByKeyOrderBy(keyValues,
+                Comparator.comparing(KeyValueDataDto::getValue));
+    }
+
+    private List<KeyValueDataDto> groupByKeyOrderBy(List<KeyValueDataDto> keyValues,
+                                                       Comparator<KeyValueDataDto> sortingComparator) {
         Map<String, Long> keyValueMap = new HashMap<>();
 
         for (KeyValueDataDto keyValue : keyValues) {
@@ -162,7 +174,9 @@ public class DashboardServiceImpl implements DashboardService {
             groupedKeyValues.add(new KeyValueDataDto(entry.getKey(), entry.getValue()));
         }
 
-        return groupedKeyValues;
+        return groupedKeyValues.stream()
+                .sorted(sortingComparator)
+                .toList();
     }
 
     private List<KeyValueDataDto> getClientIncomes(List<Payment> payments) {
@@ -201,14 +215,14 @@ public class DashboardServiceImpl implements DashboardService {
         return getKeyValuesDataByPaymentType(
                 payments,
                 PaymentType.PaymentTypeName.INCOME,
-                e -> e.getCreatedAt().getMonth().name());
+                e -> e.getUpdatedAt().getMonth().name() + SPACE + e.getUpdatedAt().getYear());
     }
 
     private List<KeyValueDataDto> getMonthOutcomes(List<Payment> payments) {
         return getKeyValuesDataByPaymentType(
                 payments,
                 PaymentType.PaymentTypeName.OUTCOME,
-                e -> e.getCreatedAt().getMonth().name());
+                e -> e.getUpdatedAt().getMonth().name() + SPACE + e.getUpdatedAt().getYear());
     }
 
     private List<KeyValueDataDto> getKeyValuesDataByPaymentType(

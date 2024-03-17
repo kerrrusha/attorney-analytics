@@ -18,7 +18,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static com.kerrrusha.attorneyanalytics.helper.AuthHelper.AUTH_TOKEN;
+import static com.kerrrusha.attorneyanalytics.common.helper.AuthHelper.AUTH_TOKEN;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @Component

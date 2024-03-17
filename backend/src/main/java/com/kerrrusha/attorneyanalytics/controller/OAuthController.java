@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.kerrrusha.attorneyanalytics.helper.AuthHelper.createAuthCookie;
+import static com.kerrrusha.attorneyanalytics.common.helper.AuthHelper.createAuthCookie;
 
 @RestController
 @RequiredArgsConstructor

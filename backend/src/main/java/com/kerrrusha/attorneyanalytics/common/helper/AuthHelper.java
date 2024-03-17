@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.helper;
+package com.kerrrusha.attorneyanalytics.common.helper;
 
 import org.springframework.http.ResponseCookie;
 
