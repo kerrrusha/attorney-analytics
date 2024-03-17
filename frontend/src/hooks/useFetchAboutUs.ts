@@ -10,8 +10,7 @@ export default function useFetchAboutUs() : [boolean] {
 
     useEffect(() => {
         doGetRequestApiJson(API_ENDPOINTS.getAboutUs).then(result => {
-            console.log(`Fetched aboutUs:`);
-            console.log(result);
+            console.debug(`Fetched aboutUs: `, result);
 
             dispatch(setAboutUs(result));
             setFetched(true);

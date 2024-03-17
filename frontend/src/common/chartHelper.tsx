@@ -1,5 +1,5 @@
 import {KeyValueData} from "./commonTypes";
-import {generateRandomColors} from "./commonUtils";
+import {generateRandomColors, toPascalCase} from "./commonUtils";
 import {Bar, Doughnut} from "react-chartjs-2";
 import React from "react";
 
@@ -9,8 +9,10 @@ export function createIncomeOutcomeChart(incomeData: Array<KeyValueData>, outcom
 }
 
 function createIncomeOutcomeChartData(incomeData: Array<KeyValueData>, outcomeData: Array<KeyValueData>): any {
+    const getValue = (keyValue: KeyValueData) => keyValue ? keyValue.value : 0;
+
     return {
-        labels: incomeData.map((data) => data.key),
+        labels: incomeData.map((data) => toPascalCase(data.key)),
         datasets: [
             {
                 data: incomeData.map((data) => data.value),
@@ -32,7 +34,7 @@ function createIncomeOutcomeChartData(incomeData: Array<KeyValueData>, outcomeDa
             },
             {
                 label: 'Profit',
-                data: incomeData.map((_, index) => incomeData[index].value - outcomeData[index].value),
+                data: incomeData.map((_, index) => getValue(incomeData[index]) - getValue(outcomeData[index])),
                 backgroundColor: 'blue',
                 borderColor: "black",
                 borderWidth: 1,
@@ -61,7 +63,7 @@ function createIncomeOutcomeOptions(): any {
                 y: {
                     stacked: true
                 }
-            }
+            },
         }
     };
 }

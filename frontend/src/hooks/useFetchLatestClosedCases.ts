@@ -10,8 +10,7 @@ export default function useFetchLatestClosedCases() : [boolean] {
 
     useEffect(() => {
         doGetRequestApiJson(API_ENDPOINTS.getLatestClosedCases).then(result => {
-            console.log(`Fetched LatestClosedCases:`);
-            console.log(result);
+            console.debug(`Fetched LatestClosedCases:`, result);
 
             dispatch(setLatestClosedCases(result));
             setFetched(true);

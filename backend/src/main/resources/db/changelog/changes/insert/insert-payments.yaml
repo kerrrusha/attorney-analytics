@@ -339,3 +339,75 @@ databaseChangeLog:
               - column:
                   name: payment_type_id
                   value: 1
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: '2024-03-15T08:00:00'
+              - column:
+                  name: updated_at
+                  value: '2024-03-15T08:30:00'
+              - column:
+                  name: description
+                  value: "Expert Witness Fees"
+              - column:
+                  name: amount_in_cents
+                  value: 18000
+              - column:
+                  name: legal_case_id
+                  value: 14
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 2
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: '2024-03-16T08:00:00'
+              - column:
+                  name: updated_at
+                  value: '2024-03-16T08:30:00'
+              - column:
+                  name: description
+                  value: "Notary Fees"
+              - column:
+                  name: amount_in_cents
+                  value: 12000
+              - column:
+                  name: legal_case_id
+                  value: 12
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 2
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: '2024-03-17T08:00:00'
+              - column:
+                  name: updated_at
+                  value: '2024-03-17T08:30:00'
+              - column:
+                  name: description
+                  value: "Bar Association Dues"
+              - column:
+                  name: amount_in_cents
+                  value: 85000
+              - column:
+                  name: legal_case_id
+                  value: 10
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 2

@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -42,6 +43,7 @@ public class DashboardServiceImpl implements DashboardService {
     private static final DateTimeFormatter RESPONSE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     private static final DateTimeFormatter REACT_DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final String SEPARATOR = ", ";
+    private static final int CENTS_IN_DOLLAR = 100;
 
     private final UserRepository userRepository;
     private final ClientRepository clientRepository;
@@ -126,36 +128,59 @@ public class DashboardServiceImpl implements DashboardService {
         StatsByDatesDto result = new StatsByDatesDto();
 
         IncomesOutcomesDto monthIncomesOutcomes = new IncomesOutcomesDto();
-        List<Payment> payments = paymentRepository.findByCreatedAtBetween(dateFromFirstDayOfMonth, dateToLastDayOfMonth);
-        monthIncomesOutcomes.setIncomes(getMonthIncomes(payments));
-        monthIncomesOutcomes.setOutcomes(getMonthOutcomes(payments));
+        List<Payment> monthPayments = paymentRepository.findByCreatedAtBetween(dateFromFirstDayOfMonth, dateToLastDayOfMonth);
+        monthIncomesOutcomes.setIncomes(groupByKey(getMonthIncomes(monthPayments)));
+        monthIncomesOutcomes.setOutcomes(groupByKey(getMonthOutcomes(monthPayments)));
         result.setMonthIncomesOutcomes(monthIncomesOutcomes);
 
         IncomesOutcomesDto caseTypeIncomesOutcomes = new IncomesOutcomesDto();
-        caseTypeIncomesOutcomes.setIncomes(getCaseTypeIncomes(payments));
-        caseTypeIncomesOutcomes.setOutcomes(getCaseTypeOutcomes(payments));
+        List<Payment> rangePayments = paymentRepository.findByCreatedAtBetween(dateFrom, dateTo);
+        caseTypeIncomesOutcomes.setIncomes(groupByKey(getCaseTypeIncomes(rangePayments)));
+        caseTypeIncomesOutcomes.setOutcomes(groupByKey(getCaseTypeOutcomes(rangePayments)));
         result.setCaseTypeIncomesOutcomes(caseTypeIncomesOutcomes);
 
         IncomesOutcomesDto clientIncomesOutcomes = new IncomesOutcomesDto();
-        clientIncomesOutcomes.setIncomes(getClientIncomes(payments));
-        clientIncomesOutcomes.setOutcomes(getClientOutcomes(payments));
+        clientIncomesOutcomes.setIncomes(groupByKey(getClientIncomes(rangePayments)));
+        clientIncomesOutcomes.setOutcomes(groupByKey(getClientOutcomes(rangePayments)));
         result.setClientIncomesOutcomes(clientIncomesOutcomes);
 
         return result;
+    }
+
+    private List<KeyValueDataDto> groupByKey(List<KeyValueDataDto> keyValues) {
+        Map<String, Long> keyValueMap = new HashMap<>();
+
+        for (KeyValueDataDto keyValue : keyValues) {
+            String key = keyValue.getKey();
+            Long value = keyValue.getValue();
+
+            keyValueMap.merge(key, value, Long::sum);
+        }
+
+        List<KeyValueDataDto> groupedKeyValues = new ArrayList<>();
+        for (Map.Entry<String, Long> entry : keyValueMap.entrySet()) {
+            groupedKeyValues.add(new KeyValueDataDto(entry.getKey(), entry.getValue()));
+        }
+
+        return groupedKeyValues;
     }
 
     private List<KeyValueDataDto> getClientIncomes(List<Payment> payments) {
         return getKeyValuesDataByPaymentType(
                 payments,
                 PaymentType.PaymentTypeName.INCOME,
-                e -> e.getLegalCase().getAssignedClients().toString());
+                e -> e.getLegalCase().getAssignedClients().stream()
+                        .map(FullNameProvider::getFullName)
+                        .collect(joining(SEPARATOR)));
     }
 
     private List<KeyValueDataDto> getClientOutcomes(List<Payment> payments) {
         return getKeyValuesDataByPaymentType(
                 payments,
                 PaymentType.PaymentTypeName.OUTCOME,
-                e -> e.getLegalCase().getAssignedClients().toString());
+                e -> e.getLegalCase().getAssignedClients().stream()
+                        .map(FullNameProvider::getFullName)
+                        .collect(joining(SEPARATOR)));
     }
 
     private List<KeyValueDataDto> getCaseTypeIncomes(List<Payment> payments) {
@@ -192,8 +217,12 @@ public class DashboardServiceImpl implements DashboardService {
             Function<Payment, String> getKey) {
         return payments.stream()
                 .filter(e -> e.getPaymentType().getName().equals(typeName))
-                .map(e -> new KeyValueDataDto(getKey.apply(e), e.getAmountInCentsFormatted()))
+                .map(e -> new KeyValueDataDto(getKey.apply(e), toDollars(e.getAmountInCents())))
                 .toList();
+    }
+
+    private Long toDollars(Long amountInCents) {
+        return amountInCents / CENTS_IN_DOLLAR;
     }
 
     private LocalDateTime getFirstDayOfMonth(LocalDateTime dateTime) {

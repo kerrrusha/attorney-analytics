@@ -25,23 +25,25 @@ import useFetchAttorneysOfTheMonth from "../hooks/useFetchAttorneysOfTheMonth";
 import useFetchStatsByDates from "../hooks/useFetchStatsByDates";
 
 export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
-    const [dateFrom, setDateFrom] = useState(getYesterday());
-    const [dateTo, setDateTo] = useState(getToday());
+    // const [dateFrom, setDateFrom] = useState(getYesterday());
+    // const [dateTo, setDateTo] = useState(getToday());
+    const [dateFrom, setDateFrom] = useState('2024-03-01');
+    const [dateTo, setDateTo] = useState('2024-03-17');
     const [datesError, setDatesError] = useState('');
     const BAD_DATE_FROM = "Date-from value should be before date-to.";
     const BAD_DATE_TO = "Date-to value should be after date-from.";
 
-    function getToday() {
-        const today = new Date();
-        return today.toISOString().slice(0, 10);
-    }
-
-    function getYesterday() {
-        const today = new Date();
-        const yesterday = new Date(today);
-        yesterday.setDate(today.getDate() - 1);
-        return yesterday.toISOString().slice(0, 10);
-    }
+    // function getToday() {
+    //     const today = new Date();
+    //     return today.toISOString().slice(0, 10);
+    // }
+    //
+    // function getYesterday() {
+    //     const today = new Date();
+    //     const yesterday = new Date(today);
+    //     yesterday.setDate(today.getDate() - 1);
+    //     return yesterday.toISOString().slice(0, 10);
+    // }
 
     const trySetDateFrom = (newDateFrom: string) => {
         if (new Date(newDateFrom) >= new Date(dateTo)) {
@@ -50,6 +52,7 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
         }
         setDateFrom(newDateFrom);
         setDatesError('');
+        setStatsByDatesFetched(false);
     };
 
     const trySetDateTo = (newDateTo: string) => {
@@ -59,9 +62,10 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
         }
         setDateTo(newDateTo);
         setDatesError('');
+        setStatsByDatesFetched(false);
     };
 
-    const [statsByDatesFetched] = useFetchStatsByDates(dateFrom, dateTo);
+    const [statsByDatesFetched, setStatsByDatesFetched] = useFetchStatsByDates(dateFrom, dateTo);
     const statsByDates: StatsByDatesDto = useAppSelector(selectStatsByDates)!;
 
     const [attorneysOfTheMonthFetched] = useFetchAttorneysOfTheMonth();

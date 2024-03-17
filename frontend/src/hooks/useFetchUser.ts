@@ -10,8 +10,7 @@ export default function useFetchUser() : [boolean] {
 
     useEffect(() => {
         doGetRequestApiJson(API_ENDPOINTS.getUserInfo).then(user => {
-            console.log(`Fetched user:`);
-            console.log(user);
+            console.debug(`Fetched user: `, user);
 
             dispatch(setUser(user));
             setFetched(true);

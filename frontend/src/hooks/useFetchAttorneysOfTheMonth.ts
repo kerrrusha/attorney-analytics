@@ -10,8 +10,7 @@ export default function useFetchAttorneysOfTheMonth() : [boolean] {
 
     useEffect(() => {
         doGetRequestApiJson(API_ENDPOINTS.getAttorneysOfTheMonth).then(result => {
-            console.log(`Fetched AttorneysOfTheMonth:`);
-            console.log(result);
+            console.debug(`Fetched AttorneysOfTheMonth:`, result);
 
             dispatch(setAttorneysOfTheMonth(result));
             setFetched(true);

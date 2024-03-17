@@ -8,5 +8,5 @@ import lombok.Data;
 public class KeyValueDataDto {
 
     private String key;
-    private String value;
+    private Long value;
 }
