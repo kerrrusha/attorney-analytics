@@ -9,7 +9,7 @@ export default function useFetchStatsByDates(dateFrom: string, dateTo: string) :
     const [fetched, setFetched] = useState(false);
 
     useEffect(() => {
-        doGetRequestApiJsonWithParams(API_ENDPOINTS.getLatestClosedCases, {dateFrom, dateTo}).then(result => {
+        doGetRequestApiJsonWithParams(API_ENDPOINTS.getStatsByDates, {dateFrom, dateTo}).then(result => {
             console.log(`Fetched statsByDates:`);
             console.log(result);
 

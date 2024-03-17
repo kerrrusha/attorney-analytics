@@ -24,4 +24,5 @@ export const API_ENDPOINTS = {
     getAboutUs: '/dashboard/about-us',
     getLatestClosedCases: '/dashboard/latest-closed-cases',
     getAttorneysOfTheMonth: '/dashboard/attorneys-of-the-month',
+    getStatsByDates: '/dashboard/stats-by-dates',
 }
