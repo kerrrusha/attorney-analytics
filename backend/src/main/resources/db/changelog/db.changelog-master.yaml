@@ -1,65 +1,67 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/changes/create-title-table.yaml
+      file: db/changelog/changes/create/create-title-table.yaml
   - include:
-      file: db/changelog/changes/insert-titles.yaml
+      file: db/changelog/changes/insert/insert-titles.yaml
   - include:
-      file: db/changelog/changes/create-user-table.yaml
+      file: db/changelog/changes/create/create-user-table.yaml
   - include:
-      file: db/changelog/changes/create-role-table.yaml
+      file: db/changelog/changes/create/create-role-table.yaml
   - include:
-      file: db/changelog/changes/create-user_role-table.yaml
+      file: db/changelog/changes/create/create-user_role-table.yaml
   - include:
-      file: db/changelog/changes/insert-roles.yaml
+      file: db/changelog/changes/insert/insert-roles.yaml
   - include:
-      file: db/changelog/changes/create-user_admission-table.yaml
+      file: db/changelog/changes/create/create-user_admission-table.yaml
   - include:
-      file: db/changelog/changes/create-user_email-table.yaml
+      file: db/changelog/changes/create/create-user_email-table.yaml
   - include:
-      file: db/changelog/changes/create-user_location-table.yaml
+      file: db/changelog/changes/create/create-user_location-table.yaml
   - include:
-      file: db/changelog/changes/create-user_phone-table.yaml
+      file: db/changelog/changes/create/create-user_phone-table.yaml
   - include:
-      file: db/changelog/changes/create-user_practice_area-table.yaml
+      file: db/changelog/changes/create/create-user_practice_area-table.yaml
   - include:
-      file: db/changelog/changes/insert-admin.yaml
+      file: db/changelog/changes/insert/insert-admin.yaml
   - include:
-      file: db/changelog/changes/create-legal_case_status-table.yaml
+      file: db/changelog/changes/create/create-legal_case_status-table.yaml
   - include:
-      file: db/changelog/changes/create-legal_case_type-table.yaml
+      file: db/changelog/changes/create/create-legal_case_type-table.yaml
   - include:
-      file: db/changelog/changes/create-legal_case-table.yaml
+      file: db/changelog/changes/create/create-legal_case-table.yaml
   - include:
-      file: db/changelog/changes/create-client-table.yaml
+      file: db/changelog/changes/create/create-client-table.yaml
   - include:
-      file: db/changelog/changes/create-client_phone-table.yaml
+      file: db/changelog/changes/create/create-client_phone-table.yaml
   - include:
-      file: db/changelog/changes/create-client_email-table.yaml
+      file: db/changelog/changes/create/create-client_email-table.yaml
   - include:
-      file: db/changelog/changes/create-payment_status-table.yaml
+      file: db/changelog/changes/create/create-payment_status-table.yaml
   - include:
-      file: db/changelog/changes/create-payment_type-table.yaml
+      file: db/changelog/changes/create/create-payment_type-table.yaml
   - include:
-      file: db/changelog/changes/create-payment-table.yaml
+      file: db/changelog/changes/create/create-payment-table.yaml
   - include:
-      file: db/changelog/changes/create-legal_case_user-table.yaml
+      file: db/changelog/changes/create/create-legal_case_user-table.yaml
   - include:
-      file: db/changelog/changes/create-legal_case_client-table.yaml
+      file: db/changelog/changes/create/create-legal_case_client-table.yaml
   - include:
-      file: db/changelog/changes/insert-legal_case_status.yaml
+      file: db/changelog/changes/insert/insert-legal_case_status.yaml
   - include:
-      file: db/changelog/changes/insert-legal_case_type.yaml
+      file: db/changelog/changes/insert/insert-legal_case_type.yaml
   - include:
-      file: db/changelog/changes/insert-payment_status.yaml
+      file: db/changelog/changes/insert/insert-payment_status.yaml
   - include:
-      file: db/changelog/changes/insert-payment_type.yaml
+      file: db/changelog/changes/insert/insert-payment_type.yaml
   - include:
-      file: db/changelog/changes/insert-clients.yaml
+      file: db/changelog/changes/insert/insert-clients.yaml
   - include:
-      file: db/changelog/changes/insert-legal_cases.yaml
+      file: db/changelog/changes/insert/insert-legal_cases.yaml
   - include:
-      file: db/changelog/changes/insert-users.yaml
+      file: db/changelog/changes/insert/insert-users.yaml
   - include:
-      file: db/changelog/changes/insert-legal_case_clients.yaml
+      file: db/changelog/changes/insert/insert-legal_case_clients.yaml
   - include:
-      file: db/changelog/changes/insert-legal_case_users.yaml
+      file: db/changelog/changes/insert/insert-legal_case_users.yaml
+  - include:
+      file: db/changelog/changes/insert/insert-payments.yaml
