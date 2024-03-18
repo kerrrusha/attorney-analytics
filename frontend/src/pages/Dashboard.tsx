@@ -1,10 +1,10 @@
-import {LoggedInProps, User, UserRoles} from "../common/commonTypes";
+import {LoggedInProps, User} from "../common/commonTypes";
 import PageWithSidebar from "../components/sidebar/PageWithSidebar";
 import useFetchUser from "../hooks/useFetchUser";
 import {useAppSelector} from "../hooks/useAppSelector";
 import {selectUser} from "../redux/slices/authSlice";
 import {haveIntersections} from "../common/commonUtils";
-import {PAGES} from "../common/constants";
+import {PAGES, ROLES} from "../common/constants";
 
 export default function Dashboard({loggedIn, setLoggedIn}: LoggedInProps) {
     const [userFetched] = useFetchUser();
@@ -14,37 +14,37 @@ export default function Dashboard({loggedIn, setLoggedIn}: LoggedInProps) {
         {
             name: "Hire employee",
             url: PAGES.dashboardHire,
-            allowedRoles: [UserRoles.ADMIN]
+            allowedRoles: [ROLES.ADMIN]
         },
         {
             name: "Fire employee",
             url: PAGES.dashboardFire,
-            allowedRoles: [UserRoles.ADMIN]
+            allowedRoles: [ROLES.ADMIN]
         },
         {
             name: "Employee salary bonus suggestions",
             url: PAGES.dashboardEmployeeBonusSuggestions,
-            allowedRoles: [UserRoles.ADMIN, UserRoles.WORKER]
+            allowedRoles: [ROLES.ADMIN, ROLES.WORKER]
         },
         {
             name: "Employee promotion suggestions",
             url: PAGES.dashboardEmployeePromotionSuggestions,
-            allowedRoles: [UserRoles.ADMIN]
+            allowedRoles: [ROLES.ADMIN]
         },
         {
             name: "Promote employee",
             url: PAGES.dashboardPromoteEmployee,
-            allowedRoles: [UserRoles.ADMIN]
+            allowedRoles: [ROLES.ADMIN]
         },
         {
             name: "Declare a payment",
             url: PAGES.dashboardDeclarePayment,
-            allowedRoles: [UserRoles.ADMIN]
+            allowedRoles: [ROLES.ADMIN]
         },
         {
             name: "Add new client",
             url: PAGES.dashboardAddNewClient,
-            allowedRoles: [UserRoles.ADMIN, UserRoles.WORKER]
+            allowedRoles: [ROLES.ADMIN, ROLES.WORKER]
         }
     ]
 

@@ -101,8 +101,3 @@ export type IncomesOutcomes = {
     incomes: Array<KeyValueData>,
     outcomes: Array<KeyValueData>,
 }
-
-export const UserRoles = {
-    WORKER: "WORKER",
-    ADMIN: "ADMIN",
-}

@@ -104,6 +104,7 @@ button {
 
 .sidebar-button.active {
   background-color: #3e86ff;
+  background-image: linear-gradient(to right, #6ea5ff, #3e86ff);
   color: white;
 }
 
