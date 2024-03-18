@@ -34,6 +34,7 @@ export const API_ENDPOINTS = {
     getAttorneysOfTheMonth: '/analytics/attorneys-of-the-month',
     getStatsByDates: '/analytics/stats-by-dates',
     getPayments: '/payments',
+    getClients: '/clients',
 }
 
 export const ROLES = {

@@ -115,3 +115,16 @@ export type PaymentsPageableDto = {
     total: number,
     data: Array<PaymentsDataDto>
 }
+
+export type ClientsDataDto = {
+    createdAt: string,
+    fullName: string,
+    totalCases: string,
+    emails: string,
+    phones: string,
+}
+
+export type ClientsPageableDto = {
+    total: number,
+    data: Array<ClientsDataDto>
+}
