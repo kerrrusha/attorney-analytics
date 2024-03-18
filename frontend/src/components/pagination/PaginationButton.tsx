@@ -8,6 +8,6 @@ export default function PaginationButton({pageNumber, currentPage, onClickCallba
     return <button onClick={() => onClickCallback(pageNumber)}
                    className={"px-3 py-2 m-1 font-bold text-xl btn background-secondary"
                        + (pageNumber === currentPage ? " text-decoration-underline " : "")}>
-        {pageNumber}
+        {pageNumber+1}
     </button>;
 }

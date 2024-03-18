@@ -41,7 +41,7 @@ export function haveIntersections<T>(list1: T[], list2: T[]): boolean {
 
 export function createNumberList(N: number): Array<number> {
     let list = [];
-    for (let i = 1; i <= N; i++) {
+    for (let i = 0; i < N; i++) {
         list.push(i);
     }
     return list;
