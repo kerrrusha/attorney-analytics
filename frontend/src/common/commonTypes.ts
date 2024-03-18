@@ -119,7 +119,7 @@ export type PaymentsPageableDto = {
 export type ClientsDataDto = {
     createdAt: string,
     fullName: string,
-    totalCases: string,
+    totalCases: number,
     emails: string,
     phones: string,
 }

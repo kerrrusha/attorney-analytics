@@ -5,5 +5,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface PaymentsService {
 
-    PaymentsPageableResponseDto getPayments(Pageable pageable);
+    PaymentsPageableResponseDto findAll(Pageable pageable);
 }

@@ -22,7 +22,7 @@ public class PaymentsServiceImpl implements PaymentsService {
     private final PaymentRepository paymentRepository;
 
     @Override
-    public PaymentsPageableResponseDto getPayments(Pageable pageable) {
+    public PaymentsPageableResponseDto findAll(Pageable pageable) {
         return mapToPaymentPageableDto(paymentRepository.findAllByOrderByUpdatedAtDesc(pageable));
     }
 
