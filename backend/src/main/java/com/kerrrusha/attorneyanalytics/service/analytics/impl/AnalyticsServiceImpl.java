@@ -41,7 +41,7 @@ public class AnalyticsServiceImpl implements AnalyticsService {
 
     private static final int LATEST_CLOSED_CASES_LIMIT = 5;
     private static final DateTimeFormatter RESPONSE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-    private static final DateTimeFormatter REACT_DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter REQUEST_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final String SEPARATOR = ", ";
 
     private final UserRepository userRepository;
@@ -141,9 +141,9 @@ public class AnalyticsServiceImpl implements AnalyticsService {
 
     @Override
     public StatsByDatesDto getStatsByDates(String dateFromStr, String dateToStr) {
-        LocalDateTime dateFrom = LocalDate.parse(dateFromStr, REACT_DATETIME_FORMATTER).atStartOfDay();
+        LocalDateTime dateFrom = LocalDate.parse(dateFromStr, REQUEST_FORMATTER).atStartOfDay();
         LocalDateTime dateFromFirstDayOfMonth = getFirstDayOfMonth(dateFrom);
-        LocalDateTime dateTo = LocalDate.parse(dateToStr, REACT_DATETIME_FORMATTER).atStartOfDay();
+        LocalDateTime dateTo = LocalDate.parse(dateToStr, REQUEST_FORMATTER).atStartOfDay();
         LocalDateTime dateToLastDayOfMonth = getLastDayOfMonth(dateTo);
         StatsByDatesDto result = new StatsByDatesDto();
 

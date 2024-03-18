@@ -8,7 +8,8 @@ export default function Payments({loggedIn, setLoggedIn}: LoggedInProps) {
         total: 34,
         data: [
             {
-                date: "18.03.2024",
+                createdAt: "18.03.2024 14:43:45",
+                updatedAt: "18.03.2024 14:53:45",
                 type: "INCOME",
                 description: "Initial consultation fee",
                 assignedCase: "Personal Injury Case #324",
@@ -17,7 +18,8 @@ export default function Payments({loggedIn, setLoggedIn}: LoggedInProps) {
 
             },
             {
-                date: "14.03.2024",
+                createdAt: "18.03.2024 14:43:45",
+                updatedAt: "18.03.2024 14:53:45",
                 type: "OUTCOME",
                 description: "Initial consultation fee",
                 assignedCase: "Personal Injury Case #52",
@@ -59,8 +61,8 @@ export default function Payments({loggedIn, setLoggedIn}: LoggedInProps) {
             <table className="table background-secondary">
                 <thead>
                 <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Type</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Last updated</th>
                     <th scope="col">Description</th>
                     <th scope="col">Assigned case</th>
                     <th scope="col">Amount, $</th>
@@ -71,7 +73,8 @@ export default function Payments({loggedIn, setLoggedIn}: LoggedInProps) {
                 {
                     payments.data.map((data, index) =>
                         <tr key={index}>
-                            <th scope="row">{data.date}</th>
+                            <th>{data.createdAt}</th>
+                            <th>{data.updatedAt}</th>
                             <td>{getPaymentStatusIcon(data.type)}</td>
                             <td>{data.description}</td>
                             <td>{data.assignedCase}</td>
