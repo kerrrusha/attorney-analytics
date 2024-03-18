@@ -1,0 +1,140 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-client_phones
+      author: kerrrusha
+      changes:
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1234567890"
+              - column:
+                  name: client_id
+                  value: 1
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1987654321"
+              - column:
+                  name: client_id
+                  value: 2
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1654321879"
+              - column:
+                  name: client_id
+                  value: 3
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1789456321"
+              - column:
+                  name: client_id
+                  value: 4
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1345678901"
+              - column:
+                  name: client_id
+                  value: 5
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1890765432"
+              - column:
+                  name: client_id
+                  value: 6
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1976543210"
+              - column:
+                  name: client_id
+                  value: 7
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1890432165"
+              - column:
+                  name: client_id
+                  value: 8
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1987654321"
+              - column:
+                  name: client_id
+                  value: 9
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1765432190"
+              - column:
+                  name: client_id
+                  value: 10
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1456789023"
+              - column:
+                  name: client_id
+                  value: 11
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1876543210"
+              - column:
+                  name: client_id
+                  value: 12
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1234567890"
+              - column:
+                  name: client_id
+                  value: 13
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1987654321"
+              - column:
+                  name: client_id
+                  value: 14
+        - insert:
+            tableName: client_phone
+            columns:
+              - column:
+                  name: value
+                  value: "+1765432198"
+              - column:
+                  name: client_id
+                  value: 15

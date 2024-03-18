@@ -1,0 +1,140 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-client_emails
+      author: kerrrusha
+      changes:
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "john@gmail.com"
+              - column:
+                  name: client_id
+                  value: 1
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "emily@yahoo.com"
+              - column:
+                  name: client_id
+                  value: 2
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "michael@hotmail.com"
+              - column:
+                  name: client_id
+                  value: 3
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "sarah@outlook.com"
+              - column:
+                  name: client_id
+                  value: 4
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "david@gmail.com"
+              - column:
+                  name: client_id
+                  value: 5
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "jessica@yahoo.com"
+              - column:
+                  name: client_id
+                  value: 6
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "matthew@hotmail.com"
+              - column:
+                  name: client_id
+                  value: 7
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "amanda@outlook.com"
+              - column:
+                  name: client_id
+                  value: 8
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "christopher@gmail.com"
+              - column:
+                  name: client_id
+                  value: 9
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "samantha@yahoo.com"
+              - column:
+                  name: client_id
+                  value: 10
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "james@hotmail.com"
+              - column:
+                  name: client_id
+                  value: 11
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "ashley@outlook.com"
+              - column:
+                  name: client_id
+                  value: 12
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "daniel@gmail.com"
+              - column:
+                  name: client_id
+                  value: 13
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "elizabeth@yahoo.com"
+              - column:
+                  name: client_id
+                  value: 14
+        - insert:
+            tableName: client_email
+            columns:
+              - column:
+                  name: value
+                  value: "ryan@hotmail.com"
+              - column:
+                  name: client_id
+                  value: 15
