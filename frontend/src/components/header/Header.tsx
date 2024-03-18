@@ -4,7 +4,7 @@ import DarkModeSwitch from "../DarkModeSwitch";
 import {useNavigate} from "react-router-dom";
 import {logout} from "../../services/logout";
 import {APPLICATION_NAME, PAGES} from "../../common/constants";
-import {LoggedInProps} from "../../common/commonTypes";
+import {LoggedInProps, UserRoles} from "../../common/commonTypes";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {selectUser} from "../../redux/slices/authSlice";
 import useFetchUser from "../../hooks/useFetchUser";
@@ -46,7 +46,7 @@ export default function Header({loggedIn, setLoggedIn} : LoggedInProps) {
                                         alt={APPLICATION_NAME}
                                     />
                                     <h3 className="font-bold font-sans site-name mb-0">{APPLICATION_NAME}</h3>
-                                    {userFetched && user.roles.includes("ADMIN") && <h5 className="m-0 mx-4">admin</h5>}
+                                    {userFetched && user.roles.includes(UserRoles.ADMIN) && <h5 className="m-0 mx-4">admin</h5>}
                                 </div>
                             </a>
                             <div className="flex flex-1 absolute inset-y-0 right-0 justify-end items-center sm:static sm:inset-auto sm:ml-6">

@@ -28,3 +28,13 @@ export function generateRandomColors(count: number): string[] {
     }
     return colors;
 }
+
+export function haveIntersections<T>(list1: T[], list2: T[]): boolean {
+    const set1 = new Set(list1);
+    for (const item of list2) {
+        if (set1.has(item)) {
+            return true;
+        }
+    }
+    return false;
+}

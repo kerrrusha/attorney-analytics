@@ -1,5 +1,4 @@
 import {Dispatch} from "react";
-import useFetchStatsByDates from "../hooks/useFetchStatsByDates";
 
 export type InputTarget = {
     target: HTMLInputElement;
@@ -101,4 +100,9 @@ export type StatsByDatesDto = {
 export type IncomesOutcomes = {
     incomes: Array<KeyValueData>,
     outcomes: Array<KeyValueData>,
+}
+
+export const UserRoles = {
+    WORKER: "WORKER",
+    ADMIN: "ADMIN",
 }

@@ -11,7 +11,7 @@ import Loading from "./components/loading/Loading";
 import Payments from "./pages/Payments";
 import Cases from "./pages/Cases";
 import Clients from "./pages/Clients";
-import Workers from "./pages/Workers";
+import Employees from "./pages/Employees";
 import Dashboard from "./pages/Dashboard";
 
 export default function App() {
@@ -43,7 +43,7 @@ export default function App() {
       <Route path={PAGES.payments}
              element={loggedIn ? <Payments loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
       <Route path={PAGES.workers}
-             element={loggedIn ? <Workers loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
+             element={loggedIn ? <Employees loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
       <Route path={PAGES.clients}
              element={loggedIn ? <Clients loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
       <Route path={PAGES.cases}
