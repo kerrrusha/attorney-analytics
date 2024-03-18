@@ -12,6 +12,7 @@ import Payments from "./pages/Payments";
 import Cases from "./pages/Cases";
 import Clients from "./pages/Clients";
 import Workers from "./pages/Workers";
+import Dashboard from "./pages/Dashboard";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState<any>(undefined);
@@ -37,6 +38,8 @@ export default function App() {
              element={loggedIn ? <Analytics loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
       <Route path={PAGES.analytics}
              element={loggedIn ? <Analytics loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
+      <Route path={PAGES.dashboard}
+             element={loggedIn ? <Dashboard loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
       <Route path={PAGES.payments}
              element={loggedIn ? <Payments loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
       <Route path={PAGES.workers}

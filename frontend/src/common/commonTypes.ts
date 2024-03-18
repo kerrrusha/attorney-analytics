@@ -80,6 +80,7 @@ export type LatestClosedCasesDto = Array<{
     closedDate: string,
     title: string,
     status: string,
+    profit: number,
     clients: string,
     assignedAttorneys: string,
 }>

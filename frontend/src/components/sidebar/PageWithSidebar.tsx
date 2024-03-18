@@ -19,7 +19,9 @@ export default function PageWithSidebar({loggedIn, setLoggedIn, pageName, conten
                 <div className="flex flex-col w-100 background-primary">
                     <p className="mx-4 mt-3 mb-0 display-5">{toPascalCase(pageName)}</p>
                     <hr />
-                    {contentElement}
+                    <div className="px-3">
+                        {contentElement}
+                    </div>
                 </div>
             </div>
         </div>

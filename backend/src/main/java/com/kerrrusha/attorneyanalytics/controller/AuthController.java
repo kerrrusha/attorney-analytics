@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.kerrrusha.attorneyanalytics.helper.AuthHelper.createAuthCookie;
-import static com.kerrrusha.attorneyanalytics.helper.AuthHelper.createLogoutCookie;
+import static com.kerrrusha.attorneyanalytics.common.AuthHelper.createAuthCookie;
+import static com.kerrrusha.attorneyanalytics.common.AuthHelper.createLogoutCookie;
 
 @RestController
 @RequiredArgsConstructor

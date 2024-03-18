@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.helper;
+package com.kerrrusha.attorneyanalytics.common;
 
 import com.kerrrusha.attorneyanalytics.model.payment.Payment;
 

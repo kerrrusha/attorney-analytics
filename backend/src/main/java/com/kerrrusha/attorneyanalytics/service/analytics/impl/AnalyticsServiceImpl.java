@@ -14,6 +14,7 @@ import com.kerrrusha.attorneyanalytics.repository.legal_case.LegalCaseRepository
 import com.kerrrusha.attorneyanalytics.repository.client.ClientRepository;
 import com.kerrrusha.attorneyanalytics.repository.payment.PaymentRepository;
 import com.kerrrusha.attorneyanalytics.repository.user.UserRepository;
+import com.kerrrusha.attorneyanalytics.service.LegalCaseService;
 import com.kerrrusha.attorneyanalytics.service.analytics.AbstractIncomesOutcomesCalculator;
 import com.kerrrusha.attorneyanalytics.service.analytics.AnalyticsService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,8 +32,8 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static com.kerrrusha.attorneyanalytics.helper.CommonHelper.getFirstDayOfMonth;
-import static com.kerrrusha.attorneyanalytics.helper.CommonHelper.getLastDayOfMonth;
+import static com.kerrrusha.attorneyanalytics.common.CommonHelper.getFirstDayOfMonth;
+import static com.kerrrusha.attorneyanalytics.common.CommonHelper.getLastDayOfMonth;
 import static java.util.stream.Collectors.joining;
 
 @Service
@@ -52,11 +53,13 @@ public class AnalyticsServiceImpl implements AnalyticsService {
     private final AbstractIncomesOutcomesCalculator caseTypeOutcomesCalculator;
     private final AbstractIncomesOutcomesCalculator clientIncomesOutcomesCalculator;
 
+    private final LegalCaseService legalCaseService;
+
     public AnalyticsServiceImpl(UserRepository userRepository, ClientRepository clientRepository,
                                 LegalCaseRepository legalCaseRepository, PaymentRepository paymentRepository,
                                 @Qualifier("month") AbstractIncomesOutcomesCalculator monthIncomesOutcomesCalculator,
                                 @Qualifier("caseType") AbstractIncomesOutcomesCalculator caseTypeOutcomesCalculator,
-                                @Qualifier("client") AbstractIncomesOutcomesCalculator clientIncomesOutcomesCalculator) {
+                                @Qualifier("client") AbstractIncomesOutcomesCalculator clientIncomesOutcomesCalculator, LegalCaseService legalCaseService) {
         this.userRepository = userRepository;
         this.clientRepository = clientRepository;
         this.legalCaseRepository = legalCaseRepository;
@@ -64,6 +67,7 @@ public class AnalyticsServiceImpl implements AnalyticsService {
         this.monthIncomesOutcomesCalculator = monthIncomesOutcomesCalculator;
         this.caseTypeOutcomesCalculator = caseTypeOutcomesCalculator;
         this.clientIncomesOutcomesCalculator = clientIncomesOutcomesCalculator;
+        this.legalCaseService = legalCaseService;
     }
 
     @Override
@@ -163,6 +167,7 @@ public class AnalyticsServiceImpl implements AnalyticsService {
         result.setClosedDate(legalCase.getUpdatedAt().format(RESPONSE_FORMATTER));
         result.setTitle(legalCase.getTitle());
         result.setStatus(legalCase.getLegalCaseStatus().getName().name());
+        result.setProfit(legalCaseService.getProfitInDollars(legalCase));
         result.setAssignedAttorneys(legalCase.getAssignedAttorneys()
                 .stream()
                 .map(FullNameProvider::getFullName)

@@ -24,6 +24,10 @@ import {createIncomeOutcomeChart, createSimpleDoughnut} from "../common/chartHel
 import useFetchAttorneysOfTheMonth from "../hooks/useFetchAttorneysOfTheMonth";
 import useFetchStatsByDates from "../hooks/useFetchStatsByDates";
 
+const SUCCESS_COLOR_CLASSNAME = "text-success";
+const DANGER_COLOR_CLASSNAME = "text-danger";
+const NEUTRAL_COLOR_CLASS_NAME = "text-primary";
+
 export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
     // const [dateFrom, setDateFrom] = useState(getYesterday());
     // const [dateTo, setDateTo] = useState(getToday());
@@ -81,18 +85,38 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
         return Object.values(aboutUs.caseStatusToAmount).reduce((acc, val) => acc + val, 0);
     };
 
-    const getStatusTextColorClass = (status: string)=> {
+    const getStatusColorClass = (status: string) => {
         status = status.toUpperCase();
         if (status === "SUCCESS") {
-            return "text-success";
+            return SUCCESS_COLOR_CLASSNAME;
         }
         if (status === "FAILED" || status === "REJECTED") {
-            return "text-danger";
+            return DANGER_COLOR_CLASSNAME;
         }
-        return "text-primary";
+        return NEUTRAL_COLOR_CLASS_NAME;
     }
 
-    const contentElement = <div className="px-3">
+    const getProfitColorClass = (profit: number) => {
+        if (profit > 0) {
+            return SUCCESS_COLOR_CLASSNAME;
+        }
+        if (profit < 0) {
+            return DANGER_COLOR_CLASSNAME;
+        }
+        return NEUTRAL_COLOR_CLASS_NAME;
+    }
+
+    const getProfitChar = (profit: number) => {
+        if (profit > 0) {
+            return '▲';
+        }
+        if (profit < 0) {
+            return '▼';
+        }
+        return '';
+    }
+
+    const contentElement = <div>
         <div>
             <h5 className="text-m">Show stats between:</h5>
             <div className="my-3 flex flex-row">
@@ -200,6 +224,7 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
                             <th scope="col">Closed date</th>
                             <th scope="col">Title</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Profit</th>
                             <th scope="col">Client(s)</th>
                             <th scope="col">Assigned attorney(s)</th>
                         </tr>
@@ -208,7 +233,13 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
                         {latestClosedCases.map((e, index) => <tr key={index}>
                             <th scope="row">{e.closedDate}</th>
                             <td>{e.title}</td>
-                            <td className={getStatusTextColorClass(e.status)}>{e.status}</td>
+                            <td className={getStatusColorClass(e.status)}>{e.status}</td>
+                            <td className={getProfitColorClass(e.profit) + " px-3"}>
+                                <div className="flex flex-row justify-around">
+                                    <span>{getProfitChar(e.profit)}</span>
+                                    <span>{e.profit}$</span>
+                                </div>
+                            </td>
                             <td>{e.clients}</td>
                             <td>{e.assignedAttorneys}</td>
                         </tr>)}

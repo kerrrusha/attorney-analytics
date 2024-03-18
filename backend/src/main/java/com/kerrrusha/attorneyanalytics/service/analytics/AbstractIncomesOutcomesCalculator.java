@@ -10,8 +10,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import static com.kerrrusha.attorneyanalytics.helper.CommonHelper.calculatePaymentsTotal;
-import static com.kerrrusha.attorneyanalytics.helper.CommonHelper.toDollars;
+import static com.kerrrusha.attorneyanalytics.common.CommonHelper.calculatePaymentsTotal;
+import static com.kerrrusha.attorneyanalytics.common.CommonHelper.toDollars;
 import static java.util.Comparator.reverseOrder;
 
 public abstract class AbstractIncomesOutcomesCalculator {
