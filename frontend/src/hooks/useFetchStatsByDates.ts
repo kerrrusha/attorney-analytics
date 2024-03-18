@@ -2,7 +2,7 @@ import {Dispatch, useEffect, useState} from "react";
 import {useAppDispatch} from "./useAppDispatch";
 import {doGetRequestApiJsonWithParams} from "../services/doGetRequestApiJsonWithParams";
 import {API_ENDPOINTS} from "../common/constants";
-import {setStatsByDates} from "../redux/slices/dashboardSlice";
+import {setStatsByDates} from "../redux/slices/analyticsSlice";
 
 export default function useFetchStatsByDates(dateFrom: string, dateTo: string) : [boolean, Dispatch<boolean>] {
     const dispatch = useAppDispatch();

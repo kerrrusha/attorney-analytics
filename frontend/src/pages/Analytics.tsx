@@ -16,7 +16,7 @@ import {
     selectAttorneysOfTheMonth,
     selectLatestClosedCases,
     selectStatsByDates
-} from "../redux/slices/dashboardSlice";
+} from "../redux/slices/analyticsSlice";
 import LoadingGif from "../components/loading/LoadingGif";
 import {rateXvmColorValue} from "../common/XvmColorValue";
 import useFetchLatestClosedCases from "../hooks/useFetchLatestClosedCases";
@@ -24,7 +24,7 @@ import {createIncomeOutcomeChart, createSimpleDoughnut} from "../common/chartHel
 import useFetchAttorneysOfTheMonth from "../hooks/useFetchAttorneysOfTheMonth";
 import useFetchStatsByDates from "../hooks/useFetchStatsByDates";
 
-export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
+export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
     // const [dateFrom, setDateFrom] = useState(getYesterday());
     // const [dateTo, setDateTo] = useState(getToday());
     const [dateFrom, setDateFrom] = useState('2023-09-01');
@@ -265,5 +265,5 @@ export default function Dashboard({loggedIn, setLoggedIn} : LoggedInProps) {
         </div>
     </div>;
     return <PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"dashboard"} contentElement={contentElement} />;
+                            pageName={"analytics"} contentElement={contentElement} />;
 }

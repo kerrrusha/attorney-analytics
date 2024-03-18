@@ -16,7 +16,7 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
 
     useEffect(() => {
         if (loggedIn) {
-            navigate(PAGES.dashboard);
+            navigate(PAGES.analytics);
         }
     }, [loggedIn]);
 

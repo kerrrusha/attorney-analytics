@@ -69,7 +69,7 @@ export type AboutUsDto = {
     caseStatusToAmount: Record<string, number>
 }
 
-export type DashboardState = {
+export type AnalyticsState = {
     aboutUs: AboutUsDto | null,
     latestClosedCases: LatestClosedCasesDto | null,
     attorneysOfTheMonth: AttorneysOfTheMonthDto | null,

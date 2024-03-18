@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useAppDispatch} from "./useAppDispatch";
-import {setAboutUs} from "../redux/slices/dashboardSlice";
+import {setAboutUs} from "../redux/slices/analyticsSlice";
 import {doGetRequestApiJson} from "../services/doGetRequestApiJson";
 import {API_ENDPOINTS} from "../common/constants";
 

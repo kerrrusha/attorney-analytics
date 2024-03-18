@@ -1,10 +1,10 @@
-package com.kerrrusha.attorneyanalytics.service.dashboard.impl;
+package com.kerrrusha.attorneyanalytics.service.analytics.impl;
 
-import com.kerrrusha.attorneyanalytics.dto.dashboard.AboutUsDto;
-import com.kerrrusha.attorneyanalytics.dto.dashboard.AttorneyOfTheMonthDto;
-import com.kerrrusha.attorneyanalytics.dto.dashboard.IncomesOutcomesDto;
-import com.kerrrusha.attorneyanalytics.dto.dashboard.LatestClosedCaseDto;
-import com.kerrrusha.attorneyanalytics.dto.dashboard.StatsByDatesDto;
+import com.kerrrusha.attorneyanalytics.dto.analytics.AboutUsDto;
+import com.kerrrusha.attorneyanalytics.dto.analytics.AttorneyOfTheMonthDto;
+import com.kerrrusha.attorneyanalytics.dto.analytics.IncomesOutcomesDto;
+import com.kerrrusha.attorneyanalytics.dto.analytics.LatestClosedCaseDto;
+import com.kerrrusha.attorneyanalytics.dto.analytics.StatsByDatesDto;
 import com.kerrrusha.attorneyanalytics.model.FullNameProvider;
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCase;
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCaseStatus;
@@ -14,8 +14,8 @@ import com.kerrrusha.attorneyanalytics.repository.legal_case.LegalCaseRepository
 import com.kerrrusha.attorneyanalytics.repository.client.ClientRepository;
 import com.kerrrusha.attorneyanalytics.repository.payment.PaymentRepository;
 import com.kerrrusha.attorneyanalytics.repository.user.UserRepository;
-import com.kerrrusha.attorneyanalytics.service.dashboard.AbstractIncomesOutcomesCalculator;
-import com.kerrrusha.attorneyanalytics.service.dashboard.DashboardService;
+import com.kerrrusha.attorneyanalytics.service.analytics.AbstractIncomesOutcomesCalculator;
+import com.kerrrusha.attorneyanalytics.service.analytics.AnalyticsService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Limit;
 import org.springframework.stereotype.Service;
@@ -36,7 +36,7 @@ import static com.kerrrusha.attorneyanalytics.helper.CommonHelper.getLastDayOfMo
 import static java.util.stream.Collectors.joining;
 
 @Service
-public class DashboardServiceImpl implements DashboardService {
+public class AnalyticsServiceImpl implements AnalyticsService {
 
     private static final int LATEST_CLOSED_CASES_LIMIT = 5;
     private static final DateTimeFormatter RESPONSE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
@@ -52,7 +52,7 @@ public class DashboardServiceImpl implements DashboardService {
     private final AbstractIncomesOutcomesCalculator caseTypeOutcomesCalculator;
     private final AbstractIncomesOutcomesCalculator clientIncomesOutcomesCalculator;
 
-    public DashboardServiceImpl(UserRepository userRepository, ClientRepository clientRepository,
+    public AnalyticsServiceImpl(UserRepository userRepository, ClientRepository clientRepository,
                                 LegalCaseRepository legalCaseRepository, PaymentRepository paymentRepository,
                                 @Qualifier("month") AbstractIncomesOutcomesCalculator monthIncomesOutcomesCalculator,
                                 @Qualifier("caseType") AbstractIncomesOutcomesCalculator caseTypeOutcomesCalculator,

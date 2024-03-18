@@ -3,6 +3,7 @@ export const MIN_VALUE_LENGTH = 3;
 export const APPLICATION_NAME = "Attorney Analytics";
 
 export const PAGES = {
+    analytics: '/analytics',
 	dashboard: '/dashboard',
     payments: '/payments',
     workers: '/workers',
@@ -21,8 +22,8 @@ export const API_ENDPOINTS = {
     postUpdateUser: '/user/update',
     login: '/auth/login',
     register: '/auth/register',
-    getAboutUs: '/dashboard/about-us',
-    getLatestClosedCases: '/dashboard/latest-closed-cases',
-    getAttorneysOfTheMonth: '/dashboard/attorneys-of-the-month',
-    getStatsByDates: '/dashboard/stats-by-dates',
+    getAboutUs: '/analytics/about-us',
+    getLatestClosedCases: '/analytics/latest-closed-cases',
+    getAttorneysOfTheMonth: '/analytics/attorneys-of-the-month',
+    getStatsByDates: '/analytics/stats-by-dates',
 }

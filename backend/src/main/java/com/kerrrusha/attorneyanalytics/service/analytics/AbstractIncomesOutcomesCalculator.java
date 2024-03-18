@@ -1,7 +1,7 @@
-package com.kerrrusha.attorneyanalytics.service.dashboard;
+package com.kerrrusha.attorneyanalytics.service.analytics;
 
-import com.kerrrusha.attorneyanalytics.dto.dashboard.IncomesOutcomesDto;
-import com.kerrrusha.attorneyanalytics.dto.dashboard.KeyToMoneyDto;
+import com.kerrrusha.attorneyanalytics.dto.analytics.IncomesOutcomesDto;
+import com.kerrrusha.attorneyanalytics.dto.analytics.KeyToMoneyDto;
 import com.kerrrusha.attorneyanalytics.model.payment.Payment;
 import com.kerrrusha.attorneyanalytics.model.payment.PaymentType;
 

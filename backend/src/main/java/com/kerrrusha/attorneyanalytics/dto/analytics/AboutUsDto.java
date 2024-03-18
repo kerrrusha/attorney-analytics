@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.dto.dashboard;
+package com.kerrrusha.attorneyanalytics.dto.analytics;
 
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCaseStatus;
 import lombok.Data;

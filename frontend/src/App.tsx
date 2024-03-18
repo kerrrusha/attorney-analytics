@@ -1,5 +1,5 @@
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import Dashboard from './pages/Dashboard';
+import Analytics from './pages/Analytics';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NoPage from './pages/NoPage';
@@ -34,9 +34,9 @@ export default function App() {
   const router = <BrowserRouter>
     <Routes>
       <Route index
-             element={loggedIn ? <Dashboard loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
-      <Route path={PAGES.dashboard}
-             element={loggedIn ? <Dashboard loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
+             element={loggedIn ? <Analytics loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
+      <Route path={PAGES.analytics}
+             element={loggedIn ? <Analytics loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
       <Route path={PAGES.payments}
              element={loggedIn ? <Payments loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
       <Route path={PAGES.workers}

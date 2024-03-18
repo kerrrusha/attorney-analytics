@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.dto.dashboard;
+package com.kerrrusha.attorneyanalytics.dto.analytics;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

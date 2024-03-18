@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {useAppDispatch} from "./useAppDispatch";
 import {doGetRequestApiJson} from "../services/doGetRequestApiJson";
 import {API_ENDPOINTS} from "../common/constants";
-import {setAttorneysOfTheMonth} from "../redux/slices/dashboardSlice";
+import {setAttorneysOfTheMonth} from "../redux/slices/analyticsSlice";
 
 export default function useFetchAttorneysOfTheMonth() : [boolean] {
     const dispatch = useAppDispatch();

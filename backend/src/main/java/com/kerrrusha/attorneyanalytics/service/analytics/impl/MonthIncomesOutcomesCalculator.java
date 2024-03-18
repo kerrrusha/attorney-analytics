@@ -1,8 +1,8 @@
-package com.kerrrusha.attorneyanalytics.service.dashboard.impl;
+package com.kerrrusha.attorneyanalytics.service.analytics.impl;
 
-import com.kerrrusha.attorneyanalytics.dto.dashboard.KeyToMoneyDto;
+import com.kerrrusha.attorneyanalytics.dto.analytics.KeyToMoneyDto;
 import com.kerrrusha.attorneyanalytics.model.payment.Payment;
-import com.kerrrusha.attorneyanalytics.service.dashboard.AbstractIncomesOutcomesCalculator;
+import com.kerrrusha.attorneyanalytics.service.analytics.AbstractIncomesOutcomesCalculator;
 import org.springframework.stereotype.Service;
 
 import java.time.YearMonth;

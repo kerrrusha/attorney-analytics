@@ -8,6 +8,7 @@ interface SidebarProps {
 
 export default function Sidebar({activePageName}: SidebarProps) {
     const buttonsData = [
+        {name: "Analytics", url: PAGES.analytics, iconUrl: "https://www.svgrepo.com/show/529625/graph.svg"},
         {name: "Dashboard", url: PAGES.dashboard, iconUrl: "https://www.svgrepo.com/show/520688/dashboard-5.svg"},
         {name: "Payments", url: PAGES.payments, iconUrl: "https://www.svgrepo.com/show/500409/money.svg"},
         {name: "Workers", url: PAGES.workers, iconUrl: "https://www.svgrepo.com/show/374474/team-member.svg"},
