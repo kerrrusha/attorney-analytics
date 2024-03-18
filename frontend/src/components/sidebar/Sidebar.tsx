@@ -11,7 +11,7 @@ export default function Sidebar({activePageName}: SidebarProps) {
         {name: "Analytics", url: PAGES.analytics, iconUrl: "https://www.svgrepo.com/show/529625/graph.svg"},
         {name: "Dashboard", url: PAGES.dashboard, iconUrl: "https://www.svgrepo.com/show/520688/dashboard-5.svg"},
         {name: "Payments", url: PAGES.payments, iconUrl: "https://www.svgrepo.com/show/500409/money.svg"},
-        {name: "Employees", url: PAGES.workers, iconUrl: "https://www.svgrepo.com/show/374474/team-member.svg"},
+        {name: "Employees", url: PAGES.employees, iconUrl: "https://www.svgrepo.com/show/374474/team-member.svg"},
         {name: "Clients", url: PAGES.clients, iconUrl: "https://www.svgrepo.com/show/374595/client.svg"},
         {name: "Cases", url: PAGES.cases, iconUrl: "https://www.svgrepo.com/show/374577/case.svg"},
     ]

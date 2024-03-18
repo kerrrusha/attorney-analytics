@@ -4,7 +4,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import NoPage from './pages/NoPage';
 import Profile from "./pages/Profile";
-import {useEffect, useState} from "react";
+import {ReactElement, useEffect, useState} from "react";
 import {PAGES} from "./common/constants";
 import {isLoggedIn} from "./services/isLoggedIn";
 import Loading from "./components/loading/Loading";
@@ -13,6 +13,8 @@ import Cases from "./pages/Cases";
 import Clients from "./pages/Clients";
 import Employees from "./pages/Employees";
 import Dashboard from "./pages/Dashboard";
+import DashboardHire from "./pages/dashboard/DashboardHire";
+import DashboardFire from "./pages/dashboard/DashboardFire";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState<any>(undefined);
@@ -32,26 +34,22 @@ export default function App() {
 
   const loading = <Loading />;
 
+  const secure = (element: ReactElement) => loggedIn ? element : <Navigate to={PAGES.login} />;
+
   const router = <BrowserRouter>
     <Routes>
-      <Route index
-             element={loggedIn ? <Analytics loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
-      <Route path={PAGES.analytics}
-             element={loggedIn ? <Analytics loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
-      <Route path={PAGES.dashboard}
-             element={loggedIn ? <Dashboard loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
-      <Route path={PAGES.payments}
-             element={loggedIn ? <Payments loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
-      <Route path={PAGES.workers}
-             element={loggedIn ? <Employees loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
-      <Route path={PAGES.clients}
-             element={loggedIn ? <Clients loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
-      <Route path={PAGES.cases}
-             element={loggedIn ? <Cases loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
-      <Route path={PAGES.profile}
-             element={loggedIn ? <Profile loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Navigate to={PAGES.login} />} />
       <Route path={PAGES.login} element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
       <Route path={PAGES.register} element={<Register loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
+      <Route index element={secure(<Analytics loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)} />
+      <Route path={PAGES.analytics} element={secure(<Analytics loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)} />
+      <Route path={PAGES.dashboard} element={secure(<Dashboard loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)} />
+      <Route path={PAGES.payments} element={secure(<Payments loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)} />
+      <Route path={PAGES.employees} element={secure(<Employees loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)} />
+      <Route path={PAGES.clients} element={secure(<Clients loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)} />
+      <Route path={PAGES.cases} element={secure(<Cases loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)} />
+      <Route path={PAGES.profile} element={secure(<Profile loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)} />
+      <Route path={PAGES.dashboardHire} element={secure(<DashboardHire loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)} />
+      <Route path={PAGES.dashboardFire} element={secure(<DashboardFire loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)} />
       <Route path="*" element={<NoPage />} />
     </Routes>
   </BrowserRouter>;

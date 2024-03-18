@@ -4,6 +4,7 @@ import useFetchUser from "../hooks/useFetchUser";
 import {useAppSelector} from "../hooks/useAppSelector";
 import {selectUser} from "../redux/slices/authSlice";
 import {haveIntersections} from "../common/commonUtils";
+import {PAGES} from "../common/constants";
 
 export default function Dashboard({loggedIn, setLoggedIn}: LoggedInProps) {
     const [userFetched] = useFetchUser();
@@ -12,37 +13,37 @@ export default function Dashboard({loggedIn, setLoggedIn}: LoggedInProps) {
     const buttonsData = [
         {
             name: "Hire employee",
-            url: "#",
+            url: PAGES.dashboardHire,
             allowedRoles: [UserRoles.ADMIN]
         },
         {
             name: "Fire employee",
-            url: "#",
+            url: PAGES.dashboardFire,
             allowedRoles: [UserRoles.ADMIN]
         },
         {
             name: "Employee salary bonus suggestions",
-            url: "#",
+            url: PAGES.dashboardEmployeeBonusSuggestions,
             allowedRoles: [UserRoles.ADMIN, UserRoles.WORKER]
         },
         {
             name: "Employee promotion suggestions",
-            url: "#",
+            url: PAGES.dashboardEmployeePromotionSuggestions,
             allowedRoles: [UserRoles.ADMIN]
         },
         {
             name: "Promote employee",
-            url: "#",
+            url: PAGES.dashboardPromoteEmployee,
             allowedRoles: [UserRoles.ADMIN]
         },
         {
             name: "Declare a payment",
-            url: "#",
+            url: PAGES.dashboardDeclarePayment,
             allowedRoles: [UserRoles.ADMIN]
         },
         {
             name: "Add new client",
-            url: "#",
+            url: PAGES.dashboardAddNewClient,
             allowedRoles: [UserRoles.ADMIN, UserRoles.WORKER]
         }
     ]

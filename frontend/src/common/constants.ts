@@ -6,12 +6,19 @@ export const PAGES = {
     analytics: '/analytics',
 	dashboard: '/dashboard',
     payments: '/payments',
-    workers: '/workers',
+    employees: '/employees',
     clients: '/clients',
     cases: '/cases',
     login: '/login',
     register: '/register',
     profile: '/profile',
+    dashboardHire: '/dashboard/hire',
+    dashboardFire: '/dashboard/fire',
+    dashboardEmployeeBonusSuggestions: '/dashboard/employee-bonus-suggestions',
+    dashboardEmployeePromotionSuggestions: '/dashboard/employee-promotion-suggestions',
+    dashboardPromoteEmployee: '/dashboard/promote-employee',
+    dashboardDeclarePayment: '/dashboard/declare-payment',
+    dashboardAddNewClient: '/dashboard/add-client',
 }
 
 export const API_ENDPOINTS = {
