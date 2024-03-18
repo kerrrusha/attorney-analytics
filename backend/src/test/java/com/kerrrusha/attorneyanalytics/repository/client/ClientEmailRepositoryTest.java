@@ -11,7 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.kerrrusha.attorneyanalytics.common.helper.CommonHelper.createList;
+import static com.kerrrusha.attorneyanalytics.helper.CommonHelper.createList;
 import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.*;
 

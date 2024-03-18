@@ -7,6 +7,6 @@ import java.util.List;
 @Data
 public class IncomesOutcomesDto {
 
-    private List<KeyValueDataDto> incomes;
-    private List<KeyValueDataDto> outcomes;
+    private List<KeyToMoneyDto> incomes;
+    private List<KeyToMoneyDto> outcomes;
 }

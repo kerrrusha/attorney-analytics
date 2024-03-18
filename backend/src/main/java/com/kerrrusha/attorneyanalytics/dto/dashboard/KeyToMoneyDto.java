@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class KeyValueDataDto {
+public class KeyToMoneyDto {
 
-    private String key;
-    private Long value;
+    protected String key;
+    protected Long value;
 }
