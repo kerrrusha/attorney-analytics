@@ -12,7 +12,6 @@ public class PaymentsPageableResponseDto {
 
     @Data
     public static class PaymentsPageableData {
-        private String createdAt;
         private String updatedAt;
         private String type;
         private String description;

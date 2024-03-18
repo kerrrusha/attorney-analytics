@@ -101,3 +101,17 @@ export type IncomesOutcomes = {
     incomes: Array<KeyValueData>,
     outcomes: Array<KeyValueData>,
 }
+
+export type PaymentsDataDto = {
+    updatedAt: string,
+    type: string,
+    description: string,
+    assignedCase: string,
+    amount: number,
+    status: string,
+}
+
+export type PaymentsPageableDto = {
+    total: number,
+    data: Array<PaymentsDataDto>
+}

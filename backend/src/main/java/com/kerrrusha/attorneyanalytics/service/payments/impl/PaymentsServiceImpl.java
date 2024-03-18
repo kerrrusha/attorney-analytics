@@ -17,7 +17,7 @@ import static com.kerrrusha.attorneyanalytics.common.CommonHelper.toDollars;
 @RequiredArgsConstructor
 public class PaymentsServiceImpl implements PaymentsService {
 
-    private static final DateTimeFormatter RESPONSE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private static final DateTimeFormatter RESPONSE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
 
     private final PaymentRepository paymentRepository;
 
@@ -40,7 +40,6 @@ public class PaymentsServiceImpl implements PaymentsService {
     private PaymentsPageableResponseDto.PaymentsPageableData mapToPaymentDto(Payment payment) {
         var result = new PaymentsPageableResponseDto.PaymentsPageableData();
 
-        result.setCreatedAt(payment.getCreatedAt().format(RESPONSE_FORMATTER));
         result.setUpdatedAt(payment.getUpdatedAt().format(RESPONSE_FORMATTER));
         result.setType(payment.getPaymentType().getName().name());
         result.setDescription(payment.getDescription());
