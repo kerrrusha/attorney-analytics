@@ -50,6 +50,9 @@ export function createNumberList(N: number): Array<number> {
 }
 
 export const getStatusColorClass = (status: string) => {
+    if (!status) {
+        return "";
+    }
     status = status.toUpperCase();
     if (status === "SUCCESS") {
         return SUCCESS_COLOR_CLASSNAME;

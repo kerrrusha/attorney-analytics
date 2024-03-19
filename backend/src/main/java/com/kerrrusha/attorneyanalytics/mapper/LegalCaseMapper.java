@@ -35,6 +35,8 @@ public abstract class LegalCaseMapper {
     @Mapping(target = "assignedClients", ignore = true)
     @Mapping(target = "assignedAttorneys", ignore = true)
     @Mapping(target = "assignedPayments", ignore = true)
+    @Mapping(target = "status", source = "legalCaseStatus")
+    @Mapping(target = "type", source = "legalCaseType")
     public abstract LegalCaseResponseDto toDto(LegalCase legalCase);
 
     protected String map(LocalDateTime dateTime) {

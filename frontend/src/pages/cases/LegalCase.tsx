@@ -9,7 +9,6 @@ export default function LegalCase({loggedIn, setLoggedIn}: LoggedInProps) {
     const [legalCase] = useFetchLegalCase(caseId!);
 
     const contentElement = <div>
-        {caseId}
         {!legalCase ? <LoadingGif /> : <span>{legalCase.title}</span>}
     </div>;
     return <PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
