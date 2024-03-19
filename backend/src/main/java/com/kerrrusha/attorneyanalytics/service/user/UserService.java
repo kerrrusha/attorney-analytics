@@ -2,6 +2,7 @@ package com.kerrrusha.attorneyanalytics.service.user;
 
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserRegistrationRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
+import com.kerrrusha.attorneyanalytics.dto.user.response.EmployeeResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UsersGroupedByTitleDto;
 
@@ -16,4 +17,6 @@ public interface UserService {
     UserResponseDto update(UserUpdateRequestDto requestDto, String login);
 
     List<UsersGroupedByTitleDto> getGroupedByTitle();
+
+    EmployeeResponseDto findByFullName(String fullName);
 }

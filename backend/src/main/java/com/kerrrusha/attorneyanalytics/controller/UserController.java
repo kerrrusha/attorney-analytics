@@ -1,6 +1,7 @@
 package com.kerrrusha.attorneyanalytics.controller;
 
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
+import com.kerrrusha.attorneyanalytics.dto.user.response.EmployeeResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UsersGroupedByTitleDto;
 import com.kerrrusha.attorneyanalytics.model.user.User;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,5 +54,10 @@ public class UserController {
     @GetMapping("/grouped-by-title")
     public List<UsersGroupedByTitleDto> getGroupedByTitle() {
         return userService.getGroupedByTitle();
+    }
+
+    @GetMapping("/{fullName}")
+    public EmployeeResponseDto getEmployee(@PathVariable String fullName) {
+        return userService.findByFullName(fullName);
     }
 }

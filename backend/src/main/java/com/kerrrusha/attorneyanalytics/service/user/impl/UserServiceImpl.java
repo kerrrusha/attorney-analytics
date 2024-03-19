@@ -1,6 +1,7 @@
 package com.kerrrusha.attorneyanalytics.service.user.impl;
 
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
+import com.kerrrusha.attorneyanalytics.dto.user.response.EmployeeResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UsersGroupedByTitleDto;
 import com.kerrrusha.attorneyanalytics.exception.UserAlreadyExistsException;
@@ -157,6 +158,15 @@ public class UserServiceImpl implements UserService {
                         new UserTitleComparator().compare(usersByTitle1.getValue().get(0), usersByTitle2.getValue().get(0)))
                 .map(this::mapToGroupedByTitle)
                 .toList();
+    }
+
+    @Override
+    public EmployeeResponseDto findByFullName(String fullNameKebabCased) {
+        String firstName = fullNameKebabCased.split("-")[0];
+        String lastName = fullNameKebabCased.split("-")[1];
+        User user = userRepository.findByFirstNameAndLastNameIgnoreCase(firstName, lastName)
+                .orElseThrow(() -> new RuntimeException("Can't find user by first: " + firstName + " and last name: " + lastName));
+        return userMapper.toEmployeeDto(user);
     }
 
     private UsersGroupedByTitleDto mapToGroupedByTitle(Map.Entry<Title, List<User>> entry) {

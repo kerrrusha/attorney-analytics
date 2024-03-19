@@ -1,6 +1,7 @@
 package com.kerrrusha.attorneyanalytics.mapper;
 
 import com.kerrrusha.attorneyanalytics.config.MapperConfig;
+import com.kerrrusha.attorneyanalytics.dto.user.response.EmployeeResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
 import com.kerrrusha.attorneyanalytics.model.user.UserAdmission;
 import com.kerrrusha.attorneyanalytics.model.user.UserEmail;
@@ -17,6 +18,8 @@ import java.util.Set;
 
 @Mapper(config = MapperConfig.class)
 public interface UserMapper {
+
+    EmployeeResponseDto toEmployeeDto(User user);
 
     UserResponseDto toDto(User user);
 
