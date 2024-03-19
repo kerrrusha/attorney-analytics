@@ -41,6 +41,21 @@ export type User = {
     roles: Array<string>,
 }
 
+export type Employee = {
+    createdAt: string,
+    firstName: string,
+    lastName: string,
+    profilePhotoUrl: string,
+    bio: string,
+    linkedinUrl: string,
+    title: string,
+    emails: Array<string>,
+    phones: Array<string>,
+    locations: Array<string>,
+    admissions: Array<string>,
+    practiceAreas: Array<string>,
+}
+
 export type AuthState = {
     user: User | null,
 }

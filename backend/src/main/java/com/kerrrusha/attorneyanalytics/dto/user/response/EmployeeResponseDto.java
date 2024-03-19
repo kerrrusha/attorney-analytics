@@ -18,5 +18,4 @@ public class EmployeeResponseDto {
     private String[] locations;
     private String[] admissions;
     private String[] practiceAreas;
-    private String[] roles;
 }

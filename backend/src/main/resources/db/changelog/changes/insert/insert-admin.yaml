@@ -25,7 +25,7 @@ databaseChangeLog:
                   value: 'Koval'
               - column:
                   name: bio
-                  value: 'A long time ago in a galaxy far, far away...'
+                  value: "Kirill Koval is a dynamic legal professional known for his tenacity, resourcefulness, and unwavering dedication to justice. Born and raised in Albuquerque, New Mexico, Kirill's journey to becoming an esteemed attorney was marked by challenges and triumphs that shaped his unique approach to the practice of law."
               - column:
                   name: linkedin_url
                   value: 'https://linkedin.com/in/kerrrusha'

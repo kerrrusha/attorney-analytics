@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
 import {API_ENDPOINTS} from "../common/constants";
-import {User} from "../common/commonTypes";
+import {Employee} from "../common/commonTypes";
 import {doGetRequestApiJson} from "../services/doGetRequestApiJson";
 
-export default function useFetchEmployee(fullName: string) : [User | null, any] {
+export default function useFetchEmployee(fullName: string) : [Employee | null, any] {
     const [result, setResult] = useState(null);
     const [fetched, setFetched] = useState(false);
 
