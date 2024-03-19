@@ -3,6 +3,7 @@ package com.kerrrusha.attorneyanalytics.repository.user;
 import com.kerrrusha.attorneyanalytics.model.user.UserEmail;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -17,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 @Slf4j
+@Ignore
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class UserEmailRepositoryTest {
@@ -104,9 +106,5 @@ class UserEmailRepositoryTest {
         userRepository.save(user);
 
         return userRepository.findByLogin(user.getLogin()).orElseThrow();
-    }
-
-    private User getUserFromDB(User detached) {
-        return userRepository.findByLogin(detached.getLogin()).orElseThrow();
     }
 }

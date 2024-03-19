@@ -1,3 +1,5 @@
+import {DANGER_COLOR_CLASSNAME, NEUTRAL_COLOR_CLASS_NAME, SUCCESS_COLOR_CLASSNAME} from "./constants";
+
 export function fixNull(value: string | null): string {
     return value === null ? "" : value;
 }
@@ -15,7 +17,7 @@ export function toPascalCase(str: string) {
         .replace(new RegExp(/[-_]+/, 'g'), ' ')
         .replace(
             new RegExp(/\s+(.)(\w*)/, 'g'),
-            ($1, $2, $3) => `${$1}`
+            ($1) => `${$1}`
         )
         .replace(new RegExp(/\w/), s => s.toUpperCase());
 }
@@ -45,4 +47,35 @@ export function createNumberList(N: number): Array<number> {
         list.push(i);
     }
     return list;
+}
+
+export const getStatusColorClass = (status: string) => {
+    status = status.toUpperCase();
+    if (status === "SUCCESS") {
+        return SUCCESS_COLOR_CLASSNAME;
+    }
+    if (status === "FAILED" || status === "REJECTED") {
+        return DANGER_COLOR_CLASSNAME;
+    }
+    return NEUTRAL_COLOR_CLASS_NAME;
+}
+
+export const getProfitColorClass = (profit: number) => {
+    if (profit > 0) {
+        return SUCCESS_COLOR_CLASSNAME;
+    }
+    if (profit < 0) {
+        return DANGER_COLOR_CLASSNAME;
+    }
+    return NEUTRAL_COLOR_CLASS_NAME;
+}
+
+export const getProfitChar = (profit: number) => {
+    if (profit > 0) {
+        return '▲';
+    }
+    if (profit < 0) {
+        return '▼';
+    }
+    return '';
 }

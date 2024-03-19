@@ -3,6 +3,8 @@ package com.kerrrusha.attorneyanalytics.repository.legal_case;
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCase;
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCaseStatus;
 import org.springframework.data.domain.Limit;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,6 +19,8 @@ public interface LegalCaseRepository extends JpaRepository<LegalCase, Long> {
     List<LegalCase> findByOrderByCreatedAtDesc(Limit limit);
 
     List<LegalCase> findByUpdatedAtBetween(LocalDateTime startDate, LocalDateTime endDate);
+
+    Page<LegalCase> findAllByOrderByUpdatedAtDesc(Pageable pageable);
 
     @Query("SELECT COUNT(lc) FROM LegalCase lc JOIN lc.assignedClients ac WHERE ac.id = :clientId")
     Long countByAssignedClientId(@Param("clientId") Long clientId);

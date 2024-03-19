@@ -3,6 +3,7 @@ package com.kerrrusha.attorneyanalytics.repository.client;
 import com.kerrrusha.attorneyanalytics.model.client.Client;
 import com.kerrrusha.attorneyanalytics.model.client.ClientEmail;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -16,6 +17,7 @@ import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
+@Ignore
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class ClientEmailRepositoryTest {

@@ -8,14 +8,5 @@ import java.util.List;
 public class ClientsPageableResponseDto {
 
     private Long total;
-    private List<ClientsPageableData> data;
-
-    @Data
-    public static class ClientsPageableData {
-        private String createdAt;
-        private String fullName;
-        private Long totalCases;
-        private String emails;
-        private String phones;
-    }
+    private List<ClientResponseDto> data;
 }

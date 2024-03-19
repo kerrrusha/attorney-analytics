@@ -175,6 +175,6 @@ export type LegalCaseDto = {
     assignedClients: Array<ClientsDataDto>,
     assignedAttorneys: Array<EmployeeDto>,
     assignedPayments: Array<PaymentsDataDto>,
-    caseStatus: string,
-    caseType: string,
+    status: string,
+    type: string,
 }

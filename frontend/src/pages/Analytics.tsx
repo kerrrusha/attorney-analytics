@@ -8,7 +8,7 @@ import {
 import PageWithSidebar from "../components/sidebar/PageWithSidebar";
 import {useState} from "react";
 import 'chart.js/auto';
-import { toPascalCase } from "../common/commonUtils";
+import {getProfitChar, getProfitColorClass, getStatusColorClass, toPascalCase} from "../common/commonUtils";
 import useFetchAboutUs from "../hooks/useFetchAboutUs";
 import {useAppSelector} from "../hooks/useAppSelector";
 import {
@@ -23,10 +23,6 @@ import useFetchLatestClosedCases from "../hooks/useFetchLatestClosedCases";
 import {createIncomeOutcomeChart, createSimpleDoughnut} from "../common/chartHelper";
 import useFetchAttorneysOfTheMonth from "../hooks/useFetchAttorneysOfTheMonth";
 import useFetchStatsByDates from "../hooks/useFetchStatsByDates";
-
-const SUCCESS_COLOR_CLASSNAME = "text-success";
-const DANGER_COLOR_CLASSNAME = "text-danger";
-const NEUTRAL_COLOR_CLASS_NAME = "text-primary";
 
 export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
     // const [dateFrom, setDateFrom] = useState(getYesterday());
@@ -84,37 +80,6 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
     const getAboutUsTotalCases = () => {
         return Object.values(aboutUs.caseStatusToAmount).reduce((acc, val) => acc + val, 0);
     };
-
-    const getStatusColorClass = (status: string) => {
-        status = status.toUpperCase();
-        if (status === "SUCCESS") {
-            return SUCCESS_COLOR_CLASSNAME;
-        }
-        if (status === "FAILED" || status === "REJECTED") {
-            return DANGER_COLOR_CLASSNAME;
-        }
-        return NEUTRAL_COLOR_CLASS_NAME;
-    }
-
-    const getProfitColorClass = (profit: number) => {
-        if (profit > 0) {
-            return SUCCESS_COLOR_CLASSNAME;
-        }
-        if (profit < 0) {
-            return DANGER_COLOR_CLASSNAME;
-        }
-        return NEUTRAL_COLOR_CLASS_NAME;
-    }
-
-    const getProfitChar = (profit: number) => {
-        if (profit > 0) {
-            return '▲';
-        }
-        if (profit < 0) {
-            return '▼';
-        }
-        return '';
-    }
 
     const contentElement = <div>
         <div>

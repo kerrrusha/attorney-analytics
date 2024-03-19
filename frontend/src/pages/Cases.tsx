@@ -5,6 +5,7 @@ import LoadingGif from "../components/loading/LoadingGif";
 import Pagination from "../components/pagination/Pagination";
 import useFetchLegalCases from "../hooks/useFetchLegalCases";
 import {PAGES} from "../common/constants";
+import {getStatusColorClass} from "../common/commonUtils";
 
 export default function Cases({loggedIn, setLoggedIn} : LoggedInProps) {
     const START_PAGE = 0;
@@ -57,8 +58,8 @@ export default function Cases({loggedIn, setLoggedIn} : LoggedInProps) {
                             <td>#{data.id}</td>
                             <td>{data.updatedAt}</td>
                             <td>{data.title}</td>
-                            <td>{data.caseStatus}</td>
-                            <td>{data.caseType}</td>
+                            <td className={getStatusColorClass(data.status)}>{data.status}</td>
+                            <td>{data.type}</td>
                         </tr>)
                 }
                 </tbody>

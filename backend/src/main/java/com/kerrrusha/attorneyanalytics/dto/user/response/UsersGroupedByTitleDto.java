@@ -8,14 +8,5 @@ import java.util.List;
 public class UsersGroupedByTitleDto {
 
     private String title;
-    private List<ListingUserDto> data;
-
-    @Data
-    public static class ListingUserDto {
-        private String fullName;
-        private String title;
-        private String profilePhotoUrl;
-        private List<String> emails;
-        private List<String> phones;
-    }
+    private List<UserListingResponseDto> data;
 }

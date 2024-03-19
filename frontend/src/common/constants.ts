@@ -2,6 +2,10 @@ export const MIN_VALUE_LENGTH = 3;
 
 export const APPLICATION_NAME = "Attorney Analytics";
 
+export const SUCCESS_COLOR_CLASSNAME = "text-success";
+export const DANGER_COLOR_CLASSNAME = "text-danger";
+export const NEUTRAL_COLOR_CLASS_NAME = "text-primary";
+
 export const PAGES = {
     analytics: "/analytics",
 	dashboard: "/dashboard",

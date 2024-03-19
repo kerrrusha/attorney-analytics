@@ -2,6 +2,7 @@ package com.kerrrusha.attorneyanalytics.service.user.impl;
 
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.EmployeeResponseDto;
+import com.kerrrusha.attorneyanalytics.dto.user.response.UserListingResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UsersGroupedByTitleDto;
 import com.kerrrusha.attorneyanalytics.exception.UserAlreadyExistsException;
@@ -181,8 +182,8 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
-    private UsersGroupedByTitleDto.ListingUserDto mapToListingUser(User user) {
-        var result = new UsersGroupedByTitleDto.ListingUserDto();
+    private UserListingResponseDto mapToListingUser(User user) {
+        var result = new UserListingResponseDto();
 
         result.setFullName(user.getFullName());
         result.setProfilePhotoUrl(user.getProfilePhotoUrl());
