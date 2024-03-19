@@ -133,7 +133,6 @@ export type EmployeesGroupedByTitleDto = Array<{
     title: string,
     data: [
         {
-            profileUrl: string,
             profilePhotoUrl: string,
             fullName: string,
             title: string,
