@@ -21,6 +21,7 @@ import DashboardEmployeeBonusSuggestions from "./pages/dashboard/DashboardEmploy
 import DashboardEmployeePromotionSuggestions from "./pages/dashboard/DashboardEmployeePromotionSuggestions";
 import DashboardPromoteEmployee from "./pages/dashboard/DashboardPromoteEmployee";
 import Employee from "./pages/employee/Employee";
+import LegalCase from "./pages/cases/LegalCase";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState<any>(undefined);
@@ -62,6 +63,7 @@ export default function App() {
       <Route path={PAGES.dashboardEmployeePromotionSuggestions} element={secure(<DashboardEmployeePromotionSuggestions loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)} />
       <Route path={PAGES.dashboardPromoteEmployee} element={secure(<DashboardPromoteEmployee loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)} />
       <Route path={PAGES.employees + "/:fullName"} element={secure(<Employee loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)} />
+      <Route path={PAGES.cases + "/:caseId"} element={secure(<LegalCase loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)} />
       <Route path="*" element={<NoPage />} />
     </Routes>
   </BrowserRouter>;
