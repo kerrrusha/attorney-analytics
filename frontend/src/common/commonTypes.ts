@@ -41,7 +41,7 @@ export type User = {
     roles: Array<string>,
 }
 
-export type Employee = {
+export type EmployeeDto = {
     createdAt: string,
     firstName: string,
     lastName: string,
@@ -160,3 +160,21 @@ export type EmployeesGroupedByTitleDto = Array<{
         },
     ]
 }>
+
+export type LegalCasePageableDto = {
+    total: number,
+    data: Array<LegalCaseDto>
+}
+
+export type LegalCaseDto = {
+    id: number,
+    createdAt: string,
+    updatedAt: string,
+    title: string,
+    description: string,
+    assignedClients: Array<ClientsDataDto>,
+    assignedAttorneys: Array<EmployeeDto>,
+    assignedPayments: Array<PaymentsDataDto>,
+    caseStatus: string,
+    caseType: string,
+}
