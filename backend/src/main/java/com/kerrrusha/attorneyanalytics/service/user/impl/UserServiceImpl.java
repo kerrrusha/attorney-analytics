@@ -2,6 +2,7 @@ package com.kerrrusha.attorneyanalytics.service.user.impl;
 
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
+import com.kerrrusha.attorneyanalytics.dto.user.response.UsersGroupedByTitleDto;
 import com.kerrrusha.attorneyanalytics.exception.UserAlreadyExistsException;
 import com.kerrrusha.attorneyanalytics.model.user.UserAdmission;
 import com.kerrrusha.attorneyanalytics.model.user.UserEmail;
@@ -10,6 +11,7 @@ import com.kerrrusha.attorneyanalytics.model.user.UserPhone;
 import com.kerrrusha.attorneyanalytics.model.user.UserPracticeArea;
 import com.kerrrusha.attorneyanalytics.model.user.Role;
 import com.kerrrusha.attorneyanalytics.model.user.Title;
+import com.kerrrusha.attorneyanalytics.model.user.UserTitleComparator;
 import com.kerrrusha.attorneyanalytics.repository.user.UserAdmissionRepository;
 import com.kerrrusha.attorneyanalytics.repository.user.UserEmailRepository;
 import com.kerrrusha.attorneyanalytics.repository.user.UserLocationRepository;
@@ -30,9 +32,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
+import static com.kerrrusha.attorneyanalytics.common.CommonHelper.toStringList;
 import static java.util.Collections.singleton;
 import static java.util.Objects.nonNull;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toCollection;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
@@ -140,6 +145,42 @@ public class UserServiceImpl implements UserService {
             user.setPracticeAreas(practiceAreas);
         }
         return userMapper.toDto(userRepository.save(user));
+    }
+
+    @Override
+    public List<UsersGroupedByTitleDto> getGroupedByTitle() {
+        Map<Title, List<User>> usersByTitle = userRepository.findAll().stream()
+                .collect(groupingBy(User::getTitle));
+
+        return usersByTitle.entrySet().stream()
+                .sorted((usersByTitle1, usersByTitle2) ->
+                        new UserTitleComparator().compare(usersByTitle1.getValue().get(0), usersByTitle2.getValue().get(0)))
+                .map(this::mapToGroupedByTitle)
+                .toList();
+    }
+
+    private UsersGroupedByTitleDto mapToGroupedByTitle(Map.Entry<Title, List<User>> entry) {
+        UsersGroupedByTitleDto result = new UsersGroupedByTitleDto();
+
+        result.setTitle(entry.getKey().getName());
+
+        result.setData(entry.getValue().stream()
+                .map(this::mapToListingUser)
+                .toList());
+
+        return result;
+    }
+
+    private UsersGroupedByTitleDto.ListingUserDto mapToListingUser(User user) {
+        var result = new UsersGroupedByTitleDto.ListingUserDto();
+
+        result.setFullName(user.getFullName());
+        result.setProfilePhotoUrl(user.getProfilePhotoUrl());
+        result.setTitle(user.getTitle().getName());
+        result.setPhones(toStringList(user.getPhones()));
+        result.setEmails(toStringList(user.getEmails()));
+
+        return result;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.kerrrusha.attorneyanalytics.model.client;
 
+import com.kerrrusha.attorneyanalytics.model.ValueProvider;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -22,7 +23,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClientPhone {
+public class ClientPhone implements ValueProvider {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

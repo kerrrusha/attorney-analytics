@@ -8,29 +8,29 @@ databaseChangeLog:
             columns:
               - column:
                   name: login
-                  value: 'alexandra.rodriguez@example.com'
+                  value: 'gustavo.fring@example.com'
               - column:
                   name: password
                   #                  password: realcooladminpassword123
                   value: '$2a$10$WDuqr6sjxN5sVYE35/2.sO4ikfDpvKK5FDggA7V/kpxH8XSYS/0s2'
               - column:
                   name: first_name
-                  value: 'Alexandra'
+                  value: 'Gustavo'
               - column:
                   name: last_name
-                  value: 'Rodriguez'
+                  value: 'Fring'
               - column:
                   name: bio
-                  value: 'Alexandra Rodriguez is an experienced attorney specializing in corporate law. She has successfully handled numerous mergers and acquisitions.'
+                  value: "Gustavo Fring is a shrewd attorney with a reputation for his calculated approach to the law. Behind his composed exterior lies a strategic mind capable of outmaneuvering even the most formidable opponents. With a focus on corporate law and a vast network of business connections, Gustavo is a master of navigating complex legal landscapes. His unwavering dedication to his clients and his ability to anticipate their needs make him a highly sought-after advisor in the business world."
               - column:
                   name: linkedin_url
-                  value: 'https://www.linkedin.com/in/alexandra-rodriguez'
+                  value: 'https://www.linkedin.com/in/gustavo-fring'
               - column:
                   name: title_id
-                  value: 2
+                  value: 5
               - column:
                   name: profile_photo_url
-                  value: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQAU6p4_vPLxIkTSZcLmCUZf7VAbFAHSCJSvE6k9tQaVJ0mxUn-'
+                  value: 'https://static.wikia.nocookie.net/breakingbad/images/b/be/Season_4_-_Gus.jpg'
         - insert:
             tableName: user_admission
             columns:
@@ -45,7 +45,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: value
-                  value: 'alexandra.rodriguez@lawfirm.com'
+                  value: 'gustavo.fring@lawfirm.com'
               - column:
                   name: user_id
                   value: 2
@@ -81,26 +81,26 @@ databaseChangeLog:
             columns:
               - column:
                   name: login
-                  value: 'benjamin.chang@example.com'
+                  value: 'better.call@saul.com'
               - column:
                   name: password
                   #                  password: realcooladminpassword123
                   value: '$2a$10$WDuqr6sjxN5sVYE35/2.sO4ikfDpvKK5FDggA7V/kpxH8XSYS/0s2'
               - column:
                   name: first_name
-                  value: 'Benjamin'
+                  value: 'Saul'
               - column:
                   name: last_name
-                  value: 'Chang'
+                  value: 'Goodman'
               - column:
                   name: bio
-                  value: 'Benjamin Chang is a skilled trial lawyer with expertise in criminal defense. He has successfully defended clients in high-profile cases.'
+                  value: "Saul Goodman, born James McGill, is a seasoned attorney with a penchant for the unconventional. Known for his colorful personality and sharp wit, Saul is a master of navigating the legal system's grey areas. With a knack for negotiation and a vast network of connections, he's the go-to lawyer for those in need of creative solutions to their legal troubles. Despite his questionable ethics, Saul's dedication to his clients is unwavering, making him a force to be reckoned with in the courtroom."
               - column:
                   name: linkedin_url
-                  value: 'https://www.linkedin.com/in/benjamin-chang'
+                  value: 'https://www.linkedin.com/in/saul-goodman'
               - column:
                   name: title_id
-                  value: 3
+                  value: 8
               - column:
                   name: profile_photo_url
                   value: 'https://vader.news/__export/1687650960197/sites/gadgets/img/2023/06/24/better_call_saul.jpg_394957636.jpg'
@@ -118,7 +118,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: value
-                  value: 'benjamin.chang@lawfirm.com'
+                  value: 'saul.goodman@lawfirm.com'
               - column:
                   name: user_id
                   value: 3
@@ -154,29 +154,29 @@ databaseChangeLog:
             columns:
               - column:
                   name: login
-                  value: 'catherine.nguyen@example.com'
+                  value: 'wexler.kim@example.com'
               - column:
                   name: password
                   #                  password: realcooladminpassword123
                   value: '$2a$10$WDuqr6sjxN5sVYE35/2.sO4ikfDpvKK5FDggA7V/kpxH8XSYS/0s2'
               - column:
                   name: first_name
-                  value: 'Catherine'
+                  value: 'Kim'
               - column:
                   name: last_name
-                  value: 'Nguyen'
+                  value: 'Wexler'
               - column:
                   name: bio
-                  value: 'Catherine Nguyen is a dedicated family law attorney with a passion for helping clients navigate divorce and child custody matters.'
+                  value: "Kim Wexler is a rising star in the legal profession, known for her fierce determination and unwavering integrity. As a former public defender turned private attorney, Kim is passionate about advocating for the underdog and fighting for justice. With a sharp legal mind and a tireless work ethic, she excels in both the courtroom and the boardroom. Kim's ability to think on her feet and adapt to any situation makes her a formidable opponent and a trusted ally to her clients."
               - column:
                   name: linkedin_url
-                  value: 'https://www.linkedin.com/in/catherine-nguyen'
+                  value: 'https://www.linkedin.com/in/kim-wexler'
               - column:
                   name: title_id
-                  value: 4
+                  value: 7
               - column:
                   name: profile_photo_url
-                  value: 'https://static.wikia.nocookie.net/breakingbad/images/4/48/Kim_Wexler_infobox.png/revision/latest/scale-to-width/360?cb=20220823082914'
+                  value: 'https://static.wikia.nocookie.net/breakingbad/images/4/48/Kim_Wexler_infobox.png'
         - insert:
             tableName: user_admission
             columns:
@@ -191,7 +191,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: value
-                  value: 'catherine.nguyen@lawfirm.com'
+                  value: 'kim.wexler@lawfirm.com'
               - column:
                   name: user_id
                   value: 4
@@ -227,29 +227,29 @@ databaseChangeLog:
             columns:
               - column:
                   name: login
-                  value: 'daniel.lee@example.com'
+                  value: 'chuck.mc.gill@example.com'
               - column:
                   name: password
                   #                  password: realcooladminpassword123
                   value: '$2a$10$WDuqr6sjxN5sVYE35/2.sO4ikfDpvKK5FDggA7V/kpxH8XSYS/0s2'
               - column:
                   name: first_name
-                  value: 'Daniel'
+                  value: 'Chuck'
               - column:
                   name: last_name
-                  value: 'Lee'
+                  value: 'McGill'
               - column:
                   name: bio
-                  value: 'Daniel Lee is an accomplished real estate attorney known for his expertise in property transactions and land use regulations.'
+                  value: "Chuck McGill is a brilliant attorney whose career is defined by his dedication to the law. As a respected partner at a prestigious law firm, Chuck is known for his encyclopedic knowledge of legal precedent and his meticulous attention to detail. Despite battling with electromagnetic hypersensitivity, Chuck refuses to let his condition hinder his legal prowess. With a passion for justice and a commitment to upholding ethical standards, Chuck is a formidable presence in the legal community."
               - column:
                   name: linkedin_url
-                  value: 'https://www.linkedin.com/in/daniel-lee'
+                  value: 'https://www.linkedin.com/in/chuck-mc-gill'
               - column:
                   name: title_id
-                  value: 5
+                  value: 6
               - column:
                   name: profile_photo_url
-                  value: 'https://static.wikia.nocookie.net/breakingbad/images/6/6a/Chuck_McGill_Infobox.jpeg/revision/latest/scale-to-width/360?cb=20220820131704'
+                  value: 'https://static.wikia.nocookie.net/breakingbad/images/6/6a/Chuck_McGill_Infobox.jpeg'
         - insert:
             tableName: user_admission
             columns:
@@ -264,7 +264,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: value
-                  value: 'daniel.lee@lawfirm.com'
+                  value: 'chuck.mc.gill@lawfirm.com'
               - column:
                   name: user_id
                   value: 5
@@ -300,29 +300,29 @@ databaseChangeLog:
             columns:
               - column:
                   name: login
-                  value: 'emily.patel@example.com'
+                  value: 'skyler.white@example.com'
               - column:
                   name: password
                   #                  password: realcooladminpassword123
                   value: '$2a$10$WDuqr6sjxN5sVYE35/2.sO4ikfDpvKK5FDggA7V/kpxH8XSYS/0s2'
               - column:
                   name: first_name
-                  value: 'Emily'
+                  value: 'Skyler'
               - column:
                   name: last_name
-                  value: 'Patel'
+                  value: 'White'
               - column:
                   name: bio
-                  value: 'Emily Patel is a skilled intellectual property lawyer with a focus on trademarks, patents, and copyrights.'
+                  value: "Skyler White is a determined attorney who brings a unique perspective to the legal profession. With a background in accounting and finance, Skyler specializes in white-collar crime and financial law. Her analytical mind and attention to detail make her invaluable to her clients, as she navigates complex financial transactions and legal disputes with ease. Despite facing numerous challenges in her personal life, Skyler's dedication to her work remains unwavering, making her a trusted advisor and advocate for her clients."
               - column:
                   name: linkedin_url
-                  value: 'https://www.linkedin.com/in/emily-patel'
+                  value: 'https://www.linkedin.com/in/skyler-white'
               - column:
                   name: title_id
-                  value: 6
+                  value: 2
               - column:
                   name: profile_photo_url
-                  value: 'https://static.wikia.nocookie.net/breakingbad/images/b/be/Skyler_2009.jpg/revision/latest?cb=20210621131734&path-prefix=ru'
+                  value: 'https://static.wikia.nocookie.net/breakingbad/images/b/be/Skyler_2009.jpg'
         - insert:
             tableName: user_admission
             columns:
@@ -337,7 +337,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: value
-                  value: 'emily.patel@lawfirm.com'
+                  value: 'skyler.white@lawfirm.com'
               - column:
                   name: user_id
                   value: 6
@@ -373,29 +373,29 @@ databaseChangeLog:
             columns:
               - column:
                   name: login
-                  value: 'gavin.murphy@example.com'
+                  value: 'hank.schrader@example.com'
               - column:
                   name: password
                   #                  password: realcooladminpassword123
                   value: '$2a$10$WDuqr6sjxN5sVYE35/2.sO4ikfDpvKK5FDggA7V/kpxH8XSYS/0s2'
               - column:
                   name: first_name
-                  value: 'Gavin'
+                  value: 'Hank'
               - column:
                   name: last_name
-                  value: 'Murphy'
+                  value: 'Schrader'
               - column:
                   name: bio
-                  value: 'Gavin Murphy is an experienced immigration attorney helping individuals and businesses navigate the complex U.S. immigration system'
+                  value: "Hank Schrader is a former DEA agent turned attorney, bringing his years of experience in law enforcement to the legal field. With a keen eye for detail and a relentless pursuit of justice, Hank is known for his unwavering commitment to upholding the law. His background in investigations gives him a unique perspective in the courtroom, where he tirelessly fights for his clients' rights. Hank's no-nonsense attitude and dedication to the truth make him a formidable adversary in any legal battle."
               - column:
                   name: linkedin_url
-                  value: 'https://www.linkedin.com/in/gavin-murphy'
+                  value: 'https://www.linkedin.com/in/hank-schrader'
               - column:
                   name: title_id
-                  value: 7
+                  value: 4
               - column:
                   name: profile_photo_url
-                  value: 'https://static.wikia.nocookie.net/breakingbad/images/4/4f/Season_2_-_Hank.jpg/revision/latest?cb=20210417170418&path-prefix=ru'
+                  value: 'https://static.wikia.nocookie.net/breakingbad/images/4/4f/Season_2_-_Hank.jpg'
         - insert:
             tableName: user_admission
             columns:
@@ -410,7 +410,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: value
-                  value: 'gavin.murphy@lawfirm.com'
+                  value: 'hank.schrader@lawfirm.com'
               - column:
                   name: user_id
                   value: 7

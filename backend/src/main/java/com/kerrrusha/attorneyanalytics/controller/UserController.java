@@ -2,6 +2,7 @@ package com.kerrrusha.attorneyanalytics.controller;
 
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
+import com.kerrrusha.attorneyanalytics.dto.user.response.UsersGroupedByTitleDto;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import com.kerrrusha.attorneyanalytics.repository.user.UserRepository;
 import com.kerrrusha.attorneyanalytics.service.user.UserService;
@@ -47,4 +48,9 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/authorized")
     public void isAuthorized() {}
+
+    @GetMapping("/grouped-by-title")
+    public List<UsersGroupedByTitleDto> getGroupedByTitle() {
+        return userService.getGroupedByTitle();
+    }
 }

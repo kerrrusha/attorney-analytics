@@ -1,5 +1,7 @@
 package com.kerrrusha.attorneyanalytics.model;
 
+import static org.apache.commons.lang3.StringUtils.SPACE;
+
 public interface FullNameProvider {
 
     String getFirstName();
@@ -7,6 +9,6 @@ public interface FullNameProvider {
     String getLastName();
 
     default String getFullName() {
-        return getFirstName() + " " + getLastName();
+        return getFirstName() + SPACE + getLastName();
     }
 }

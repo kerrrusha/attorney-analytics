@@ -35,7 +35,7 @@ export const API_ENDPOINTS = {
     getStatsByDates: "/analytics/stats-by-dates",
     getPayments: "/payments",
     getClients: "/clients",
-    getEmployeesGroupedByTitle: "/users/grouped-by-title",
+    getEmployeesGroupedByTitle: "/user/grouped-by-title",
 }
 
 export const ROLES = {

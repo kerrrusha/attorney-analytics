@@ -34,6 +34,7 @@ import java.util.stream.Collectors;
 
 import static com.kerrrusha.attorneyanalytics.common.CommonHelper.getFirstDayOfMonth;
 import static com.kerrrusha.attorneyanalytics.common.CommonHelper.getLastDayOfMonth;
+import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.joining;
 
 @Service
@@ -106,12 +107,12 @@ public class AnalyticsServiceImpl implements AnalyticsService {
         Map<User, Long> attorneyToCasesAmountMap = lastMonthCases.stream()
                 .flatMap(e -> e.getAssignedAttorneys().stream())
                 .collect(
-                    Collectors.groupingBy(e -> e, Collectors.counting())
+                    Collectors.groupingBy(e -> e, counting())
                 );
         Map<User, Long> attorneyToSuccessCasesAmountMap = lastMonthSuccessCases.stream()
                 .flatMap(e -> e.getAssignedAttorneys().stream())
                 .collect(
-                        Collectors.groupingBy(e -> e, Collectors.counting())
+                        Collectors.groupingBy(e -> e, counting())
                 );
 
         Map<User, Double> attorneyToSuccessfullyClosedRateMap = new HashMap<>();

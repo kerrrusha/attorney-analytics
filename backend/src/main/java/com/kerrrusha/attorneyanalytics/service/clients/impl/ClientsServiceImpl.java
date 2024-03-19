@@ -2,8 +2,6 @@ package com.kerrrusha.attorneyanalytics.service.clients.impl;
 
 import com.kerrrusha.attorneyanalytics.dto.clients.ClientsPageableResponseDto;
 import com.kerrrusha.attorneyanalytics.model.client.Client;
-import com.kerrrusha.attorneyanalytics.model.client.ClientEmail;
-import com.kerrrusha.attorneyanalytics.model.client.ClientPhone;
 import com.kerrrusha.attorneyanalytics.repository.client.ClientRepository;
 import com.kerrrusha.attorneyanalytics.repository.legal_case.LegalCaseRepository;
 import com.kerrrusha.attorneyanalytics.service.clients.ClientsService;
@@ -14,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
 
-import static java.util.stream.Collectors.joining;
+import static com.kerrrusha.attorneyanalytics.common.CommonHelper.join;
 
 @Service
 @RequiredArgsConstructor
@@ -47,12 +45,8 @@ public class ClientsServiceImpl implements ClientsService {
 
         result.setCreatedAt(client.getCreatedAt().format(RESPONSE_FORMATTER));
         result.setFullName(client.getFullName());
-        result.setEmails(client.getEmails().stream()
-                .map(ClientEmail::getValue)
-                .collect(joining(SEPARATOR)));
-        result.setPhones(client.getPhones().stream()
-                .map(ClientPhone::getValue)
-                .collect(joining(SEPARATOR)));
+        result.setEmails(join(client.getEmails()));
+        result.setPhones(join(client.getPhones()));
         result.setTotalCases(legalCaseRepository.countByAssignedClientId(client.getId()));
 
         return result;

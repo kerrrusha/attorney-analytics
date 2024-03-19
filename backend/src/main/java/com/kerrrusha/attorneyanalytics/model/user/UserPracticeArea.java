@@ -1,5 +1,6 @@
 package com.kerrrusha.attorneyanalytics.model.user;
 
+import com.kerrrusha.attorneyanalytics.model.ValueProvider;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,7 +25,7 @@ import java.util.Objects;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserPracticeArea {
+public class UserPracticeArea implements ValueProvider {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
