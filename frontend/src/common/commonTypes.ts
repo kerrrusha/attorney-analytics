@@ -128,3 +128,21 @@ export type ClientsPageableDto = {
     total: number,
     data: Array<ClientsDataDto>
 }
+
+export type EmployeesGroupedByTitleDto = Array<{
+    title: string,
+    data: [
+        {
+            profileUrl: string,
+            profilePhotoUrl: string,
+            fullName: string,
+            title: string,
+            emails: [
+                string,
+            ],
+            phones: [
+                string,
+            ],
+        },
+    ]
+}>
