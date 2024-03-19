@@ -73,6 +73,13 @@ export type RegisterRequest = {
     password: string,
 }
 
+export type HireEmployeeRequest = {
+    firstName: string,
+    lastName: string,
+    login: string,
+    titleId: number,
+}
+
 export type KeyValueData = {
     key: string,
     value: number,
