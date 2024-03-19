@@ -82,3 +82,10 @@ export const getProfitChar = (profit: number) => {
     }
     return '';
 }
+
+export const getPaymentStatusIcon = (type: string) => {
+    const logoUrl = type === "INCOME"
+        ? "https://cdn-icons-png.flaticon.com/512/4721/4721635.png "
+        : "https://cdn-icons-png.flaticon.com/512/4721/4721643.png";
+    return <img src={logoUrl} alt="" width={25}></img>;
+};

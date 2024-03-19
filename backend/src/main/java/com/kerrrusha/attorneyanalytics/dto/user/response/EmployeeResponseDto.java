@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 @Data
 public class EmployeeResponseDto {
     private LocalDateTime createdAt;
+    private String fullName;
     private String firstName;
     private String lastName;
     private String profilePhotoUrl;

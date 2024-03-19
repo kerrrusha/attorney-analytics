@@ -43,6 +43,7 @@ export type User = {
 
 export type EmployeeDto = {
     createdAt: string,
+    fullName: string,
     firstName: string,
     lastName: string,
     profilePhotoUrl: string,
@@ -144,21 +145,17 @@ export type ClientsPageableDto = {
     data: Array<ClientsDataDto>
 }
 
+export type EmployeeListingDto = {
+    profilePhotoUrl: string,
+    fullName: string,
+    title: string,
+    emails: Array<string>,
+    phones: Array<string>,
+}
+
 export type EmployeesGroupedByTitleDto = Array<{
     title: string,
-    data: [
-        {
-            profilePhotoUrl: string,
-            fullName: string,
-            title: string,
-            emails: [
-                string,
-            ],
-            phones: [
-                string,
-            ],
-        },
-    ]
+    data: Array<EmployeeListingDto>
 }>
 
 export type LegalCasePageableDto = {

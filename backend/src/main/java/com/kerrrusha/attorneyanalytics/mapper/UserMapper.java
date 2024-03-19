@@ -11,7 +11,9 @@ import com.kerrrusha.attorneyanalytics.model.user.UserPracticeArea;
 import com.kerrrusha.attorneyanalytics.model.user.Role;
 import com.kerrrusha.attorneyanalytics.model.user.Title;
 import com.kerrrusha.attorneyanalytics.model.user.User;
+import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 import java.util.Set;
@@ -20,6 +22,11 @@ import java.util.Set;
 public interface UserMapper {
 
     EmployeeResponseDto toEmployeeDto(User user);
+
+    @AfterMapping
+    default void setFullName(@MappingTarget EmployeeResponseDto target) {
+        target.setFullName(target.getFirstName() + " " + target.getLastName());
+    }
 
     UserResponseDto toDto(User user);
 
