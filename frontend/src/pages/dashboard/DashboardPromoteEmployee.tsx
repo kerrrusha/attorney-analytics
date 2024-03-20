@@ -52,19 +52,21 @@ export default function DashboardPromoteEmployee({loggedIn, setLoggedIn}: Logged
         <div className="border-b p-2 flex flex-row justify-between align-items-center">
             <h4 className="text-header font-semibold">Promote attorney</h4>
         </div>
-        <div className="mt-4 flex flex-col">
-            <span className="mb-2">Attorney's last name</span>
-            <div className="flex flex-row space-x-4">
-                <InputDropdown options={attorneyOptions} handleChange={handleChange} handleSelect={setSelectedOptionValue} />
-                <TitleSelect handleSetTitleId={setTitleId} />
+        <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            <div className="mt-4 flex flex-col col-span-4">
+                <span className="mb-2">Attorney's last name</span>
+                <div className="flex flex-row space-x-4">
+                    <InputDropdown options={attorneyOptions} handleChange={handleChange} handleSelect={setSelectedOptionValue} />
+                    <TitleSelect handleSetTitleId={setTitleId} />
+                </div>
+                <button
+                    onClick={handlePromote}
+                    disabled={!selectedOptionValue || selectedOptionValue.length === 0}
+                    style={{width: "15rem"}}
+                    className="mt-3 rounded-md bg-white px-5 py-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-500">
+                    Promote
+                </button>
             </div>
-            <button
-                onClick={handlePromote}
-                disabled={!selectedOptionValue || selectedOptionValue.length === 0}
-                style={{width: "15rem"}}
-                className="mt-3 rounded-md bg-white px-5 py-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-500">
-                Promote
-            </button>
         </div>
         <div className="mt-3">
             {success && <div className="alert alert-success" role="alert">
