@@ -193,6 +193,13 @@ public class UserServiceImpl implements UserService {
         return userMapper.toEmployeeDto(user);
     }
 
+    @Override
+    public List<UserResponseDto> findByLastName(String lastName) {
+        return userRepository.findByLastNameContainingIgnoreCase(lastName).stream()
+                .map(userMapper::toDto)
+                .toList();
+    }
+
     private UsersGroupedByTitleDto mapToGroupedByTitle(Map.Entry<Title, List<User>> entry) {
         UsersGroupedByTitleDto result = new UsersGroupedByTitleDto();
 

@@ -1,21 +1,29 @@
-import { LoggedInProps, SelectOption} from "../../common/commonTypes";
+import {LoggedInProps, SelectOption, User} from "../../common/commonTypes";
 import PageWithSidebar from "../../components/sidebar/PageWithSidebar";
 import InputDropdown from "../../components/InputDropdown";
 import {useState} from "react";
+import {doGetRequestApiJson} from "../../services/doGetRequestApiJson";
+import {API_ENDPOINTS} from "../../common/constants";
 
 export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [selectedOptionValue, setSelectedOptionValue] = useState("");
 
-    const init = [
-        { value: '1', label: 'Kirill Koval' },
-        { value: '2', label: 'Saul Goodman' },
-        { value: '3', label: 'James Hetfield' },
-    ];
-
-    const [attorneyOptions, setAttorneyOptions]: [SelectOption[], any] = useState(init);
+    const [attorneyOptions, setAttorneyOptions]: [SelectOption[], any] = useState([]);
 
     const handleChange = (inputValue: string) => {
-        console.log(inputValue);
+        setAttorneyOptions([]);
+        if (inputValue && inputValue.length > 0) {
+            doGetRequestApiJson(API_ENDPOINTS.searchByLastName + "/" + inputValue)
+                .then(response => {
+                    if (response && response.length > 0) {
+                        const newAttorneyOptions = response.map((user: User) => { return {
+                            value: "" + user.id,
+                            label: user.firstName + " " + user.lastName + " (" + user.title + ")",
+                        }});
+                        setAttorneyOptions(newAttorneyOptions);
+                    }
+                });
+        }
     };
 
     const contentElement = <div>

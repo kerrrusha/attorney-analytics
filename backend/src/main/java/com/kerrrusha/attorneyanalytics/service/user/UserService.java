@@ -22,4 +22,6 @@ public interface UserService {
     List<UsersGroupedByTitleDto> getGroupedByTitle();
 
     EmployeeResponseDto findByFullName(String fullName);
+
+    List<UserResponseDto> findByLastName(String lastName);
 }

@@ -66,4 +66,9 @@ public class UserController {
     public void hireEmployee(@RequestBody HireEmployeeRequestDto requestDto) {
         userService.hireEmployee(requestDto);
     }
+
+    @GetMapping("/search/lastName/{lastName}")
+    public List<UserResponseDto> hireEmployee(@PathVariable String lastName) {
+        return userService.findByLastName(lastName);
+    }
 }
