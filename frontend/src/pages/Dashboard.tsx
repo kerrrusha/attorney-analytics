@@ -22,19 +22,15 @@ export default function Dashboard({loggedIn, setLoggedIn}: LoggedInProps) {
             allowedRoles: [ROLES.ADMIN]
         },
         {
-            name: "Employee salary bonus suggestions",
-            url: PAGES.dashboardEmployeeBonusSuggestions,
-            allowedRoles: [ROLES.ADMIN, ROLES.WORKER]
-        },
-        {
-            name: "Employee promotion suggestions",
-            url: PAGES.dashboardEmployeePromotionSuggestions,
-            allowedRoles: [ROLES.ADMIN]
-        },
-        {
             name: "Promote employee",
             url: PAGES.dashboardPromoteEmployee,
             allowedRoles: [ROLES.ADMIN]
+        },
+
+        {
+            name: "Employee salary bonus suggestions",
+            url: PAGES.dashboardEmployeeBonusSuggestions,
+            allowedRoles: [ROLES.ADMIN, ROLES.WORKER]
         },
         {
             name: "Declare a payment",
