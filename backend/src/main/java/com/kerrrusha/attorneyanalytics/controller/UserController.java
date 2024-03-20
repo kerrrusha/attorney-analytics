@@ -6,8 +6,6 @@ import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.EmployeeResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UsersGroupedByTitleDto;
-import com.kerrrusha.attorneyanalytics.model.user.User;
-import com.kerrrusha.attorneyanalytics.repository.user.UserRepository;
 import com.kerrrusha.attorneyanalytics.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,16 +27,9 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final UserRepository userRepository;
-
-    @GetMapping("/all")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
 
     @GetMapping("/info")
-    public UserResponseDto getUserInfo(Principal principal) {
+    public UserResponseDto getCurrentUserInfo(Principal principal) {
         String email = principal.getName();
         return userService.findByEmail(email);
     }
@@ -64,17 +55,20 @@ public class UserController {
     }
 
     @PostMapping("/hire")
+    @PreAuthorize("hasRole('ADMIN')")
     public void hireEmployee(@RequestBody HireEmployeeRequestDto requestDto) {
         userService.hireEmployee(requestDto);
     }
 
     @PostMapping("/fire")
+    @PreAuthorize("hasRole('ADMIN')")
     public void fireEmployee(@RequestBody FireEmployeeRequestDto requestDto) {
         userService.fireEmployee(requestDto);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/search/lastName/{lastName}")
-    public List<UserResponseDto> hireEmployee(@PathVariable String lastName) {
+    public List<UserResponseDto> searchByLastName(@PathVariable String lastName) {
         return userService.findByLastName(lastName);
     }
 }
