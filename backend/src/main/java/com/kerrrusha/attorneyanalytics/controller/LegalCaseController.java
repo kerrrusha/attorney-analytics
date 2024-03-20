@@ -2,7 +2,7 @@ package com.kerrrusha.attorneyanalytics.controller;
 
 import com.kerrrusha.attorneyanalytics.dto.legal_case.LegalCasePageableResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.legal_case.LegalCaseResponseDto;
-import com.kerrrusha.attorneyanalytics.service.LegalCaseService;
+import com.kerrrusha.attorneyanalytics.service.legal_case.LegalCaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;

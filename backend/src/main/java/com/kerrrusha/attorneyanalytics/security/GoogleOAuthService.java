@@ -24,7 +24,6 @@ import static java.util.Collections.singleton;
 @Service
 public class GoogleOAuthService {
 
-    private static final int RANDOM_PASSWORD_LENGTH = 20;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final JwtService jwtService;
@@ -76,7 +75,7 @@ public class GoogleOAuthService {
         String lastName = (String) payload.get("family_name");
         String email = payload.getEmail();
         String profilePhotoUrl = (String) payload.get("picture");
-        String tempPassword = randomPasswordGenerator.generatePassword(RANDOM_PASSWORD_LENGTH);
+        String tempPassword = randomPasswordGenerator.generatePassword();
 
         User user = new User();
         user.setFirstName(firstName);

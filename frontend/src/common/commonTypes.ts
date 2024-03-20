@@ -182,3 +182,8 @@ export type LegalCaseDto = {
     status: string,
     type: string,
 }
+
+export type TitleDto = {
+    id: number,
+    name: string,
+}

@@ -1,6 +1,10 @@
 import {HireEmployeeRequest, LoggedInProps} from "../../common/commonTypes";
 import PageWithSidebar from "../../components/sidebar/PageWithSidebar";
 import React, {FormEvent, useState} from "react";
+import useFetchTitles from "../../hooks/useFetchTitles";
+import LoadingGif from "../../components/loading/LoadingGif";
+import {postHireEmployee} from "../../services/postHireEmployee";
+import {PAGES} from "../../common/constants";
 
 export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [firstName, setFirstName] = useState("");
@@ -8,16 +12,10 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [login, setLogin] = useState("");
     const [titleId, setTitleId] = useState<number>(0);
 
-    const titles = [
-        {
-            id: 1,
-            name: "CEO",
-        },
-        {
-            id: 2,
-            name: "Senior Partner",
-        },
-    ];
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState(false);
+
+    const [titles] = useFetchTitles()!;
 
     const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -29,14 +27,22 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
             titleId: titleId,
         }
 
-        console.log("Hiring:", requestBody);
+        postHireEmployee(requestBody).then(response => {
+            if (response.status === 200) {
+                setError("");
+                setSuccess(true);
+                return;
+            }
+            setSuccess(false);
+            response.json().then(json => setError(`Something went wrong: ${json.message}`));
+        });
     }
 
-    const contentElement = <div className="space-y-12">
+    const contentElement = !titles ? <LoadingGif /> : <div>
         <div className="border-b p-2 flex flex-row justify-between align-items-center">
             <h4 className="text-header font-semibold">Hire attorney</h4>
         </div>
-        <form className="pb-12 mt-0" onSubmit={handleFormSubmit}>
+        <form className="mt-0" onSubmit={handleFormSubmit}>
             <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="col-span-2 mb-2">
                     <label htmlFor="first-name" className="block text-sm font-medium mb-2">
@@ -105,6 +111,17 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
                 </button>
             </div>
         </form>
+        <div className="mt-3">
+            {success && <div className="alert alert-success" role="alert">
+                <p>Employee hired successfully.</p>
+                <span>Refer to the <a href={PAGES.employees}>employees</a> page to see updated employee list.</span>
+            </div>
+            }
+            {error && <div className="alert alert-danger" role="alert">
+                <span>{error}</span>
+            </div>
+            }
+        </div>
     </div>;
 
     return <PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}

@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.service.analytics.impl;
+package com.kerrrusha.attorneyanalytics.service.legal_case.impl;
 
 import com.kerrrusha.attorneyanalytics.common.Vector2;
 import com.kerrrusha.attorneyanalytics.dto.legal_case.LegalCasePageableResponseDto;
@@ -8,7 +8,7 @@ import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCase;
 import com.kerrrusha.attorneyanalytics.model.payment.PaymentType;
 import com.kerrrusha.attorneyanalytics.repository.legal_case.LegalCaseRepository;
 import com.kerrrusha.attorneyanalytics.repository.payment.PaymentRepository;
-import com.kerrrusha.attorneyanalytics.service.LegalCaseService;
+import com.kerrrusha.attorneyanalytics.service.legal_case.LegalCaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

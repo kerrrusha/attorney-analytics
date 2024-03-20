@@ -1,5 +1,6 @@
 package com.kerrrusha.attorneyanalytics.controller;
 
+import com.kerrrusha.attorneyanalytics.dto.user.request.HireEmployeeRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.EmployeeResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserResponseDto;
@@ -59,5 +60,10 @@ public class UserController {
     @GetMapping("/{fullName}")
     public EmployeeResponseDto getEmployee(@PathVariable String fullName) {
         return userService.findByFullName(fullName);
+    }
+
+    @PostMapping("/hire")
+    public void hireEmployee(@RequestBody HireEmployeeRequestDto requestDto) {
+        userService.hireEmployee(requestDto);
     }
 }

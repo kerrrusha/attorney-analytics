@@ -14,7 +14,7 @@ import com.kerrrusha.attorneyanalytics.repository.legal_case.LegalCaseRepository
 import com.kerrrusha.attorneyanalytics.repository.client.ClientRepository;
 import com.kerrrusha.attorneyanalytics.repository.payment.PaymentRepository;
 import com.kerrrusha.attorneyanalytics.repository.user.UserRepository;
-import com.kerrrusha.attorneyanalytics.service.LegalCaseService;
+import com.kerrrusha.attorneyanalytics.service.legal_case.LegalCaseService;
 import com.kerrrusha.attorneyanalytics.service.analytics.AbstractIncomesOutcomesCalculator;
 import com.kerrrusha.attorneyanalytics.service.analytics.AnalyticsService;
 import org.springframework.beans.factory.annotation.Qualifier;

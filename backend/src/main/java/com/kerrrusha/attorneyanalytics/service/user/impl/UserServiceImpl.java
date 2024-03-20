@@ -1,5 +1,6 @@
 package com.kerrrusha.attorneyanalytics.service.user.impl;
 
+import com.kerrrusha.attorneyanalytics.dto.user.request.HireEmployeeRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.EmployeeResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.UserListingResponseDto;
@@ -21,6 +22,7 @@ import com.kerrrusha.attorneyanalytics.repository.user.UserPhoneRepository;
 import com.kerrrusha.attorneyanalytics.repository.user.UserPracticeAreaRepository;
 import com.kerrrusha.attorneyanalytics.repository.user.RoleRepository;
 import com.kerrrusha.attorneyanalytics.repository.user.TitleRepository;
+import com.kerrrusha.attorneyanalytics.security.RandomPasswordGenerator;
 import com.kerrrusha.attorneyanalytics.service.user.UserService;
 import com.kerrrusha.attorneyanalytics.model.user.User;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserRegistrationRequestDto;
@@ -49,6 +51,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+    private final RandomPasswordGenerator randomPasswordGenerator;
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
     private final TitleRepository titleRepository;
@@ -57,6 +60,7 @@ public class UserServiceImpl implements UserService {
     private final UserLocationRepository locationRepository;
     private final UserPracticeAreaRepository practiceAreaRepository;
     private final UserAdmissionRepository admissionRepository;
+    private final UserTitleComparator userTitleComparator;
 
     @Override
     public UserResponseDto register(UserRegistrationRequestDto request) {
@@ -70,11 +74,30 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setProfilePhotoUrl(request.getProfilePhotoUrl());
+
         Role workerRole = roleRepository.findByName(Role.RoleName.WORKER).orElseThrow();
         user.setRoles(singleton(workerRole));
-        User savedUser = userRepository.save(user);
 
-        return userMapper.toDto(savedUser);
+        if (request.getTitleId() != null) {
+            Title title = titleRepository.findById(request.getTitleId())
+                    .orElseThrow(() -> new RuntimeException("Can't find title by id: " + request.getTitleId()));
+            user.setTitle(title);
+        }
+
+        return userMapper.toDto(userRepository.save(user));
+    }
+
+    @Override
+    public void hireEmployee(HireEmployeeRequestDto requestDto) {
+        UserRegistrationRequestDto registrationRequestDto = new UserRegistrationRequestDto();
+
+        registrationRequestDto.setTitleId(requestDto.getTitleId());
+        registrationRequestDto.setPassword(randomPasswordGenerator.generatePassword());
+        registrationRequestDto.setFirstName(requestDto.getFirstName());
+        registrationRequestDto.setLastName(requestDto.getLastName());
+        registrationRequestDto.setLogin(requestDto.getLogin());
+
+        register(registrationRequestDto);
     }
 
     @Override
@@ -156,7 +179,7 @@ public class UserServiceImpl implements UserService {
 
         return usersByTitle.entrySet().stream()
                 .sorted((usersByTitle1, usersByTitle2) ->
-                        new UserTitleComparator().compare(usersByTitle1.getValue().get(0), usersByTitle2.getValue().get(0)))
+                        userTitleComparator.compare(usersByTitle1.getValue().get(0), usersByTitle2.getValue().get(0)))
                 .map(this::mapToGroupedByTitle)
                 .toList();
     }

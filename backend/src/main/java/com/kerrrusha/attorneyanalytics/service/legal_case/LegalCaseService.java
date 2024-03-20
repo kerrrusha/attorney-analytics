@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.service;
+package com.kerrrusha.attorneyanalytics.service.legal_case;
 
 import com.kerrrusha.attorneyanalytics.dto.legal_case.LegalCasePageableResponseDto;
 import com.kerrrusha.attorneyanalytics.dto.legal_case.LegalCaseResponseDto;

@@ -20,15 +20,16 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({
             JwtException.class,
             AccessDeniedException.class,
-            BadCredentialsException.class,
-            UserAlreadyExistsException.class})
+            BadCredentialsException.class})
     public ErrorResponse handleForbidden(Throwable e) {
         return new ErrorResponse("Access denied: " + e.getMessage());
     }
 
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({HttpMessageNotReadableException.class})
+    @ExceptionHandler({
+            HttpMessageNotReadableException.class,
+            UserAlreadyExistsException.class})
     public ErrorResponse handleMessageNotReadable(Throwable e) {
         return new ErrorResponse("Bad request: " + e.getMessage());
     }
