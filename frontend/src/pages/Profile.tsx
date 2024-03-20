@@ -11,18 +11,29 @@ import {fixNull} from "../common/commonUtils";
 import SaveableTextArea from "../components/saveable/SaveableTextArea";
 import CrudTable, {TableData} from "../components/CrudTable";
 import useFetchUser from "../hooks/useFetchUser";
+import React, {useState} from "react";
+import {PAGES} from "../common/constants";
 
 export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
     const [userFetched] = useFetchUser();
     const user : User | null = useAppSelector(selectUser)!;
+
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState(false);
+
     const dispatch = useAppDispatch();
 
     const updateUser = (requestBody : UserUpdateRequest) => {
-        return postUpdateUser(requestBody).then(updatedUser => {
-            console.log("Updated user:");
-            console.log(updatedUser);
-
-            dispatch(setUser(updatedUser));
+        return postUpdateUser(requestBody).then(response => {
+            if (response.status === 200) {
+                response.json().then(json => dispatch(setUser(json)));
+                setError("");
+                setSuccess(true);
+                return;
+            }
+            setSuccess(false);
+            response.json().then(json => setError(`Something went wrong: ${json.message}`));
+            window.scrollTo(0, document.body.scrollHeight);
         });
     }
 
@@ -251,6 +262,17 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                             </div>
                         </div>
                     </form>}
+                </div>
+                <div className="mt-3">
+                    {success && <div className="alert alert-success" role="alert">
+                        <p>Employee promoted successfully.</p>
+                        <span>Refer to the <a href={PAGES.employees}>employees</a> page to see updated employee list.</span>
+                    </div>
+                    }
+                    {error && <div className="alert alert-danger" role="alert">
+                        <span>{error}</span>
+                    </div>
+                    }
                 </div>
             </div>
         </>

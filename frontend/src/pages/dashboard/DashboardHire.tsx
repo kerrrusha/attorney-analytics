@@ -1,10 +1,9 @@
 import {HireEmployeeRequest, LoggedInProps} from "../../common/commonTypes";
 import PageWithSidebar from "../../components/sidebar/PageWithSidebar";
 import React, {FormEvent, useState} from "react";
-import useFetchTitles from "../../hooks/useFetchTitles";
-import LoadingGif from "../../components/loading/LoadingGif";
 import {postHireEmployee} from "../../services/postHireEmployee";
 import {PAGES} from "../../common/constants";
+import TitleSelect from "../../components/TitleSelect";
 
 export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [firstName, setFirstName] = useState("");
@@ -15,7 +14,6 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
 
-    const [titles] = useFetchTitles()!;
 
     const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -38,7 +36,7 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
         });
     }
 
-    const contentElement = !titles ? <LoadingGif /> : <div>
+    const contentElement = <div>
         <div className="border-b p-2 flex flex-row justify-between align-items-center">
             <h4 className="text-header font-semibold">Hire attorney</h4>
         </div>
@@ -80,7 +78,7 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
                         <input
                             value={login}
                             onChange={({target}) => setLogin(target.value)}
-                            id="email"
+                            id="login"
                             type="email"
                             autoComplete="email"
                             className="text-black block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300
@@ -89,16 +87,8 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
                     </div>
                 </div>
                 <div className="col-span-4">
-                    <label htmlFor="title"
-                           className="block mb-2 text-sm font-medium">Title</label>
-                    <select id="title"
-                            value={titleId}
-                            required
-                            onChange={({target}) => setTitleId(parseInt(target.value))}
-                            className="text-black border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value={0}>Choose title</option>
-                        {titles.map((col, index) => <option key={index} value={col.id}>{col.name}</option>)}
-                    </select>
+                    <span className="block mb-2 text-sm font-medium">Title</span>
+                    <TitleSelect handleSetTitleId={setTitleId} />
                 </div>
             </div>
             <hr />

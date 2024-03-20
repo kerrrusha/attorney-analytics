@@ -10,13 +10,13 @@ export type LoggedInProps = {
 }
 
 export type UserUpdateRequest = {
-    userId: string,
+    userId: number,
     firstName?: string,
     lastName?: string,
     profilePhotoUrl?: string,
     bio?: string,
     linkedinUrl?: string,
-    title?: string,
+    titleId?: number,
     emails?: Array<string>,
     phones?: Array<string>,
     locations?: Array<string>,
@@ -25,7 +25,7 @@ export type UserUpdateRequest = {
 }
 
 export type User = {
-    id: string,
+    id: number,
     login: string,
     firstName: string,
     lastName: string,

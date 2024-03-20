@@ -30,6 +30,7 @@ import com.kerrrusha.attorneyanalytics.dto.user.request.UserRegistrationRequestD
 import com.kerrrusha.attorneyanalytics.mapper.UserMapper;
 import com.kerrrusha.attorneyanalytics.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -108,74 +109,78 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserResponseDto update(UserUpdateRequestDto requestDto, String login) {
-        User user = userRepository.findByLogin(login)
-                .orElseThrow(() -> new RuntimeException("User not found by login: " + login));
-        if (!user.getId().equals(requestDto.getUserId())) {
-            throw new RuntimeException("User id in request and in database are different");
+    public UserResponseDto update(UserUpdateRequestDto requestDto, String updatedByLogin) {
+        User userToUpdate = userRepository.findById(requestDto.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found by id: " + requestDto.getUserId()));
+        User updatedBy = userRepository.findByLogin(updatedByLogin)
+                .orElseThrow(() -> new RuntimeException("User not found by login: " + updatedByLogin));
+
+        Role adminRole = roleRepository.findByName(Role.RoleName.ADMIN).orElseThrow();
+        if (!updatedBy.getRoles().contains(adminRole) && !updatedBy.equals(userToUpdate)) {
+            throw new AccessDeniedException("User id in request and in database are different");
         }
 
         if (nonNull(requestDto.getFirstName())) {
-            user.setFirstName(requestDto.getFirstName());
+            userToUpdate.setFirstName(requestDto.getFirstName());
         }
         if (isNotBlank(requestDto.getLastName())) {
-            user.setLastName(requestDto.getLastName());
+            userToUpdate.setLastName(requestDto.getLastName());
         }
         if (nonNull(requestDto.getProfilePhotoUrl())) {
-            user.setProfilePhotoUrl(requestDto.getProfilePhotoUrl());
+            userToUpdate.setProfilePhotoUrl(requestDto.getProfilePhotoUrl());
         }
         if (nonNull(requestDto.getBio())) {
-            user.setBio(requestDto.getBio());
+            userToUpdate.setBio(requestDto.getBio());
         }
         if (nonNull(requestDto.getLinkedinUrl())) {
-            user.setLinkedinUrl(requestDto.getLinkedinUrl());
+            userToUpdate.setLinkedinUrl(requestDto.getLinkedinUrl());
         }
-        if (nonNull(requestDto.getTitle())) {
-            Title title = titleRepository.findByName(requestDto.getTitle())
-                    .orElseThrow(() -> new RuntimeException("Can't find title: " + requestDto.getTitle()));
-            user.setTitle(title);
+        if (nonNull(requestDto.getTitleId())) {
+            Title title = titleRepository.findById(requestDto.getTitleId())
+                    .orElseThrow(() -> new RuntimeException("Can't find title by id: " + requestDto.getTitleId()));
+            userToUpdate.setTitle(title);
         }
         if (nonNull(requestDto.getEmails())) {
             List<UserEmail> emails = Arrays.stream(requestDto.getEmails())
-                    .map(str -> new UserEmail(str, user))
+                    .map(str -> new UserEmail(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
-            user.getEmails().clear();
-            emailRepository.deleteAllByUserId(user.getId());
-            user.setEmails(emails);
+            userToUpdate.getEmails().clear();
+            emailRepository.deleteAllByUserId(userToUpdate.getId());
+            userToUpdate.setEmails(emails);
         }
         if (nonNull(requestDto.getPhones())) {
             List<UserPhone> phones = Arrays.stream(requestDto.getPhones())
-                    .map(str -> new UserPhone(str, user))
+                    .map(str -> new UserPhone(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
-            user.getPhones().clear();
-            phoneRepository.deleteAllByUserId(user.getId());
-            user.setPhones(phones);
+            userToUpdate.getPhones().clear();
+            phoneRepository.deleteAllByUserId(userToUpdate.getId());
+            userToUpdate.setPhones(phones);
         }
         if (nonNull(requestDto.getLocations())) {
             List<UserLocation> locations = Arrays.stream(requestDto.getLocations())
-                    .map(str -> new UserLocation(str, user))
+                    .map(str -> new UserLocation(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
-            user.getLocations().clear();
-            locationRepository.deleteAllByUserId(user.getId());
-            user.setLocations(locations);
+            userToUpdate.getLocations().clear();
+            locationRepository.deleteAllByUserId(userToUpdate.getId());
+            userToUpdate.setLocations(locations);
         }
         if (nonNull(requestDto.getAdmissions())) {
             List<UserAdmission> admissions = Arrays.stream(requestDto.getAdmissions())
-                    .map(str -> new UserAdmission(str, user))
+                    .map(str -> new UserAdmission(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
-            user.getAdmissions().clear();
-            admissionRepository.deleteAllByUserId(user.getId());
-            user.setAdmissions(admissions);
+            userToUpdate.getAdmissions().clear();
+            admissionRepository.deleteAllByUserId(userToUpdate.getId());
+            userToUpdate.setAdmissions(admissions);
         }
         if (nonNull(requestDto.getPracticeAreas())) {
             List<UserPracticeArea> practiceAreas = Arrays.stream(requestDto.getPracticeAreas())
-                    .map(str -> new UserPracticeArea(str, user))
+                    .map(str -> new UserPracticeArea(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
-            user.getPracticeAreas().clear();
-            practiceAreaRepository.deleteAllByUserId(user.getId());
-            user.setPracticeAreas(practiceAreas);
+            userToUpdate.getPracticeAreas().clear();
+            practiceAreaRepository.deleteAllByUserId(userToUpdate.getId());
+            userToUpdate.setPracticeAreas(practiceAreas);
         }
-        return userMapper.toDto(userRepository.save(user));
+        return userMapper.toDto(userRepository.save(userToUpdate));
     }
 
     @Override
