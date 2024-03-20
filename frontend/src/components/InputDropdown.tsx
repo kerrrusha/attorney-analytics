@@ -45,10 +45,10 @@ export default function InputDropdown({options, handleChange, handleSelect}: Inp
         }
     }, [inputValue]);
 
-    return <div>
-        <input className="text-black" style={{width: width}} onFocus={() => setInputFocused(true)}
-               onBlur={() => setInputFocused(false)} onChange={handleInputChange} value={inputValue} />
-        <div className="mt-2 text-black bg-white rounded outline-none flex flex-col position-absolute"
+    return <div onFocus={() => setInputFocused(true)}>
+        <input className="text-black" style={{width: width}} onChange={handleInputChange} value={inputValue} />
+        <div onFocus={() => setInputFocused(true)} onBlur={() => setInputFocused(false)}
+             className="mt-2 text-black bg-white rounded outline-none flex flex-col position-absolute"
              style={{width: width, zIndex: 10}}>
             {inputFocused && options.map((option, index) =>
                     <button key={index} onClick={() => handleOptionSelect(option)} value={option.value}
