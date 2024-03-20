@@ -187,3 +187,8 @@ export type TitleDto = {
     id: number,
     name: string,
 }
+
+export type SelectOption = {
+    value: string,
+    label: string,
+}
