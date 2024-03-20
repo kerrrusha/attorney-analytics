@@ -1,14 +1,17 @@
-import {LoggedInProps, SelectOption, User} from "../../common/commonTypes";
+import {FireEmployeeRequest, LoggedInProps, SelectOption, User} from "../../common/commonTypes";
 import PageWithSidebar from "../../components/sidebar/PageWithSidebar";
 import InputDropdown from "../../components/InputDropdown";
-import {useState} from "react";
+import React, {useState} from "react";
 import {doGetRequestApiJson} from "../../services/doGetRequestApiJson";
-import {API_ENDPOINTS} from "../../common/constants";
+import {API_ENDPOINTS, PAGES} from "../../common/constants";
+import {postFireEmployee} from "../../services/postFireEmployee";
 
 export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [selectedOptionValue, setSelectedOptionValue] = useState("");
-
     const [attorneyOptions, setAttorneyOptions]: [SelectOption[], any] = useState([]);
+
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState(false);
 
     const handleChange = (inputValue: string) => {
         setAttorneyOptions([]);
@@ -26,6 +29,22 @@ export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
         }
     };
 
+    const handleFire = () => {
+        const requestBody : FireEmployeeRequest = {
+            id: parseInt(selectedOptionValue),
+        }
+
+        postFireEmployee(requestBody).then(response => {
+            if (response.status === 200) {
+                setError("");
+                setSuccess(true);
+                return;
+            }
+            setSuccess(false);
+            response.json().then(json => setError(`Something went wrong: ${json.message}`));
+        });
+    };
+
     const contentElement = <div>
         <div className="border-b p-2 flex flex-row justify-between align-items-center">
             <h4 className="text-header font-semibold">Fire attorney</h4>
@@ -35,11 +54,23 @@ export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
             <div className="flex flex-row space-x-4">
                 <InputDropdown options={attorneyOptions} handleChange={handleChange} handleSelect={setSelectedOptionValue} />
                 <button
+                    onClick={handleFire}
                     disabled={!selectedOptionValue || selectedOptionValue.length === 0}
                     className="rounded-md bg-white px-5 py-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-500">
                     Fire
                 </button>
             </div>
+        </div>
+        <div className="mt-3">
+            {success && <div className="alert alert-success" role="alert">
+                <p>Employee fired successfully.</p>
+                <span>Refer to the <a href={PAGES.employees}>employees</a> page to see updated employee list.</span>
+            </div>
+            }
+            {error && <div className="alert alert-danger" role="alert">
+                <span>{error}</span>
+            </div>
+            }
         </div>
     </div>;
 

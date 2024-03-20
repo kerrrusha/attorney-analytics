@@ -47,6 +47,7 @@ export const API_ENDPOINTS = {
     getLegalCases: "/cases",
     getTitles: "/titles",
     postHireEmployee: "/user/hire",
+    postFireEmployee: "/user/fire",
 }
 
 export const ROLES = {

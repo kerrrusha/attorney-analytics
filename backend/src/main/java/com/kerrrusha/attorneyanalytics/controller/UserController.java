@@ -1,5 +1,6 @@
 package com.kerrrusha.attorneyanalytics.controller;
 
+import com.kerrrusha.attorneyanalytics.dto.user.request.FireEmployeeRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.request.HireEmployeeRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.EmployeeResponseDto;
@@ -65,6 +66,11 @@ public class UserController {
     @PostMapping("/hire")
     public void hireEmployee(@RequestBody HireEmployeeRequestDto requestDto) {
         userService.hireEmployee(requestDto);
+    }
+
+    @PostMapping("/fire")
+    public void fireEmployee(@RequestBody FireEmployeeRequestDto requestDto) {
+        userService.fireEmployee(requestDto);
     }
 
     @GetMapping("/search/lastName/{lastName}")

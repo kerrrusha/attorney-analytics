@@ -1,5 +1,6 @@
 package com.kerrrusha.attorneyanalytics.service.user.impl;
 
+import com.kerrrusha.attorneyanalytics.dto.user.request.FireEmployeeRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.request.HireEmployeeRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.request.UserUpdateRequestDto;
 import com.kerrrusha.attorneyanalytics.dto.user.response.EmployeeResponseDto;
@@ -98,6 +99,11 @@ public class UserServiceImpl implements UserService {
         registrationRequestDto.setLogin(requestDto.getLogin());
 
         register(registrationRequestDto);
+    }
+
+    @Override
+    public void fireEmployee(FireEmployeeRequestDto requestDto) {
+        userRepository.deleteById(requestDto.getId());
     }
 
     @Override
