@@ -3,6 +3,7 @@ package com.kerrrusha.attorneyanalytics.config;
 import com.kerrrusha.attorneyanalytics.security.JwtAuthenticationFilter;
 import com.kerrrusha.attorneyanalytics.security.ReadyUserDetailsService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,7 +32,8 @@ public class SecurityConfig {
     private final ReadyUserDetailsService userDetailsService;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    @SneakyThrows
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         return http
                 .cors(withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)

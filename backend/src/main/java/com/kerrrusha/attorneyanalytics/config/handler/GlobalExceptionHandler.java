@@ -31,7 +31,8 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({
             HttpMessageNotReadableException.class,
-            UserAlreadyExistsException.class})
+            UserAlreadyExistsException.class,
+            IllegalArgumentException.class})
     public ErrorResponse handleMessageNotReadable(Throwable e) {
         return new ErrorResponse("Bad request: " + e.getMessage());
     }
