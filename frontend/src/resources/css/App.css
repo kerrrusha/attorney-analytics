@@ -76,3 +76,8 @@ table#about-us th {
 table#case-info th {
   width: 10rem;
 }
+
+table.table-rounded {
+  border-radius:16px;
+  border: none;
+}
