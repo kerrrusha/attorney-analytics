@@ -108,6 +108,6 @@ export default function DashboardAddNewClient({loggedIn, setLoggedIn}: LoggedInP
         </form>
     </div>;
 
-    return <PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"dashboard"} contentElement={contentElement}/>;
+    return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
+                            pageName={"dashboard"} contentElement={contentElement}/>);
 }

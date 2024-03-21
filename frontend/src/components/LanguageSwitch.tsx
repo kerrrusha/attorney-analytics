@@ -8,10 +8,8 @@ export default function LanguageSwitcher() {
         i18n.changeLanguage(newLang);
     };
 
-    return (
-        <select value={i18n.language} onChange={handleLanguageChange}>
+    return (<select value={i18n.language} onChange={handleLanguageChange}>
             <option value="ua">Українська</option>
             <option value="en">English</option>
-        </select>
-    );
-}
+        </select>);
+};

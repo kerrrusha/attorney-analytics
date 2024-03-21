@@ -6,7 +6,7 @@ interface PaymentCardProps {
 }
 
 export default function PaymentListing({payments}: PaymentCardProps) {
-    return <table className="table background-secondary">
+    return (<table className="table background-secondary">
         <thead>
         <tr>
             <th scope="col">Last updated</th>
@@ -30,5 +30,5 @@ export default function PaymentListing({payments}: PaymentCardProps) {
                 </tr>)
         }
         </tbody>
-    </table>;
+    </table>);
 }

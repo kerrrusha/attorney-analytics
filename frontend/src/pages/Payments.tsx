@@ -44,6 +44,6 @@ export default function Payments({loggedIn, setLoggedIn}: LoggedInProps) {
         </>
         }
     </div>;
-    return <PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"payments"} contentElement={contentElement}/>;
+    return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
+                            pageName={"payments"} contentElement={contentElement}/>);
 }

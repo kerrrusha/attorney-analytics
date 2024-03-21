@@ -52,6 +52,6 @@ export default function LegalCase({loggedIn, setLoggedIn}: LoggedInProps) {
             </div>
         </div>}
     </div>;
-    return <PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"cases"} contentElement={contentElement}/>;
+    return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
+                            pageName={"cases"} contentElement={contentElement}/>);
 }

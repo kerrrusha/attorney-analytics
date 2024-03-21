@@ -65,7 +65,7 @@ export default function IndepententCrudTable({name, handleChange_, initialRows=[
         setCanAddNewRow(emptyRowsCount === 0);
     }, [rows]);
 
-    return <div className="flex flex-row items-center">
+    return (<div className="flex flex-row items-center">
         <div className="flex-1">
             <table id={tableId} className="m-0 table table-bordered bg-white table-rounded">
                 <tbody>
@@ -110,5 +110,5 @@ export default function IndepententCrudTable({name, handleChange_, initialRows=[
                 </tbody>
             </table>
         </div>
-    </div>;
+    </div>);
 }

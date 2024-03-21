@@ -145,6 +145,6 @@ export default function DashboardDeclarePayment({loggedIn, setLoggedIn}: LoggedI
         }
     </div>;
 
-    return <PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"dashboard"} contentElement={contentElement}/>;
+    return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
+                            pageName={"dashboard"} contentElement={contentElement}/>);
 }

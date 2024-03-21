@@ -86,6 +86,6 @@ export default function DashboardPromoteEmployee({loggedIn, setLoggedIn}: Logged
         </div>
     </div>;
 
-    return <PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"dashboard"} contentElement={contentElement}/>;
+    return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
+                            pageName={"dashboard"} contentElement={contentElement}/>);
 }

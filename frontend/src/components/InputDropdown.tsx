@@ -47,7 +47,7 @@ export default function InputDropdown({options, handleChange, handleSelect}: Inp
         }
     }, [inputValue]);
 
-    return <div onFocus={() => setInputFocused(true)}>
+    return (<div onFocus={() => setInputFocused(true)}>
         <input className="text-black" style={{width: width}} onChange={handleInputChange} value={inputValue} />
         <div onFocus={() => setInputFocused(true)} onBlur={() => setInputFocused(false)}
              className="mt-2 text-black bg-white rounded outline-none flex flex-col position-absolute"
@@ -59,5 +59,5 @@ export default function InputDropdown({options, handleChange, handleSelect}: Inp
                         {option.label}
                     </button>)}
         </div>
-    </div>;
+    </div>);
 }

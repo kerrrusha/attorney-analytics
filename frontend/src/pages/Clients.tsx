@@ -65,6 +65,6 @@ export default function Clients({loggedIn, setLoggedIn} : LoggedInProps) {
         </>
         }
     </div>;
-    return <PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"clients"} contentElement={contentElement}/>;
+    return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
+                            pageName={"clients"} contentElement={contentElement}/>);
 }

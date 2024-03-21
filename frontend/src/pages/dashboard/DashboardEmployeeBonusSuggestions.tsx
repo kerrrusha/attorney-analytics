@@ -67,6 +67,6 @@ export default function DashboardEmployeeBonusSuggestions({loggedIn, setLoggedIn
         </div>
     </div>;
 
-    return <PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"dashboard"} contentElement={contentElement}/>;
+    return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
+                            pageName={"dashboard"} contentElement={contentElement}/>);
 }

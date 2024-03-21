@@ -15,7 +15,7 @@ export default function IdValuePairsSelect({name, options, handleSetId}: IdValue
         handleSetId(titleId);
     };
 
-    return <>
+    return (<>
         <select value={id}
                 required
                 onChange={({target}) => setTitleId(parseInt(target.value))}
@@ -25,5 +25,5 @@ export default function IdValuePairsSelect({name, options, handleSetId}: IdValue
             <option value="" selected hidden>Choose {name}</option>
             {options.map((col, index) => <option key={index} value={col.id}>{col.value}</option>)}
         </select>
-    </>;
+    </>);
 }

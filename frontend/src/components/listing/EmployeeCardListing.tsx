@@ -7,7 +7,7 @@ interface EmployeeCardProps {
 }
 
 export default function EmployeeCardListing({employees}: EmployeeCardProps) {
-    return <>
+    return (<>
         {employees.map((employee, index) =>
             <a key={index} href={PAGES.employees + "/" + toKebabCase(employee.fullName)}
                className="card background-secondary items-start justify-center no-underline pt-4 px-4 w-auto">
@@ -25,5 +25,5 @@ export default function EmployeeCardListing({employees}: EmployeeCardProps) {
                     </div>
                 </div>
             </a>)}
-    </>;
+    </>);
 }

@@ -79,6 +79,6 @@ export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
         </div>
     </div>;
 
-    return <PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"dashboard"} contentElement={contentElement}/>;
+    return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
+                            pageName={"dashboard"} contentElement={contentElement}/>);
 }

@@ -268,6 +268,6 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
             </div>
         </div>
     </div>;
-    return <PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"analytics"} contentElement={contentElement} />;
+    return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
+                            pageName={"analytics"} contentElement={contentElement} />);
 }

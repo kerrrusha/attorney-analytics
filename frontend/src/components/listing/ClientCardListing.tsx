@@ -5,7 +5,7 @@ interface ClientCardProps {
 }
 
 export default function ClientCardListing({clients}: ClientCardProps) {
-    return <>
+    return (<>
         {clients.map((client, index) =>
             <div key={index}
                  className="card background-secondary items-start justify-center no-underline pt-2 px-3 w-auto">
@@ -23,5 +23,5 @@ export default function ClientCardListing({clients}: ClientCardProps) {
                     </div>
                 </div>
             </div>)}
-    </>;
+    </>);
 }

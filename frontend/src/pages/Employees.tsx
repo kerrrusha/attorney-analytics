@@ -18,6 +18,6 @@ export default function Employees({loggedIn, setLoggedIn}: LoggedInProps) {
                     </div>
                 </div>)}
     </div>;
-    return <PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"employees"} contentElement={contentElement}/>;
+    return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
+                            pageName={"employees"} contentElement={contentElement}/>);
 }
