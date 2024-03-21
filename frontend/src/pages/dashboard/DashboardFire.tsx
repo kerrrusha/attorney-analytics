@@ -6,10 +6,14 @@ import {doGetRequestReturnJson} from "../../services/doGetRequestReturnJson";
 import {API_ENDPOINTS, PAGES} from "../../common/constants";
 import {doPostRequestReturnResponse} from "../../services/doPostRequestReturnResponse";
 import SubPageHeader from "../../components/SubPageHeader";
+import {useAppSelector} from "../../hooks/useAppSelector";
+import {selectUser} from "../../redux/slices/authSlice";
 
 export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [selectedOptionValue, setSelectedOptionValue] = useState("");
     const [attorneyOptions, setAttorneyOptions]: [SelectOption[], any] = useState([]);
+
+    const user = useAppSelector(selectUser)!;
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
@@ -20,7 +24,9 @@ export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
             doGetRequestReturnJson(API_ENDPOINTS.searchUserByLastName + "/" + inputValue)
                 .then(response => {
                     if (response && response.length > 0) {
-                        const newAttorneyOptions = response.map((user: User) => { return {
+                        const newAttorneyOptions = response
+                            .filter((u: User) => u.id !== user.id)
+                            .map((user: User) => { return {
                             value: "" + user.id,
                             label: user.firstName + " " + user.lastName + " (" + user.title + ")",
                         }});
@@ -35,7 +41,7 @@ export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
             id: parseInt(selectedOptionValue),
         }
 
-        doPostRequestReturnResponse(requestBody, API_ENDPOINTS.postHireEmployee).then(response => {
+        doPostRequestReturnResponse(requestBody, API_ENDPOINTS.postFireEmployee).then(response => {
             if (response.status === 200) {
                 setError("");
                 setSuccess(true);
