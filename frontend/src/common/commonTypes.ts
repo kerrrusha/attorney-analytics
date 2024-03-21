@@ -111,6 +111,7 @@ export type AttorneysOfTheMonthDto = Array<{
     attorneyFullName: string,
     title: string,
     casesParticipated: number,
+    successfullyClosedAmount: number,
     successfullyClosedRate: number,
 }>
 

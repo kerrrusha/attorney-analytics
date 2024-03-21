@@ -8,5 +8,6 @@ public class AttorneyOfTheMonthDto {
     private String attorneyFullName;
     private String title;
     private long casesParticipated;
+    private long successfullyClosedAmount;
     private double successfullyClosedRate;
 }

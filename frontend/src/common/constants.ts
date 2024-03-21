@@ -6,6 +6,8 @@ export const SUCCESS_COLOR_CLASSNAME = "text-success";
 export const DANGER_COLOR_CLASSNAME = "text-danger";
 export const NEUTRAL_COLOR_CLASS_NAME = "text-primary";
 
+export const GOLDEN_TRANSPARENT_COLOR = "rgba(255, 219, 92, 0.22)";
+
 export const BLANK_PERSON_PHOTO_URL = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png";
 
 export const PAGES = {

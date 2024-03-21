@@ -10,6 +10,7 @@ import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCase;
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCaseStatus;
 import com.kerrrusha.attorneyanalytics.model.payment.Payment;
 import com.kerrrusha.attorneyanalytics.model.user.User;
+import com.kerrrusha.attorneyanalytics.model.user.UserTitleComparator;
 import com.kerrrusha.attorneyanalytics.repository.legal_case.LegalCaseRepository;
 import com.kerrrusha.attorneyanalytics.repository.client.ClientRepository;
 import com.kerrrusha.attorneyanalytics.repository.payment.PaymentRepository;
@@ -55,12 +56,16 @@ public class AnalyticsServiceImpl implements AnalyticsService {
     private final AbstractIncomesOutcomesCalculator clientIncomesOutcomesCalculator;
 
     private final LegalCaseService legalCaseService;
+    private final UserTitleComparator userTitleComparator;
 
     public AnalyticsServiceImpl(UserRepository userRepository, ClientRepository clientRepository,
-                                LegalCaseRepository legalCaseRepository, PaymentRepository paymentRepository,
+                                LegalCaseRepository legalCaseRepository,
+                                PaymentRepository paymentRepository,
                                 @Qualifier("month") AbstractIncomesOutcomesCalculator monthIncomesOutcomesCalculator,
                                 @Qualifier("caseType") AbstractIncomesOutcomesCalculator caseTypeOutcomesCalculator,
-                                @Qualifier("client") AbstractIncomesOutcomesCalculator clientIncomesOutcomesCalculator, LegalCaseService legalCaseService) {
+                                @Qualifier("client") AbstractIncomesOutcomesCalculator clientIncomesOutcomesCalculator,
+                                LegalCaseService legalCaseService,
+                                UserTitleComparator userTitleComparator) {
         this.userRepository = userRepository;
         this.clientRepository = clientRepository;
         this.legalCaseRepository = legalCaseRepository;
@@ -69,6 +74,7 @@ public class AnalyticsServiceImpl implements AnalyticsService {
         this.caseTypeOutcomesCalculator = caseTypeOutcomesCalculator;
         this.clientIncomesOutcomesCalculator = clientIncomesOutcomesCalculator;
         this.legalCaseService = legalCaseService;
+        this.userTitleComparator = userTitleComparator;
     }
 
     @Override
@@ -125,17 +131,18 @@ public class AnalyticsServiceImpl implements AnalyticsService {
         }
 
         return attorneyToSuccessfullyClosedRateMap.keySet().stream()
+                .sorted((u1, u2) -> userTitleComparator.reversed().compare(u1, u2))
                 .map(user -> {
                     AttorneyOfTheMonthDto result = new AttorneyOfTheMonthDto();
 
                     result.setAttorneyFullName(user.getFullName());
                     result.setTitle(user.getTitle().getName());
                     result.setCasesParticipated(attorneyToCasesAmountMap.get(user));
+                    result.setSuccessfullyClosedAmount(attorneyToSuccessCasesAmountMap.get(user));
                     result.setSuccessfullyClosedRate(attorneyToSuccessfullyClosedRateMap.get(user));
 
                     return result;
                 })
-                .sorted(Comparator.comparing(AttorneyOfTheMonthDto::getAttorneyFullName))
                 .sorted(Comparator.comparingDouble(AttorneyOfTheMonthDto::getSuccessfullyClosedRate).reversed())
                 .toList();
     }
