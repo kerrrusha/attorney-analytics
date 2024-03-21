@@ -138,7 +138,7 @@ public class AnalyticsServiceImpl implements AnalyticsService {
                     result.setAttorneyFullName(user.getFullName());
                     result.setTitle(user.getTitle().getName());
                     result.setCasesParticipated(attorneyToCasesAmountMap.get(user));
-                    result.setSuccessfullyClosedAmount(attorneyToSuccessCasesAmountMap.get(user));
+                    result.setSuccessfullyClosedAmount(attorneyToSuccessCasesAmountMap.getOrDefault(user, 0L));
                     result.setSuccessfullyClosedRate(attorneyToSuccessfullyClosedRateMap.get(user));
 
                     return result;

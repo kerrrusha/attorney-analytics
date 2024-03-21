@@ -297,3 +297,150 @@ databaseChangeLog:
               - column:
                   name: legal_case_status_id
                   value: 4
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: '2024-02-13 22:30:00'
+              - column:
+                  name: updated_at
+                  value: '2024-02-13 23:00:00'
+              - column:
+                  name: title
+                  value: 'Workplace Discrimination: Tech Company Faces Bias Allegations'
+              - column:
+                  name: description
+                  value: 'Allegations of gender and racial discrimination surface against a major tech firm, sparking a legal battle over workplace equality and fair treatment.'
+              - column:
+                  name: legal_case_type_id
+                  value: 3
+              - column:
+                  name: legal_case_status_id
+                  value: 5
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: '2024-02-14 22:30:00'
+              - column:
+                  name: updated_at
+                  value: '2024-02-14 23:00:00'
+              - column:
+                  name: title
+                  value: 'Community vs. Industry: Pollution Lawsuit Raises Health Concerns'
+              - column:
+                  name: description
+                  value: 'Local residents take legal action against an industrial corporation, alleging environmental pollution causing health hazards and seeking damages for harm inflicted.'
+              - column:
+                  name: legal_case_type_id
+                  value: 3
+              - column:
+                  name: legal_case_status_id
+                  value: 4
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: '2024-02-12 22:30:00'
+              - column:
+                  name: updated_at
+                  value: '2024-02-12 23:00:00'
+              - column:
+                  name: title
+                  value: "Custody Dispute: Former Spouses Battle Over Children's Future"
+              - column:
+                  name: description
+                  value: "A bitter legal battle ensues as ex-spouses vie for custody of their shared children, with emotions running high and the children's welfare at stake."
+              - column:
+                  name: legal_case_type_id
+                  value: 1
+              - column:
+                  name: legal_case_status_id
+                  value: 5
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: '2024-02-11 22:30:00'
+              - column:
+                  name: updated_at
+                  value: '2024-02-11 23:00:00'
+              - column:
+                  name: title
+                  value: "Medical Malpractice: Patients Seek Justice for Negligent Care"
+              - column:
+                  name: description
+                  value: "Patients file suit against healthcare providers for alleged negligence, seeking compensation for injuries sustained and holding accountable those responsible for substandard care."
+              - column:
+                  name: legal_case_type_id
+                  value: 2
+              - column:
+                  name: legal_case_status_id
+                  value: 4
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: '2024-02-10 22:30:00'
+              - column:
+                  name: updated_at
+                  value: '2024-02-10 23:00:00'
+              - column:
+                  name: title
+                  value: "Patent Clash: Pharmaceutical Companies Lock Horns Over Intellectual Property"
+              - column:
+                  name: description
+                  value: "Pharmaceutical giants engage in a legal tug-of-war over patent infringement allegations, with millions at stake and innovation rights on the line."
+              - column:
+                  name: legal_case_type_id
+                  value: 3
+              - column:
+                  name: legal_case_status_id
+                  value: 5
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: '2024-02-08 22:30:00'
+              - column:
+                  name: updated_at
+                  value: '2024-02-09 23:00:00'
+              - column:
+                  name: title
+                  value: "Consumer Rights Fight: Class Action Targets Defective Products"
+              - column:
+                  name: description
+                  value: "Consumers band together in a class action lawsuit against a corporation, alleging harm caused by defective products and demanding compensation and improved safety standards."
+              - column:
+                  name: legal_case_type_id
+                  value: 4
+              - column:
+                  name: legal_case_status_id
+                  value: 4
+        - insert:
+            tableName: legal_case
+            columns:
+              - column:
+                  name: created_at
+                  value: '2024-02-05 22:30:00'
+              - column:
+                  name: updated_at
+                  value: '2024-02-07 23:00:00'
+              - column:
+                  name: title
+                  value: "Wrongful Termination: Employee Challenges Unjust Dismissal"
+              - column:
+                  name: description
+                  value: "A former employee takes legal action against their ex-employer, alleging wrongful termination and seeking reinstatement, back pay, and damages for retaliation."
+              - column:
+                  name: legal_case_type_id
+                  value: 4
+              - column:
+                  name: legal_case_status_id
+                  value: 4

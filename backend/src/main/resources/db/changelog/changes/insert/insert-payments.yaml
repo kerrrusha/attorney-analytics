@@ -425,7 +425,7 @@ databaseChangeLog:
                   value: "Retainer Fee"
               - column:
                   name: amount_in_cents
-                  value: 62000
+                  value: 620000
               - column:
                   name: legal_case_id
                   value: 3
@@ -449,7 +449,7 @@ databaseChangeLog:
                   value: "Legal Consultation"
               - column:
                   name: amount_in_cents
-                  value: 71000
+                  value: 710000
               - column:
                   name: legal_case_id
                   value: 3
@@ -497,7 +497,7 @@ databaseChangeLog:
                   value: "Legal Representation"
               - column:
                   name: amount_in_cents
-                  value: 24000
+                  value: 240000
               - column:
                   name: legal_case_id
                   value: 6
@@ -521,7 +521,7 @@ databaseChangeLog:
                   value: "Legal Expenses"
               - column:
                   name: amount_in_cents
-                  value: 124000
+                  value: 340000
               - column:
                   name: legal_case_id
                   value: 1
@@ -545,7 +545,7 @@ databaseChangeLog:
                   value: "Legal Representation"
               - column:
                   name: amount_in_cents
-                  value: 46000
+                  value: 246000
               - column:
                   name: legal_case_id
                   value: 1
@@ -569,7 +569,7 @@ databaseChangeLog:
                   value: "Payment for Legal Counsel"
               - column:
                   name: amount_in_cents
-                  value: 354000
+                  value: 184000
               - column:
                   name: legal_case_id
                   value: 8
@@ -617,7 +617,7 @@ databaseChangeLog:
                   value: "Payment for Legal Counsel"
               - column:
                   name: amount_in_cents
-                  value: 54000
+                  value: 94000
               - column:
                   name: legal_case_id
                   value: 3
@@ -665,7 +665,7 @@ databaseChangeLog:
                   value: "Case Management Fee"
               - column:
                   name: amount_in_cents
-                  value: 3400
+                  value: 8400
               - column:
                   name: legal_case_id
                   value: 10
@@ -699,3 +699,291 @@ databaseChangeLog:
               - column:
                   name: payment_type_id
                   value: 1
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: "2024-03-01T12:00:00"
+              - column:
+                  name: updated_at
+                  value: "2024-03-03T10:30:00"
+              - column:
+                  name: description
+                  value: "Legal Consultation Fees"
+              - column:
+                  name: amount_in_cents
+                  value: 205000
+              - column:
+                  name: legal_case_id
+                  value: 14
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 1
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: "2024-03-02T14:45:00"
+              - column:
+                  name: updated_at
+                  value: "2024-03-04T11:20:00"
+              - column:
+                  name: description
+                  value: "Court Filing Costs"
+              - column:
+                  name: amount_in_cents
+                  value: 108000
+              - column:
+                  name: legal_case_id
+                  value: 14
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 2
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: "2024-03-03T09:20:00"
+              - column:
+                  name: updated_at
+                  value: "2024-03-05T14:15:00"
+              - column:
+                  name: description
+                  value: "Legal Representation Fees"
+              - column:
+                  name: amount_in_cents
+                  value: 12000
+              - column:
+                  name: legal_case_id
+                  value: 14
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 1
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: "2024-03-04T11:30:00"
+              - column:
+                  name: updated_at
+                  value: "2024-03-06T09:45:00"
+              - column:
+                  name: description
+                  value: "Settlement Negotiation Costs"
+              - column:
+                  name: amount_in_cents
+                  value: 30000
+              - column:
+                  name: legal_case_id
+                  value: 15
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 1
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: "2024-03-05T15:10:00"
+              - column:
+                  name: updated_at
+                  value: "2024-03-07T13:25:00"
+              - column:
+                  name: description
+                  value: "Expert Witness Fees"
+              - column:
+                  name: amount_in_cents
+                  value: 50000
+              - column:
+                  name: legal_case_id
+                  value: 15
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 1
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: "2024-03-06T16:50:00"
+              - column:
+                  name: updated_at
+                  value: "2024-03-08T15:30:00"
+              - column:
+                  name: description
+                  value: "Mediation Services"
+              - column:
+                  name: amount_in_cents
+                  value: 35000
+              - column:
+                  name: legal_case_id
+                  value: 15
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 2
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: "2024-03-07T08:15:00"
+              - column:
+                  name: updated_at
+                  value: "2024-03-09T16:40:00"
+              - column:
+                  name: description
+                  value: "Legal Documentation Preparation"
+              - column:
+                  name: amount_in_cents
+                  value: 20000
+              - column:
+                  name: legal_case_id
+                  value: 16
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 2
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: "2024-03-07T08:15:00"
+              - column:
+                  name: updated_at
+                  value: "2024-03-09T16:40:00"
+              - column:
+                  name: description
+                  value: "Legal Research Expenses"
+              - column:
+                  name: amount_in_cents
+                  value: 45000
+              - column:
+                  name: legal_case_id
+                  value: 17
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 1
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: "2024-03-09T13:20:00"
+              - column:
+                  name: updated_at
+                  value: "2024-03-11T09:45:00"
+              - column:
+                  name: description
+                  value: "Legal Consultation Fees"
+              - column:
+                  name: amount_in_cents
+                  value: 27000
+              - column:
+                  name: legal_case_id
+                  value: 18
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 1
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: "2024-03-10T15:30:00"
+              - column:
+                  name: updated_at
+                  value: "2024-03-12T14:20:00"
+              - column:
+                  name: description
+                  value: "Court Filing Costs"
+              - column:
+                  name: amount_in_cents
+                  value: 21000
+              - column:
+                  name: legal_case_id
+                  value: 19
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 2
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: "2024-03-11T11:45:00"
+              - column:
+                  name: updated_at
+                  value: "2024-03-13T15:00:00"
+              - column:
+                  name: description
+                  value: "Legal Representation Fees"
+              - column:
+                  name: amount_in_cents
+                  value: 13000
+              - column:
+                  name: legal_case_id
+                  value: 20
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 1
+        - insert:
+            tableName: payment
+            columns:
+              - column:
+                  name: created_at
+                  value: "2024-03-12T09:10:00"
+              - column:
+                  name: updated_at
+                  value: "2024-03-14T13:40:00"
+              - column:
+                  name: description
+                  value: "Settlement Negotiation Costs"
+              - column:
+                  name: amount_in_cents
+                  value: 32000
+              - column:
+                  name: legal_case_id
+                  value: 21
+              - column:
+                  name: payment_status_id
+                  value: 3
+              - column:
+                  name: payment_type_id
+                  value: 2

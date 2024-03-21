@@ -29,9 +29,6 @@ class XvmColorValue {
     }
 
     getColorClassName(value: number) {
-        if (!value) {
-            return;
-        }
         if (value < this.orangeValue) {
             return this.COLOR_RED;
         }
