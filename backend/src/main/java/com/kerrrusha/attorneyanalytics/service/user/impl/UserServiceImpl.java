@@ -142,6 +142,8 @@ public class UserServiceImpl implements UserService {
         }
         if (nonNull(requestDto.getEmails())) {
             List<UserEmail> emails = Arrays.stream(requestDto.getEmails())
+                    .map(String::toLowerCase)
+                    .distinct()
                     .map(str -> new UserEmail(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
             userToUpdate.getEmails().clear();
@@ -150,6 +152,8 @@ public class UserServiceImpl implements UserService {
         }
         if (nonNull(requestDto.getPhones())) {
             List<UserPhone> phones = Arrays.stream(requestDto.getPhones())
+                    .map(String::toLowerCase)
+                    .distinct()
                     .map(str -> new UserPhone(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
             userToUpdate.getPhones().clear();
@@ -158,6 +162,8 @@ public class UserServiceImpl implements UserService {
         }
         if (nonNull(requestDto.getLocations())) {
             List<UserLocation> locations = Arrays.stream(requestDto.getLocations())
+                    .map(String::toLowerCase)
+                    .distinct()
                     .map(str -> new UserLocation(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
             userToUpdate.getLocations().clear();
@@ -166,6 +172,8 @@ public class UserServiceImpl implements UserService {
         }
         if (nonNull(requestDto.getAdmissions())) {
             List<UserAdmission> admissions = Arrays.stream(requestDto.getAdmissions())
+                    .map(String::toLowerCase)
+                    .distinct()
                     .map(str -> new UserAdmission(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
             userToUpdate.getAdmissions().clear();
@@ -174,6 +182,8 @@ public class UserServiceImpl implements UserService {
         }
         if (nonNull(requestDto.getPracticeAreas())) {
             List<UserPracticeArea> practiceAreas = Arrays.stream(requestDto.getPracticeAreas())
+                    .map(String::toLowerCase)
+                    .distinct()
                     .map(str -> new UserPracticeArea(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
             userToUpdate.getPracticeAreas().clear();
