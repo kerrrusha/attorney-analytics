@@ -30,6 +30,7 @@ import com.kerrrusha.attorneyanalytics.dto.user.request.UserRegistrationRequestD
 import com.kerrrusha.attorneyanalytics.mapper.UserMapper;
 import com.kerrrusha.attorneyanalytics.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -143,6 +144,8 @@ public class UserServiceImpl implements UserService {
         if (nonNull(requestDto.getEmails())) {
             List<UserEmail> emails = Arrays.stream(requestDto.getEmails())
                     .map(String::toLowerCase)
+                    .map(String::trim)
+                    .filter(StringUtils::isNotBlank)
                     .distinct()
                     .map(str -> new UserEmail(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
@@ -153,6 +156,8 @@ public class UserServiceImpl implements UserService {
         if (nonNull(requestDto.getPhones())) {
             List<UserPhone> phones = Arrays.stream(requestDto.getPhones())
                     .map(String::toLowerCase)
+                    .map(String::trim)
+                    .filter(StringUtils::isNotBlank)
                     .distinct()
                     .map(str -> new UserPhone(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
@@ -163,6 +168,8 @@ public class UserServiceImpl implements UserService {
         if (nonNull(requestDto.getLocations())) {
             List<UserLocation> locations = Arrays.stream(requestDto.getLocations())
                     .map(String::toLowerCase)
+                    .map(String::trim)
+                    .filter(StringUtils::isNotBlank)
                     .distinct()
                     .map(str -> new UserLocation(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
@@ -173,6 +180,8 @@ public class UserServiceImpl implements UserService {
         if (nonNull(requestDto.getAdmissions())) {
             List<UserAdmission> admissions = Arrays.stream(requestDto.getAdmissions())
                     .map(String::toLowerCase)
+                    .map(String::trim)
+                    .filter(StringUtils::isNotBlank)
                     .distinct()
                     .map(str -> new UserAdmission(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
@@ -183,6 +192,8 @@ public class UserServiceImpl implements UserService {
         if (nonNull(requestDto.getPracticeAreas())) {
             List<UserPracticeArea> practiceAreas = Arrays.stream(requestDto.getPracticeAreas())
                     .map(String::toLowerCase)
+                    .map(String::trim)
+                    .filter(StringUtils::isNotBlank)
                     .distinct()
                     .map(str -> new UserPracticeArea(str, userToUpdate))
                     .collect(toCollection(ArrayList::new));
