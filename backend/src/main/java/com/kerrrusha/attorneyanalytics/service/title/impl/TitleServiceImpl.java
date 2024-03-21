@@ -15,8 +15,8 @@ import java.util.List;
 public class TitleServiceImpl implements TitleService {
 
     private final TitleRepository titleRepository;
-    private final TitleMapper titleMapper;
     private final TitleComparator titleComparator;
+    private final TitleMapper titleMapper;
 
     @Override
     public List<TitleResponseDto> findAll() {

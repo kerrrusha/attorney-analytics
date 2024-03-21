@@ -2,6 +2,7 @@ package com.kerrrusha.attorneyanalytics.mapper;
 
 import com.kerrrusha.attorneyanalytics.config.MapperConfig;
 import com.kerrrusha.attorneyanalytics.dto.legal_case.LegalCaseResponseDto;
+import com.kerrrusha.attorneyanalytics.mapper.payment.PaymentMapper;
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCase;
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCaseStatus;
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCaseType;
