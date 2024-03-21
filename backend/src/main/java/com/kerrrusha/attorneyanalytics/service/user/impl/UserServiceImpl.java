@@ -200,7 +200,9 @@ public class UserServiceImpl implements UserService {
     public EmployeeResponseDto findByFullName(String fullNameKebabCased) {
         String firstName = fullNameKebabCased.split("-")[0];
         String lastName = fullNameKebabCased.split("-")[1];
-        User user = userRepository.findByFirstNameAndLastNameIgnoreCase(firstName, lastName)
+        User user = userRepository.findByFirstNameAndLastNameIgnoreCase(firstName, lastName).stream()
+                .filter(u -> u.getTitle() != null)
+                .findFirst()
                 .orElseThrow(() -> new RuntimeException("Can't find user by first: " + firstName + " and last name: " + lastName));
         return userMapper.toEmployeeDto(user);
     }
