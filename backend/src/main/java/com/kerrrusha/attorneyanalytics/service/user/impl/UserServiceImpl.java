@@ -186,6 +186,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UsersGroupedByTitleDto> getGroupedByTitle() {
         Map<Title, List<User>> usersByTitle = userRepository.findAll().stream()
+                .filter(user -> user.getTitle() != null)
                 .collect(groupingBy(User::getTitle));
 
         return usersByTitle.entrySet().stream()

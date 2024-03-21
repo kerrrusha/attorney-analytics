@@ -55,18 +55,18 @@ public class UserController {
     }
 
     @PostMapping("/hire")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void hireEmployee(@RequestBody HireEmployeeRequestDto requestDto) {
         userService.hireEmployee(requestDto);
     }
 
     @PostMapping("/fire")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void fireEmployee(@RequestBody FireEmployeeRequestDto requestDto) {
         userService.fireEmployee(requestDto);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/search/lastName/{lastName}")
     public List<UserResponseDto> searchByLastName(@PathVariable String lastName) {
         return userService.findByLastName(lastName);

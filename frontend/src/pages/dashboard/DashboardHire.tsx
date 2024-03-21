@@ -14,7 +14,6 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
 
-
     const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 

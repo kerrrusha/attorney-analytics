@@ -139,7 +139,7 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
             </div>
             <div className="card background-secondary" style={{width: "51.6rem"}}>
                 <div className="card-body text-center">
-                    <h5 className="mb-3">Incomes/outcomes by months</h5>
+                    <h5 className="mb-3">Incomes/outcomes by months, $</h5>
                     {createIncomeOutcomeChart(statsByDates.monthIncomesOutcomes.incomes, statsByDates.monthIncomesOutcomes.outcomes)}
                 </div>
             </div>

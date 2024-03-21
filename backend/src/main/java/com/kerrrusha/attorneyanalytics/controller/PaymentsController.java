@@ -4,6 +4,7 @@ import com.kerrrusha.attorneyanalytics.dto.payments.PaymentsPageableResponseDto;
 import com.kerrrusha.attorneyanalytics.service.payments.PaymentsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ public class PaymentsController {
     private final PaymentsService paymentsService;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public PaymentsPageableResponseDto getPayments(Pageable pageable) {
         return paymentsService.findAll(pageable);
     }

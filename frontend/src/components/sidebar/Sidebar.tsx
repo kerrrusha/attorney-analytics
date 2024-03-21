@@ -1,26 +1,64 @@
 import React from "react";
 import SidebarButton from "./SidebarButton";
-import {PAGES} from "../../common/constants";
+import {PAGES, ROLES} from "../../common/constants";
+import {haveIntersections} from "../../common/commonUtils";
+import {User} from "../../common/commonTypes";
+import {useAppSelector} from "../../hooks/useAppSelector";
+import {selectUser} from "../../redux/slices/authSlice";
 
 interface SidebarProps {
     activePageName: string;
 }
 
 export default function Sidebar({activePageName}: SidebarProps) {
+    const user : User | null = useAppSelector(selectUser)!;
+
     const buttonsData = [
-        {name: "Analytics", url: PAGES.analytics, iconUrl: "https://www.svgrepo.com/show/529625/graph.svg"},
-        {name: "Dashboard", url: PAGES.dashboard, iconUrl: "https://www.svgrepo.com/show/520688/dashboard-5.svg"},
-        {name: "Payments", url: PAGES.payments, iconUrl: "https://www.svgrepo.com/show/500409/money.svg"},
-        {name: "Employees", url: PAGES.employees, iconUrl: "https://www.svgrepo.com/show/374474/team-member.svg"},
-        {name: "Clients", url: PAGES.clients, iconUrl: "https://www.svgrepo.com/show/374595/client.svg"},
-        {name: "Cases", url: PAGES.cases, iconUrl: "https://www.svgrepo.com/show/374577/case.svg"},
+        {
+            name: "Analytics",
+            allowedRoles: [ROLES.ADMIN],
+            url: PAGES.analytics,
+            iconUrl: "https://www.svgrepo.com/show/529625/graph.svg"
+        },
+        {
+            name: "Dashboard",
+            allowedRoles: [ROLES.ADMIN, ROLES.WORKER],
+            url: PAGES.dashboard,
+            iconUrl: "https://www.svgrepo.com/show/520688/dashboard-5.svg"
+        },
+        {
+            name: "Payments",
+            allowedRoles: [ROLES.ADMIN],
+            url: PAGES.payments,
+            iconUrl: "https://www.svgrepo.com/show/500409/money.svg"
+        },
+        {
+            name: "Employees",
+            allowedRoles: [ROLES.ADMIN, ROLES.WORKER],
+            url: PAGES.employees,
+            iconUrl: "https://www.svgrepo.com/show/374474/team-member.svg"
+        },
+        {
+            name: "Clients",
+            allowedRoles: [ROLES.ADMIN, ROLES.WORKER],
+            url: PAGES.clients,
+            iconUrl: "https://www.svgrepo.com/show/374595/client.svg"
+        },
+        {
+            name: "Cases",
+            allowedRoles: [ROLES.ADMIN, ROLES.WORKER],
+            url: PAGES.cases,
+            iconUrl: "https://www.svgrepo.com/show/374577/case.svg"
+        },
     ]
 
     return (
-        <div className="w-[230px] flex flex-column background-secondary sticky py-4" style={{zIndex: 50}}>
+        user && <div className="w-[230px] flex flex-column background-secondary sticky py-4" style={{zIndex: 50}}>
             {buttonsData.map((buttonData, index) =>
+                haveIntersections(buttonData.allowedRoles, user.roles) &&
                 <SidebarButton key={index} name={buttonData.name} url={buttonData.url}
-                               isActive={buttonData.name.toLowerCase() === activePageName} iconUrl={buttonData.iconUrl} />)}
+                               isActive={buttonData.name.toLowerCase() === activePageName}
+                               iconUrl={buttonData.iconUrl}/>)}
         </div>
     );
 }
