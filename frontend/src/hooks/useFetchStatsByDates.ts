@@ -10,8 +10,6 @@ export default function useFetchStatsByDates(dateFrom: string, dateTo: string) :
 
     useEffect(() => {
         doGetRequestWithParamsReturnJson(API_ENDPOINTS.getStatsByDates, {dateFrom, dateTo}).then(result => {
-            console.log(`Fetched statsByDates:`, result);
-
             dispatch(setStatsByDates(result));
             setFetched(true);
         });

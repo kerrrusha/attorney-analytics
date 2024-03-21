@@ -52,7 +52,9 @@ export default function Header({loggedIn, setLoggedIn} : LoggedInProps) {
                             </a>
                             <div className="flex flex-1 absolute inset-y-0 right-0 justify-end items-center sm:static sm:inset-auto sm:ml-6">
                                 <DarkModeSwitch />
-                                <LanguageSwitcher />
+                                <div className="ml-4">
+                                    <LanguageSwitcher />
+                                </div>
 
                                 {!userFetched ? <LoadingGif /> : <Menu as="div" className="relative ml-5 mr-2 ">
                                     <Menu.Button className="pointer relative flex flex-row items-center rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">

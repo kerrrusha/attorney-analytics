@@ -12,12 +12,12 @@ const resources = {
     },
 };
 
-export default i18n
+i18n
     .use(initReactI18next)
     .init({
         resources,
-        lng: "ua",
-        interpolation: {
-            escapeValue: false // react already safes from xss
-        }
+        fallbackLng: 'ua',
+        debug: true,
     });
+
+export default i18n;

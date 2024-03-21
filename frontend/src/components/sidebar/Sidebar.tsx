@@ -5,6 +5,7 @@ import {haveIntersections} from "../../common/commonUtils";
 import {User} from "../../common/commonTypes";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {selectUser} from "../../redux/slices/authSlice";
+import {useTranslation} from "react-i18next";
 
 interface SidebarProps {
     activePageName: string;
@@ -12,10 +13,11 @@ interface SidebarProps {
 
 export default function Sidebar({activePageName}: SidebarProps) {
     const user : User | null = useAppSelector(selectUser)!;
+    const { t } = useTranslation();
 
     const buttonsData = [
         {
-            name: "Analytics",
+            name: t("analytics"),
             allowedRoles: [ROLES.ADMIN],
             url: PAGES.analytics,
             iconUrl: "https://www.svgrepo.com/show/529625/graph.svg"
