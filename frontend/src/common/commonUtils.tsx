@@ -89,3 +89,7 @@ export const getPaymentStatusIcon = (type: string) => {
         : "https://cdn-icons-png.flaticon.com/512/4721/4721643.png";
     return <img src={logoUrl} alt="" width={25}></img>;
 };
+
+export const formatNumber = (value: number): string => {
+    return value.toFixed(2);
+};

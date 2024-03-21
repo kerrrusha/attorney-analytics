@@ -8,7 +8,13 @@ import {
 import PageWithSidebar from "../components/sidebar/PageWithSidebar";
 import {useState} from "react";
 import 'chart.js/auto';
-import {getProfitChar, getProfitColorClass, getStatusColorClass, toPascalCase} from "../common/commonUtils";
+import {
+    formatNumber,
+    getProfitChar,
+    getProfitColorClass,
+    getStatusColorClass,
+    toPascalCase
+} from "../common/commonUtils";
 import useFetchAboutUs from "../hooks/useFetchAboutUs";
 import {useAppSelector} from "../hooks/useAppSelector";
 import {
@@ -162,7 +168,9 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
                             <td>{e.attorneyFullName}</td>
                             <td>{e.title}</td>
                             <td>{e.casesParticipated}</td>
-                            <td className={rateXvmColorValue.getColorClassName(e.successfullyClosedRate)}>{e.successfullyClosedRate}</td>
+                            <td className={rateXvmColorValue.getColorClassName(e.successfullyClosedRate)}>
+                                {formatNumber(e.successfullyClosedRate)}
+                            </td>
                         </tr>)}
                         </tbody>
                     </table>}

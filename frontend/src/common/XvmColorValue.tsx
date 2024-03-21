@@ -47,95 +47,43 @@ class XvmColorValue {
         return this.COLOR_VIOLET;
     }
 
-    getBgColorClassName(value: number) {
-        if (value < this.orangeValue) {
-            return this.BG_RED;
-        }
-        if (value < this.yellowValue) {
-            return this.BG_ORANGE;
-        }
-        if (value < this.greenValue) {
-            return this.BG_YELLOW;
-        }
-        if (value < this.blueValue) {
-            return this.BG_GREEN;
-        }
-        if (value < this.violetValue) {
-            return this.BG_BLUE;
-        }
-        return this.BG_VIOLET;
-    }
-
-    getStartRankValue(value: number) {
-        if (value < this.orangeValue) {
-            return 0;
-        }
-        if (value < this.yellowValue) {
-            return this.orangeValue;
-        }
-        if (value < this.greenValue) {
-            return this.yellowValue;
-        }
-        if (value < this.blueValue) {
-            return this.greenValue;
-        }
-        if (value < this.violetValue) {
-            return this.blueValue;
-        }
-        return this.violetValue;
-    }
-
-    getEndRankValue(value: number) {
-        if (value < this.orangeValue) {
-            return this.orangeValue;
-        }
-        if (value < this.yellowValue) {
-            return this.yellowValue;
-        }
-        if (value < this.greenValue) {
-            return this.greenValue;
-        }
-        if (value < this.blueValue) {
-            return this.blueValue;
-        }
-        if (value < this.violetValue) {
-            return this.violetValue;
-        }
-        return -1;
-    }
-
     getInfoReactElement() {
         return (<div className="flex flex-column">
             <div className="flex flex-row align-items-center">
-                <Flag colorClassName={this.BG_VIOLET} />
+                <Flag colorClassName={this.BG_VIOLET}/>
                 <span className="ml-3">- more than {this.violetValue}</span>
             </div>
             <div className="flex flex-row align-items-center">
-                <Flag colorClassName={this.BG_BLUE} />
+                <Flag colorClassName={this.BG_BLUE}/>
                 <span className="ml-3">- less than {this.violetValue}</span>
             </div>
             <div className="flex flex-row align-items-center">
-                <Flag colorClassName={this.BG_GREEN} />
+                <Flag colorClassName={this.BG_GREEN}/>
                 <span className="ml-3">- less than {this.blueValue}</span>
             </div>
             <div className="flex flex-row align-items-center">
-                <Flag colorClassName={this.BG_YELLOW} />
+                <Flag colorClassName={this.BG_YELLOW}/>
                 <span className="ml-3">- less than {this.greenValue}</span>
             </div>
             <div className="flex flex-row align-items-center">
-                <Flag colorClassName={this.BG_ORANGE} />
+                <Flag colorClassName={this.BG_ORANGE}/>
                 <span className="ml-3">- less than {this.yellowValue}</span>
             </div>
             <div className="flex flex-row align-items-center">
-                <Flag colorClassName={this.BG_RED} />
+                <Flag colorClassName={this.BG_RED}/>
                 <span className="ml-3">- less than {this.orangeValue}</span>
             </div>
         </div>);
     }
 }
 
-function Flag({colorClassName}: {colorClassName: string}) {
+function Flag({colorClassName}: { colorClassName: string }) {
     return <div style={{width: "1rem", height: "1rem"}} className={colorClassName}></div>;
 }
 
-export const rateXvmColorValue = new XvmColorValue(0.4631, 0.4924, 0.526, 0.5785, 0.6355);
+export const rateXvmColorValue = new XvmColorValue(
+    0.45,
+    0.5,
+    0.65,
+    0.75,
+    0.95);

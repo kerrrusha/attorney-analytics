@@ -7,6 +7,7 @@ import React from "react";
 import LoadingGif from "../../components/loading/LoadingGif";
 import {rateXvmColorValue} from "../../common/XvmColorValue";
 import {GOLDEN_TRANSPARENT_COLOR} from "../../common/constants";
+import {formatNumber} from "../../common/commonUtils";
 
 export default function DashboardEmployeeBonusSuggestions({loggedIn, setLoggedIn}: LoggedInProps) {
     const [attorneysOfTheMonthFetched] = useFetchAttorneysOfTheMonth();
@@ -20,9 +21,10 @@ export default function DashboardEmployeeBonusSuggestions({loggedIn, setLoggedIn
         </div>
         <div className="mt-4 flex flex-col">
             <span>Employee bonus suggestions based in the first order on attorney's successfully closed rate*.</span>
-            <span>The second order ranks the lowest titles (in order to equalize the chances, taking into account
-                the authority of the more senior titles)</span>
-            <p>The bonus is expected to be awarded to the following number of employees: {ATTORNEYS_TO_GET_BONUS_AMOUNT}</p>
+            <p>The second order ranks the lowest titles (in order to equalize the chances, taking into account
+                the authority of the more senior titles)</p>
+            <span>The bonus is expected to be awarded to the following number of employees: {ATTORNEYS_TO_GET_BONUS_AMOUNT}</span>
+            <p>Workers eligible to receive a bonus are indicated with the <span style={{background: GOLDEN_TRANSPARENT_COLOR}}>appropriate color</span>.</p>
             <div className="card background-secondary">
                 <div className="card-body text-center">
                     {!attorneysOfTheMonthFetched ? <LoadingGif /> :
@@ -45,7 +47,9 @@ export default function DashboardEmployeeBonusSuggestions({loggedIn, setLoggedIn
                                 <td>{e.title}</td>
                                 <td>{e.successfullyClosedAmount}</td>
                                 <td>{e.casesParticipated}</td>
-                                <td className={rateXvmColorValue.getColorClassName(e.successfullyClosedRate)}>{e.successfullyClosedRate}</td>
+                                <td className={rateXvmColorValue.getColorClassName(e.successfullyClosedRate)}>
+                                    {formatNumber(e.successfullyClosedRate)}
+                                </td>
                             </tr>)}
                             </tbody>
                         </table>}
