@@ -22,7 +22,7 @@ export default function IdValuePairsSelect({name, options, handleSetId}: IdValue
                 className="text-black border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
                 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                 dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value={0}>Choose {name}</option>
+            <option value="" selected hidden>Choose {name}</option>
             {options.map((col, index) => <option key={index} value={col.id}>{col.value}</option>)}
         </select>
     </>;

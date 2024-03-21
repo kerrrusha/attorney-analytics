@@ -1,7 +1,7 @@
 package com.kerrrusha.attorneyanalytics.mapper.payment;
 
 import com.kerrrusha.attorneyanalytics.config.MapperConfig;
-import com.kerrrusha.attorneyanalytics.dto.payments.PaymentTypeResponseDto;
+import com.kerrrusha.attorneyanalytics.dto.payments.response.PaymentTypeResponseDto;
 import com.kerrrusha.attorneyanalytics.model.payment.PaymentType;
 import org.mapstruct.Mapper;
 

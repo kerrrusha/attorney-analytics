@@ -1,4 +1,4 @@
-import {LegalCaseDto, LoggedInProps, SelectOption, User} from "../../common/commonTypes";
+import {DeclarePaymentRequest, LegalCaseDto, LoggedInProps, SelectOption} from "../../common/commonTypes";
 import PageWithSidebar from "../../components/sidebar/PageWithSidebar";
 import React, {FormEvent, useState} from "react";
 import {API_ENDPOINTS, PAGES} from "../../common/constants";
@@ -10,6 +10,7 @@ import {mapToIdValues} from "../../common/commonUtils";
 import LoadingGif from "../../components/loading/LoadingGif";
 import InputDropdown from "../../components/InputDropdown";
 import {doGetRequestReturnJson} from "../../services/doGetRequestReturnJson";
+import {doPostRequestReturnResponse} from "../../services/doPostRequestReturnResponse";
 
 export default function DashboardDeclarePayment({loggedIn, setLoggedIn}: LoggedInProps) {
     const [description, setDescription] = useState<string>("");
@@ -45,22 +46,23 @@ export default function DashboardDeclarePayment({loggedIn, setLoggedIn}: LoggedI
     const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        // const requestBody : AddNewClientRequest = {
-        //     firstName: firstName,
-        //     lastName: lastName,
-        //     emails: emails,
-        //     phones: phones,
-        // }
-        //
-        // doPostRequestReturnResponse(requestBody, API_ENDPOINTS.postAddClient).then(response => {
-        //     if (response.status === 200) {
-        //         setError("");
-        //         setSuccess(true);
-        //         return;
-        //     }
-        //     setSuccess(false);
-        //     response.json().then(json => setError(`Something went wrong: ${json.message}`));
-        // });
+        const requestBody : DeclarePaymentRequest = {
+            description,
+            amountInCents: amount,
+            statusId,
+            typeId,
+            assignedLegalCaseId: selectedLegalCaseOptionValue ? parseInt(selectedLegalCaseOptionValue) : NaN,
+        }
+
+        doPostRequestReturnResponse(requestBody, API_ENDPOINTS.postDeclarePayment).then(response => {
+            if (response.status === 200) {
+                setError("");
+                setSuccess(true);
+                return;
+            }
+            setSuccess(false);
+            response.json().then(json => setError(`Something went wrong: ${json.message}`));
+        });
     };
 
     const contentElement = <div>
@@ -130,8 +132,8 @@ export default function DashboardDeclarePayment({loggedIn, setLoggedIn}: LoggedI
             </div>
             <div className="mt-3">
                 {success && <div className="alert alert-success" role="alert">
-                    <p>Client was added successfully.</p>
-                    <span>Refer to the <a href={PAGES.clients}>clients</a> page to see updated clients list.</span>
+                    <p>Payment was declared successfully.</p>
+                    <span>Refer to the <a href={PAGES.payments}>payments</a> page to see updated payment list.</span>
                 </div>
                 }
                 {error && <div className="alert alert-danger" role="alert">

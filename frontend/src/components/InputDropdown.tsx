@@ -14,7 +14,9 @@ export default function InputDropdown({options, handleChange, handleSelect}: Inp
 
     const width = "25rem";
 
-    const handleOptionSelect = (option: SelectOption) => {
+    const handleOptionSelect = (event: React.MouseEvent<HTMLButtonElement>, option: SelectOption) => {
+        event.preventDefault();
+
         setInputValue(option.label);
         setSelectedOptionValue(option.value);
     }
@@ -51,7 +53,7 @@ export default function InputDropdown({options, handleChange, handleSelect}: Inp
              className="mt-2 text-black bg-white rounded outline-none flex flex-col position-absolute"
              style={{width: width, zIndex: 10}}>
             {inputFocused && options.map((option, index) =>
-                    <button key={index} onClick={() => handleOptionSelect(option)} value={option.value}
+                    <button key={index} onClick={event => handleOptionSelect(event, option)} value={option.value}
                             className={(option.value === selectedOptionValue ? "bg-indigo-400" : "") +
                                 " rounded hover:bg-indigo-200 text-start px-3 py-2"}>
                         {option.label}

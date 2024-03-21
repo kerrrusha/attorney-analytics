@@ -209,3 +209,11 @@ export type IdNamePair = {
     id: number,
     name: number,
 }
+
+export type DeclarePaymentRequest = {
+    description: string,
+    amountInCents: number,
+    statusId: number,
+    typeId: number,
+    assignedLegalCaseId: number,
+}

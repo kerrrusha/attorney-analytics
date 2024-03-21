@@ -1,7 +1,7 @@
 package com.kerrrusha.attorneyanalytics.mapper.payment;
 
 import com.kerrrusha.attorneyanalytics.config.MapperConfig;
-import com.kerrrusha.attorneyanalytics.dto.payments.PaymentStatusResponseDto;
+import com.kerrrusha.attorneyanalytics.dto.payments.response.PaymentStatusResponseDto;
 import com.kerrrusha.attorneyanalytics.model.payment.PaymentStatus;
 import org.mapstruct.Mapper;
 

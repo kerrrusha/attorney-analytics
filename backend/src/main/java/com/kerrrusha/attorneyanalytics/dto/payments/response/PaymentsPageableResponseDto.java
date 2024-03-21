@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.dto.payments;
+package com.kerrrusha.attorneyanalytics.dto.payments.response;
 
 import lombok.Data;
 

@@ -44,6 +44,7 @@ export const API_ENDPOINTS = {
     getPayments: "/payments",
     getPaymentsStatuses: "/payments/statuses",
     getPaymentsTypes: "/payments/types",
+    postDeclarePayment: "/payments/declare",
     getClients: "/clients",
     postAddClient: "/clients/new",
     getEmployeesGroupedByTitle: "/user/grouped-by-title",

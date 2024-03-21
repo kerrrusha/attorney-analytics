@@ -1,7 +1,7 @@
 package com.kerrrusha.attorneyanalytics.mapper.payment;
 
 import com.kerrrusha.attorneyanalytics.config.MapperConfig;
-import com.kerrrusha.attorneyanalytics.dto.payments.PaymentResponseDto;
+import com.kerrrusha.attorneyanalytics.dto.payments.response.PaymentResponseDto;
 import com.kerrrusha.attorneyanalytics.model.payment.Payment;
 import com.kerrrusha.attorneyanalytics.model.payment.PaymentStatus;
 import com.kerrrusha.attorneyanalytics.model.payment.PaymentType;
@@ -43,6 +43,6 @@ public interface PaymentMapper {
 
     @AfterMapping
     default void setAssignedCase(@MappingTarget PaymentResponseDto target, Payment payment) {
-        target.setAssignedCase(payment.getLegalCase().getTitle() + " #" + payment.getId());
+        target.setAssignedCase(payment.getLegalCase().getTitle() + " #" + payment.getLegalCase().getId());
     }
 }
