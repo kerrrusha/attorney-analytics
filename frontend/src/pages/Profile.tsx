@@ -264,8 +264,7 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                 </div>
                 <div className="mt-3">
                     {success && <div className="alert alert-success" role="alert">
-                        <p>Employee promoted successfully.</p>
-                        <span>Refer to the <a href={PAGES.employees}>employees</a> page to see updated employee list.</span>
+                        <span>Profile updated successfully.</span>
                     </div>
                     }
                     {error && <div className="alert alert-danger" role="alert">
