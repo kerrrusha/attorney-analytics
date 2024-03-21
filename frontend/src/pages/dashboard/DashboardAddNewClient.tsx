@@ -4,6 +4,7 @@ import React, {FormEvent, useState} from "react";
 import {API_ENDPOINTS, PAGES} from "../../common/constants";
 import IndepententCrudTable from "../../components/crud/IndependentCrudTable";
 import {doPostRequestReturnResponse} from "../../services/doPostRequestReturnResponse";
+import SubPageHeader from "../../components/SubPageHeader";
 
 export default function DashboardAddNewClient({loggedIn, setLoggedIn}: LoggedInProps) {
     const [firstName, setFirstName] = useState("");
@@ -36,9 +37,7 @@ export default function DashboardAddNewClient({loggedIn, setLoggedIn}: LoggedInP
     };
 
     const contentElement = <div>
-        <div className="border-b p-2 flex flex-row justify-between align-items-center">
-            <h4 className="text-header font-semibold">Add new client</h4>
-        </div>
+        <SubPageHeader header={"Add new client"} />
         <form onSubmit={handleFormSubmit}>
             <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="mt-4 flex flex-col col-span-2">

@@ -8,6 +8,7 @@ import LoadingGif from "../../components/loading/LoadingGif";
 import {rateXvmColorValue} from "../../common/XvmColorValue";
 import {GOLDEN_TRANSPARENT_COLOR} from "../../common/constants";
 import {formatNumber} from "../../common/commonUtils";
+import SubPageHeader from "../../components/SubPageHeader";
 
 export default function DashboardEmployeeBonusSuggestions({loggedIn, setLoggedIn}: LoggedInProps) {
     const [attorneysOfTheMonthFetched] = useFetchAttorneysOfTheMonth();
@@ -16,9 +17,7 @@ export default function DashboardEmployeeBonusSuggestions({loggedIn, setLoggedIn
     const ATTORNEYS_TO_GET_BONUS_AMOUNT = 3;
 
     const contentElement = <div>
-        <div className="border-b p-2 flex flex-row justify-between align-items-center">
-            <h4 className="text-header font-semibold">Employee bonus suggestions</h4>
-        </div>
+        <SubPageHeader header={"Employee bonus suggestions"} />
         <div className="mt-4 flex flex-col">
             <span>Employee bonus suggestions based in the first order on attorney's successfully closed rate*.</span>
             <p>The second order ranks the lowest titles (in order to equalize the chances, taking into account

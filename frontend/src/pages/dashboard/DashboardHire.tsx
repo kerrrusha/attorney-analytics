@@ -4,6 +4,7 @@ import React, {FormEvent, useState} from "react";
 import {API_ENDPOINTS, PAGES} from "../../common/constants";
 import TitleSelect from "../../components/TitleSelect";
 import {doPostRequestReturnResponse} from "../../services/doPostRequestReturnResponse";
+import SubPageHeader from "../../components/SubPageHeader";
 
 export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [firstName, setFirstName] = useState("");
@@ -36,9 +37,7 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
     }
 
     const contentElement = <div>
-        <div className="border-b p-2 flex flex-row justify-between align-items-center">
-            <h4 className="text-header font-semibold">Hire attorney</h4>
-        </div>
+        <SubPageHeader header={"Hire attorney"} />
         <form className="mt-0" onSubmit={handleFormSubmit}>
             <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="col-span-2 mb-2">

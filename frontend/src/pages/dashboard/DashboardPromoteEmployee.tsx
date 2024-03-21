@@ -6,6 +6,7 @@ import {API_ENDPOINTS, PAGES} from "../../common/constants";
 import InputDropdown from "../../components/InputDropdown";
 import TitleSelect from "../../components/TitleSelect";
 import {doPostRequestReturnResponse} from "../../services/doPostRequestReturnResponse";
+import SubPageHeader from "../../components/SubPageHeader";
 
 export default function DashboardPromoteEmployee({loggedIn, setLoggedIn}: LoggedInProps) {
     const [selectedOptionValue, setSelectedOptionValue] = useState("");
@@ -49,9 +50,7 @@ export default function DashboardPromoteEmployee({loggedIn, setLoggedIn}: Logged
     };
 
     const contentElement = <div>
-        <div className="border-b p-2 flex flex-row justify-between align-items-center">
-            <h4 className="text-header font-semibold">Promote attorney</h4>
-        </div>
+        <SubPageHeader header={"Promote attorney"} />
         <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="mt-4 flex flex-col col-span-4">
                 <span className="mb-2">Attorney's last name</span>

@@ -5,6 +5,7 @@ import React, {useState} from "react";
 import {doGetRequestReturnJson} from "../../services/doGetRequestReturnJson";
 import {API_ENDPOINTS, PAGES} from "../../common/constants";
 import {doPostRequestReturnResponse} from "../../services/doPostRequestReturnResponse";
+import SubPageHeader from "../../components/SubPageHeader";
 
 export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [selectedOptionValue, setSelectedOptionValue] = useState("");
@@ -46,9 +47,7 @@ export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
     };
 
     const contentElement = <div>
-        <div className="border-b p-2 flex flex-row justify-between align-items-center">
-            <h4 className="text-header font-semibold">Fire attorney</h4>
-        </div>
+        <SubPageHeader header={"Fire attorney"} />
         <div className="mt-4 flex flex-col">
             <span className="mb-2">Attorney's last name</span>
             <div className="flex flex-row space-x-4">
