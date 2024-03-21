@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useAppDispatch} from "./useAppDispatch";
-import {doGetRequestApiJson} from "../services/doGetRequestApiJson";
+import {doGetRequestReturnJson} from "../services/doGetRequestReturnJson";
 import {API_ENDPOINTS} from "../common/constants";
 import {setLatestClosedCases} from "../redux/slices/analyticsSlice";
 
@@ -9,7 +9,7 @@ export default function useFetchLatestClosedCases() : [boolean] {
     const [fetched, setFetched] = useState(false);
 
     useEffect(() => {
-        doGetRequestApiJson(API_ENDPOINTS.getLatestClosedCases).then(result => {
+        doGetRequestReturnJson(API_ENDPOINTS.getLatestClosedCases).then(result => {
             console.debug(`Fetched LatestClosedCases:`, result);
 
             dispatch(setLatestClosedCases(result));

@@ -2,9 +2,9 @@ import {FireEmployeeRequest, LoggedInProps, SelectOption, User} from "../../comm
 import PageWithSidebar from "../../components/sidebar/PageWithSidebar";
 import InputDropdown from "../../components/InputDropdown";
 import React, {useState} from "react";
-import {doGetRequestApiJson} from "../../services/doGetRequestApiJson";
+import {doGetRequestReturnJson} from "../../services/doGetRequestReturnJson";
 import {API_ENDPOINTS, PAGES} from "../../common/constants";
-import {postFireEmployee} from "../../services/postFireEmployee";
+import {doPostRequestReturnResponse} from "../../services/doPostRequestReturnResponse";
 
 export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [selectedOptionValue, setSelectedOptionValue] = useState("");
@@ -16,7 +16,7 @@ export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
     const handleChange = (inputValue: string) => {
         setAttorneyOptions([]);
         if (inputValue && inputValue.length > 0) {
-            doGetRequestApiJson(API_ENDPOINTS.searchByLastName + "/" + inputValue)
+            doGetRequestReturnJson(API_ENDPOINTS.searchByLastName + "/" + inputValue)
                 .then(response => {
                     if (response && response.length > 0) {
                         const newAttorneyOptions = response.map((user: User) => { return {
@@ -34,7 +34,7 @@ export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
             id: parseInt(selectedOptionValue),
         }
 
-        postFireEmployee(requestBody).then(response => {
+        doPostRequestReturnResponse(requestBody, API_ENDPOINTS.postHireEmployee).then(response => {
             if (response.status === 200) {
                 setError("");
                 setSuccess(true);

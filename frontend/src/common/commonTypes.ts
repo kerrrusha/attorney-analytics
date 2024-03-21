@@ -161,6 +161,13 @@ export type EmployeeListingDto = {
     phones: Array<string>,
 }
 
+export type AddNewClientRequest = {
+    firstName: string,
+    lastName: string,
+    emails: Array<string>,
+    phones: Array<string>,
+}
+
 export type EmployeesGroupedByTitleDto = Array<{
     title: string,
     data: Array<EmployeeListingDto>

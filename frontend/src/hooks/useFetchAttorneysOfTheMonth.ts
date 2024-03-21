@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useAppDispatch} from "./useAppDispatch";
-import {doGetRequestApiJson} from "../services/doGetRequestApiJson";
+import {doGetRequestReturnJson} from "../services/doGetRequestReturnJson";
 import {API_ENDPOINTS} from "../common/constants";
 import {setAttorneysOfTheMonth} from "../redux/slices/analyticsSlice";
 
@@ -9,7 +9,7 @@ export default function useFetchAttorneysOfTheMonth() : [boolean] {
     const [fetched, setFetched] = useState(false);
 
     useEffect(() => {
-        doGetRequestApiJson(API_ENDPOINTS.getAttorneysOfTheMonth).then(result => {
+        doGetRequestReturnJson(API_ENDPOINTS.getAttorneysOfTheMonth).then(result => {
             console.debug(`Fetched AttorneysOfTheMonth:`, result);
 
             dispatch(setAttorneysOfTheMonth(result));

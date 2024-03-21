@@ -1,11 +1,11 @@
 import {LoggedInProps, SelectOption, User, UserUpdateRequest} from "../../common/commonTypes";
 import PageWithSidebar from "../../components/sidebar/PageWithSidebar";
 import React, {useState} from "react";
-import {doGetRequestApiJson} from "../../services/doGetRequestApiJson";
+import {doGetRequestReturnJson} from "../../services/doGetRequestReturnJson";
 import {API_ENDPOINTS, PAGES} from "../../common/constants";
 import InputDropdown from "../../components/InputDropdown";
 import TitleSelect from "../../components/TitleSelect";
-import {postUpdateUser} from "../../services/postUpdateUser";
+import {doPostRequestReturnResponse} from "../../services/doPostRequestReturnResponse";
 
 export default function DashboardPromoteEmployee({loggedIn, setLoggedIn}: LoggedInProps) {
     const [selectedOptionValue, setSelectedOptionValue] = useState("");
@@ -18,7 +18,7 @@ export default function DashboardPromoteEmployee({loggedIn, setLoggedIn}: Logged
     const handleChange = (inputValue: string) => {
         setAttorneyOptions([]);
         if (inputValue && inputValue.length > 0) {
-            doGetRequestApiJson(API_ENDPOINTS.searchByLastName + "/" + inputValue)
+            doGetRequestReturnJson(API_ENDPOINTS.searchByLastName + "/" + inputValue)
                 .then(response => {
                     if (response && response.length > 0) {
                         const newAttorneyOptions = response.map((user: User) => { return {
@@ -37,7 +37,7 @@ export default function DashboardPromoteEmployee({loggedIn, setLoggedIn}: Logged
             titleId: titleId,
         }
 
-        postUpdateUser(requestBody).then(response => {
+        doPostRequestReturnResponse(requestBody, API_ENDPOINTS.postUpdateUser).then(response => {
             if (response.status === 200) {
                 setError("");
                 setSuccess(true);

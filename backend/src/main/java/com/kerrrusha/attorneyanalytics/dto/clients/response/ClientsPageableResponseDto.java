@@ -1,4 +1,4 @@
-package com.kerrrusha.attorneyanalytics.dto.clients;
+package com.kerrrusha.attorneyanalytics.dto.clients.response;
 
 import lombok.Data;
 

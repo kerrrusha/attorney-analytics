@@ -1,9 +1,9 @@
 import {HireEmployeeRequest, LoggedInProps} from "../../common/commonTypes";
 import PageWithSidebar from "../../components/sidebar/PageWithSidebar";
 import React, {FormEvent, useState} from "react";
-import {postHireEmployee} from "../../services/postHireEmployee";
-import {PAGES} from "../../common/constants";
+import {API_ENDPOINTS, PAGES} from "../../common/constants";
 import TitleSelect from "../../components/TitleSelect";
+import {doPostRequestReturnResponse} from "../../services/doPostRequestReturnResponse";
 
 export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [firstName, setFirstName] = useState("");
@@ -24,7 +24,7 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
             titleId: titleId,
         }
 
-        postHireEmployee(requestBody).then(response => {
+        doPostRequestReturnResponse(requestBody, API_ENDPOINTS.postHireEmployee).then(response => {
             if (response.status === 200) {
                 setError("");
                 setSuccess(true);

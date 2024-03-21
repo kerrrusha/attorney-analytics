@@ -1,10 +1,7 @@
-export async function doGetRequestApiJsonWithParams(path: string, params: any) {
+export async function doGetRequestReturnJson(path: string) {
     const API_URL = process.env.REACT_APP_BACKEND_ORIGIN;
-    const queryString = Object.keys(params)
-        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-        .join('&');
 
-    const response = await fetch(`${API_URL}${path}?${queryString}`, {
+    const response = await fetch(`${API_URL}${path}`, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',

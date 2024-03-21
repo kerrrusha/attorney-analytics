@@ -4,15 +4,15 @@ import {LoggedInProps, User, UserUpdateRequest} from "../common/commonTypes";
 import {useAppSelector} from "../hooks/useAppSelector";
 import {selectUser, setUser} from "../redux/slices/authSlice";
 import LoadingGif from "../components/loading/LoadingGif";
-import {postUpdateUser} from "../services/postUpdateUser";
 import {useAppDispatch} from "../hooks/useAppDispatch";
 import Loading from "../components/loading/Loading";
 import {fixNull} from "../common/commonUtils";
 import SaveableTextArea from "../components/saveable/SaveableTextArea";
-import CrudTable, {TableData} from "../components/CrudTable";
+import CrudTable, {TableData} from "../components/crud/CrudTable";
 import useFetchUser from "../hooks/useFetchUser";
 import React, {useState} from "react";
-import {PAGES} from "../common/constants";
+import {API_ENDPOINTS, PAGES} from "../common/constants";
+import {doPostRequestReturnResponse} from "../services/doPostRequestReturnResponse";
 
 export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
     const [userFetched] = useFetchUser();
@@ -23,18 +23,17 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
 
     const dispatch = useAppDispatch();
 
-    const updateUser = (requestBody : UserUpdateRequest) => {
-        return postUpdateUser(requestBody).then(response => {
-            if (response.status === 200) {
-                response.json().then(json => dispatch(setUser(json)));
-                setError("");
-                setSuccess(true);
-                return;
-            }
-            setSuccess(false);
-            response.json().then(json => setError(`Something went wrong: ${json.message}`));
-            window.scrollTo(0, document.body.scrollHeight);
-        });
+    const updateUser = async (requestBody: UserUpdateRequest) => {
+        const response = await doPostRequestReturnResponse(requestBody, API_ENDPOINTS.postUpdateUser);
+        if (response.status === 200) {
+            response.json().then(json => dispatch(setUser(json)));
+            setError("");
+            setSuccess(true);
+            return;
+        }
+        setSuccess(false);
+        response.json().then(json_1 => setError(`Something went wrong: ${json_1.message}`));
+        window.scrollTo(0, document.body.scrollHeight);
     }
 
     const updateFirstName = (newValue : string) => {

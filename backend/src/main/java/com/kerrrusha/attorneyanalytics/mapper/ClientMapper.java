@@ -1,7 +1,7 @@
 package com.kerrrusha.attorneyanalytics.mapper;
 
 import com.kerrrusha.attorneyanalytics.config.MapperConfig;
-import com.kerrrusha.attorneyanalytics.dto.clients.ClientResponseDto;
+import com.kerrrusha.attorneyanalytics.dto.clients.response.ClientResponseDto;
 import com.kerrrusha.attorneyanalytics.model.client.Client;
 import com.kerrrusha.attorneyanalytics.model.client.ClientEmail;
 import com.kerrrusha.attorneyanalytics.model.client.ClientPhone;

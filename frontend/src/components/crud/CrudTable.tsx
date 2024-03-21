@@ -20,12 +20,12 @@ export default function CrudTable({name, initialData_, postDataHandler, disabled
     const saveData = (event : React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
 
+        setCanSave(false);
         postDataHandler(data!).then(result => {
             console.log("Updated data:");
             console.log(result);
 
             setInitialData(data);
-            setCanSave(false);
         });
     };
 
@@ -115,7 +115,7 @@ export default function CrudTable({name, initialData_, postDataHandler, disabled
                 ))}
                 <tr>
                     <td colSpan={2} className="text-center">
-                        <button disabled={disabled} onClick={createEmptyRow} className="ml-2">
+                        <button disabled={disabled} onClick={createEmptyRow} className="ml-2 w-100">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
                                 <path d="M4 12H20M12 4V20" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>

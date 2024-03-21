@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {API_ENDPOINTS} from "../common/constants";
-import {doGetRequestApiJson} from "../services/doGetRequestApiJson";
+import {doGetRequestReturnJson} from "../services/doGetRequestReturnJson";
 import {TitleDto} from "../common/commonTypes";
 
 export default function useFetchTitles() : [Array<TitleDto> | null, any] {
@@ -8,7 +8,7 @@ export default function useFetchTitles() : [Array<TitleDto> | null, any] {
     const [fetched, setFetched] = useState(false);
 
     useEffect(() => {
-        doGetRequestApiJson(API_ENDPOINTS.getTitles).then(result => {
+        doGetRequestReturnJson(API_ENDPOINTS.getTitles).then(result => {
             setResult(result);
             setFetched(true);
         });

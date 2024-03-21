@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {useAppDispatch} from "./useAppDispatch";
 import {setAboutUs} from "../redux/slices/analyticsSlice";
-import {doGetRequestApiJson} from "../services/doGetRequestApiJson";
+import {doGetRequestReturnJson} from "../services/doGetRequestReturnJson";
 import {API_ENDPOINTS} from "../common/constants";
 
 export default function useFetchAboutUs() : [boolean] {
@@ -9,7 +9,7 @@ export default function useFetchAboutUs() : [boolean] {
     const [fetched, setFetched] = useState(false);
 
     useEffect(() => {
-        doGetRequestApiJson(API_ENDPOINTS.getAboutUs).then(result => {
+        doGetRequestReturnJson(API_ENDPOINTS.getAboutUs).then(result => {
             console.debug(`Fetched aboutUs: `, result);
 
             dispatch(setAboutUs(result));

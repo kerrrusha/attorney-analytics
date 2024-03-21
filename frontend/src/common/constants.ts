@@ -43,6 +43,7 @@ export const API_ENDPOINTS = {
     getStatsByDates: "/analytics/stats-by-dates",
     getPayments: "/payments",
     getClients: "/clients",
+    postAddClient: "/clients/new",
     getEmployeesGroupedByTitle: "/user/grouped-by-title",
     getEmployee: "/user",
     searchByLastName: "/user/search/lastName",

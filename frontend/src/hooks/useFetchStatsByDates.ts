@@ -1,6 +1,6 @@
 import {Dispatch, useEffect, useState} from "react";
 import {useAppDispatch} from "./useAppDispatch";
-import {doGetRequestApiJsonWithParams} from "../services/doGetRequestApiJsonWithParams";
+import {doGetRequestWithParamsReturnJson} from "../services/doGetRequestWithParamsReturnJson";
 import {API_ENDPOINTS} from "../common/constants";
 import {setStatsByDates} from "../redux/slices/analyticsSlice";
 
@@ -9,7 +9,7 @@ export default function useFetchStatsByDates(dateFrom: string, dateTo: string) :
     const [fetched, setFetched] = useState(false);
 
     useEffect(() => {
-        doGetRequestApiJsonWithParams(API_ENDPOINTS.getStatsByDates, {dateFrom, dateTo}).then(result => {
+        doGetRequestWithParamsReturnJson(API_ENDPOINTS.getStatsByDates, {dateFrom, dateTo}).then(result => {
             console.log(`Fetched statsByDates:`, result);
 
             dispatch(setStatsByDates(result));
