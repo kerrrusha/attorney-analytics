@@ -10,6 +10,7 @@ import {selectUser} from "../../redux/slices/authSlice";
 import useFetchUser from "../../hooks/useFetchUser";
 import LoadingGif from "../loading/LoadingGif";
 import goodman from '../../resources/img/goodman.png';
+import LanguageSwitcher from "../LanguageSwitch";
 
 function classNames(...classes: string[]): string {
     return classes.filter(Boolean).join(' ');
@@ -51,6 +52,7 @@ export default function Header({loggedIn, setLoggedIn} : LoggedInProps) {
                             </a>
                             <div className="flex flex-1 absolute inset-y-0 right-0 justify-end items-center sm:static sm:inset-auto sm:ml-6">
                                 <DarkModeSwitch />
+                                <LanguageSwitcher />
 
                                 {!userFetched ? <LoadingGif /> : <Menu as="div" className="relative ml-5 mr-2 ">
                                     <Menu.Button className="pointer relative flex flex-row items-center rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
