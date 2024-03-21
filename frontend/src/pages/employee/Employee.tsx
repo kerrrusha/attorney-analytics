@@ -1,7 +1,7 @@
 import {useParams} from 'react-router-dom';
 import PageWithSidebar from "../../components/sidebar/PageWithSidebar";
 import {LoggedInProps} from "../../common/commonTypes";
-import useFetchEmployee from "../../hooks/useFetchEmployee";
+import useFetchEmployee from "../../hooks/employee/useFetchEmployee";
 import LoadingGif from "../../components/loading/LoadingGif";
 
 export default function Employee({loggedIn, setLoggedIn}: LoggedInProps) {

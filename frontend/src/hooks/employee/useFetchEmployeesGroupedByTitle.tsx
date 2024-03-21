@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import {API_ENDPOINTS} from "../common/constants";
-import {doGetRequestReturnJson} from "../services/doGetRequestReturnJson";
-import {EmployeesGroupedByTitleDto} from "../common/commonTypes";
+import {API_ENDPOINTS} from "../../common/constants";
+import {doGetRequestReturnJson} from "../../services/doGetRequestReturnJson";
+import {EmployeesGroupedByTitleDto} from "../../common/commonTypes";
 
 export default function useFetchEmployeesGroupedByTitle() : [EmployeesGroupedByTitleDto | null, any] {
     const [result, setResult] = useState(null);

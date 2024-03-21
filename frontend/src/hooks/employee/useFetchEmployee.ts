@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import {API_ENDPOINTS} from "../common/constants";
-import {EmployeeDto} from "../common/commonTypes";
-import {doGetRequestReturnJson} from "../services/doGetRequestReturnJson";
+import {API_ENDPOINTS} from "../../common/constants";
+import {EmployeeDto} from "../../common/commonTypes";
+import {doGetRequestReturnJson} from "../../services/doGetRequestReturnJson";
 
 export default function useFetchEmployee(fullName: string) : [EmployeeDto | null, any] {
     const [result, setResult] = useState(null);

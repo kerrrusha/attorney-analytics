@@ -3,7 +3,7 @@ import PageWithSidebar from "../components/sidebar/PageWithSidebar";
 import {useState} from "react";
 import LoadingGif from "../components/loading/LoadingGif";
 import Pagination from "../components/pagination/Pagination";
-import useFetchLegalCases from "../hooks/useFetchLegalCases";
+import useFetchLegalCases from "../hooks/legal_case/useFetchLegalCases";
 import {PAGES} from "../common/constants";
 import {getStatusColorClass} from "../common/commonUtils";
 

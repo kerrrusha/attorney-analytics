@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
-import {useAppDispatch} from "./useAppDispatch";
-import {doGetRequestReturnJson} from "../services/doGetRequestReturnJson";
-import {API_ENDPOINTS} from "../common/constants";
-import {setLatestClosedCases} from "../redux/slices/analyticsSlice";
+import {useAppDispatch} from "../useAppDispatch";
+import {doGetRequestReturnJson} from "../../services/doGetRequestReturnJson";
+import {API_ENDPOINTS} from "../../common/constants";
+import {setLatestClosedCases} from "../../redux/slices/analyticsSlice";
 
 export default function useFetchLatestClosedCases() : [boolean] {
     const dispatch = useAppDispatch();

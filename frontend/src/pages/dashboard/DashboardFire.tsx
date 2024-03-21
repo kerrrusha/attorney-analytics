@@ -17,7 +17,7 @@ export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
     const handleChange = (inputValue: string) => {
         setAttorneyOptions([]);
         if (inputValue && inputValue.length > 0) {
-            doGetRequestReturnJson(API_ENDPOINTS.searchByLastName + "/" + inputValue)
+            doGetRequestReturnJson(API_ENDPOINTS.searchUserByLastName + "/" + inputValue)
                 .then(response => {
                     if (response && response.length > 0) {
                         const newAttorneyOptions = response.map((user: User) => { return {

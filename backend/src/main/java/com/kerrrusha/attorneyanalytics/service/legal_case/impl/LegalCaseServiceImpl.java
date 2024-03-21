@@ -14,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static com.kerrrusha.attorneyanalytics.common.CommonHelper.toDollars;
 
 @Service
@@ -48,6 +50,13 @@ public class LegalCaseServiceImpl implements LegalCaseService {
         LegalCase legalCase = legalCaseRepository.findById(caseId)
                 .orElseThrow(() -> new RuntimeException("Can't find legal case by id: " + caseId));
         return legalCaseMapper.toDto(legalCase);
+    }
+
+    @Override
+    public List<LegalCaseResponseDto> findByTitle(String title) {
+        return legalCaseRepository.findByTitleContainingIgnoreCase(title).stream()
+                .map(legalCaseMapper::toDto)
+                .toList();
     }
 
     private LegalCasePageableResponseDto mapToPageableDto(Page<LegalCase> page) {

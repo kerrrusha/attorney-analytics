@@ -2,7 +2,7 @@ import {LoggedInProps} from "../common/commonTypes";
 import PageWithSidebar from "../components/sidebar/PageWithSidebar";
 import LoadingGif from "../components/loading/LoadingGif";
 import Pagination from "../components/pagination/Pagination";
-import useFetchPayments from "../hooks/useFetchPayments";
+import useFetchPayments from "../hooks/payment/useFetchPayments";
 import {useState} from "react";
 import PaymentListing from "../components/listing/PaymentListing";
 

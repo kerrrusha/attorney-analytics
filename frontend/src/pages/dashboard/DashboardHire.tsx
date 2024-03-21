@@ -2,9 +2,12 @@ import {HireEmployeeRequest, LoggedInProps} from "../../common/commonTypes";
 import PageWithSidebar from "../../components/sidebar/PageWithSidebar";
 import React, {FormEvent, useState} from "react";
 import {API_ENDPOINTS, PAGES} from "../../common/constants";
-import TitleSelect from "../../components/TitleSelect";
+import IdValuesSelect from "../../components/IdValuesSelect";
 import {doPostRequestReturnResponse} from "../../services/doPostRequestReturnResponse";
 import SubPageHeader from "../../components/SubPageHeader";
+import useFetchTitles from "../../hooks/useFetchTitles";
+import {mapToIdValues} from "../../common/commonUtils";
+import LoadingGif from "../../components/loading/LoadingGif";
 
 export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [firstName, setFirstName] = useState("");
@@ -14,6 +17,8 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
+
+    const [titles] = useFetchTitles();
 
     const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -38,7 +43,7 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
 
     const contentElement = <div>
         <SubPageHeader header={"Hire attorney"} />
-        <form className="mt-0" onSubmit={handleFormSubmit}>
+        {!titles ? <LoadingGif /> : <form className="mt-0" onSubmit={handleFormSubmit}>
             <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="col-span-2 mb-2">
                     <label htmlFor="first-name" className="block text-sm font-medium mb-2">
@@ -86,7 +91,7 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
                 </div>
                 <div className="col-span-4">
                     <span className="block mb-2 text-sm font-medium">Title</span>
-                    <TitleSelect handleSetTitleId={setTitleId} />
+                    <IdValuesSelect name="title" options={mapToIdValues(titles)} handleSetId={setTitleId} />
                 </div>
             </div>
             <hr />
@@ -99,6 +104,7 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
                 </button>
             </div>
         </form>
+        }
         <div className="mt-3">
             {success && <div className="alert alert-success" role="alert">
                 <p>Employee hired successfully.</p>

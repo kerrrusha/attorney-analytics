@@ -25,7 +25,7 @@ import {
 } from "../redux/slices/analyticsSlice";
 import LoadingGif from "../components/loading/LoadingGif";
 import {rateXvmColorValue} from "../common/XvmColorValue";
-import useFetchLatestClosedCases from "../hooks/useFetchLatestClosedCases";
+import useFetchLatestClosedCases from "../hooks/legal_case/useFetchLatestClosedCases";
 import {createIncomeOutcomeChart, createSimpleDoughnut} from "../common/chartHelper";
 import useFetchAttorneysOfTheMonth from "../hooks/useFetchAttorneysOfTheMonth";
 import useFetchStatsByDates from "../hooks/useFetchStatsByDates";

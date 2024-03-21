@@ -1,4 +1,5 @@
 import {DANGER_COLOR_CLASSNAME, NEUTRAL_COLOR_CLASS_NAME, SUCCESS_COLOR_CLASSNAME} from "./constants";
+import {IdNamePair, IdValuePair} from "./commonTypes";
 
 export function fixNull(value: string | null): string {
     return value === null ? "" : value;
@@ -93,3 +94,7 @@ export const getPaymentStatusIcon = (type: string) => {
 export const formatNumber = (value: number): string => {
     return value.toFixed(2);
 };
+
+export function mapToIdValues(idNamePairs: IdNamePair[]): IdValuePair[] {
+    return idNamePairs.map(pair => ({id: pair.id, value: pair.name}));
+}

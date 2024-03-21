@@ -191,11 +191,6 @@ export type LegalCaseDto = {
     type: string,
 }
 
-export type TitleDto = {
-    id: number,
-    name: string,
-}
-
 export type SelectOption = {
     value: string,
     label: string,
@@ -203,4 +198,14 @@ export type SelectOption = {
 
 export type FireEmployeeRequest = {
     id: number,
+}
+
+export type IdValuePair = {
+    id: number,
+    value: number,
+}
+
+export type IdNamePair = {
+    id: number,
+    name: number,
 }

@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import {API_ENDPOINTS} from "../common/constants";
-import {LegalCasePageableDto} from "../common/commonTypes";
-import {doGetRequestWithParamsReturnJson} from "../services/doGetRequestWithParamsReturnJson";
+import {API_ENDPOINTS} from "../../common/constants";
+import {LegalCasePageableDto} from "../../common/commonTypes";
+import {doGetRequestWithParamsReturnJson} from "../../services/doGetRequestWithParamsReturnJson";
 
 export default function useFetchLegalCases(page: number, size: number) : [LegalCasePageableDto | null, any] {
     const [result, setResult] = useState(null);

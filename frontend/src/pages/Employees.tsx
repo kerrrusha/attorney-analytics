@@ -1,6 +1,6 @@
 import {LoggedInProps} from "../common/commonTypes";
 import PageWithSidebar from "../components/sidebar/PageWithSidebar";
-import useFetchEmployeesGroupedByTitle from "../hooks/useFetchEmployeesGroupedByTitle";
+import useFetchEmployeesGroupedByTitle from "../hooks/employee/useFetchEmployeesGroupedByTitle";
 import LoadingGif from "../components/loading/LoadingGif";
 import EmployeeCardListing from "../components/listing/EmployeeCardListing";
 

@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import {API_ENDPOINTS} from "../common/constants";
-import {PaymentsPageableDto} from "../common/commonTypes";
-import {doGetRequestWithParamsReturnJson} from "../services/doGetRequestWithParamsReturnJson";
+import {API_ENDPOINTS} from "../../common/constants";
+import {PaymentsPageableDto} from "../../common/commonTypes";
+import {doGetRequestWithParamsReturnJson} from "../../services/doGetRequestWithParamsReturnJson";
 
 export default function useFetchPayments(page: number, size: number) : [PaymentsPageableDto | null, any] {
     const [result, setResult] = useState(null);

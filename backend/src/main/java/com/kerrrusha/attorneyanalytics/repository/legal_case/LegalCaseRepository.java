@@ -20,6 +20,8 @@ public interface LegalCaseRepository extends JpaRepository<LegalCase, Long> {
 
     List<LegalCase> findByUpdatedAtBetween(LocalDateTime startDate, LocalDateTime endDate);
 
+    List<LegalCase> findByTitleContainingIgnoreCase(String title);
+
     Page<LegalCase> findAllByOrderByUpdatedAtDesc(Pageable pageable);
 
     @Query("SELECT COUNT(lc) FROM LegalCase lc JOIN lc.assignedClients ac WHERE ac.id = :clientId")

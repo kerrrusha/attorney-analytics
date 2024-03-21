@@ -4,14 +4,19 @@ import React, {useState} from "react";
 import {doGetRequestReturnJson} from "../../services/doGetRequestReturnJson";
 import {API_ENDPOINTS, PAGES} from "../../common/constants";
 import InputDropdown from "../../components/InputDropdown";
-import TitleSelect from "../../components/TitleSelect";
+import IdValuesSelect from "../../components/IdValuesSelect";
 import {doPostRequestReturnResponse} from "../../services/doPostRequestReturnResponse";
 import SubPageHeader from "../../components/SubPageHeader";
+import useFetchTitles from "../../hooks/useFetchTitles";
+import LoadingGif from "../../components/loading/LoadingGif";
+import {mapToIdValues} from "../../common/commonUtils";
 
 export default function DashboardPromoteEmployee({loggedIn, setLoggedIn}: LoggedInProps) {
     const [selectedOptionValue, setSelectedOptionValue] = useState("");
     const [attorneyOptions, setAttorneyOptions]: [SelectOption[], any] = useState([]);
     const [titleId, setTitleId] = useState<number>(NaN);
+
+    const [titles] = useFetchTitles();
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
@@ -19,7 +24,7 @@ export default function DashboardPromoteEmployee({loggedIn, setLoggedIn}: Logged
     const handleChange = (inputValue: string) => {
         setAttorneyOptions([]);
         if (inputValue && inputValue.length > 0) {
-            doGetRequestReturnJson(API_ENDPOINTS.searchByLastName + "/" + inputValue)
+            doGetRequestReturnJson(API_ENDPOINTS.searchUserByLastName + "/" + inputValue)
                 .then(response => {
                     if (response && response.length > 0) {
                         const newAttorneyOptions = response.map((user: User) => { return {
@@ -51,12 +56,12 @@ export default function DashboardPromoteEmployee({loggedIn, setLoggedIn}: Logged
 
     const contentElement = <div>
         <SubPageHeader header={"Promote attorney"} />
-        <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        {!titles ? <LoadingGif /> : <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="mt-4 flex flex-col col-span-4">
                 <span className="mb-2">Attorney's last name</span>
                 <div className="flex flex-row space-x-4">
                     <InputDropdown options={attorneyOptions} handleChange={handleChange} handleSelect={setSelectedOptionValue} />
-                    <TitleSelect handleSetTitleId={setTitleId} />
+                    <IdValuesSelect name="title" options={mapToIdValues(titles)} handleSetId={setTitleId} />
                 </div>
                 <button
                     onClick={handlePromote}
@@ -67,6 +72,7 @@ export default function DashboardPromoteEmployee({loggedIn, setLoggedIn}: Logged
                 </button>
             </div>
         </div>
+        }
         <div className="mt-3">
             {success && <div className="alert alert-success" role="alert">
                 <p>Employee promoted successfully.</p>
