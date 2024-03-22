@@ -3,10 +3,12 @@ import PageWithSidebar from "../../components/sidebar/PageWithSidebar";
 import {LoggedInProps} from "../../common/commonTypes";
 import useFetchEmployee from "../../hooks/employee/useFetchEmployee";
 import LoadingGif from "../../components/loading/LoadingGif";
+import {useTranslation} from "react-i18next";
 
 export default function Employee({loggedIn, setLoggedIn}: LoggedInProps) {
     const {fullName} = useParams();
     const [employee] = useFetchEmployee(fullName!);
+    const { t } = useTranslation();
 
     const contentElement = <div>
         {!employee ? <LoadingGif/> : <div className="px-3 py-2 flex flex-row mx-auto">
@@ -40,13 +42,13 @@ export default function Employee({loggedIn, setLoggedIn}: LoggedInProps) {
                     </div>)}
                 </div>
                 <div className="mt-3">
-                    <h4 className="mt-3">Practice areas</h4>
+                    <h4 className="mt-3">{t("profile.practiceAreas")}</h4>
                     {employee.practiceAreas.map((value, index) => <div key={index} className="flex flex-row py-1">
                         <span>{value}</span>
                     </div>)}
                 </div>
                 <div className="mt-3">
-                    <h4 className="mt-3">Admissions</h4>
+                    <h4 className="mt-3">{t("profile.admissions")}</h4>
                     {employee.admissions.map((value, index) => <div key={index} className="flex flex-row py-1">
                         <span>{value}</span>
                     </div>)}
@@ -56,5 +58,5 @@ export default function Employee({loggedIn, setLoggedIn}: LoggedInProps) {
         }
     </div>;
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"employees"} contentElement={contentElement}/>);
+                            pageName={t("employees.name")} contentElement={contentElement}/>);
 }

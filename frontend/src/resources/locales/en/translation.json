@@ -90,16 +90,37 @@
     }
   },
   "payments": {
-    "name": "Payments"
+    "name": "Payments",
+    "lastUpd": "Last updated",
+    "type": "Type",
+    "amount": "Amount",
+    "status": "Status",
+    "description": "Description",
+    "assCase": "Assigned case"
   },
   "employees": {
     "name": "Employees"
   },
   "clients": {
-    "name": "Clients"
+    "name": "Clients",
+    "withUs": "With us from",
+    "client": "Client",
+    "total": "Total cases",
+    "emails": "Emails",
+    "phones": "Phones"
   },
   "cases": {
-    "name": "Cases"
+    "name": "Cases",
+    "id": "Id",
+    "updated": "Updated at",
+    "created": "Created at",
+    "title": "Title",
+    "status": "Status",
+    "type": "Type",
+    "view": "View",
+    "assClients": "Assigned clients",
+    "assAttys": "Assigned attorneys",
+    "assPayments": "Assigned payments"
   },
   "xvm": {
     "more": "more than",
@@ -139,6 +160,8 @@
     "changePassword": "Change password"
   },
   "common": {
-    "choose": "Choose"
+    "choose": "Choose",
+    "results": "Results",
+    "of": "of"
   }
 }

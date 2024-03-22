@@ -35,9 +35,9 @@ export default function Cases({loggedIn, setLoggedIn} : LoggedInProps) {
     const contentElement = <div>
         {!legalCases ? <LoadingGif/> : <>
             <div className="text-sm flex flex-row">
-                <span>Results</span>
+                <span>{t("common.results")}</span>
                 <span className="mx-1 font-bold">{getFrom()}-{getTo()}</span>
-                <span>of</span>
+                <span>{t("common.of")}</span>
                 <span className="mx-1 font-bold">{legalCases.total}</span>
             </div>
             <hr className="mt-1"/>
@@ -45,18 +45,18 @@ export default function Cases({loggedIn, setLoggedIn} : LoggedInProps) {
                 <thead>
                 <tr>
                     <th scope="col"></th>
-                    <th scope="col">Id</th>
-                    <th scope="col">Updated at</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Type</th>
+                    <th scope="col">{t("cases.id")}</th>
+                    <th scope="col">{t("cases.updated")}</th>
+                    <th scope="col">{t("cases.title")}</th>
+                    <th scope="col">{t("cases.status")}</th>
+                    <th scope="col">{t("cases.type")}</th>
                 </tr>
                 </thead>
                 <tbody>
                 {
                     legalCases.data.map((data, index) =>
                         <tr key={index}>
-                            <td><a href={PAGES.cases + "/" + data.id}>View</a></td>
+                            <td><a href={PAGES.cases + "/" + data.id}>{t("cases.view")}</a></td>
                             <td>#{data.id}</td>
                             <td>{data.updatedAt}</td>
                             <td>{data.title}</td>

@@ -5,6 +5,7 @@ import LoadingGif from "../components/loading/LoadingGif";
 import Pagination from "../components/pagination/Pagination";
 import useFetchClients from "../hooks/useFetchClients";
 import {useTranslation} from "react-i18next";
+import ClientsListing from "../components/listing/ClientsListing";
 
 export default function Clients({loggedIn, setLoggedIn} : LoggedInProps) {
     const START_PAGE = 0;
@@ -33,37 +34,16 @@ export default function Clients({loggedIn, setLoggedIn} : LoggedInProps) {
     const contentElement = <div>
         {!clients ? <LoadingGif/> : <>
             <div className="text-sm flex flex-row">
-                <span>Results</span>
+                <span>{t("common.results")}</span>
                 <span className="mx-1 font-bold">{getFrom()}-{getTo()}</span>
-                <span>of</span>
+                <span>{t("common.of")}</span>
                 <span className="mx-1 font-bold">{clients.total}</span>
             </div>
             <hr className="mt-1"/>
-            <table className="table background-secondary">
-                <thead>
-                <tr>
-                    <th scope="col">With us from</th>
-                    <th scope="col">Client</th>
-                    <th scope="col">Total cases</th>
-                    <th scope="col">Emails</th>
-                    <th scope="col">Phones</th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                    clients.data.map((data, index) =>
-                        <tr key={index}>
-                            <td>{data.createdAt}</td>
-                            <td>{data.fullName}</td>
-                            <th>{data.totalCases}</th>
-                            <td>{data.emails}</td>
-                            <td>{data.phones}</td>
-                        </tr>)
-                }
-                </tbody>
-            </table>
+            <ClientsListing clients={clients.data} />
             <hr className="mb-2"/>
-            <Pagination pagesAmount={pagesAmount!} currentPage={currentPageNumber} onClickCallback={handlePageClick}/>
+            <Pagination pagesAmount={pagesAmount!} currentPage={currentPageNumber}
+                        onClickCallback={handlePageClick}/>
         </>
         }
     </div>;

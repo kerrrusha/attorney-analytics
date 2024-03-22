@@ -1,20 +1,23 @@
 import {PaymentsDataDto} from "../../common/commonTypes";
 import {getPaymentStatusIcon} from "../../common/commonUtils";
+import {useTranslation} from "react-i18next";
 
 interface PaymentCardProps {
     payments: Array<PaymentsDataDto>;
 }
 
 export default function PaymentListing({payments}: PaymentCardProps) {
+    const { t } = useTranslation();
+
     return (<table className="table background-secondary">
         <thead>
         <tr>
-            <th scope="col">Last updated</th>
-            <th scope="col">Type</th>
-            <th scope="col">Amount, $</th>
-            <th scope="col">Status</th>
-            <th scope="col">Description</th>
-            <th scope="col">Assigned case</th>
+            <th scope="col">{t("payments.lastUpd")}</th>
+            <th scope="col">{t("payments.type")}</th>
+            <th scope="col">{t("payments.amount")}, $</th>
+            <th scope="col">{t("payments.status")}</th>
+            <th scope="col">{t("payments.description")}</th>
+            <th scope="col">{t("payments.assCase")}</th>
         </tr>
         </thead>
         <tbody>

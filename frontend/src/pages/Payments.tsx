@@ -34,9 +34,9 @@ export default function Payments({loggedIn, setLoggedIn}: LoggedInProps) {
     const contentElement = <div>
         {!payments ? <LoadingGif/> : <>
             <div className="text-sm flex flex-row">
-                <span>Results</span>
+                <span>{t("common.results")}</span>
                 <span className="mx-1 font-bold">{getFrom()}-{getTo()}</span>
-                <span>of</span>
+                <span>{t("common.of")}</span>
                 <span className="mx-1 font-bold">{payments.total}</span>
             </div>
             <hr className="mt-1"/>

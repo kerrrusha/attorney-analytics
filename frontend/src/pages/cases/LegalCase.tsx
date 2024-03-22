@@ -7,10 +7,12 @@ import {getStatusColorClass} from "../../common/commonUtils";
 import EmployeeCardListing from "../../components/listing/EmployeeCardListing";
 import ClientCardListing from "../../components/listing/ClientCardListing";
 import PaymentListing from "../../components/listing/PaymentListing";
+import {useTranslation} from "react-i18next";
 
 export default function LegalCase({loggedIn, setLoggedIn}: LoggedInProps) {
     const { caseId } = useParams();
     const [legalCase] = useFetchLegalCase(caseId!);
+    const { t } = useTranslation();
 
     const contentElement = <div>
         {!legalCase ? <LoadingGif /> : <div className="px-3 py-2 flex flex-row mx-auto">
@@ -21,31 +23,31 @@ export default function LegalCase({loggedIn, setLoggedIn}: LoggedInProps) {
                 <table id="case-info">
                     <tbody>
                     <tr>
-                        <th>Type:</th>
+                        <th>{t("cases.type")}:</th>
                         <td>{legalCase.type}</td>
                     </tr>
                     <tr>
-                        <th>Last updated:</th>
+                        <th>{t("cases.updated")}:</th>
                         <td>{legalCase.updatedAt}</td>
                     </tr>
                     <tr>
-                        <th>Created:</th>
+                        <th>{t("cases.created")}:</th>
                         <td>{legalCase.createdAt}</td>
                     </tr>
                     </tbody>
                 </table>
                 <hr />
-                <span className="display-6">Assigned clients</span>
+                <span className="display-6">{t("cases.assClients")}</span>
                 <div className="flex flex-row flex-wrap mt-3">
                     <ClientCardListing clients={legalCase.assignedClients} />
                 </div>
                 <hr />
-                <span className="display-6">Assigned attorneys</span>
+                <span className="display-6">{t("cases.assAttys")}</span>
                 <div className="flex flex-row flex-wrap mt-3">
                     <EmployeeCardListing employees={legalCase.assignedAttorneys} />
                 </div>
                 <hr />
-                <span className="display-6">Assigned payments</span>
+                <span className="display-6">{t("cases.assPayments")}</span>
                 <div className="flex flex-row flex-wrap mt-3">
                     <PaymentListing payments={legalCase.assignedPayments} />
                 </div>
@@ -53,5 +55,5 @@ export default function LegalCase({loggedIn, setLoggedIn}: LoggedInProps) {
         </div>}
     </div>;
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"cases"} contentElement={contentElement}/>);
+                            pageName={t("cases.name")} contentElement={contentElement}/>);
 }
