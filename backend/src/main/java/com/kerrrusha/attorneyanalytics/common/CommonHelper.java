@@ -2,9 +2,11 @@ package com.kerrrusha.attorneyanalytics.common;
 
 import com.kerrrusha.attorneyanalytics.model.ValueProvider;
 import com.kerrrusha.attorneyanalytics.model.payment.Payment;
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -49,6 +51,15 @@ public class CommonHelper {
     public static List<String> toStringList(List<? extends ValueProvider> list) {
         return list.stream()
                 .map(ValueProvider::getValue)
+                .toList();
+    }
+
+    public static List<String> refine(String[] strings) {
+        return Arrays.stream(strings)
+                .map(String::toLowerCase)
+                .map(String::trim)
+                .filter(StringUtils::isNotBlank)
+                .distinct()
                 .toList();
     }
 }
