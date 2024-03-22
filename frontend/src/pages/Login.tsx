@@ -1,18 +1,21 @@
 import DarkModeSwitch from "../components/DarkModeSwitch";
 import {useNavigate} from "react-router-dom";
-import {FormEvent, useEffect, useState} from "react";
+import React, {FormEvent, useEffect, useState} from "react";
 import GoogleLogin from "../components/GoogleLogin";
 import {APPLICATION_NAME, PAGES} from "../common/constants";
 import {InputTarget, LoggedInProps, LoginRequest} from "../common/commonTypes";
 import {onGoogleSignIn} from "../services/onGoogleSignIn";
 import goodman from '../resources/img/goodman.png';
 import {login} from "../services/login";
+import {useTranslation} from "react-i18next";
+import LanguageSwitcher from "../components/LanguageSwitch";
 
 export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (loggedIn) {
@@ -53,7 +56,7 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
                         {APPLICATION_NAME}
                     </h4>
                     <h2 className="mt-16 text-center text-2xl font-bold leading-9 tracking-tight">
-                        Sign in to your account
+                        {t("auth.label")}
                     </h2>
                 </div>
 
@@ -61,7 +64,7 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
                     <form className="space-y-6" onSubmit={handleFormSubmit}>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium leading-6">
-                                Email address
+                                {t("auth.email")}
                             </label>
                             <div className="mt-2">
                                 <input
@@ -80,11 +83,11 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
                         <div>
                             <div className="flex items-center justify-between">
                                 <label htmlFor="password" className="block text-sm font-medium leading-6">
-                                    Password
+                                    {t("auth.password")}
                                 </label>
                                 <div className="text-sm">
                                     <button disabled className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                        Forgot password?
+                                        {t("auth.forgot")}
                                     </button>
                                 </div>
                             </div>
@@ -115,7 +118,7 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
                                 type="submit"
                                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
-                                Sign in
+                                {t("auth.signin")}
                             </button>
                         </div>
 
@@ -125,14 +128,17 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
                     </form>
 
                     <p className="mt-10 text-center text-sm text-gray-500">
-                        Not registered yet?{' '}
+                        {t("auth.notRegistered")}{' '}
                         <a href="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                            Sign Up
+                            {t("auth.signup")}
                         </a>
                     </p>
                 </div>
             </div>
             <DarkModeSwitch />
+            <div className="mt-3 flex justify-center">
+                <LanguageSwitcher />
+            </div>
         </div>
     );
 }

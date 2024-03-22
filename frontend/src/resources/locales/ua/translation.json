@@ -50,5 +50,18 @@
   "header": {
     "profile": "Ваш профіль",
     "signout": "Вийти"
+  },
+  "auth": {
+    "label": "Увійдіть у ваш акаунт",
+    "email": "Електронна пошта",
+    "password": "Пароль",
+    "forgot": "Забули пароль?",
+    "signin": "Увійти",
+    "notRegistered": "Не маєте акаунту?",
+    "registeredAlready": "Маєте акаунт?",
+    "signup": "Зареєструватись",
+    "createAccount": "Створити акаунт",
+    "firstName": "Ім'я",
+    "lastName": "Прізвище"
   }
 }

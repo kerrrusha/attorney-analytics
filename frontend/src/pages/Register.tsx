@@ -7,6 +7,8 @@ import {useNavigate} from "react-router-dom";
 import {APPLICATION_NAME, PAGES} from "../common/constants";
 import goodman from '../resources/img/goodman.png';
 import {register} from "../services/register";
+import {useTranslation} from "react-i18next";
+import LanguageSwitcher from "../components/LanguageSwitch";
 
 export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
     const navigate = useNavigate();
@@ -15,6 +17,7 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [error, setError] = useState('');
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (loggedIn) {
@@ -57,7 +60,7 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
                         {APPLICATION_NAME}
                     </h4>
                     <h2 className="mt-16 text-center text-2xl font-bold leading-9 tracking-tight">
-                        Create account
+                        {t("auth.createAccount")}
                     </h2>
                 </div>
 
@@ -66,7 +69,7 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
                         <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6">
-                                    First Name
+                                    {t("auth.firstName")}
                                 </label>
                                 <input
                                     required
@@ -82,7 +85,7 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
 
                             <div className="sm:col-span-3">
                                 <label htmlFor="last-name" className="block text-sm font-medium leading-6">
-                                    Last Name
+                                    {t("auth.lastName")}
                                 </label>
                                 <input
                                     required
@@ -99,7 +102,7 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
 
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium leading-6">
-                                Email address
+                                {t("auth.email")}
                             </label>
                             <div className="mt-2">
                                 <input
@@ -117,7 +120,7 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
 
                         <div>
                             <label htmlFor="password" className="block text-sm font-medium leading-6">
-                                Password
+                                {t("auth.password")}
                             </label>
                             <div className="mt-2">
                                 <input
@@ -146,7 +149,7 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
                                 type="submit"
                                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
-                                Sign up
+                                {t("auth.signup")}
                             </button>
                         </div>
 
@@ -156,14 +159,17 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
                     </form>
 
                     <p className="mt-10 text-center text-sm text-gray-500">
-                        Already registered?{' '}
+                        {t("auth.registeredAlready")}{' '}
                         <a href="/login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                            Sign In
+                            {t("auth.signin")}
                         </a>
                     </p>
                 </div>
             </div>
             <DarkModeSwitch />
+            <div className="mt-3 flex justify-center">
+                <LanguageSwitcher />
+            </div>
         </div>
     );
 }

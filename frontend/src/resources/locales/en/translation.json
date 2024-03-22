@@ -50,5 +50,18 @@
   "header": {
     "profile": "Your profile",
     "signout": "Sign out"
+  },
+  "auth": {
+    "label": "Sign in to your account",
+    "email": "Email address",
+    "password": "Password",
+    "forgot": "Forgot password?",
+    "signin": "Sign in?",
+    "notRegistered": "Not registered yet?",
+    "registeredAlready": "Already registered?",
+    "signup": "Sign up",
+    "createAccount": "Create account",
+    "firstName": "First name",
+    "lastName": "Last name"
   }
 }
