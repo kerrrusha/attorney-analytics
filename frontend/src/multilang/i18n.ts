@@ -12,10 +12,17 @@ const resources = {
     },
 };
 
+export const LANGUAGE_UA = "ua";
+export const LANGUAGE_EN = "en";
+
+export const LANGUAGE_KEY = "language";
+export const DEFAULT_LANGUAGE = localStorage.getItem(LANGUAGE_KEY) || LANGUAGE_UA;
+
 i18n
     .use(initReactI18next)
     .init({
         resources,
+        lng: DEFAULT_LANGUAGE,
         fallbackLng: 'ua',
         debug: false,
     });

@@ -1,19 +1,18 @@
 import { useTranslation } from "react-i18next";
 import {Switch} from "@headlessui/react";
 import {useState} from "react";
+import {LANGUAGE_EN, LANGUAGE_KEY, LANGUAGE_UA} from "../multilang/i18n";
 
 export default function LanguageSwitch() {
-    const uaValue = "ua";
-    const enValue = "en";
-
     const { i18n } = useTranslation();
-    const [checked, setChecked] = useState(i18n.language === enValue);
+    const [checked, setChecked] = useState(i18n.language === LANGUAGE_EN);
 
     const handleLanguageChange = () => {
         const curLang = i18n.language;
-        const nextLang = curLang === uaValue ? enValue : uaValue;
-        setChecked(nextLang === enValue);
+        const nextLang = curLang === LANGUAGE_UA ? LANGUAGE_EN : LANGUAGE_UA;
+        setChecked(nextLang === LANGUAGE_EN);
         i18n.changeLanguage(nextLang);
+        localStorage.setItem(LANGUAGE_KEY, nextLang);
     };
 
     return (

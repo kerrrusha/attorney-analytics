@@ -9,6 +9,10 @@ export type LoggedInProps = {
     setLoggedIn: Dispatch<any>;
 }
 
+export type LanguageState = {
+    language: string;
+}
+
 export type UserUpdateRequest = {
     userId: number,
     firstName?: string,
