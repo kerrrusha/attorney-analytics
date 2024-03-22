@@ -8,17 +8,17 @@ import {useAppDispatch} from "../hooks/useAppDispatch";
 import Loading from "../components/loading/Loading";
 import {fixNull} from "../common/commonUtils";
 import SaveableTextArea from "../components/saveable/SaveableTextArea";
-import CrudTable, {TableData} from "../components/crud/CrudTable";
+import CrudTable from "../components/crud/CrudTable";
 import useFetchUser from "../hooks/useFetchUser";
 import React, {useState} from "react";
 import {API_ENDPOINTS} from "../common/constants";
 import {doPostRequestReturnResponse} from "../services/doPostRequestReturnResponse";
 import {useTranslation} from "react-i18next";
 
-export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
+export default function Profile({loggedIn, setLoggedIn}: LoggedInProps) {
     const [userFetched] = useFetchUser();
-    const user : User | null = useAppSelector(selectUser)!;
-    const { t } = useTranslation();
+    const user: User | null = useAppSelector(selectUser)!;
+    const {t} = useTranslation();
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
@@ -38,75 +38,75 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
         window.scrollTo(0, document.body.scrollHeight);
     }
 
-    const updateFirstName = (newValue : string) => {
+    const updateFirstName = (newValue: string) => {
         return updateUser({
             userId: user.id,
             firstName: newValue
         });
     };
 
-    const updateLastName = (newValue : string) => {
+    const updateLastName = (newValue: string) => {
         return updateUser({
             userId: user.id,
             lastName: newValue
         });
     };
 
-    const updateBio = (newValue : string) => {
+    const updateBio = (newValue: string) => {
         return updateUser({
             userId: user.id,
             bio: newValue
         });
     };
 
-    const updateLinkedin = (newValue : string) => {
+    const updateLinkedin = (newValue: string) => {
         return updateUser({
             userId: user.id,
             linkedinUrl: newValue
         });
     };
 
-    const updateAdmissions = (newData : TableData) => {
+    const updateAdmissions = (newData: string[]) => {
         return updateUser({
             userId: user.id,
-            admissions: newData.rows
+            admissions: newData
         });
     };
 
-    const updateEmails = (newData : TableData) => {
+    const updateEmails = (newData: string[]) => {
         return updateUser({
             userId: user.id,
-            emails: newData.rows
+            emails: newData
         });
     };
 
-    const updatePhones = (newData : TableData) => {
+    const updatePhones = (newData: string[]) => {
         return updateUser({
             userId: user.id,
-            phones: newData.rows
+            phones: newData
         });
     };
 
-    const updateLocations = (newData : TableData) => {
+    const updateLocations = (newData: string[]) => {
         return updateUser({
             userId: user.id,
-            locations: newData.rows
+            locations: newData
         });
     };
 
-    const updatePracticeAreas = (newData : TableData) => {
+    const updatePracticeAreas = (newData: string[]) => {
         return updateUser({
             userId: user.id,
-            practiceAreas: newData.rows
+            practiceAreas: newData
         });
     };
 
-    return user === null ? <Loading /> : (
+    return user === null ? <Loading/> : (
         <>
-            <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+            <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
             <div className="background-primary mx-auto max-w-7xl px-4 py-5 sm:px-6 sm:py-32 lg:px-8">
                 <div className="mx-auto max-w-2xl">
-                    {!userFetched ? <LoadingGif /> : <form>
+                    {!userFetched ? <LoadingGif/> : <form>
                         <div className="space-y-12">
                             <div className="border-b p-2 flex flex-row justify-between align-items-center">
                                 <h4 className="text-header font-semibold">{t("profile.name")}</h4>
@@ -133,7 +133,8 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                                                 className="disabled relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                                             >
                                                 <span>{t("profile.change")}</span>
-                                                <input disabled id="file-upload" name="file-upload" type="file" className="sr-only" />
+                                                <input disabled id="file-upload" name="file-upload" type="file"
+                                                       className="sr-only"/>
                                             </label>
                                         </button>
                                     </div>
@@ -144,12 +145,12 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                                 <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                     <div className="sm:col-span-3">
                                         <SaveableInput label={t("auth.firstName")} postValueHandler={updateFirstName}
-                                                       initialValue_={user.firstName} />
+                                                       initialValue_={user.firstName}/>
                                     </div>
 
                                     <div className="sm:col-span-3">
                                         <SaveableInput label={t("auth.lastName")} postValueHandler={updateLastName}
-                                                       initialValue_={user.lastName} />
+                                                       initialValue_={user.lastName}/>
                                     </div>
 
                                     <div className="col-span-4">
@@ -167,8 +168,10 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                                                 autoComplete="email"
                                                 className="mr-2 block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                                <path strokeLinecap="round" strokeLinejoin="round"
+                                                      d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/>
                                             </svg>
                                         </div>
                                     </div>
@@ -183,8 +186,10 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                                                     <li className="list-group-item" key={index}>{item}</li>
                                                 ))}
                                             </ul>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                                <path strokeLinecap="round" strokeLinejoin="round"
+                                                      d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/>
                                             </svg>
                                         </div>
                                     </div>
@@ -204,45 +209,57 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                                                 autoComplete="title"
                                                 className="mr-2 block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                                <path strokeLinecap="round" strokeLinejoin="round"
+                                                      d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/>
                                             </svg>
                                         </div>
                                     </div>
 
                                     <div className="col-span-4">
                                         <SaveableInput label="Linkedin Url" postValueHandler={updateLinkedin}
-                                                       initialValue_={fixNull(user.linkedinUrl)} />
+                                                       initialValue_={fixNull(user.linkedinUrl)}/>
                                     </div>
 
                                     <div className="col-span-6">
                                         <SaveableTextArea label={t("profile.bio")} postValueHandler={updateBio}
-                                                       initialValue_={fixNull(user.bio)} />
+                                                          initialValue_={fixNull(user.bio)}/>
                                     </div>
 
                                     <div className="col-span-6">
-                                        <span className="block text-sm font-medium leading-6 mb-2">{t("profile.emails")}</span>
-                                        <CrudTable name="emails" initialData_={{rows: user.emails}} postDataHandler={updateEmails} />
+                                        <span
+                                            className="block text-sm font-medium leading-6 mb-2">{t("profile.emails")}</span>
+                                        <CrudTable name="emails" initialData_={user.emails}
+                                                   postDataHandler={updateEmails}/>
                                     </div>
 
                                     <div className="col-span-6">
-                                        <span className="block text-sm font-medium leading-6 mb-2">{t("profile.phones")}</span>
-                                        <CrudTable name="phones" initialData_={{rows: user.phones}} postDataHandler={updatePhones} />
+                                        <span
+                                            className="block text-sm font-medium leading-6 mb-2">{t("profile.phones")}</span>
+                                        <CrudTable name="phones" initialData_={user.phones}
+                                                   postDataHandler={updatePhones}/>
                                     </div>
 
                                     <div className="col-span-6">
-                                        <span className="block text-sm font-medium leading-6 mb-2">{t("profile.locations")}</span>
-                                        <CrudTable name="locations" initialData_={{rows: user.locations}} postDataHandler={updateLocations} />
+                                        <span
+                                            className="block text-sm font-medium leading-6 mb-2">{t("profile.locations")}</span>
+                                        <CrudTable name="locations" initialData_={user.locations}
+                                                   postDataHandler={updateLocations}/>
                                     </div>
 
                                     <div className="col-span-6">
-                                        <span className="block text-sm font-medium leading-6 mb-2">{t("profile.practiceAreas")}</span>
-                                        <CrudTable name="practiceAreas" initialData_={{rows: user.practiceAreas}} postDataHandler={updatePracticeAreas} />
+                                        <span
+                                            className="block text-sm font-medium leading-6 mb-2">{t("profile.practiceAreas")}</span>
+                                        <CrudTable name="practiceAreas" initialData_={user.practiceAreas}
+                                                   postDataHandler={updatePracticeAreas}/>
                                     </div>
 
                                     <div className="col-span-6">
-                                        <span className="block text-sm font-medium leading-6 mb-2">{t("profile.admissions")}</span>
-                                        <CrudTable name="admissions" initialData_={{rows: user.admissions}} postDataHandler={updateAdmissions} />
+                                        <span
+                                            className="block text-sm font-medium leading-6 mb-2">{t("profile.admissions")}</span>
+                                        <CrudTable name="admissions" initialData_={user.admissions}
+                                                   postDataHandler={updateAdmissions}/>
                                     </div>
 
                                     <div className="sm:col-span-4">
