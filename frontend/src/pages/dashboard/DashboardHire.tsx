@@ -8,12 +8,14 @@ import SubPageHeader from "../../components/SubPageHeader";
 import useFetchTitles from "../../hooks/useFetchTitles";
 import {mapToIdValues} from "../../common/commonUtils";
 import LoadingGif from "../../components/loading/LoadingGif";
+import {useTranslation} from "react-i18next";
 
 export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [login, setLogin] = useState("");
     const [titleId, setTitleId] = useState<number>(0);
+    const { t } = useTranslation();
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
@@ -42,12 +44,12 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
     }
 
     const contentElement = <div>
-        <SubPageHeader header={"Hire attorney"} />
+        <SubPageHeader header={t("dashboard.hire.name")} />
         {!titles ? <LoadingGif /> : <form className="mt-0" onSubmit={handleFormSubmit}>
             <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="col-span-2 mb-2">
                     <label htmlFor="first-name" className="block text-sm font-medium mb-2">
-                        First name
+                        {t("auth.firstName")}
                     </label>
                     <input
                         required
@@ -62,7 +64,7 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
                 </div>
                 <div className="col-span-2 mb-2">
                     <label htmlFor="last-name" className="block text-sm font-medium mb-2">
-                        Last name
+                        {t("auth.lastName")}
                     </label>
                     <input
                         id="last-name"
@@ -75,7 +77,7 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
                 </div>
                 <div className="col-span-4">
                     <label htmlFor="login" className="block text-sm font-medium mb-2">
-                        Login
+                        {t("profile.login")}
                     </label>
                     <div className="mt-2 flex flex-row items-center">
                         <input
@@ -90,8 +92,8 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
                     </div>
                 </div>
                 <div className="col-span-4">
-                    <span className="block mb-2 text-sm font-medium">Title</span>
-                    <IdValuesSelect name="title" options={mapToIdValues(titles)} handleSetId={setTitleId} />
+                    <span className="block mb-2 text-sm font-medium">{t("profile.title")}</span>
+                    <IdValuesSelect name={t("profile.titleLow")} options={mapToIdValues(titles)} handleSetId={setTitleId} />
                 </div>
             </div>
             <hr />
@@ -100,15 +102,15 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
                     type="submit"
                     className="px-5 rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                 >
-                    Hire
+                    {t("dashboard.hire.action")}
                 </button>
             </div>
         </form>
         }
         <div className="mt-3">
             {success && <div className="alert alert-success" role="alert">
-                <p>Employee hired successfully.</p>
-                <span>Refer to the <a href={PAGES.employees}>employees</a> page to see updated employee list.</span>
+                <p>{t("dashboard.hire.success1")}</p>
+                <span>{t("dashboard.hire.success2")}<a href={PAGES.employees}>{t("dashboard.hire.success3")}</a> {t("dashboard.hire.success4")}</span>
             </div>
             }
             {error && <div className="alert alert-danger" role="alert">
@@ -119,5 +121,5 @@ export default function DashboardHire({loggedIn, setLoggedIn}: LoggedInProps) {
     </div>;
 
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"dashboard"} contentElement={contentElement}/>);
+                            pageName={t("dashboard.name")} contentElement={contentElement}/>);
 }

@@ -8,7 +8,7 @@ import {APPLICATION_NAME, PAGES} from "../common/constants";
 import goodman from '../resources/img/goodman.png';
 import {register} from "../services/register";
 import {useTranslation} from "react-i18next";
-import LanguageSwitcher from "../components/LanguageSwitch";
+import LanguageSwitch from "../components/LanguageSwitch";
 
 export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
     const navigate = useNavigate();
@@ -168,7 +168,7 @@ export default function Register({loggedIn, setLoggedIn} : LoggedInProps) {
             </div>
             <DarkModeSwitch />
             <div className="mt-3 flex justify-center">
-                <LanguageSwitcher />
+                <LanguageSwitch />
             </div>
         </div>
     );

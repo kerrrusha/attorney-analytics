@@ -14,33 +14,33 @@ export default function Dashboard({loggedIn, setLoggedIn}: LoggedInProps) {
 
     const buttonsData = [
         {
-            name: "Hire employee",
+            name: t("dashboard.hire.name"),
             url: PAGES.dashboardHire,
             allowedRoles: [ROLES.ADMIN]
         },
         {
-            name: "Fire employee",
+            name: t("dashboard.fire.name"),
             url: PAGES.dashboardFire,
             allowedRoles: [ROLES.ADMIN]
         },
         {
-            name: "Promote employee",
+            name: t("dashboard.promote.name"),
             url: PAGES.dashboardPromoteEmployee,
             allowedRoles: [ROLES.ADMIN]
         },
 
         {
-            name: "Employee salary bonus suggestions",
+            name: t("dashboard.bonus.name"),
             url: PAGES.dashboardEmployeeBonusSuggestions,
             allowedRoles: [ROLES.ADMIN, ROLES.WORKER]
         },
         {
-            name: "Declare a payment",
+            name: t("dashboard.declare.name"),
             url: PAGES.dashboardDeclarePayment,
             allowedRoles: [ROLES.ADMIN]
         },
         {
-            name: "Add new client",
+            name: t("dashboard.addClient.name"),
             url: PAGES.dashboardAddNewClient,
             allowedRoles: [ROLES.ADMIN, ROLES.WORKER]
         }

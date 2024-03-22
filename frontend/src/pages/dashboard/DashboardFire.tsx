@@ -8,10 +8,12 @@ import {doPostRequestReturnResponse} from "../../services/doPostRequestReturnRes
 import SubPageHeader from "../../components/SubPageHeader";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {selectUser} from "../../redux/slices/authSlice";
+import {useTranslation} from "react-i18next";
 
 export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
     const [selectedOptionValue, setSelectedOptionValue] = useState("");
     const [attorneyOptions, setAttorneyOptions]: [SelectOption[], any] = useState([]);
+    const { t } = useTranslation();
 
     const user = useAppSelector(selectUser)!;
 
@@ -53,23 +55,23 @@ export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
     };
 
     const contentElement = <div>
-        <SubPageHeader header={"Fire attorney"} />
+        <SubPageHeader header={t("dashboard.fire.name")} />
         <div className="mt-4 flex flex-col">
-            <span className="mb-2">Attorney's last name</span>
+            <span className="mb-2">{t("dashboard.fire.label")}</span>
             <div className="flex flex-row space-x-4">
                 <InputDropdown options={attorneyOptions} handleChange={handleChange} handleSelect={setSelectedOptionValue} />
                 <button
                     onClick={handleFire}
                     disabled={!selectedOptionValue || selectedOptionValue.length === 0}
                     className="rounded-md bg-white px-5 py-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-500">
-                    Fire
+                    {t("dashboard.fire.action")}
                 </button>
             </div>
         </div>
         <div className="mt-3">
             {success && <div className="alert alert-success" role="alert">
-                <p>Employee fired successfully.</p>
-                <span>Refer to the <a href={PAGES.employees}>employees</a> page to see updated employee list.</span>
+                <p>{t("dashboard.fire.success1")}</p>
+                <span>{t("dashboard.fire.success2")}<a href={PAGES.employees}>{t("dashboard.fire.success3")}</a> {t("dashboard.fire.success4")}</span>
             </div>
             }
             {error && <div className="alert alert-danger" role="alert">
@@ -80,5 +82,5 @@ export default function DashboardFire({loggedIn, setLoggedIn}: LoggedInProps) {
     </div>;
 
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"dashboard"} contentElement={contentElement}/>);
+                            pageName={t("dashboard.name")} contentElement={contentElement}/>);
 }

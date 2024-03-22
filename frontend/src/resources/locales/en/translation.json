@@ -29,7 +29,65 @@
     "cases": "Cases"
   },
   "dashboard": {
-    "name": "Dashboard"
+    "name": "Dashboard",
+    "hire": {
+      "name": "Hire employee",
+      "action": "Hire",
+      "success1": "Employee hired successfully.",
+      "success2": "Refer to the ",
+      "success3": "employees",
+      "success4": "page to see updated employee list."
+    },
+    "fire": {
+      "name": "Fire employee",
+      "action": "Fire",
+      "label": "Attorney's last name",
+      "success1": "Employee fired successfully.",
+      "success2": "Refer to the ",
+      "success3": "employees",
+      "success4": "page to see updated employee list."
+    },
+    "promote": {
+      "name": "Promote employee",
+      "action": "Promote",
+      "label": "Attorney's last name",
+      "success1": "Employee promoted successfully.",
+      "success2": "Refer to the ",
+      "success3": "employees",
+      "success4": "page to see updated employee list."
+    },
+    "bonus": {
+      "name": "Employee salary bonus suggestions",
+      "about1": "Employee bonus suggestions based in the first order on attorney's successfully closed rate",
+      "about2": "The second order ranks the lowest titles (in order to equalize the chances, taking into account the authority of the more senior titles)",
+      "about3": "The bonus is expected to be awarded to the following number of employees",
+      "about4": "Workers eligible to receive a bonus are indicated with the",
+      "about5": "appropriate color",
+      "successClosed": "Successfully closed amount"
+    },
+    "declare": {
+      "name": "Declare payment",
+      "action": "Задекларувати",
+      "description": "Опис",
+      "amount": "Сума, $ (в центах)",
+      "status": "Статус платежу",
+      "type": "Тип платежу",
+      "case": "Назва пов'язаної справи",
+      "type1": "type",
+      "status1": "status",
+      "success1": "Payment was declared successfully.",
+      "success2": "Refer to the ",
+      "success3": "payments",
+      "success4": "page to see updated payment list."
+    },
+    "addClient": {
+      "name": "Add new client",
+      "action": "Add client",
+      "success1": "Client was added successfully.",
+      "success2": "Refer to the ",
+      "success3": "clients",
+      "success4": " page to see updated clients list."
+    }
   },
   "payments": {
     "name": "Payments"
@@ -71,6 +129,7 @@
     "login": "Login",
     "roles": "Roles",
     "title": "Title",
+    "titleLow": "title",
     "bio": "Biography",
     "emails": "Emails",
     "phones": "Phones",
@@ -78,5 +137,8 @@
     "practiceAreas": "Practice Areas",
     "admissions": "Admissions",
     "changePassword": "Change password"
+  },
+  "common": {
+    "choose": "Choose"
   }
 }

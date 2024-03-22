@@ -11,12 +11,14 @@ import LoadingGif from "../../components/loading/LoadingGif";
 import InputDropdown from "../../components/InputDropdown";
 import {doGetRequestReturnJson} from "../../services/doGetRequestReturnJson";
 import {doPostRequestReturnResponse} from "../../services/doPostRequestReturnResponse";
+import {useTranslation} from "react-i18next";
 
 export default function DashboardDeclarePayment({loggedIn, setLoggedIn}: LoggedInProps) {
     const [description, setDescription] = useState<string>("");
     const [amount, setAmount] = useState<number>(1);
     const [statusId, setStatusId] = useState<number>(NaN);
     const [typeId, setTypeId] = useState<number>(NaN);
+    const { t } = useTranslation();
 
     const [selectedLegalCaseOptionValue, setSelectedLegalCaseOptionValue] = useState("");
     const [legalCaseOptions, setLegalCaseOptions]: [SelectOption[], any] = useState([]);
@@ -66,12 +68,12 @@ export default function DashboardDeclarePayment({loggedIn, setLoggedIn}: LoggedI
     };
 
     const contentElement = <div>
-        <SubPageHeader header={"Declare a payment"}/>
+        <SubPageHeader header={t("dashboard.declare.name")}/>
         {!paymentTypes || !paymentStatuses ? <LoadingGif/> : <form onSubmit={handleFormSubmit}>
             <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="mt-4 flex flex-col col-span-2">
                     <label htmlFor="description" className="block text-sm font-medium leading-6">
-                        Description
+                        {t("dashboard.declare.description")}
                     </label>
                     <div className="mt-2 flex flex-row items-center">
                         <input
@@ -88,7 +90,7 @@ export default function DashboardDeclarePayment({loggedIn, setLoggedIn}: LoggedI
 
                 <div className="mt-4 flex flex-col col-span-2">
                     <label htmlFor="amount" className="block text-sm font-medium leading-6">
-                        Amount (in cents)
+                        {t("dashboard.declare.amount")}
                     </label>
                     <div className="mt-2 flex flex-row items-center">
                         <input
@@ -106,17 +108,21 @@ export default function DashboardDeclarePayment({loggedIn, setLoggedIn}: LoggedI
             </div>
             <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="mt-4 flex flex-col col-span-2">
-                    <span className="mb-2">Payment status</span>
-                    <IdValuesSelect name="status" options={mapToIdValues(paymentStatuses)} handleSetId={setStatusId} />
+                    <span className="mb-2">
+                        {t("dashboard.declare.status")}
+                    </span>
+                    <IdValuesSelect name={t("dashboard.declare.status1")} options={mapToIdValues(paymentStatuses)} handleSetId={setStatusId} />
                 </div>
 
                 <div className="mt-4 flex flex-col col-span-2">
-                    <span className="mb-2">Payment type</span>
-                    <IdValuesSelect name="type" options={mapToIdValues(paymentTypes)} handleSetId={setTypeId} />
+                    <span className="mb-2">
+                        {t("dashboard.declare.type")}
+                    </span>
+                    <IdValuesSelect name={t("dashboard.declare.type1")} options={mapToIdValues(paymentTypes)} handleSetId={setTypeId} />
                 </div>
             </div>
             <div className="mt-4">
-                <p className="mb-2">Assigned legal case title</p>
+                <p className="mb-2">{t("dashboard.declare.case")}</p>
                 <InputDropdown options={legalCaseOptions} handleChange={handleLegalCaseTitleChange}
                                handleSelect={setSelectedLegalCaseOptionValue} />
             </div>
@@ -127,13 +133,13 @@ export default function DashboardDeclarePayment({loggedIn, setLoggedIn}: LoggedI
                     type="submit"
                     className="px-5 rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                 >
-                    Declare
+                    {t("dashboard.declare.action")}
                 </button>
             </div>
             <div className="mt-3">
                 {success && <div className="alert alert-success" role="alert">
-                    <p>Payment was declared successfully.</p>
-                    <span>Refer to the <a href={PAGES.payments}>payments</a> page to see updated payment list.</span>
+                    <p>{t("dashboard.declare.success1")}</p>
+                    <span>{t("dashboard.declare.success2")}<a href={PAGES.payments}>{t("dashboard.declare.success3")}</a> {t("dashboard.declare.success4")}</span>
                 </div>
                 }
                 {error && <div className="alert alert-danger" role="alert">
@@ -146,5 +152,5 @@ export default function DashboardDeclarePayment({loggedIn, setLoggedIn}: LoggedI
     </div>;
 
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"dashboard"} contentElement={contentElement}/>);
+                            pageName={t("dashboard.name")} contentElement={contentElement}/>);
 }

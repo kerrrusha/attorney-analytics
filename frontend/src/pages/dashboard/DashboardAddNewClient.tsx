@@ -5,12 +5,14 @@ import {API_ENDPOINTS, PAGES} from "../../common/constants";
 import IndepententCrudTable from "../../components/crud/IndependentCrudTable";
 import {doPostRequestReturnResponse} from "../../services/doPostRequestReturnResponse";
 import SubPageHeader from "../../components/SubPageHeader";
+import {useTranslation} from "react-i18next";
 
 export default function DashboardAddNewClient({loggedIn, setLoggedIn}: LoggedInProps) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [emails, setEmails] = useState<string[]>([]);
     const [phones, setPhones] = useState<string[]>([]);
+    const { t } = useTranslation();
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
@@ -37,12 +39,12 @@ export default function DashboardAddNewClient({loggedIn, setLoggedIn}: LoggedInP
     };
 
     const contentElement = <div>
-        <SubPageHeader header={"Add new client"} />
+        <SubPageHeader header={t("dashboard.declare.name")} />
         <form onSubmit={handleFormSubmit}>
             <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="mt-4 flex flex-col col-span-2">
                     <label htmlFor="first-name" className="block text-sm font-medium leading-6">
-                        First name
+                        {t("auth.firstName")}
                     </label>
                     <div className="mt-2 flex flex-row items-center">
                         <input
@@ -59,7 +61,7 @@ export default function DashboardAddNewClient({loggedIn, setLoggedIn}: LoggedInP
 
                 <div className="mt-4 flex flex-col col-span-2">
                     <label htmlFor="last-name" className="block text-sm font-medium leading-6">
-                        Last name
+                        {t("auth.lastName")}
                     </label>
                     <div className="mt-2 flex flex-row items-center">
                         <input
@@ -75,12 +77,16 @@ export default function DashboardAddNewClient({loggedIn, setLoggedIn}: LoggedInP
                 </div>
 
                 <div className="col-span-3">
-                    <span className="block text-sm font-medium leading-6 mb-2">Emails</span>
+                    <span className="block text-sm font-medium leading-6 mb-2">
+                        {t("profile.emails")}
+                    </span>
                     <IndepententCrudTable name="emails" handleChange_={newRows => setEmails(newRows)} />
                 </div>
 
                 <div className="col-span-3">
-                    <span className="block text-sm font-medium leading-6 mb-2">Phones</span>
+                    <span className="block text-sm font-medium leading-6 mb-2">
+                        {t("profile.phones")}
+                    </span>
                     <IndepententCrudTable name="phones" handleChange_={newRows => setPhones(newRows)} />
                 </div>
             </div>
@@ -91,13 +97,13 @@ export default function DashboardAddNewClient({loggedIn, setLoggedIn}: LoggedInP
                     type="submit"
                     className="px-5 rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                 >
-                    Add client
+                    {t("dashboard.declare.action")}
                 </button>
             </div>
             <div className="mt-3">
                 {success && <div className="alert alert-success" role="alert">
-                    <p>Client was added successfully.</p>
-                    <span>Refer to the <a href={PAGES.clients}>clients</a> page to see updated clients list.</span>
+                    <p>{t("dashboard.declare.success1")}</p>
+                    <span>{t("dashboard.declare.success2")}<a href={PAGES.clients}>{t("dashboard.declare.success3")}</a> {t("dashboard.declare.success4")}</span>
                 </div>
                 }
                 {error && <div className="alert alert-danger" role="alert">
@@ -109,5 +115,5 @@ export default function DashboardAddNewClient({loggedIn, setLoggedIn}: LoggedInP
     </div>;
 
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"dashboard"} contentElement={contentElement}/>);
+                            pageName={t("dashboard.name")} contentElement={contentElement}/>);
 }

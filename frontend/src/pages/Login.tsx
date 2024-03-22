@@ -8,7 +8,7 @@ import {onGoogleSignIn} from "../services/onGoogleSignIn";
 import goodman from '../resources/img/goodman.png';
 import {login} from "../services/login";
 import {useTranslation} from "react-i18next";
-import LanguageSwitcher from "../components/LanguageSwitch";
+import LanguageSwitch from "../components/LanguageSwitch";
 
 export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
     const navigate = useNavigate();
@@ -137,7 +137,7 @@ export default function Login({loggedIn, setLoggedIn} : LoggedInProps) {
             </div>
             <DarkModeSwitch />
             <div className="mt-3 flex justify-center">
-                <LanguageSwitcher />
+                <LanguageSwitch />
             </div>
         </div>
     );

@@ -10,21 +10,22 @@ import {GOLDEN_TRANSPARENT_COLOR} from "../../common/constants";
 import {formatNumber} from "../../common/commonUtils";
 import SubPageHeader from "../../components/SubPageHeader";
 import XvmAbout from "../../components/XvmAbout";
+import {useTranslation} from "react-i18next";
 
 export default function DashboardEmployeeBonusSuggestions({loggedIn, setLoggedIn}: LoggedInProps) {
     const [attorneysOfTheMonthFetched] = useFetchAttorneysOfTheMonth();
     const attorneysOfTheMonth: AttorneysOfTheMonthDto = useAppSelector(selectAttorneysOfTheMonth)!;
+    const { t } = useTranslation();
 
     const ATTORNEYS_TO_GET_BONUS_AMOUNT = 3;
 
     const contentElement = <div>
-        <SubPageHeader header={"Employee bonus suggestions"} />
+        <SubPageHeader header={t("dashboard.bonus.name")} />
         <div className="mt-4 flex flex-col">
-            <span>Employee bonus suggestions based in the first order on attorney's successfully closed rate*.</span>
-            <p>The second order ranks the lowest titles (in order to equalize the chances, taking into account
-                the authority of the more senior titles)</p>
-            <span>The bonus is expected to be awarded to the following number of employees: {ATTORNEYS_TO_GET_BONUS_AMOUNT}</span>
-            <p>Workers eligible to receive a bonus are indicated with the <span style={{background: GOLDEN_TRANSPARENT_COLOR}}>appropriate color</span>.</p>
+            <span>{t("dashboard.bonus.about1")}*.</span>
+            <p>{t("dashboard.bonus.about2")}</p>
+            <span>{t("dashboard.bonus.about3")}: {ATTORNEYS_TO_GET_BONUS_AMOUNT}</span>
+            <p>{t("dashboard.bonus.about4")} <span style={{background: GOLDEN_TRANSPARENT_COLOR}}>{t("dashboard.bonus.about5")}</span>.</p>
             <div className="card background-secondary">
                 <div className="card-body text-center">
                     {!attorneysOfTheMonthFetched ? <LoadingGif /> :
@@ -32,11 +33,11 @@ export default function DashboardEmployeeBonusSuggestions({loggedIn, setLoggedIn
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Attorney</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Successfully closed amount</th>
-                                <th scope="col">Cases participated</th>
-                                <th scope="col">Successfully closed rate*</th>
+                                <th scope="col">{t("analytics.atty")}</th>
+                                <th scope="col">{t("analytics.title")}</th>
+                                <th scope="col">{t("dashboard.bonus.successClosed")}</th>
+                                <th scope="col">{t("analytics.casesPart")}</th>
+                                <th scope="col">{t("analytics.closedRate")}*</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -55,11 +56,10 @@ export default function DashboardEmployeeBonusSuggestions({loggedIn, setLoggedIn
                         </table>}
                     <div className="mt-5 text-start px-3 text-sm">
                         <span>
-                            *Successfully closed rate of the month - rate of closed legal cases (with status SUCCESS) by attorney in last month
-                            (participating in team also counts) to the total amount of cases participated in last month.
+                            *{t("analytics.closedRateDesc1")}
                         </span>
                         <p>
-                            Can be in range from 0 to 1.
+                            {t("analytics.closedRateDesc2")}
                         </p>
                         <XvmAbout xvm={rateXvmColorValue} />
                     </div>
@@ -69,5 +69,5 @@ export default function DashboardEmployeeBonusSuggestions({loggedIn, setLoggedIn
     </div>;
 
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"dashboard"} contentElement={contentElement}/>);
+                            pageName={t("dashboard.name")} contentElement={contentElement}/>);
 }
