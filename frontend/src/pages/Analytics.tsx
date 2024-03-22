@@ -29,6 +29,7 @@ import useFetchLatestClosedCases from "../hooks/legal_case/useFetchLatestClosedC
 import {createIncomeOutcomeChart, createSimpleDoughnut} from "../common/chartHelper";
 import useFetchAttorneysOfTheMonth from "../hooks/useFetchAttorneysOfTheMonth";
 import useFetchStatsByDates from "../hooks/useFetchStatsByDates";
+import {useTranslation} from "react-i18next";
 
 export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
     // const [dateFrom, setDateFrom] = useState(getYesterday());
@@ -38,6 +39,7 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
     const [datesError, setDatesError] = useState('');
     const BAD_DATE_FROM = "Date-from value should be before date-to.";
     const BAD_DATE_TO = "Date-to value should be after date-from.";
+    const { t } = useTranslation();
 
     // function getToday() {
     //     const today = new Date();
@@ -269,5 +271,5 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
         </div>
     </div>;
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"analytics"} contentElement={contentElement} />);
+                            pageName={t("analytics")} contentElement={contentElement} />);
 }

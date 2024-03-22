@@ -14,13 +14,12 @@ export function toKebabCase(str: string) {
 export function toPascalCase(str: string) {
     return `${str}`
         .toLowerCase()
-        .replace(new RegExp(/[^\w\s]/, 'g'), '')
+        .replace(new RegExp(/[^\w\sа-яА-ЯіІїЇґҐєЄ]/, 'g'), '')
         .replace(new RegExp(/[-_]+/, 'g'), ' ')
         .replace(
-            new RegExp(/\s+(.)(\w*)/, 'g'),
-            ($1) => `${$1}`
+            new RegExp(/\s+(.)(\w*)/, 'g'), ($1) => `${$1}`
         )
-        .replace(new RegExp(/\w/), s => s.toUpperCase());
+        .replace(new RegExp(/[\wа-яА-ЯіІїЇґҐєЄ]/), s => s.toUpperCase());
 }
 
 export function generateRandomColors(count: number): string[] {
