@@ -46,5 +46,9 @@
   "xvm": {
     "more": "more than",
     "less": "less than"
+  },
+  "header": {
+    "profile": "Your profile",
+    "signout": "Sign out"
   }
 }

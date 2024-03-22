@@ -11,6 +11,7 @@ import useFetchUser from "../../hooks/useFetchUser";
 import LoadingGif from "../loading/LoadingGif";
 import goodman from '../../resources/img/goodman.png';
 import LanguageSwitcher from "../LanguageSwitch";
+import {useTranslation} from "react-i18next";
 
 function classNames(...classes: string[]): string {
     return classes.filter(Boolean).join(' ');
@@ -20,6 +21,7 @@ export default function Header({loggedIn, setLoggedIn} : LoggedInProps) {
     const [userFetched] = useFetchUser();
     const navigate = useNavigate();
     const user = useAppSelector(selectUser)!;
+    const { t } = useTranslation();
 
     function signOut() {
         logout().then(() => {
@@ -88,7 +90,7 @@ export default function Header({loggedIn, setLoggedIn} : LoggedInProps) {
                                                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm')}
                                                         style={{color: "black"}}
                                                     >
-                                                        Your Profile
+                                                        {t("header.profile")}
                                                     </a>
                                                 )}
                                             </Menu.Item>
@@ -98,7 +100,7 @@ export default function Header({loggedIn, setLoggedIn} : LoggedInProps) {
                                                         onClick={signOut}
                                                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 w-100 text-left')}
                                                     >
-                                                        Sign out
+                                                        {t("header.signout")}
                                                     </button>
                                                 )}
                                             </Menu.Item>
