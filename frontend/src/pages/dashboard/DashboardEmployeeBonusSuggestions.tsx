@@ -9,6 +9,7 @@ import {rateXvmColorValue} from "../../common/XvmColorValue";
 import {GOLDEN_TRANSPARENT_COLOR} from "../../common/constants";
 import {formatNumber} from "../../common/commonUtils";
 import SubPageHeader from "../../components/SubPageHeader";
+import XvmAbout from "../../components/XvmAbout";
 
 export default function DashboardEmployeeBonusSuggestions({loggedIn, setLoggedIn}: LoggedInProps) {
     const [attorneysOfTheMonthFetched] = useFetchAttorneysOfTheMonth();
@@ -60,7 +61,7 @@ export default function DashboardEmployeeBonusSuggestions({loggedIn, setLoggedIn
                         <p>
                             Can be in range from 0 to 1.
                         </p>
-                        {rateXvmColorValue.getInfoReactElement()}
+                        <XvmAbout xvm={rateXvmColorValue} />
                     </div>
                 </div>
             </div>

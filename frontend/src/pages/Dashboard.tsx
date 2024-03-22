@@ -58,5 +58,5 @@ export default function Dashboard({loggedIn, setLoggedIn}: LoggedInProps) {
         </div>
     </div>;
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={t("dashboard")} contentElement={contentElement}/>);
+                            pageName={t("dashboard.name")} contentElement={contentElement}/>);
 }

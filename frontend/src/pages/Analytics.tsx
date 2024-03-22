@@ -30,6 +30,7 @@ import {createIncomeOutcomeChart, createSimpleDoughnut} from "../common/chartHel
 import useFetchAttorneysOfTheMonth from "../hooks/useFetchAttorneysOfTheMonth";
 import useFetchStatsByDates from "../hooks/useFetchStatsByDates";
 import {useTranslation} from "react-i18next";
+import XvmAbout from "../components/XvmAbout";
 
 export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
     // const [dateFrom, setDateFrom] = useState(getYesterday());
@@ -91,17 +92,17 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
 
     const contentElement = <div>
         <div>
-            <h5 className="text-m">Show stats between:</h5>
+            <h5 className="text-m">{t("analytics.showStatsBetween")}:</h5>
             <div className="my-3 flex flex-row">
                 <div className="flex flex-row items-center">
                     <label htmlFor="date-from"
-                           className="block mr-2 text-m">Date from:</label>
+                           className="block mr-2 text-m">{t("analytics.dateFrom")}:</label>
                     <input type="date" id="date-from" value={dateFrom}
                            onChange={({target} : InputTarget) => trySetDateFrom(target.value)} required />
                 </div>
                 <div className="mx-5 flex flex-row items-center">
                     <label htmlFor="date-to"
-                           className="block mr-2 text-m">Date to:</label>
+                           className="block mr-2 text-m">{t("analytics.dateTo")}:</label>
                     <input type="date" id="date-to" value={dateTo}
                            onChange={({target} : InputTarget) => trySetDateTo(target.value)} required />
                 </div>
@@ -117,31 +118,31 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
         <div className="flex flex-row flex-wrap">
             <div className="card background-secondary">
                 <div className="card-body text-center">
-                    <h5 className="mb-3">Incomes by case type</h5>
+                    <h5 className="mb-3">{t("analytics.incomesCase")}</h5>
                     {createSimpleDoughnut(statsByDates.caseTypeIncomesOutcomes.incomes)}
                 </div>
             </div>
             <div className="card background-secondary">
                 <div className="card-body text-center">
-                    <h5 className="mb-3">Outcomes by case type</h5>
+                    <h5 className="mb-3">{t("analytics.outcomesCase")}</h5>
                     {createSimpleDoughnut(statsByDates.caseTypeIncomesOutcomes.outcomes)}
                 </div>
             </div>
             <div className="card background-secondary">
                 <div className="card-body text-center">
-                    <h5 className="mb-3">Incomes by clients</h5>
+                    <h5 className="mb-3">{t("analytics.incomesClient")}</h5>
                     {createSimpleDoughnut(statsByDates.clientIncomesOutcomes.incomes)}
                 </div>
             </div>
             <div className="card background-secondary">
                 <div className="card-body text-center">
-                    <h5 className="mb-3">Outcomes by clients</h5>
+                    <h5 className="mb-3">{t("analytics.outcomesClient")}</h5>
                     {createSimpleDoughnut(statsByDates.clientIncomesOutcomes.outcomes)}
                 </div>
             </div>
             <div className="card background-secondary" style={{width: "51.6rem"}}>
                 <div className="card-body text-center">
-                    <h5 className="mb-3">Incomes/outcomes by months, $</h5>
+                    <h5 className="mb-3">{t("analytics.ioByMonths")}, $</h5>
                     {createIncomeOutcomeChart(statsByDates.monthIncomesOutcomes.incomes, statsByDates.monthIncomesOutcomes.outcomes)}
                 </div>
             </div>
@@ -151,17 +152,17 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
         <div className="flex flex-row flex-wrap large">
             <div className="card background-secondary">
                 <div className="card-body text-center">
-                    <p className="mb-3 display-6">Attorneys of the month</p>
+                    <p className="mb-3 display-6">{t("analytics.attysOfTheMonth")}</p>
 
                     {!attorneysOfTheMonthFetched ? <LoadingGif /> :
                     <table className="w-100">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Attorney</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Cases participated</th>
-                                <th scope="col">Successfully closed rate*</th>
+                                <th scope="col">{t("analytics.atty")}</th>
+                                <th scope="col">{t("analytics.title")}</th>
+                                <th scope="col">{t("analytics.casesPart")}</th>
+                                <th scope="col">{t("analytics.closedRate")}*</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -178,30 +179,29 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
                     </table>}
                     <div className="mt-5 text-start px-3 text-sm">
                         <span>
-                            *Successfully closed rate of the month - rate of closed legal cases (with status SUCCESS) by attorney in last month
-                            (participating in team also counts) to the total amount of cases participated in last month.
+                            *{t("analytics.closedRateDesc1")}
                         </span>
                         <p>
-                            Can be in range from 0 to 1.
+                            {t("analytics.closedRateDesc2")}
                         </p>
-                        {rateXvmColorValue.getInfoReactElement()}
+                        <XvmAbout xvm={rateXvmColorValue} />
                     </div>
                 </div>
             </div>
             <div className="card background-secondary">
                 <div className="card-body text-center">
-                    <p className="mb-3 display-6">Latest closed cases</p>
+                    <p className="mb-3 display-6">{t("analytics.latestClosed")}</p>
 
                     {!latestClosedCasesFetched ? <LoadingGif /> :
                     <table className="w-100">
                         <thead>
                         <tr>
-                            <th scope="col">Closed date</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Profit</th>
-                            <th scope="col">Client(s)</th>
-                            <th scope="col">Assigned attorney(s)</th>
+                            <th scope="col">{t("analytics.closedDate")}</th>
+                            <th scope="col">{t("analytics.title")}</th>
+                            <th scope="col">{t("analytics.status")}</th>
+                            <th scope="col">{t("analytics.profit")}</th>
+                            <th scope="col">{t("analytics.clients")}</th>
+                            <th scope="col">{t("analytics.assAttys")}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -226,36 +226,36 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
         <div className="flex flex-row flex-wrap">
             <div className="card background-secondary">
                 <div className="card-body px-5">
-                    <p className="text-center display-6">Firm state</p>
+                    <p className="text-center display-6">{t("analytics.firmState")}</p>
 
                     {!aboutUsFetched ? <LoadingGif /> :
                         <table id="about-us" className="mx-auto text-start">
                             <tbody>
                             <tr>
                                 <th scope="row" colSpan={2}>
-                                    <p className="my-3 mb-2 text-lg">Workers</p>
+                                    <p className="my-3 mb-2 text-lg">{t("analytics.workers")}</p>
                                 </th>
                             </tr>
                             <tr>
-                                <th scope="row">Total:</th>
+                                <th scope="row">{t("analytics.total")}:</th>
                                 <td>{aboutUs.workers}</td>
                             </tr>
                             <tr>
                                 <th scope="row" colSpan={2}>
-                                    <p className="my-3 mb-2 text-lg">Clients</p>
+                                    <p className="my-3 mb-2 text-lg">{t("analytics.clients1")}</p>
                                 </th>
                             </tr>
                             <tr>
-                                <th scope="row">Total:</th>
+                                <th scope="row">{t("analytics.total")}:</th>
                                 <td>{aboutUs.clients}</td>
                             </tr>
                             <tr>
                                 <th scope="row" colSpan={2}>
-                                    <p className="my-3 mb-2 text-lg">Cases</p>
+                                    <p className="my-3 mb-2 text-lg">{t("analytics.cases")}</p>
                                 </th>
                             </tr>
                             <tr>
-                                <th scope="row">Total:</th>
+                                <th scope="row">{t("analytics.total")}:</th>
                                 <td>{getAboutUsTotalCases()}</td>
                             </tr>
                             {Object.keys(aboutUs.caseStatusToAmount).map((caseStatusName, index) => {
@@ -271,5 +271,5 @@ export default function Analytics({loggedIn, setLoggedIn} : LoggedInProps) {
         </div>
     </div>;
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={t("analytics")} contentElement={contentElement} />);
+                            pageName={t("analytics.name")} contentElement={contentElement} />);
 }

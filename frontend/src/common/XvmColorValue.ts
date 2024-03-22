@@ -46,39 +46,6 @@ class XvmColorValue {
         }
         return this.COLOR_VIOLET;
     }
-
-    getInfoReactElement() {
-        return (<div className="flex flex-column">
-            <div className="flex flex-row align-items-center">
-                <Flag colorClassName={this.BG_VIOLET}/>
-                <span className="ml-3">- more than {this.violetValue}</span>
-            </div>
-            <div className="flex flex-row align-items-center">
-                <Flag colorClassName={this.BG_BLUE}/>
-                <span className="ml-3">- less than {this.violetValue}</span>
-            </div>
-            <div className="flex flex-row align-items-center">
-                <Flag colorClassName={this.BG_GREEN}/>
-                <span className="ml-3">- less than {this.blueValue}</span>
-            </div>
-            <div className="flex flex-row align-items-center">
-                <Flag colorClassName={this.BG_YELLOW}/>
-                <span className="ml-3">- less than {this.greenValue}</span>
-            </div>
-            <div className="flex flex-row align-items-center">
-                <Flag colorClassName={this.BG_ORANGE}/>
-                <span className="ml-3">- less than {this.yellowValue}</span>
-            </div>
-            <div className="flex flex-row align-items-center">
-                <Flag colorClassName={this.BG_RED}/>
-                <span className="ml-3">- less than {this.orangeValue}</span>
-            </div>
-        </div>);
-    }
-}
-
-function Flag({colorClassName}: { colorClassName: string }) {
-    return <div style={{width: "1rem", height: "1rem"}} className={colorClassName}></div>;
 }
 
 export const rateXvmColorValue = new XvmColorValue(

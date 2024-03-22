@@ -17,37 +17,37 @@ export default function Sidebar({activePageName}: SidebarProps) {
 
     const buttonsData = [
         {
-            name: t("analytics"),
+            name: t("analytics.name"),
             allowedRoles: [ROLES.ADMIN],
             url: PAGES.analytics,
             iconUrl: "https://www.svgrepo.com/show/529625/graph.svg"
         },
         {
-            name: t("dashboard"),
+            name: t("dashboard.name"),
             allowedRoles: [ROLES.ADMIN, ROLES.WORKER],
             url: PAGES.dashboard,
             iconUrl: "https://www.svgrepo.com/show/520688/dashboard-5.svg"
         },
         {
-            name: t("payments"),
+            name: t("payments.name"),
             allowedRoles: [ROLES.ADMIN],
             url: PAGES.payments,
             iconUrl: "https://www.svgrepo.com/show/500409/money.svg"
         },
         {
-            name: t("employees"),
+            name: t("employees.name"),
             allowedRoles: [ROLES.ADMIN, ROLES.WORKER],
             url: PAGES.employees,
             iconUrl: "https://www.svgrepo.com/show/374474/team-member.svg"
         },
         {
-            name: t("clients"),
+            name: t("clients.name"),
             allowedRoles: [ROLES.ADMIN, ROLES.WORKER],
             url: PAGES.clients,
             iconUrl: "https://www.svgrepo.com/show/374595/client.svg"
         },
         {
-            name: t("cases"),
+            name: t("cases.name"),
             allowedRoles: [ROLES.ADMIN, ROLES.WORKER],
             url: PAGES.cases,
             iconUrl: "https://www.svgrepo.com/show/374577/case.svg"
@@ -59,7 +59,7 @@ export default function Sidebar({activePageName}: SidebarProps) {
             {buttonsData.map((buttonData, index) =>
                 haveIntersections(buttonData.allowedRoles, user.roles) &&
                 <SidebarButton key={index} name={buttonData.name} url={buttonData.url}
-                               isActive={buttonData.name.toLowerCase() === activePageName}
+                               isActive={buttonData.name.toLowerCase() === activePageName.toLowerCase()}
                                iconUrl={buttonData.iconUrl}/>)}
         </div>
     );

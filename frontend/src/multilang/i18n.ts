@@ -17,7 +17,7 @@ i18n
     .init({
         resources,
         fallbackLng: 'ua',
-        debug: true,
+        debug: false,
     });
 
 export default i18n;

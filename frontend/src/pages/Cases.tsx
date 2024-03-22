@@ -72,5 +72,5 @@ export default function Cases({loggedIn, setLoggedIn} : LoggedInProps) {
         }
     </div>;
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={t("cases")} contentElement={contentElement}/>);
+                            pageName={t("cases.name")} contentElement={contentElement}/>);
 }

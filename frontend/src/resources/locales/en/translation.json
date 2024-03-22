@@ -1,8 +1,50 @@
 {
-  "analytics": "Analytics",
-  "dashboard": "Dashboard",
-  "payments": "Payments",
-  "employees": "Employees",
-  "clients": "Clients",
-  "cases": "Cases"
+  "analytics": {
+    "name": "Analytics",
+    "showStatsBetween": "Show stats between",
+    "dateFrom": "Date from",
+    "dateTo": "Date to",
+    "incomesCase": "Incomes by case type",
+    "outcomesCase": "Outcomes by case type",
+    "incomesClient": "Incomes by clients",
+    "outcomesClient": "Outcomes by clients",
+    "ioByMonths": "Incomes/outcomes by months",
+    "attysOfTheMonth": "Attorneys of the month",
+    "atty": "Attorney",
+    "title": "Title",
+    "casesPart": "Cases participated",
+    "status": "Status",
+    "profit": "Profit",
+    "clients": "Client(s)",
+    "assAttys": "Assigned attorney(s)",
+    "closedDate": "Closed date",
+    "closedRate": "Successfully closed rate",
+    "closedRateDesc1": "Successfully closed rate of the month - rate of closed legal cases (with status SUCCESS) by attorney in last month (participating in team also counts) to the total amount of cases participated in last month.",
+    "closedRateDesc2": "Can be in range from 0 to 1.",
+    "latestClosed": "Latest closed cases",
+    "firmState": "Firm state",
+    "workers": "Workers",
+    "total": "Total",
+    "clients1": "Clients",
+    "cases": "Cases"
+  },
+  "dashboard": {
+    "name": "Dashboard"
+  },
+  "payments": {
+    "name": "Payments"
+  },
+  "employees": {
+    "name": "Employees"
+  },
+  "clients": {
+    "name": "Clients"
+  },
+  "cases": {
+    "name": "Cases"
+  },
+  "xvm": {
+    "more": "more than",
+    "less": "less than"
+  }
 }
