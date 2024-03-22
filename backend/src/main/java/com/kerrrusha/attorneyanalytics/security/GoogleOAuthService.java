@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 
 import static java.util.Collections.singleton;
@@ -62,6 +63,7 @@ public class GoogleOAuthService {
         }
         Role workerRole = roleRepository.findByName(Role.RoleName.WORKER).orElseThrow();
         user.setRoles(singleton(workerRole));
+        user.setCreatedAt(LocalDateTime.now());
         userRepository.save(user);
         return user;
     }

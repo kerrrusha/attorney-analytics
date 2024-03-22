@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
             HttpMessageNotReadableException.class,
             UserAlreadyExistsException.class,
             IllegalArgumentException.class})
-    public ErrorResponse handleMessageNotReadable(Throwable e) {
+    public ErrorResponse handleBadRequest(Throwable e) {
         return new ErrorResponse("Bad request: " + e.getMessage());
     }
 }

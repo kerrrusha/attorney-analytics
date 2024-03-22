@@ -1,5 +1,6 @@
 package com.kerrrusha.attorneyanalytics.security;
 
+import com.google.common.net.HttpHeaders;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -7,10 +8,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -18,8 +22,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.util.Arrays;
 
 import static com.kerrrusha.attorneyanalytics.common.AuthHelper.AUTH_TOKEN;
+import static com.kerrrusha.attorneyanalytics.common.AuthHelper.createLogoutCookie;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -49,7 +55,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String token = authCookie.getValue();
         String username = jwtService.extractUsername(token);
         if (isNotBlank(username) && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            UserDetails userDetails;
+            try {
+                userDetails = userDetailsService.loadUserByUsername(username);
+            } catch (UsernameNotFoundException e) {
+                final ResponseCookie cookie = createLogoutCookie();
+                response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+
+                log.warn(e.toString());
+
+                filterChain.doFilter(request, response);
+                return;
+            }
 
             if (jwtService.isTokenValid(token, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(

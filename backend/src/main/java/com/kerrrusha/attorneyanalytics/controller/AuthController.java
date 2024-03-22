@@ -33,7 +33,7 @@ public class AuthController {
 
     private final UserService userService;
     private final AuthenticationService authenticationService;
-    private final SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+    private final SecurityContextLogoutHandler logoutHandler;
 
     @PostMapping("/register")
     @Operation(summary = "Register a new user")
@@ -60,9 +60,7 @@ public class AuthController {
     @ResponseStatus(HttpStatus.OK)
     public void performLogout(Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
         final ResponseCookie cookie = createLogoutCookie();
-
         response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
-
         logoutHandler.logout(request, response, authentication);
     }
 }

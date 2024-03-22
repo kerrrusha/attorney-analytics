@@ -23,6 +23,7 @@ import com.kerrrusha.attorneyanalytics.service.user.UserUpdateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,7 @@ public class UserUpdateServiceImpl implements UserUpdateService {
     private final UserMapper userMapper;
 
     @Override
+    @Transactional
     public UserResponseDto update(UserUpdateRequestDto requestDto, String updatedByLogin) {
         User userToUpdate = userRepository.findById(requestDto.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found by id: " + requestDto.getUserId()));
