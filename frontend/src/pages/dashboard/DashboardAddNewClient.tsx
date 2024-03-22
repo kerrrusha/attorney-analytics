@@ -39,7 +39,7 @@ export default function DashboardAddNewClient({loggedIn, setLoggedIn}: LoggedInP
     };
 
     const contentElement = <div>
-        <SubPageHeader header={t("dashboard.declare.name")} />
+        <SubPageHeader header={t("dashboard.addClient.name")} />
         <form onSubmit={handleFormSubmit}>
             <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="mt-4 flex flex-col col-span-2">
@@ -97,13 +97,13 @@ export default function DashboardAddNewClient({loggedIn, setLoggedIn}: LoggedInP
                     type="submit"
                     className="px-5 rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                 >
-                    {t("dashboard.declare.action")}
+                    {t("dashboard.addClient.action")}
                 </button>
             </div>
             <div className="mt-3">
                 {success && <div className="alert alert-success" role="alert">
-                    <p>{t("dashboard.declare.success1")}</p>
-                    <span>{t("dashboard.declare.success2")}<a href={PAGES.clients}>{t("dashboard.declare.success3")}</a> {t("dashboard.declare.success4")}</span>
+                    <p>{t("dashboard.addClient.success1")}</p>
+                    <span>{t("dashboard.addClient.success2")}<a href={PAGES.clients}>{t("dashboard.addClient.success3")}</a> {t("dashboard.addClient.success4")}</span>
                 </div>
                 }
                 {error && <div className="alert alert-danger" role="alert">
