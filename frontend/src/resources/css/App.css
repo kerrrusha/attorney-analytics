@@ -81,3 +81,7 @@ table.table-rounded {
   border-radius:16px;
   border: none;
 }
+
+.shadow-none {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.0) !important;
+}

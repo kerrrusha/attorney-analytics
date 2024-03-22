@@ -86,7 +86,7 @@ export default function CrudTable({name, initialData_, postDataHandler, disabled
 
     return (<div className="flex flex-row items-center">
         <div className="flex-1">
-            <table id={tableId} className="m-0 table table-bordered bg-white table-rounded">
+            <table id={tableId} className="m-0 table table-borderless bg-white table-rounded">
                 <tbody>
                 {rows.map((row, index) => (
                     <tr key={index}>
@@ -96,7 +96,7 @@ export default function CrudTable({name, initialData_, postDataHandler, disabled
                                 value={row}
                                 type="text"
                                 onChange={handleChange}
-                                className="text-black w-100 border-0 shadow-sm"
+                                className="text-black w-100 border-0 border-bottom shadow-none"
                             />
                         </th>
                         <td className="p-0">
