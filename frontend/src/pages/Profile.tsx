@@ -11,12 +11,14 @@ import SaveableTextArea from "../components/saveable/SaveableTextArea";
 import CrudTable, {TableData} from "../components/crud/CrudTable";
 import useFetchUser from "../hooks/useFetchUser";
 import React, {useState} from "react";
-import {API_ENDPOINTS, PAGES} from "../common/constants";
+import {API_ENDPOINTS} from "../common/constants";
 import {doPostRequestReturnResponse} from "../services/doPostRequestReturnResponse";
+import {useTranslation} from "react-i18next";
 
 export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
     const [userFetched] = useFetchUser();
     const user : User | null = useAppSelector(selectUser)!;
+    const { t } = useTranslation();
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
@@ -107,13 +109,13 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                     {!userFetched ? <LoadingGif /> : <form>
                         <div className="space-y-12">
                             <div className="border-b p-2 flex flex-row justify-between align-items-center">
-                                <h4 className="text-header font-semibold">Profile</h4>
+                                <h4 className="text-header font-semibold">{t("profile.name")}</h4>
                                 <span className="font-semibold leading-7" id="id">#{user.id}</span>
                             </div>
                             <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="col-span-full">
                                     <label htmlFor="photo" className="block text-sm font-medium leading-6">
-                                        Photo
+                                        {t("profile.photo")}
                                     </label>
                                     <div className="mt-2 flex items-center gap-x-3">
                                         <img className="rounded-full"
@@ -130,7 +132,7 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                                                 htmlFor="file-upload"
                                                 className="disabled relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                                             >
-                                                <span>Change</span>
+                                                <span>{t("profile.change")}</span>
                                                 <input disabled id="file-upload" name="file-upload" type="file" className="sr-only" />
                                             </label>
                                         </button>
@@ -141,18 +143,18 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                             <div className="pb-12 mt-0">
                                 <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                     <div className="sm:col-span-3">
-                                        <SaveableInput label="First name" postValueHandler={updateFirstName}
+                                        <SaveableInput label={t("auth.firstName")} postValueHandler={updateFirstName}
                                                        initialValue_={user.firstName} />
                                     </div>
 
                                     <div className="sm:col-span-3">
-                                        <SaveableInput label="Last name" postValueHandler={updateLastName}
+                                        <SaveableInput label={t("auth.lastName")} postValueHandler={updateLastName}
                                                        initialValue_={user.lastName} />
                                     </div>
 
                                     <div className="col-span-4">
                                         <label htmlFor="email" className="block text-sm font-medium leading-6">
-                                            Login
+                                            {t("profile.login")}
                                         </label>
                                         <div className="mt-2 flex flex-row items-center">
                                             <input
@@ -173,7 +175,7 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
 
                                     <div className="col-span-4">
                                         <label htmlFor="email" className="block text-sm font-medium leading-6">
-                                            Roles
+                                            {t("profile.roles")}
                                         </label>
                                         <div className="mt-2 flex flex-row items-center">
                                             <ul className="list-group mr-2">
@@ -189,7 +191,7 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
 
                                     <div className="col-span-4">
                                         <label htmlFor="title" className="block text-sm font-medium leading-6">
-                                            Title
+                                            {t("profile.title")}
                                         </label>
                                         <div className="mt-2 flex flex-row items-center">
                                             <input
@@ -214,38 +216,38 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                                     </div>
 
                                     <div className="col-span-6">
-                                        <SaveableTextArea label="Biography" postValueHandler={updateBio}
+                                        <SaveableTextArea label={t("profile.bio")} postValueHandler={updateBio}
                                                        initialValue_={fixNull(user.bio)} />
                                     </div>
 
                                     <div className="col-span-6">
-                                        <span className="block text-sm font-medium leading-6 mb-2">Emails</span>
+                                        <span className="block text-sm font-medium leading-6 mb-2">{t("profile.emails")}</span>
                                         <CrudTable name="emails" initialData_={{rows: user.emails}} postDataHandler={updateEmails} />
                                     </div>
 
                                     <div className="col-span-6">
-                                        <span className="block text-sm font-medium leading-6 mb-2">Phones</span>
+                                        <span className="block text-sm font-medium leading-6 mb-2">{t("profile.phones")}</span>
                                         <CrudTable name="phones" initialData_={{rows: user.phones}} postDataHandler={updatePhones} />
                                     </div>
 
                                     <div className="col-span-6">
-                                        <span className="block text-sm font-medium leading-6 mb-2">Locations</span>
+                                        <span className="block text-sm font-medium leading-6 mb-2">{t("profile.locations")}</span>
                                         <CrudTable name="locations" initialData_={{rows: user.locations}} postDataHandler={updateLocations} />
                                     </div>
 
                                     <div className="col-span-6">
-                                        <span className="block text-sm font-medium leading-6 mb-2">Practice Areas</span>
+                                        <span className="block text-sm font-medium leading-6 mb-2">{t("profile.practiceAreas")}</span>
                                         <CrudTable name="practiceAreas" initialData_={{rows: user.practiceAreas}} postDataHandler={updatePracticeAreas} />
                                     </div>
 
                                     <div className="col-span-6">
-                                        <span className="block text-sm font-medium leading-6 mb-2">Admissions</span>
+                                        <span className="block text-sm font-medium leading-6 mb-2">{t("profile.admissions")}</span>
                                         <CrudTable name="admissions" initialData_={{rows: user.admissions}} postDataHandler={updateAdmissions} />
                                     </div>
 
                                     <div className="sm:col-span-4">
                                         <label htmlFor="email" className="block text-sm font-medium leading-6">
-                                            Password
+                                            {t("auth.password")}
                                         </label>
                                         <div className="mt-2 flex flex-row items-center">
                                             <button
@@ -253,7 +255,7 @@ export default function Profile({loggedIn, setLoggedIn} : LoggedInProps) {
                                                 type="button"
                                                 className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                                             >
-                                                Change password
+                                                {t("profile.changePassword")}
                                             </button>
                                         </div>
                                     </div>

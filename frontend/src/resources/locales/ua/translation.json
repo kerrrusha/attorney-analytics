@@ -63,5 +63,20 @@
     "createAccount": "Створити акаунт",
     "firstName": "Ім'я",
     "lastName": "Прізвище"
+  },
+  "profile": {
+    "name": "Профіль",
+    "photo": "Фото",
+    "change": "Змінити",
+    "login": "Логін",
+    "roles": "Ролі",
+    "title": "Титул",
+    "bio": "Біографія",
+    "emails": "Електронні адреси",
+    "phones": "Телефонні номери",
+    "locations": "Адреси",
+    "practiceAreas": "Напрямки",
+    "admissions": "Ліцензії на практику",
+    "changePassword": "Змінити пароль"
   }
 }

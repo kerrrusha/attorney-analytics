@@ -63,5 +63,20 @@
     "createAccount": "Create account",
     "firstName": "First name",
     "lastName": "Last name"
+  },
+  "profile": {
+    "name": "Profile",
+    "photo": "Photo",
+    "change": "Change",
+    "login": "Login",
+    "roles": "Roles",
+    "title": "Title",
+    "bio": "Biography",
+    "emails": "Emails",
+    "phones": "Phones",
+    "locations": "Locations",
+    "practiceAreas": "Practice Areas",
+    "admissions": "Admissions",
+    "changePassword": "Change password"
   }
 }
