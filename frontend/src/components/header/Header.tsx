@@ -10,7 +10,7 @@ import {selectUser} from "../../redux/slices/authSlice";
 import useFetchUser from "../../hooks/useFetchUser";
 import LoadingGif from "../loading/LoadingGif";
 import goodman from '../../resources/img/goodman.png';
-import LanguageSwitcher from "../LanguageSwitch";
+import LanguageSwitch from "../LanguageSwitch";
 import {useTranslation} from "react-i18next";
 
 function classNames(...classes: string[]): string {
@@ -55,7 +55,7 @@ export default function Header({loggedIn, setLoggedIn} : LoggedInProps) {
                             <div className="flex flex-1 absolute inset-y-0 right-0 justify-end items-center sm:static sm:inset-auto sm:ml-6">
                                 <DarkModeSwitch />
                                 <div className="ml-4">
-                                    <LanguageSwitcher />
+                                    <LanguageSwitch />
                                 </div>
 
                                 {!userFetched ? <LoadingGif /> : <Menu as="div" className="relative ml-5 mr-2 ">
