@@ -4,6 +4,7 @@ import {useState} from "react";
 import LoadingGif from "../components/loading/LoadingGif";
 import Pagination from "../components/pagination/Pagination";
 import useFetchClients from "../hooks/useFetchClients";
+import {useTranslation} from "react-i18next";
 
 export default function Clients({loggedIn, setLoggedIn} : LoggedInProps) {
     const START_PAGE = 0;
@@ -13,6 +14,7 @@ export default function Clients({loggedIn, setLoggedIn} : LoggedInProps) {
     const [currentPageNumber, setCurrentPageNumber] = useState(START_PAGE);
     const [clients, setClientsFetched] = useFetchClients(currentPageNumber, PAGE_SIZE);
     const pagesAmount = clients && Math.ceil(clients.total / PAGE_SIZE);
+    const { t } = useTranslation();
 
     const getFrom = () => (currentPageNumber - START_PAGE) * PAGE_SIZE + START_ELEMENT;
     const getTo = () => {
@@ -66,5 +68,5 @@ export default function Clients({loggedIn, setLoggedIn} : LoggedInProps) {
         }
     </div>;
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"clients"} contentElement={contentElement}/>);
+                            pageName={t("clients")} contentElement={contentElement}/>);
 }

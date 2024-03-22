@@ -5,6 +5,7 @@ import Pagination from "../components/pagination/Pagination";
 import useFetchPayments from "../hooks/payment/useFetchPayments";
 import {useState} from "react";
 import PaymentListing from "../components/listing/PaymentListing";
+import {useTranslation} from "react-i18next";
 
 export default function Payments({loggedIn, setLoggedIn}: LoggedInProps) {
     const START_PAGE = 0;
@@ -14,6 +15,7 @@ export default function Payments({loggedIn, setLoggedIn}: LoggedInProps) {
     const [currentPageNumber, setCurrentPageNumber] = useState(START_PAGE);
     const [payments, setPaymentsFetched] = useFetchPayments(currentPageNumber, PAGE_SIZE);
     const pagesAmount = payments && Math.ceil(payments.total / PAGE_SIZE);
+    const { t } = useTranslation();
 
     const getFrom = () => (currentPageNumber - START_PAGE) * PAGE_SIZE + START_ELEMENT;
     const getTo = () => {
@@ -45,5 +47,5 @@ export default function Payments({loggedIn, setLoggedIn}: LoggedInProps) {
         }
     </div>;
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"payments"} contentElement={contentElement}/>);
+                            pageName={t("payments")} contentElement={contentElement}/>);
 }

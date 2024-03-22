@@ -1,3 +1,8 @@
 {
-  "analytics": "Аналітика"
+  "analytics": "Аналітика",
+  "dashboard": "Панель управління",
+  "payments": "Платежі",
+  "employees": "Персонал",
+  "clients": "Клієнти",
+  "cases": "Справи"
 }

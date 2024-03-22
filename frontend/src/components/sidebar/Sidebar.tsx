@@ -23,31 +23,31 @@ export default function Sidebar({activePageName}: SidebarProps) {
             iconUrl: "https://www.svgrepo.com/show/529625/graph.svg"
         },
         {
-            name: "Dashboard",
+            name: t("dashboard"),
             allowedRoles: [ROLES.ADMIN, ROLES.WORKER],
             url: PAGES.dashboard,
             iconUrl: "https://www.svgrepo.com/show/520688/dashboard-5.svg"
         },
         {
-            name: "Payments",
+            name: t("payments"),
             allowedRoles: [ROLES.ADMIN],
             url: PAGES.payments,
             iconUrl: "https://www.svgrepo.com/show/500409/money.svg"
         },
         {
-            name: "Employees",
+            name: t("employees"),
             allowedRoles: [ROLES.ADMIN, ROLES.WORKER],
             url: PAGES.employees,
             iconUrl: "https://www.svgrepo.com/show/374474/team-member.svg"
         },
         {
-            name: "Clients",
+            name: t("clients"),
             allowedRoles: [ROLES.ADMIN, ROLES.WORKER],
             url: PAGES.clients,
             iconUrl: "https://www.svgrepo.com/show/374595/client.svg"
         },
         {
-            name: "Cases",
+            name: t("cases"),
             allowedRoles: [ROLES.ADMIN, ROLES.WORKER],
             url: PAGES.cases,
             iconUrl: "https://www.svgrepo.com/show/374577/case.svg"

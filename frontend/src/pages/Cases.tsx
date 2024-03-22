@@ -6,6 +6,7 @@ import Pagination from "../components/pagination/Pagination";
 import useFetchLegalCases from "../hooks/legal_case/useFetchLegalCases";
 import {PAGES} from "../common/constants";
 import {getStatusColorClass} from "../common/commonUtils";
+import {useTranslation} from "react-i18next";
 
 export default function Cases({loggedIn, setLoggedIn} : LoggedInProps) {
     const START_PAGE = 0;
@@ -15,6 +16,7 @@ export default function Cases({loggedIn, setLoggedIn} : LoggedInProps) {
     const [currentPageNumber, setCurrentPageNumber] = useState(START_PAGE);
     const [legalCases, setLegalCasesFetched] = useFetchLegalCases(currentPageNumber, PAGE_SIZE);
     const pagesAmount = legalCases && Math.ceil(legalCases.total / PAGE_SIZE);
+    const { t } = useTranslation();
 
     const getFrom = () => (currentPageNumber - START_PAGE) * PAGE_SIZE + START_ELEMENT;
     const getTo = () => {
@@ -70,5 +72,5 @@ export default function Cases({loggedIn, setLoggedIn} : LoggedInProps) {
         }
     </div>;
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"cases"} contentElement={contentElement}/>);
+                            pageName={t("cases")} contentElement={contentElement}/>);
 }

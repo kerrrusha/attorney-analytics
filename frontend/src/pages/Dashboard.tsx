@@ -5,10 +5,12 @@ import {useAppSelector} from "../hooks/useAppSelector";
 import {selectUser} from "../redux/slices/authSlice";
 import {haveIntersections} from "../common/commonUtils";
 import {PAGES, ROLES} from "../common/constants";
+import {useTranslation} from "react-i18next";
 
 export default function Dashboard({loggedIn, setLoggedIn}: LoggedInProps) {
     const [userFetched] = useFetchUser();
     const user : User | null = useAppSelector(selectUser)!;
+    const { t } = useTranslation();
 
     const buttonsData = [
         {
@@ -56,5 +58,5 @@ export default function Dashboard({loggedIn, setLoggedIn}: LoggedInProps) {
         </div>
     </div>;
     return (<PageWithSidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn}
-                            pageName={"dashboard"} contentElement={contentElement}/>);
+                            pageName={t("dashboard")} contentElement={contentElement}/>);
 }
