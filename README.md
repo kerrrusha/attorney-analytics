@@ -2,7 +2,7 @@
 
 ## Description
 
-ERP system for the Attorney Firm. It's my graduate work of 4th course Bachelor of Science (KPI, 2024).
+ERP system for the Attorney Firm. It's my graduate work of 4th course Bachelor of Science (KPI, 2024).  
 It allows to control firm in wide range of aspects, such as managing company's employees, clients, legal cases, 
 declaring payments and provides crucial analytic stats, such as income/outcomes by months, clients and attorneys.  
 During developing of this project I've faced and successfully dealt with such troubles, like securing application with 
