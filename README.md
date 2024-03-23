@@ -2,7 +2,7 @@
 
 ## Description
 
-This Spring/React fullstack Attorney Firm Enterprise Resource Planning system is my graduate work of 4th course Bachelor of Science (KPI, 2024).  
+ERP system for the Attorney Firm. It's my graduate work of 4th course Bachelor of Science (KPI, 2024).
 It allows to control firm in wide range of aspects, such as managing company's employees, clients, legal cases, 
 declaring payments and provides crucial analytic stats, such as income/outcomes by months, clients and attorneys.  
 During developing of this project I've faced and successfully dealt with such troubles, like securing application with 
@@ -57,14 +57,10 @@ declaring payment and adding new client.
 
 ## Demo
 
-[YouTube video demo]()
-
+[YouTube video demo](https://youtu.be/SeNbW0Mpe2M)
 
 Domain model diagram:
 ![domain](assets/images/domain.png)
-
-Home page:
-![domain](assets/images/home.png)
 
 ## Usage
 
