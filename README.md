@@ -10,7 +10,7 @@ Google OAuth2 along with JWT tokens, bootstrapping DB with Liquibase and writing
 From the frontend part I had the first experience with seamless dark mode switch and internationalization,
 creating pagination, custom CRUD tables and using different ChartJS charts.    
 
-Few words about ERP [domain](#demo) model:
+Few words about ERP [domain](assets/images/domain.png) model:
 - User - serves as employee (worker, attorney...) and as site user in the same time. Has such properties, as first/last names, bio, title, emails, phones, locations, admissions etc.
 - Client - records about clients we work with.
 - Legal case - presents legal case that we handle for clients. Of course, it has assigned clients, attorneys, title, description, status, type and assigned payments.
@@ -18,22 +18,16 @@ Few words about ERP [domain](#demo) model:
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Features](#features)
 - [Demo](#demo)
+- [Features](#features)
+- [Installation](#installation)
 - [Usage](#usage)
 
-## Installation
+## Demo
 
-1. Clone this repo using `git clone <URL>`
-2. Ensure that Java 17+ and MySQL are installed
-3. Fill out MySQL username and password in `resources/application.properties`
-and `resources/liquibase.properties`
-4. Google OAuth client-id is required. Instruction about how it obtain: https://developers.google.com/identity/oauth2/web/guides/get-google-api-clientid
-5. Grab your client-id and put it to the `application.properties`
-6. In your frontend root folder, create `.env` file from `.env.sample`
-7. Start backend API
-8. Run frontend React app by `cd frontend` and `npm run start` or build optimized production build by running `npm run build`
+[YouTube video demo](https://youtu.be/SeNbW0Mpe2M)
+
+[Domain model diagram](assets/images/domain.png)
 
 ## Features
 
@@ -53,13 +47,19 @@ administrator should give such attorney a title. This can be done by admin at th
 declaring payment and adding new client.
 - `/payments`, `/clients` are regular pageable listings of according entities
 - `/employees` shows list of attorneys, grouped by title. Each attorney can be viewed separately at his individual page.
-- `/cases` shows pageable listing of legal cases. They also have their individual pages. 
+- `/cases` shows pageable listing of legal cases. They also have their individual pages.
 
-## Demo
+## Installation
 
-[YouTube video demo](https://youtu.be/SeNbW0Mpe2M)
-
-[Domain model diagram](assets/images/domain.png)
+1. Clone this repo using `git clone <URL>`
+2. Ensure that Java 17+ and MySQL are installed
+3. Fill out MySQL username and password in `resources/application.properties`
+   and `resources/liquibase.properties`
+4. Google OAuth client-id is required. Instruction about how it obtain: https://developers.google.com/identity/oauth2/web/guides/get-google-api-clientid
+5. Grab your client-id and put it to the `application.properties`
+6. In your frontend root folder, create `.env` file from `.env.sample`
+7. Start backend API
+8. Run frontend React app by `cd frontend` and `npm run start` or build optimized production build by running `npm run build`
 
 ## Usage
 
