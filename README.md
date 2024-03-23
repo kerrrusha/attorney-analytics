@@ -57,14 +57,10 @@ declaring payment and adding new client.
 
 ## Demo
 
-[YouTube video demo]()
-
+[YouTube video demo](https://youtu.be/SeNbW0Mpe2M)
 
 Domain model diagram:
 ![domain](assets/images/domain.png)
-
-Home page:
-![domain](assets/images/home.png)
 
 ## Usage
 
