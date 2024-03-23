@@ -59,8 +59,7 @@ declaring payment and adding new client.
 
 [YouTube video demo](https://youtu.be/SeNbW0Mpe2M)
 
-Domain model diagram:
-![domain](assets/images/domain.png)
+[Domain model diagram](assets/images/domain.png)
 
 ## Usage
 
