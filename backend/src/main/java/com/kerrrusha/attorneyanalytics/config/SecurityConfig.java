@@ -27,7 +27,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private static final String[] AUTH_WHITELIST = new String[] {"/oauth/**", "/auth/**", "/swagger-ui/**"};
+    private static final String[] AUTH_WHITELIST = new String[] {"/oauth/**", "/auth/**", "/swagger-ui/**", "/v3/api-docs/**"};
 
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final ReadyUserDetailsService userDetailsService;
