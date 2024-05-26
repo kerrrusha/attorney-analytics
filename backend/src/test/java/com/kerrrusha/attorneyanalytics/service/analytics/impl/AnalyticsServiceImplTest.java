@@ -7,16 +7,10 @@ import com.kerrrusha.attorneyanalytics.model.client.Client;
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCase;
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCaseStatus;
 import com.kerrrusha.attorneyanalytics.model.legal_case.LegalCaseType;
-import com.kerrrusha.attorneyanalytics.model.payment.Payment;
-import com.kerrrusha.attorneyanalytics.model.payment.PaymentStatus;
-import com.kerrrusha.attorneyanalytics.model.payment.PaymentType;
 import com.kerrrusha.attorneyanalytics.model.user.User;
-import com.kerrrusha.attorneyanalytics.model.user.UserTitleComparator;
 import com.kerrrusha.attorneyanalytics.repository.client.ClientRepository;
 import com.kerrrusha.attorneyanalytics.repository.legal_case.LegalCaseRepository;
-import com.kerrrusha.attorneyanalytics.repository.payment.PaymentRepository;
 import com.kerrrusha.attorneyanalytics.repository.user.UserRepository;
-import com.kerrrusha.attorneyanalytics.service.analytics.AbstractIncomesOutcomesCalculator;
 import com.kerrrusha.attorneyanalytics.service.legal_case.impl.LegalCaseServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,16 +44,6 @@ class AnalyticsServiceImplTest {
     @Mock
     private LegalCaseRepository legalCaseRepository;
     @Mock
-    private PaymentRepository paymentRepository;
-    @Mock
-    private AbstractIncomesOutcomesCalculator monthIncomesOutcomesCalculator;
-    @Mock
-    private AbstractIncomesOutcomesCalculator caseTypeOutcomesCalculator;
-    @Mock
-    private AbstractIncomesOutcomesCalculator clientIncomesOutcomesCalculator;
-    @Mock
-    private UserTitleComparator userTitleComparator;
-    @Mock
     private LegalCaseServiceImpl legalCaseService;
 
     @InjectMocks
@@ -69,7 +53,6 @@ class AnalyticsServiceImplTest {
     private List<User> exampleUsers;
     private List<Client> exampleClients;
     private List<LegalCase> exampleLegalCases;
-    private List<Payment> exampleValidPayments;
 
     @BeforeEach
     public void init() {
@@ -95,26 +78,6 @@ class AnalyticsServiceImplTest {
                 .createdAt(LocalDateTime.of(2024, 5, 10, 0, 0, 0))
                 .updatedAt(LocalDateTime.of(2024, 5, 12, 0, 0, 0))
                 .build();
-        exampleValidPayments = List.of(
-                Payment.builder()
-                        .id(1L)
-                        .legalCase(exampleValidLegalCase)
-                        .createdAt(LocalDateTime.of(2024, 5, 11, 0, 0, 0))
-                        .updatedAt(LocalDateTime.of(2024, 5, 11, 1, 0, 0))
-                        .amountInCents(EXAMPLE_OUTCOME)
-                        .paymentStatus(PaymentStatus.builder().name(PaymentStatus.PaymentStatusName.SUCCESS).build())
-                        .paymentType(PaymentType.builder().name(PaymentType.PaymentTypeName.OUTCOME).build())
-                        .build(),
-                Payment.builder()
-                        .id(1L)
-                        .createdAt(LocalDateTime.of(2024, 5, 12, 0, 0, 0))
-                        .updatedAt(LocalDateTime.of(2024, 5, 12, 1, 0, 0))
-                        .legalCase(exampleValidLegalCase)
-                        .amountInCents(EXAMPLE_INCOME)
-                        .paymentStatus(PaymentStatus.builder().name(PaymentStatus.PaymentStatusName.SUCCESS).build())
-                        .paymentType(PaymentType.builder().name(PaymentType.PaymentTypeName.INCOME).build())
-                        .build()
-        );
 
         exampleLegalCases = List.of(
                 exampleValidLegalCase,
