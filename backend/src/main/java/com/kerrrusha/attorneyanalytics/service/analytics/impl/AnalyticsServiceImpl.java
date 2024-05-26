@@ -58,7 +58,8 @@ public class AnalyticsServiceImpl implements AnalyticsService {
     private final LegalCaseService legalCaseService;
     private final UserTitleComparator userTitleComparator;
 
-    public AnalyticsServiceImpl(UserRepository userRepository, ClientRepository clientRepository,
+    public AnalyticsServiceImpl(UserRepository userRepository,
+                                ClientRepository clientRepository,
                                 LegalCaseRepository legalCaseRepository,
                                 PaymentRepository paymentRepository,
                                 @Qualifier("month") AbstractIncomesOutcomesCalculator monthIncomesOutcomesCalculator,

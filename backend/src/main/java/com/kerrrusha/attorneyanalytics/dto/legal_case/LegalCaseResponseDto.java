@@ -9,7 +9,6 @@ import java.util.List;
 
 @Data
 public class LegalCaseResponseDto {
-
     private Long id;
     private String createdAt;
     private String updatedAt;

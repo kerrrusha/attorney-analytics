@@ -9,6 +9,6 @@ public interface FullNameProvider {
     String getLastName();
 
     default String getFullName() {
-        return getFirstName() + SPACE + getLastName();
+        return String.join(SPACE, getFirstName(), getLastName());
     }
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class GoogleOAuthLoginRequestDto {
+
     @NotBlank
     private String idToken;
 }

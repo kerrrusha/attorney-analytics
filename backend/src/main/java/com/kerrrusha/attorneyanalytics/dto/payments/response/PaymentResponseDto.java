@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class PaymentResponseDto {
-
     private String updatedAt;
     private String type;
     private String description;

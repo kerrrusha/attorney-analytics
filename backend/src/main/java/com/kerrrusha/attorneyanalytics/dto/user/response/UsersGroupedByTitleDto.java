@@ -6,7 +6,6 @@ import java.util.List;
 
 @Data
 public class UsersGroupedByTitleDto {
-
     private String title;
     private List<UserListingResponseDto> data;
 }

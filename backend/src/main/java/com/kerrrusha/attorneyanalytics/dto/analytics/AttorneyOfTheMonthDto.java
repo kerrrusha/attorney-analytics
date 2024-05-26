@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class AttorneyOfTheMonthDto {
-
     private String attorneyFullName;
     private String title;
     private long casesParticipated;

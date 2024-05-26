@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 
 @Data
 public class UserUpdateRequestDto {
-
     private Long userId;
     private LocalDateTime createdAt;
     private String firstName;

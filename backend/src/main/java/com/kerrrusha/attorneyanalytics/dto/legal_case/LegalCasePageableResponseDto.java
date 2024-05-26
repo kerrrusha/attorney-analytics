@@ -6,7 +6,6 @@ import java.util.List;
 
 @Data
 public class LegalCasePageableResponseDto {
-
     private Long total;
     private List<LegalCaseResponseDto> data;
 }

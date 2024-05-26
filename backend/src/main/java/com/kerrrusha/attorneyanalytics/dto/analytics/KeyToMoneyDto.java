@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class KeyToMoneyDto {
-
     protected String key;
     protected Long value;
 }
