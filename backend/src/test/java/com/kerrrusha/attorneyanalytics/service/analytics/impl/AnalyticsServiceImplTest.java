@@ -127,12 +127,4 @@ class AnalyticsServiceImplTest {
 
         assertEquals(expected, analyticsService.getLatestClosedCases());
     }
-
-    @Test
-    void getAttorneysOfTheMonth() {
-    }
-
-    @Test
-    void getStatsByDates() {
-    }
 }

@@ -34,7 +34,7 @@ class ClientEmailRepositoryTest {
     private ClientEmailRepository clientEmailRepository;
 
     @Test
-    void user_setEmails_ok() {
+    void client_setEmails_ok() {
         Client client = insertClient();
 
         ClientEmail expectedEmail = new ClientEmail(EMAIL, client);
@@ -53,7 +53,7 @@ class ClientEmailRepositoryTest {
     }
 
     @Test
-    void email_deleteAllByUserId_ok() {
+    void client_deleteAllEmailsByClientId_ok() {
         Client client = insertClient();
 
         List<ClientEmail> prevClientEmails = createList(new ClientEmail(EMAIL, client));
@@ -70,7 +70,7 @@ class ClientEmailRepositoryTest {
     }
 
     @Test
-    void user_updateEmails_ok() {
+    void client_updateEmails_ok() {
         Client client = insertClient();
         List<ClientEmail> prevClientEmails = createList(
                 new ClientEmail("client_updateEmails_ok@test.com", client)

@@ -39,7 +39,7 @@ class UserMapperTest {
     private UserMapper userMapper;
 
     @Test
-    void toFullDto() {
+    void toFullDto_validUser_ok() {
         User user = User.builder()
                 .id(ID)
                 .firstName(FIRST_NAME)
